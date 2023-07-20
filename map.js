@@ -71,6 +71,8 @@ map.fitBounds([
 	crs.unproject(L.point(mapExtent[ 0 ], mapExtent[ 1 ]))
 ]);
 
+L.control.mousePosition().addTo(map)
+
 function addToFeatureGroup(featureGroup, feature) {
 	featureGroup.addLayer(feature);
 }
