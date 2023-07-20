@@ -581,13 +581,6 @@ const locations = [
 		"id": ""
 	},
 	{
-		"name": "Milk",
-		"lat": -1756,
-		"long": 7450,
-		"description": "",
-		"id": ""
-	},
-	{
 		"name": "Turnip",
 		"lat": -2314,
 		"long": 8020,
