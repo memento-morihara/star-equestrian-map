@@ -204,6 +204,13 @@ export const collectibles = [
 			iconSize: [ 24, 24 ]
 		})
 	},
+	{
+		name: "Message in a Bottle",
+		icon: L.icon({
+			iconUrl: "./icons/message-in-a-bottle.png",
+			iconSize: [ 18, 24 ]
+		})
+	}
 ]
 
 export const other = [
