@@ -6,7 +6,7 @@ import {
     other
 } from './markers.js';
 
-import { records, addMarker, deleteMarker } from './dev/pocketbase.js';
+// import { records, addMarker, deleteMarker } from './dev/pocketbase.js';
 import locations from './locations.js';
 
 const options = [
