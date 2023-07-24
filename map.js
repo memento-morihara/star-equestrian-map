@@ -121,14 +121,7 @@ function addFeatures(marker) {
 }
 
 
-// map.whenReady(getMarkers)
-L.marker([ -8192, 8192 ], {
-	name: "Placeholder",
-	icon: L.icon({
-		iconUrl: './se-marker.svg',
-		iconSize: [ 28, 28 ]
-	})
-}).addTo(map)
+map.whenReady(getMarkers)
 
 function toggleMarkerGroup(markerGroup) {
 	map.hasLayer(markerGroup) ? markerGroup.remove() : markerGroup.addTo(map);
