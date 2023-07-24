@@ -1,3 +1,13 @@
 dev/**
 node_modules
 **.local
+tiles-v2/**
+
+# Not in use right now
+package.json
+package-lock.json
+
+#IDE artifacts
+run.json
+launch.json
+settings.json
