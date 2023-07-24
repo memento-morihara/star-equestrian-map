@@ -2,6 +2,7 @@ dev/**
 node_modules
 **.local
 tiles-v2/**
+official-tiles/*
 
 # Not in use right now
 package.json

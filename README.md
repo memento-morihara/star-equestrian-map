@@ -9,9 +9,13 @@ Very much a work in progress, but maybe someone will find it useful.
 
 Not too much to say about it yet. Click on the icons to open a popup that might have more information about the item's location. Use the checkboxes in the side menu to show/hide icons.
 
+Also, shoutout to the awesome folks at Foxie Ventures who provided me with a large map image.
+
+Take a look at the dev branch if you want to see the beautiful new basemap.
+
 ## To Do
 
-- [ ] Finish basemap and patch various defects
+- [x] Finish basemap and patch various defects (thanks, @Random Spider!)
 - [ ] Fix weird popup placement and icon sizing
 - [ ] Different icons for chests
 - [ ] Add ability to mark items as collected
