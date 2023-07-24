@@ -149,35 +149,45 @@ export const chests = [
 		name: "Common Chest",
 		icon: L.icon({
 			iconUrl: "./se-marker.svg",
-			iconSize: [ 28, 28 ]
+			iconSize: [ 28, 28 ],
+			iconAnchor: [ 14, 28 ],
+			popupAnchor: [ 0, -14 ]
 		})
 	},
 	{
 		name: "Uncommon Chest",
 		icon: L.icon({
 			iconUrl: "./se-marker.svg",
-			iconSize: [ 28, 28 ]
+			iconSize: [ 28, 28 ],
+			iconAnchor: [ 14, 28 ],
+			popupAnchor: [ 0, -14 ]
 		})
 	},
 	{
 		name: "Rare Chest",
 		icon: L.icon({
 			iconUrl: "./se-marker.svg",
-			iconSize: [ 28, 28 ]
+			iconSize: [ 28, 28 ],
+			iconAnchor: [ 14, 28 ],
+			popupAnchor: [ 0, -14 ]
 		})
 	},
 	{
 		name: "Epic Chest",
 		icon: L.icon({
 			iconUrl: "./se-marker.svg",
-			iconSize: [ 28, 28 ]
+			iconSize: [ 28, 28 ],
+			iconAnchor: [ 14, 28 ],
+			popupAnchor: [ 0, -14 ]
 		})
 	},
 	{
 		name: "Legendary Chest",
 		icon: L.icon({
 			iconUrl: "./se-marker.svg",
-			iconSize: [ 28, 28 ]
+			iconSize: [ 28, 28 ],
+			iconAnchor: [ 14, 28 ],
+			popupAnchor: [ 0, -14 ]
 		})
 	},
 ]
