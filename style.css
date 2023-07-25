@@ -46,8 +46,24 @@ body,
 	height: 100%;
 }
 
+.sidepanel-tab-content {
+	padding-left: 1em;
+	margin-top: -1em;
+}
+
+.sidepanel h3 {
+	font-size: 1.4em;
+	margin: 1.2em 0 0;
+}
+
+ul {
+	padding-left: 0;
+	margin-top: 0.5em;
+}
+
 li {
 	list-style: none;
+	line-height: 2;
 }
 
 li input {
@@ -57,5 +73,4 @@ li input {
 .collectible-toggles {
 	display: flex;
 	flex-direction: column;
-	padding-left: 25px;
 }

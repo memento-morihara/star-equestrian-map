@@ -1,133 +1,361 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Star Equestrian Map</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0, width=device-width,user-scalable=no"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.rawgit.com/ardhi/Leaflet.MousePosition/master/src/L.Control.MousePosition.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script
+      src="https://cdn.rawgit.com/ardhi/Leaflet.MousePosition/master/src/L.Control.MousePosition.js"
+      type="text/javascript"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./lib/sidepanel.css" />
+    <link rel="stylesheet" href="./lib/condensed-attribution.css" />
+    <!-- What do you mean there's not enough external files? -->
+  </head>
 
-<head>
-	<title>Star Equestrian Map</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1.0, width=device-width,user-scalable=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-	<link rel="stylesheet"
-		href="https://cdn.rawgit.com/ardhi/Leaflet.MousePosition/master/src/L.Control.MousePosition.css" />
-	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-	<script src="https://cdn.rawgit.com/ardhi/Leaflet.MousePosition/master/src/L.Control.MousePosition.js"
-		type="text/javascript"></script>
-	<link rel="stylesheet" href="style.css" />
-	<link rel="stylesheet" href="./lib/sidepanel.css" />
-	<link rel="stylesheet" href="./lib/condensed-attribution.css" />
-	<!-- What do you mean there's not enough external files? -->
-</head>
+  <body>
+    <div id="map" style="width: 100vw; height: 100vh"></div>
 
-<body>
-	<div id="map" style="width: 100vw; height: 100vh"></div>
-
-	<div class="sidepanel" id="menu" aria-label="side panel" aria-hidden="false">
-		<div class="sidepanel-inner-wrapper">
-			<nav class="sidepanel-tabs-wrapper">
-				<ul class="sidepanel-tabs">
-					<li class="sidepanel-tab"><a href="#" class="sidebar-tab-link" data-tab-link="tab-1">Filter</a></li>
-					<li class="sidepanel-tab"><a href="#" class="sidebar-tab-link" data-tab-link="tab-2">Tab</a>
-					</li>
-					<li class="sidepanel-tab"><a href="#" class="sidebar-tab-link" data-tab-link="tab-3">Tab</a>
-					</li>
-				</ul>
-			</nav>
-			<div class="sidepanel-content-wrapper">
-				<div class="sidepanel-content">
-					<div class="sidepanel-tab-content tab-content-centered" data-tab-content="tab-1">
-						<h3>Food</h3>
-						<!-- Hidden for now b/c toggling all does not work as expected-->
-						<!-- <label><input type="checkbox" data-feature-group="foodFeatureGroup" value="food" checked />All
+    <div
+      class="sidepanel"
+      id="menu"
+      aria-label="side panel"
+      aria-hidden="false"
+    >
+      <div class="sidepanel-inner-wrapper">
+        <nav class="sidepanel-tabs-wrapper">
+          <ul class="sidepanel-tabs">
+            <li class="sidepanel-tab">
+              <a href="#" class="sidebar-tab-link" data-tab-link="tab-1"
+                >Filter</a
+              >
+            </li>
+            <li class="sidepanel-tab">
+              <a href="#" class="sidebar-tab-link" data-tab-link="tab-2">Tab</a>
+            </li>
+            <li class="sidepanel-tab">
+              <a href="#" class="sidebar-tab-link" data-tab-link="tab-3">Tab</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="sidepanel-content-wrapper">
+          <div class="sidepanel-content">
+            <div
+              class="sidepanel-tab-content tab-content-centered"
+              data-tab-content="tab-1"
+            >
+              <h3>Food</h3>
+              <!-- Hidden for now b/c toggling all does not work as expected-->
+              <!-- <label><input type="checkbox" data-feature-group="foodFeatureGroup" value="food" checked />All
 							food</label> -->
-						<ul class="collectible-toggles">
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="apple" />Apples</label></li>
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="berries" />Berries</label></li>
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="carrot" />Carrots</label></li>
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="lemon" />Lemons</label></li>
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="lettuce" />Lettuce</label></li>
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="orange" />Oranges</label></li>
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="pumpkin" />Pumpkins</label></li>
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="strawberries" />Strawberries</label></li>
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="turnip" />Turnip</label></li>
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="watermelon" />Watermelons</label></li>
-							<li><label><input type="checkbox" checked data-feature-group="foodFeatureGroup"
-										value="wheat" />Wheat</label></li>
-						</ul>
+              <ul class="collectible-toggles">
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="apple"
+                    />Apples</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="berries"
+                    />Berries</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="carrot"
+                    />Carrots</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="lemon"
+                    />Lemons</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="lettuce"
+                    />Lettuce</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="orange"
+                    />Oranges</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="pumpkin"
+                    />Pumpkins</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="strawberries"
+                    />Strawberries</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="turnip"
+                    />Turnip</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="watermelon"
+                    />Watermelons</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      data-feature-group="foodFeatureGroup"
+                      value="wheat"
+                    />Wheat</label
+                  >
+                </li>
+              </ul>
 
-						<h3>Chests</h3>
-						<ul class="collectible-toggles">
-							<li><label><input type="checkbox" value="common-chest"
-										data-feature-group="chestsFeatureGroup" checked />Common Chests</label></li>
-							<li><label><input type="checkbox" value="uncommon-chest"
-										data-feature-group="chestsFeatureGroup" checked />Uncommon Chests</label></li>
-							<li><label><input type="checkbox" value="rare-chest" data-feature-group="chestsFeatureGroup"
-										checked />Rare Chests</label></li>
-							<li><label><input type="checkbox" value="epic-chest" data-feature-group="chestsFeatureGroup"
-										checked />Epic Chests</label></li>
-							<li><label><input type="checkbox" value="legendary-chest"
-										data-feature-group="chestsFeatureGroup" checked />Legendary Chest</label></li>
-						</ul>
+              <h3>Chests</h3>
+              <ul class="collectible-toggles">
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      value="common-chest"
+                      data-feature-group="chestsFeatureGroup"
+                      checked
+                    />Common Chests</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      value="uncommon-chest"
+                      data-feature-group="chestsFeatureGroup"
+                      checked
+                    />Uncommon Chests</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      value="rare-chest"
+                      data-feature-group="chestsFeatureGroup"
+                      checked
+                    />Rare Chests</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      value="epic-chest"
+                      data-feature-group="chestsFeatureGroup"
+                      checked
+                    />Epic Chests</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      value="legendary-chest"
+                      data-feature-group="chestsFeatureGroup"
+                      checked
+                    />Legendary Chest</label
+                  >
+                </li>
+              </ul>
 
-						<h3>Resources</h3>
-						<ul class="collectible-toggles">
-							<li><label><input type="checkbox" value="butterflies"
-										data-feature-group="resourcesFeatureGroup" checked />Butterflies</label></li>
-							<li><label><input type="checkbox" value="eggs" data-feature-group="resourcesFeatureGroup"
-										checked />Eggs</label></li>
-							<li><label><input type="checkbox" value="fish" data-feature-group="resourcesFeatureGroup"
-										checked />Fish</label></li>
-							<li><label><input type="checkbox" value="milk" data-feature-group="resourcesFeatureGroup"
-										checked />Milk</label></li>
-							<li><label><input type="checkbox" value="wool" data-feature-group="resourcesFeatureGroup"
-										checked />Wool</label></li>
-						</ul>
+              <h3>Resources</h3>
+              <ul class="collectible-toggles">
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      value="butterflies"
+                      data-feature-group="resourcesFeatureGroup"
+                      checked
+                    />Butterflies</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      value="eggs"
+                      data-feature-group="resourcesFeatureGroup"
+                      checked
+                    />Eggs</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      value="fish"
+                      data-feature-group="resourcesFeatureGroup"
+                      checked
+                    />Fish</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      value="milk"
+                      data-feature-group="resourcesFeatureGroup"
+                      checked
+                    />Milk</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      value="wool"
+                      data-feature-group="resourcesFeatureGroup"
+                      checked
+                    />Wool</label
+                  >
+                </li>
+              </ul>
 
-						<h3>Collectibles</h3>
-						<ul>
-							<li><label><input type="checkbox" checked value="horseshoe" />Horseshoe</label>
-							</li>
-							<li><label><input type="checkbox" checked value="sheriff's-badge" />Sheriff's Badge</label>
-							</li>
-							<li><label><input type="checkbox" checked value="toy-unicorn" />Toy Unicorn</label></li>
-						</ul>
+              <h3>Collectibles</h3>
+              <ul>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      value="horseshoe"
+                    />Horseshoe</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      value="sheriff's-badge"
+                    />Sheriff's Badge</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input type="checkbox" checked value="toy-unicorn" />Toy
+                    Unicorn</label
+                  >
+                </li>
+              </ul>
 
-						<h3>Other</h3>
-						<ul>
-							<li><label><input type="checkbox" checked value="picnic-basket" />Picnic Basket</label></li>
-							<li><label><input type="checkbox" checked value="wood" />Wood</label></li>
-						</ul>
-					</div>
+              <h3>Other</h3>
+              <ul>
+                <li>
+                  <label
+                    ><input
+                      type="checkbox"
+                      checked
+                      value="picnic-basket"
+                    />Picnic Basket</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input type="checkbox" checked value="wood" />Wood</label
+                  >
+                </li>
+              </ul>
+            </div>
 
-					<div class="sidepanel-tab-content" data-tab-content="tab-2" id="about-tab">
-						<p>Nothing to see here...</p>
-					</div>
+            <div
+              class="sidepanel-tab-content"
+              data-tab-content="tab-2"
+              id="about-tab"
+            >
+              <p>Nothing to see here...</p>
+            </div>
 
-					<div class="sidepanel-tab-content" data-tab-content="tab-3">
-						<p>¯\_(ツ)_/¯</p>
-					</div>
+            <div class="sidepanel-tab-content" data-tab-content="tab-3">
+              <p>¯\_(ツ)_/¯</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidepanel-toggle-container">
+        <button
+          class="sidepanel-toggle-button"
+          type="button"
+          aria-label="toggle side panel"
+        ></button>
+      </div>
+    </div>
 
-				</div>
-			</div>
-		</div>
-		<div class="sidepanel-toggle-container">
-			<button class="sidepanel-toggle-button" type="button" aria-label="toggle side panel"></button>
-		</div>
-	</div>
-
-	<script src="./map.js" type="module"></script>
-	<script src="./lib/condensed-attribution.js" type="module"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier-Leaflet/0.2.6/oms.min.js"></script>
-	<script src="./lib/sidepanel.js" type="module"></script>
-</body>
-
+    <script src="./map.js" type="module"></script>
+    <script src="./lib/condensed-attribution.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier-Leaflet/0.2.6/oms.min.js"></script>
+    <script src="./lib/sidepanel.js" type="module"></script>
+  </body>
 </html>
