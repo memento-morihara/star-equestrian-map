@@ -1,12 +1,6 @@
-dev/**
 node_modules
-**.local
-tiles-v2/**
-tiles-v1/**
-
-# Not in use right now
-package.json
-package-lock.json
+dist/**/*
+.env
 
 #IDE artifacts
 run.json

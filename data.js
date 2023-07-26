@@ -1,32 +1,28 @@
-import { persistentMap } from './lib/nanostores-persistent.js';
+import { atom } from 'nanostores'
 
-export const settings = persistentMap('settings:', {
-    'shownItems': []
-});
-// Get the value of shownItems from localStorage
-let shownItems = settings.get().shownItems.length > 0 ? settings.get().shownItems : [];
-let checkboxes = document.querySelectorAll('input[type=checkbox]');
+const checkboxes = document.querySelectorAll("input[type=checkbox]")
+const items = [ 'apple', 'berries', 'carrot', 'brown-mushroom', 'honey', 'lemon', 'lettuce', 'orange', 'pumpkin', 'truffle', 'strawberries', 'turnip', 'watermelon', 'wheat', 'white-mushroom', 'common-chest', 'uncommon-chest', 'rare-chest', 'epic-chest', 'legendary-chest', 'butterflies', 'eggs', 'fish', 'milk', 'wood', 'wool', 'horseshoe', "sheriff's-badge", 'toy-unicorn', 'picnic-basket' ]
+export const shownItems = atom(localStorage.getItem('shownItems') ? localStorage.getItem('shownItems').split(',') : items);
 
-export function initFilter() {
 
-    // If nothing was in localStorage, add all items to shownItems
-    if (shownItems.length < 1) {
-        checkboxes.forEach(item => shownItems.push(item.value))
-    } else {
-        // Turn the string from localStorage into an array
-        shownItems = shownItems.split(',')
-    }
-
-    checkboxes.forEach(c => shownItems.includes(c.value) ? c.checked = true : c.checked = false);
-
-    // Return the array to use to show the correct icons on the map
-    return shownItems;
+if (!localStorage.getItem('shownItems')) {
+    localStorage.setItem('shownItems', items)
+    shownItems.set(items)
 }
 
-export function updateShownItems(isAdding, item) {
-    if (isAdding) {
-        settings.setKey('shownItems', [ ...shownItems, item ]);
-    } else {
-        settings.setKey('shownItems', shownItems.filter(x => x !== item));
-    }
+export function addItem(item) {
+    shownItems.set([ ...shownItems.get(), item ]);
 }
+
+export function removeItem(item) {
+    shownItems.set(shownItems.get().filter(i => i !== item));
+}
+
+
+
+checkboxes.forEach(c => {
+    shownItems.get().includes(c.value) ? c.checked = true : c.checked = false
+})
+
+// Set localStorage whenever shownItems changes
+shownItems.listen(shownItems => localStorage.setItem('shownItems', shownItems))

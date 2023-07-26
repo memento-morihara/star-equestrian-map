@@ -1,4 +1,4 @@
-import PocketBase from './lib/pocketbase.js'
+import PocketBase from 'pocketbase'
 
 const pb = new PocketBase('https://panicky-potato.pockethost.io');
 
