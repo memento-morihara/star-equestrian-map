@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
     build: {
+        dir: 'docs',
         emptyOutDir: true,
         target: 'esnext',
         base: '/star-equestrian-map/',
