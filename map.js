@@ -27,7 +27,7 @@ let map = new L.Map('map', {
 	maxZoom: mapMaxZoom,
 	minZoom: mapMinZoom,
 	crs: crs,
-	condensedAttributionControl: false
+	condensedAttributionControl: false,
 });
 
 L.tileLayer('./tiles/{z}/{x}/{y}.webp', {
@@ -76,7 +76,6 @@ export function newMarker(loc, name, description, id) {
 	// addFeatures(marker);
 	marker.on('contextmenu click', () => {
 		selectedMarker = marker;
-		console.log(selectedMarker)
 	});
 
 	return marker;

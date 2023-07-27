@@ -111,7 +111,7 @@ export const resources = [
 		name: "Butterflies",
 		icon: L.icon({
 			iconUrl: "./icons/butterfly.png",
-			iconSize: [ 20, 20 ]
+			iconSize: [ 22, 22 ]
 		})
 	},
 	{
@@ -238,4 +238,12 @@ export const other = [
 			iconSize: [ 22, 22 ]
 		})
 	},
+	{
+		name: "Cave Entrance",
+		icon: L.icon({
+			iconUrl: './icons/cave-entrance.svg',
+			iconSize: [ 28, 28 ],
+			iconAnchor: [ 14, 14 ],
+		})
+	}
 ]
