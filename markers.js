@@ -194,7 +194,7 @@ export const chests = [
 
 export const collectibles = [
 	{
-		name: "Sheriff's Badge",
+		name: "Sheriff Badge",
 		icon: L.icon({
 			iconUrl: "./icons/sheriffs-badge.png",
 			iconSize: [ 24, 24 ]

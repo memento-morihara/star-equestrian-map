@@ -5,7 +5,7 @@ import {
 	chests,
 	other
 } from './markers.js';
-import locations from './locations.js';
+import {locations, counts} from './locations.js';
 import { shownItems, addItem, removeItem, items } from './data.js';
 import { computed, atom } from 'nanostores';
 
@@ -59,6 +59,14 @@ const oms = new OverlappingMarkerSpiderfier(map, {
 		highlighted: "red"
 	}
 });
+
+function getCount(itemName) {
+  const item = counts.find(i => itemName.includes(i.name.toLowerCase().split(" ").join("-")));
+  return item && item.count
+}
+
+const itemLabels = document.querySelectorAll(' ul > li > ul > li > label');
+itemLabels.forEach(i => i.lastChild.nodeValue += ` (${getCount(i.firstChild.value)})`);
 
 let selectedMarker;
 
