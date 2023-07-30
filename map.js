@@ -7,6 +7,7 @@ import {
 } from './markers.js';
 import {locations, counts} from './locations.js';
 import { shownItems, addItem, removeItem, items } from './data.js';
+import {Marker} from './marker.js';
 import { computed, atom } from 'nanostores';
 
 // Future
@@ -32,7 +33,7 @@ crs.scale = function (zoom) {
 crs.zoom = function (scale) {
 	return Math.log(scale * mapMinResolution) / Math.LN2;
 };
-let map = new L.Map('map', {
+export let map = new L.Map('map', {
 	maxZoom: mapMaxZoom,
 	minZoom: mapMinZoom,
 	crs: crs,
@@ -238,3 +239,6 @@ L.control.condensedAttribution({
 L.control.sidepanel('menu', {
 	hasTabs: true,
 }).addTo(map);
+
+let testMarker = new Marker("123", "Common Chest", 0, 0, "A test marker.");
+testMarker.mapMarker.addTo(map)
