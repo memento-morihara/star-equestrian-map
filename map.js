@@ -42,7 +42,6 @@ map.fitBounds([
 	crs.unproject(L.point(mapExtent[ 2 ], mapExtent[ 3 ])),
 	crs.unproject(L.point(mapExtent[ 0 ], mapExtent[ 1 ]))
 ]);
-L.control.mousePosition().addTo(map)
 
 const oms = new OverlappingMarkerSpiderfier(map, {
 	keepSpiderfied: true,
@@ -117,14 +116,15 @@ function divideIntoGroups(marker) {
 		case 4:
 			return otherFeatureGroup;
 	}
-};
+}
 
 
 function addFeatures(marker) {
 	divideIntoGroups(marker).addLayer(marker);
 }
 let visibleFeatures = []
-let checkboxes = document.querySelectorAll("input[type=checkbox]")
+let checkboxes = document.querySelectorAll("input[type=checkbox]");
+let slCheckboxes = document.querySelectorAll('sl-checkbox')
 
 map.whenReady(getMarkers)
 initMarkers();

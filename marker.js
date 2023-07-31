@@ -1,7 +1,7 @@
 import {chests, collectibles, food, other, resources} from "./markers.js";
 import {atom} from 'nanostores';
 import {howManyDays} from "./dateutils.js";
-import 'iconify-icon';
+import './style.css'
 
 const staticMarkers = ["Cave Entrance"];
 const oneTimeMarkers = ["Toy Unicorn", "Sheriff Badge", "Horseshoe", "Message in a Bottle"]
@@ -22,7 +22,7 @@ export class Marker {
             this._markerType = "oneTime";
             this.itemId = itemId;
             this._mapMarker = this.mapMarker;
-            this.collected = !!localStorage.getItem(`${this.itemId}.collected`)
+            this.collected = !!localStorage.getItem(`${this.itemId}.collected`);
             if (this.collected) {
                 this.mapMarker.setOpacity(0.5)
             }
@@ -52,15 +52,15 @@ export class Marker {
             this.collected = true;
         } else if (this.markerType === "respawning") {
             this.lastCollectedDate = Date.now();
-            localStorage.setItem(this.lastCollectedKey, Date.now())
+            localStorage.setItem(this.lastCollectedKey, Date.now().toString());
         }
         this.mapMarker.setOpacity(0.5);
     }
 
     noSpawn() {
         if (this.markerType === "respawning") {
-            this.lastNegativeSpawnDate = Date.now();
-            localStorage.setItem(this.lastNegativeSpawnKey, Date.now())
+            this.lastNegativeSpawnDate.set(Date.now());
+            localStorage.setItem(this.lastNegativeSpawnKey, Date.now().toString());
         }
     }
 }
@@ -104,7 +104,7 @@ class RespawningMarker extends BaseMarker {
     }
 
     get lastCollectedDate() {
-        return this._lastCollectedDate;
+        return localStorage.getItem(this.lastCollectedKey)
     }
 
     set lastCollectedDate(date) {
@@ -121,21 +121,32 @@ class RespawningMarker extends BaseMarker {
     }
 
     initMapMarker() {
-       return L.marker([this.lat, this.lng], {
+       const marker = L.marker([this.lat, this.lng], {
             name: this.itemName,
             id: this.itemId,
             riseOnHover: true,
             icon: icons.find(i => i.name === this.itemName).icon ?? L.icon({iconUrl: './se-marker.svg'})
         }).bindPopup(`
-<div class="card-content p-0">
-            <h2 class="title is-size-4 mb-2">${this.itemName}</h2>
+<div id="popup" class="card-content p-0">
+<div class="card-header">
+            <h2 class="card-title h5">${this.itemName}</h2>
       
+            <p class="card-subtitle text-gray h6">Last collected: <span id="last-collected">${this.lastCollectedDate ? new Date(Number(this.lastCollectedDate)).toLocaleDateString("en-us", {hour: "2-digit", minute: "2-digit"}) : "N/A"}</span></p>
+
+</div>
             <p class="is-size-6 mb-2">${this.description ?? ""}</p>
-            <p class="is-size-7 mb-2">Last collected: ${this.lastCollectedDate ? new Date(this.lastCollectedDate).toLocaleDateString() : "N/A"}</p>
             <div class="is-flex is-justify-content-space-around buttons columns">
-            <div class="column is-half"><button id="collect" class="button is-primary is-rounded is-fullwidth">Collect</button></div><div class="column is-half"><button id="no-respawn" class="button is-fullwidth is-rounded hover-red" ><iconify-icon icon="ph:calendar-x" height="24"/><span class="is-sr-only">Not respawned</span></button></div>
+            <div class="column is-half"><sl-button id="collect" variant="primary">Collect</sl-button></div><div class="column is-half"><sl-icon-button id="no-respawn" name="calendar-x" label="Not respawned" ></sl-icon-button></div>
     </div></div>
         `, {minWidth: 200})
+    const popup = document.querySelector("#popup");
+       popup && popup.addEventListener("click", () => {
+        this.lastCollectedDate = Date.now();
+        const lastCollectedText =
+            document.getElementById("last-collected");
+        lastCollectedText.innerText = Date.now();
+    })
+        return marker;
     }
 }
 

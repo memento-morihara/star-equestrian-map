@@ -15,6 +15,9 @@
 	<link rel="stylesheet" href="style.css" />
 	<link rel="stylesheet" href="/lib/sidepanel.css" />
 	<link rel="stylesheet" href="/lib/condensed-attribution.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.6.0/cdn/themes/light.css" />
+	<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.6.0/cdn/shoelace-autoloader.js"></script>
+
 	<!-- What do you mean there's not enough external files? -->
 </head>
 
@@ -29,10 +32,10 @@
 						<a href="#" class="sidebar-tab-link" data-tab-link="tab-1">Filter</a>
 					</li>
 					<li class="sidepanel-tab">
-						<a href="#" class="sidebar-tab-link" data-tab-link="tab-2">Settings</a>
+						<a href="#" class="sidebar-tab-link" data-tab-link="tab-2">Progress</a>
 					</li>
 					<li class="sidepanel-tab">
-						<a href="#" class="sidebar-tab-link" data-tab-link="tab-3">Tab</a>
+						<a href="#" class="sidebar-tab-link" data-tab-link="tab-3">Settings</a>
 					</li>
 				</ul>
 			</nav>
@@ -41,19 +44,18 @@
 					<div class="sidepanel-tab-content tab-content-centered" data-tab-content="tab-1">
 						<ul>
 							<li>
-								<label class="section-title"><input type="checkbox" value="food"
-										data-feature-parent="foodFeatureGroup" />Food</label>
+								<label class="section-title form-checkbox"><input type="checkbox" value="food"
+										data-feature-parent="foodFeatureGroup" /><i class="form-icon"></i>Food</label>
 								<!-- Hidden for now b/c toggling all does not work as expected-->
 								<!-- <label><input type="checkbox" data-feature-group="foodFeatureGroup" value="food" checked />All
 								food</label> -->
 								<ul class="collectible-toggles">
 									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="apple" />Apples</label>
+										<sl-checkbox data-feature-group="foodFeatureGroup" value="apple">Apples</sl-checkbox>
 									</li>
 									<li>
 										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="berries" />Berries</label>
+												value="berries" /><img src="/icons/berries.png" width="24"/>Berries</label>
 									</li>
 									<li>
 										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
@@ -209,13 +211,13 @@
 					</div>
 
 					<div class="sidepanel-tab-content" data-tab-content="tab-2" id="about-tab">
-						<h2>Settings</h2>
-						<label><input type="checkbox" />Hide collected</label>
-						<button>Edit collected</button>
+						<sl-progress-ring></sl-progress-ring>
 					</div>
 
 					<div class="sidepanel-tab-content" data-tab-content="tab-3">
-						<p>¯\_(ツ)_/¯</p>
+						<h2>Settings</h2>
+						<label><input type="checkbox" />Hide collected</label>
+						<button>Edit collected</button>
 					</div>
 				</div>
 			</div>
