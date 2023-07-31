@@ -1,5 +1,6 @@
-html,
-body,
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+/*@import "https://unpkg.com/spectre.css/dist/spectre.min.css";*/
+
 #map {
 	width: 100%;
 	height: 100%;
@@ -74,4 +75,17 @@ li input {
 .collectible-toggles {
 	display: flex;
 	flex-direction: column;
+}
+
+.spawn-buttons {
+	display: flex;
+}
+
+.hover-red:hover {
+	color: #ba3329;
+}
+
+.purple {
+	background-color: rgb(139, 55, 168);
+	color: white;
 }

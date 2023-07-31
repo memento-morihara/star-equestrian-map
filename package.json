@@ -12,6 +12,7 @@
   "author": "",
   "dependencies": {
     "dotenv": "^16.3.1",
+    "iconify-icon": "^1.0.8",
     "leaflet": "^1.9.4",
     "leaflet-contextmenu": "^1.4.0",
     "nanostores": "^0.9.3",
@@ -22,5 +23,8 @@
     "target": [
       "es2015"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.64.1"
   }
 }

@@ -70,11 +70,17 @@ let otherFeatureGroup = L.featureGroup().addTo(map);
 
 
 export function newMarker(id, name, lat, lng, description) {
-	const marker = new Marker(id, name, lat, lng, description).mapMarker;
+	const obj = new Marker(id, name, lat, lng, description);
+	const marker = obj.mapMarker;
+	if (obj.lastCollectedDate) {
+		marker.setOpacity(0.5)
+	}
 	oms.addMarker(marker);
 	// addFeatures(marker);
 	marker.on('contextmenu click', () => {
 		selectedMarker = marker;
+		document.querySelector("#collect")?.addEventListener("click", () => obj.collect())
+		document.querySelector("#no-respawn")?.addEventListener("click", () => obj.noSpawn())
 	});
 
 	return marker;
@@ -219,3 +225,4 @@ L.control.condensedAttribution({
 L.control.sidepanel('menu', {
 	hasTabs: true,
 }).addTo(map);
+
