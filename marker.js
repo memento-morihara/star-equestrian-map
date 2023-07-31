@@ -4,6 +4,7 @@ const staticMarkers = ["Cave Entrance"];
 const oneTimeMarkers = ["Toy Unicorn", "Sheriff Badge", "Horseshoe", "Message in a Bottle"]
 const icons = [ food, resources, chests, collectibles, other ].flat();
 
+
 // Umbrella class to abstract away the marker types
 export class Marker {
     constructor(itemId, itemName, lat, lng, description) {
@@ -68,14 +69,14 @@ class RespawningMarker extends BaseMarker {
         this.lastCollectedKey = `${this.itemId}.lastCollected`;
         this.lastNegativeSpawnKey = `${this.itemId}.lastNegativeSpawn`;
        this._mapMarker = this.initMapMarker();
-
     }
 
     get lastCollectedDate() {
-        return localStorage.getItem(this.lastCollectedKey);
+        return this._lastCollectedDate;
     }
 
     set lastCollectedDate(date) {
+     this._lastCollectedDate = date;
         localStorage.setItem(this.lastCollectedKey, date);
     }
 
@@ -88,7 +89,7 @@ class RespawningMarker extends BaseMarker {
     }
 
     initMapMarker() {
-        return  L.marker([this.lat, this.lng], {
+       return L.marker([this.lat, this.lng], {
             name: this.itemName,
             id: this.itemId,
             riseOnHover: true,
@@ -96,8 +97,8 @@ class RespawningMarker extends BaseMarker {
         }).bindPopup(`
             <h2 class="marker-title">${this.itemName}</h2>
             <p>${this.description ?? ""}</p>
-            <div>
-            <button onclick="this.lastCollectedDate = Date.now()">Collect</button><button>No spawn</button>
+            <div data-collect="respawn">
+            <small>Last collected: ${(this.lastCollectedDate && new Date(this.lastCollectedDate).toLocaleDateString() )?? "N/A"}</small>
 </div>
         `)
     }
@@ -117,8 +118,12 @@ class OneTimeMarker extends BaseMarker {
 
     set collected(collected) {
         this._collected = collected;
+        localStorage.setItem(this.Id, this._collected);
     }
 
+    get Id() {
+        return this.itemId;
+    }
     initMapMarker() {
         return L.marker([this.lat, this.lng], {
             name: this.itemName,
@@ -128,6 +133,8 @@ class OneTimeMarker extends BaseMarker {
         }).bindPopup(`
             <h2 class="marker-title">${this.itemName}</h2>
             <p>${this.description ?? ""}</p>
+            <div>
+</div>
         `)
     }
 }
