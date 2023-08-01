@@ -1,5 +1,4 @@
 import {chests, collectibles, food, other, resources} from "./markers.js";
-import {atom} from 'nanostores';
 import {howManyDays} from "./dateutils.js";
 import './style.css'
 
@@ -131,21 +130,29 @@ class RespawningMarker extends BaseMarker {
 <div class="card-header">
             <h2 class="card-title h5">${this.itemName}</h2>
       
-            <p class="card-subtitle text-gray h6">Last collected: <span id="last-collected">${this.lastCollectedDate ? new Date(Number(this.lastCollectedDate)).toLocaleDateString("en-us", {hour: "2-digit", minute: "2-digit"}) : "N/A"}</span></p>
+            <p id="last-collected" class="card-subtitle text-gray h6">Last collected: ${ this.lastCollectedDate ? `<sl-relative-time date="${new Date(Number(this.lastCollectedDate))}"></sl-relative-time>` : `<span id="na">N/A</span>`}</p>
 
 </div>
             <p class="is-size-6 mb-2">${this.description ?? ""}</p>
-            <div class="is-flex is-justify-content-space-around buttons columns">
-            <div class="column is-half"><sl-button id="collect" variant="primary">Collect</sl-button></div><div class="column is-half"><sl-icon-button id="no-respawn" name="calendar-x" label="Not respawned" ></sl-icon-button></div>
-    </div></div>
+            <div class="spawn-buttons">
+            <sl-button id="collect" variant="primary">Collect</sl-button><sl-icon-button id="no-respawn" name="calendar-x" label="Not respawned" ></sl-icon-button></div>
+
         `, {minWidth: 200})
     const popup = document.querySelector("#popup");
-       popup && popup.addEventListener("click", () => {
-        this.lastCollectedDate = Date.now();
-        const lastCollectedText =
-            document.getElementById("last-collected");
-        lastCollectedText.innerText = Date.now();
-    })
+       popup && document.getElementById("collect").addEventListener("sl-click", () => {
+           let lastCollectedText;
+           if (this.lastCollectedDate) {
+               this.lastCollectedDate = Date.now();
+               lastCollectedText =
+                   document.querySelector("sl-relative-time");
+               lastCollectedText.setAttribute("date", this.lastCollectedDate);
+           } else {
+               this.lastCollectedDate = Date.now();
+            lastCollectedText = document.getElementById("last-collected");
+            lastCollectedText.innerHTML = `<sl-relative-time date="${new Date(Number(this.lastCollectedDate))}"></sl-relative-time>`
+           }
+
+       })
         return marker;
     }
 }

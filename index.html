@@ -42,176 +42,60 @@
 			<div class="sidepanel-content-wrapper">
 				<div class="sidepanel-content">
 					<div class="sidepanel-tab-content tab-content-centered" data-tab-content="tab-1">
-						<ul>
-							<li>
-								<label class="section-title form-checkbox"><input type="checkbox" value="food"
-										data-feature-parent="foodFeatureGroup" /><i class="form-icon"></i>Food</label>
-								<!-- Hidden for now b/c toggling all does not work as expected-->
-								<!-- <label><input type="checkbox" data-feature-group="foodFeatureGroup" value="food" checked />All
-								food</label> -->
-								<ul class="collectible-toggles">
-									<li>
-										<sl-checkbox data-feature-group="foodFeatureGroup" value="apple">Apples</sl-checkbox>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="berries" /><img src="/icons/berries.png" width="24"/>Berries</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="brown-mushroom" />Brown Mushrooms</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="carrot" />Carrots</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="honey" />Honey</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="lemon" />Lemons</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="lettuce" />Lettuce</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="orange" />Oranges</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="pumpkin" />Pumpkins</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="strawberries" />Strawberries</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="truffle" />Truffles</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="turnip" />Turnips</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="watermelon" />Watermelons</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="wheat" />Wheat</label>
-									</li>
-									<li>
-										<label><input type="checkbox" data-feature-group="foodFeatureGroup"
-												value="white-mushroom" />White Mushrooms</label>
-									</li>
-								</ul>
-							</li>
-							<li>
+						<sl-tree selection="multiple">
+							<sl-mutation-observer attr="selected">
 
-								<label class="section-title"><input type="checkbox" value="chests"
-										data-feature-parent="chestsFeatureGroup" />Chests</label>
-								<ul class="collectible-toggles">
-									<li>
-										<label><input type="checkbox" value="common-chest"
-												data-feature-group="chestsFeatureGroup" />Common Chests</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="uncommon-chest"
-												data-feature-group="chestsFeatureGroup" />Uncommon Chests</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="rare-chest"
-												data-feature-group="chestsFeatureGroup" />Rare Chests</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="epic-chest"
-												data-feature-group="chestsFeatureGroup" />Epic Chests</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="legendary-chest"
-												data-feature-group="chestsFeatureGroup" />Legendary Chest</label>
-									</li>
-								</ul>
-							</li>
+							<sl-tree-item data-value="parent">
+								Food
+								<sl-tree-item data-value="apple">Apples</sl-tree-item>
+								<sl-tree-item data-value="berries">Berries</sl-tree-item>
+								<sl-tree-item data-value="brown-mushroom">Brown Mushrooms</sl-tree-item>
+								<sl-tree-item data-value="carrot">Carrots</sl-tree-item>
+								<sl-tree-item data-value="lemon">Lemons</sl-tree-item>
+								<sl-tree-item data-value="lettuce">Lettuce</sl-tree-item>
+								<sl-tree-item data-value="orange">Oranges</sl-tree-item>
+								<sl-tree-item data-value="pumpkin">Pumpkins</sl-tree-item>
+								<sl-tree-item data-value="strawberries">Strawberries</sl-tree-item>
+								<sl-tree-item data-value="truffle">Truffles</sl-tree-item>
+								<sl-tree-item data-value="turnip">Turnips</sl-tree-item>
+								<sl-tree-item data-value="watermelon">Watermelons</sl-tree-item>
+								<sl-tree-item data-value="wheat">Wheat</sl-tree-item>
+								<sl-tree-item data-value="white-mushroom">White Mushrooms</sl-tree-item>
+							</sl-tree-item>
+							<sl-tree-item data-value="parent">
+								Chests
+								<sl-tree-item data-value="common-chest">Common Chests</sl-tree-item>
+								<sl-tree-item data-value="uncommon-chest">Uncommon Chests</sl-tree-item>
+								<sl-tree-item data-value="rare-chest">Rare Chests</sl-tree-item>
+								<sl-tree-item data-value="epic-chest">Epic Chests</sl-tree-item>
+								<sl-tree-item data-value="legendary-chest">Legendary Chests</sl-tree-item>
+							</sl-tree-item>
+							<sl-tree-item data-value="parent">
+								Resources
+								<sl-tree-item data-value="butterflies">Butterflies</sl-tree-item>
+								<sl-tree-item data-value="eggs">Eggs</sl-tree-item>
+								<sl-tree-item data-value="fish">Fish</sl-tree-item>
+								<sl-tree-item data-value="milk">Milk</sl-tree-item>
+								<sl-tree-item data-value="wool">Wool</sl-tree-item>
+							</sl-tree-item><sl-tree-item data-value="parent">
+								Collectibles
+								<sl-tree-item data-value="message-in-a-bottle">Bottles</sl-tree-item>
+								<sl-tree-item data-value="horseshoe">Horseshoes</sl-tree-item>
+								<sl-tree-item data-value="sheriff-badge">Sheriff Badges</sl-tree-item>
+								<sl-tree-item data-value="toy-unicorn">Toy Unicorns</sl-tree-item>
+							</sl-tree-item><sl-tree-item data-value="parent">
+								Other
+								<sl-tree-item data-value="cave-entrance">Cave Entrances</sl-tree-item>
+								<sl-tree-item data-value="picnic-basket">Picnic Baskets</sl-tree-item>
+								<sl-tree-item data-value="wood">Wood</sl-tree-item>
+							</sl-tree-item>
 
-							<li>
-								<label class="section-title"><input type="checkbox" value="resources"
-										data-feature-parent="resourcesFeatureGroup" />Resources</label>
-								<ul class="collectible-toggles">
-									<li>
-										<label><input type="checkbox" value="butterflies"
-												data-feature-group="resourcesFeatureGroup" />Butterflies</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="eggs"
-												data-feature-group="resourcesFeatureGroup" />Eggs</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="fish"
-												data-feature-group="resourcesFeatureGroup" />Fish</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="milk"
-												data-feature-group="resourcesFeatureGroup" />Milk</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="wool"
-												data-feature-group="resourcesFeatureGroup" />Wool</label>
-									</li>
-								</ul>
-							</li>
-
-							<li>
-								<label class="section-title"><input type="checkbox" value="collectibles"
-										data-feature-parent="collectiblesFeatureGroup" />Collectibles</label>
-								<ul>
-									<li>
-										<label><input type="checkbox" value="message-in-a-bottle"
-												data-feature-group="collectiblesFeatureGroup" />Bottles</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="horseshoe"
-												data-feature-group="collectiblesFeatureGroup" />Horseshoes</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="sheriff-badge"
-												data-feature-group="collectiblesFeatureGroup" />Sheriff Badges</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="toy-unicorn"
-												data-feature-group="collectiblesFeatureGroup" />Toy
-											Unicorns</label>
-									</li>
-								</ul>
-							<li>
-								<label class="section-title"><input type="checkbox" value="other"
-										data-feature-parent="otherFeatureGroup" />Other</label>
-								<ul>
-									<li>
-										<label><input type="checkbox" value="cave-entrance"
-												data-feature-group="otherFeatureGroup" />Cave Entrances</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="picnic-basket"
-												data-feature-group="otherFeatureGroup" />Picnic Baskets</label>
-									</li>
-									<li>
-										<label><input type="checkbox" value="wood"
-												data-feature-group="otherFeatureGroup" />Wood</label>
-									</li>
-								</ul>
-							</li>
-							</li>
-						</ul>
+							</sl-mutation-observer>
+						</sl-tree>
 					</div>
 
 					<div class="sidepanel-tab-content" data-tab-content="tab-2" id="about-tab">
-						<sl-progress-ring></sl-progress-ring>
+						<sl-progress-ring value="60"><div style="display:flex; flex-direction: column; justify-content: space-around;"><img src="/icons/toy-unicorn.png" width="42" alt="Toy unicorns"/> <p>3/5</p></div></sl-progress-ring>
 					</div>
 
 					<div class="sidepanel-tab-content" data-tab-content="tab-3">
