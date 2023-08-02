@@ -61,7 +61,7 @@ const oms = new OverlappingMarkerSpiderfier(map, {
 });
 
 function getCount(itemName) {
-  const item = counts.find(i => itemName.includes(i.name.toLowerCase().split(" ").join("-")));
+  const item = counts.find(i => itemName === (i.name.toLowerCase().split(" ").join("-")));
   return item && item.count
 }
 
