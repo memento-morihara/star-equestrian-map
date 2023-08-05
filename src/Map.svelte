@@ -67,6 +67,10 @@
 
             })
         })
+
+        L.control.condensedAttribution({
+            prefix: `Images &copy; <a href="https://www.foxieventures.com">Foxie Ventures</a>`
+        }).addTo(map)
     });
 
     onDestroy(() => localStorage.setItem("shownItems", $shownFilters))
