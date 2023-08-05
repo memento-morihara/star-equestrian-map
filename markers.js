@@ -215,7 +215,7 @@ export const collectibles = [
 		})
 	},
 	{
-		name: "Message in a Bottle",
+		name: "Bottle",
 		icon: L.icon({
 			iconUrl: "./icons/message-in-a-bottle.png",
 			iconSize: [ 18, 24 ]

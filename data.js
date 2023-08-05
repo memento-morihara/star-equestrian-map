@@ -3,9 +3,6 @@ import { atom } from 'nanostores'
 const checkboxes = document.querySelectorAll("input[type=checkbox]")
 export const items = [ [ 'apple', 'berries', 'carrot', 'brown-mushroom', 'honey', 'lemon', 'lettuce', 'orange', 'pumpkin', 'truffle', 'strawberries', 'turnip', 'watermelon', 'wheat', 'white-mushroom' ], [ 'common-chest', 'uncommon-chest', 'rare-chest', 'epic-chest', 'legendary-chest' ], [ 'butterflies', 'eggs', 'fish', 'milk', 'wool' ], [ 'horseshoe', "message-in-a-bottle", "sheriff's-badge", 'toy-unicorn' ], [ 'picnic-basket', 'wood', 'cave-entrance' ] ]
 export const shownItems = localStorage.getItem('shownItems') ? atom(localStorage.getItem('shownItems').split(',')) : atom(items.flat());
-console.log(shownItems.get())
-
-// Maybe it's ideal that nothing is written to storage unless the user has changed the default filters
 
 export function addItem(item) {
     shownItems.set([ ...shownItems.get(), item ]);

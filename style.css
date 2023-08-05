@@ -33,22 +33,6 @@ body {
 	height: 100%;
 }
 
-.leaflet-container {
-	height: 900px;
-	width: 1500px;
-	max-height: 100%;
-	max-width: 100%;
-	contain: content;
-}
-
-.leaflet-popup-content p {
-	margin: 0;
-}
-
-.leaflet-popup-content small {
-	margin: 6px 0;
-}
-
 .marker-title {
 	font-size: 1.2em;
 	font-weight: bold;
@@ -58,22 +42,6 @@ body {
 .marker-icon {
 	width: 32px;
 	height: 32px;
-}
-
-.sidepanel {
-	position: absolute;
-	top: 0;
-	height: 100%;
-}
-
-.sidepanel-tab-content {
-	margin-top: -1em;
-}
-
-.sidepanel label.section-title {
-	font-size: 1.4em;
-	margin: 1.2em 0 0;
-	font-weight: bold;
 }
 
 ul {
@@ -103,12 +71,6 @@ li input {
 
 .hover-red:hover {
 	color: #ba3329;
-}
-
-/* Hide selected item highlight for Shoelace tree items */
-::part(item--selected) {
-	background-color: transparent;
-	border-inline-start-color: transparent;
 }
 
 sl-icon-button {

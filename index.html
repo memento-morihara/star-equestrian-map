@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<title>Star Equestrian Map</title>
@@ -9,11 +9,9 @@
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 	<link rel="stylesheet"
 		href="https://cdn.rawgit.com/ardhi/Leaflet.MousePosition/master/src/L.Control.MousePosition.css" />
-	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 	<script src="https://cdn.rawgit.com/ardhi/Leaflet.MousePosition/master/src/L.Control.MousePosition.js"
 		type="text/javascript"></script>
-	<link rel="stylesheet" href="style.css" />
-	<link rel="stylesheet" href="/lib/sidepanel.css" />
+<!--	<link rel="stylesheet" href="style.css" />-->
 	<link rel="stylesheet" href="/lib/condensed-attribution.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.6.0/cdn/themes/light.css" />
 	<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.6.0/cdn/shoelace-autoloader.js"></script>
@@ -22,99 +20,10 @@
 </head>
 
 <body>
-	<div id="map" style="width: 100vw; height: 100vh"></div>
+	<div id="app"></div>
 
-	<div class="sidepanel" id="menu" aria-label="side panel" aria-hidden="false">
-		<div class="sidepanel-inner-wrapper">
-			<nav class="sidepanel-tabs-wrapper">
-				<ul class="sidepanel-tabs">
-					<li class="sidepanel-tab">
-						<a href="#" class="sidebar-tab-link" data-tab-link="tab-1">Filter</a>
-					</li>
-					<li class="sidepanel-tab">
-						<a href="#" class="sidebar-tab-link" data-tab-link="tab-2">Progress</a>
-					</li>
-					<li class="sidepanel-tab">
-						<a href="#" class="sidebar-tab-link" data-tab-link="tab-3">Settings</a>
-					</li>
-				</ul>
-			</nav>
-			<div class="sidepanel-content-wrapper">
-				<div class="sidepanel-content">
-					<div class="sidepanel-tab-content tab-content-centered" data-tab-content="tab-1">
-						<sl-tree selection="multiple">
-							<sl-mutation-observer attr="selected">
-
-							<sl-tree-item data-value="parent">
-								Food
-								<sl-tree-item data-value="apple">Apples</sl-tree-item>
-								<sl-tree-item data-value="berries">Berries</sl-tree-item>
-								<sl-tree-item data-value="brown-mushroom">Brown Mushrooms</sl-tree-item>
-								<sl-tree-item data-value="carrot">Carrots</sl-tree-item>
-								<sl-tree-item data-value="lemon">Lemons</sl-tree-item>
-								<sl-tree-item data-value="lettuce">Lettuce</sl-tree-item>
-								<sl-tree-item data-value="orange">Oranges</sl-tree-item>
-								<sl-tree-item data-value="pumpkin">Pumpkins</sl-tree-item>
-								<sl-tree-item data-value="strawberries">Strawberries</sl-tree-item>
-								<sl-tree-item data-value="truffle">Truffles</sl-tree-item>
-								<sl-tree-item data-value="turnip">Turnips</sl-tree-item>
-								<sl-tree-item data-value="watermelon">Watermelons</sl-tree-item>
-								<sl-tree-item data-value="wheat">Wheat</sl-tree-item>
-								<sl-tree-item data-value="white-mushroom">White Mushrooms</sl-tree-item>
-							</sl-tree-item>
-							<sl-tree-item data-value="parent">
-								Chests
-								<sl-tree-item data-value="common-chest">Common Chests</sl-tree-item>
-								<sl-tree-item data-value="uncommon-chest">Uncommon Chests</sl-tree-item>
-								<sl-tree-item data-value="rare-chest">Rare Chests</sl-tree-item>
-								<sl-tree-item data-value="epic-chest">Epic Chests</sl-tree-item>
-								<sl-tree-item data-value="legendary-chest">Legendary Chests</sl-tree-item>
-							</sl-tree-item>
-							<sl-tree-item data-value="parent">
-								Resources
-								<sl-tree-item data-value="butterflies">Butterflies</sl-tree-item>
-								<sl-tree-item data-value="eggs">Eggs</sl-tree-item>
-								<sl-tree-item data-value="fish">Fish</sl-tree-item>
-								<sl-tree-item data-value="milk">Milk</sl-tree-item>
-								<sl-tree-item data-value="wool">Wool</sl-tree-item>
-							</sl-tree-item><sl-tree-item data-value="parent">
-								Collectibles
-								<sl-tree-item data-value="message-in-a-bottle">Bottles</sl-tree-item>
-								<sl-tree-item data-value="horseshoe">Horseshoes</sl-tree-item>
-								<sl-tree-item data-value="sheriff-badge">Sheriff Badges</sl-tree-item>
-								<sl-tree-item data-value="toy-unicorn">Toy Unicorns</sl-tree-item>
-							</sl-tree-item><sl-tree-item data-value="parent">
-								Other
-								<sl-tree-item data-value="cave-entrance">Cave Entrances</sl-tree-item>
-								<sl-tree-item data-value="picnic-basket">Picnic Baskets</sl-tree-item>
-								<sl-tree-item data-value="wood">Wood</sl-tree-item>
-							</sl-tree-item>
-
-							</sl-mutation-observer>
-						</sl-tree>
-					</div>
-
-					<div class="sidepanel-tab-content" data-tab-content="tab-2" id="about-tab">
-						<sl-progress-ring value="60"><div style="display:flex; flex-direction: column; justify-content: space-around;"><img src="/icons/toy-unicorn.png" width="42" alt="Toy unicorns"/> <p>3/5</p></div></sl-progress-ring>
-					</div>
-
-					<div class="sidepanel-tab-content" data-tab-content="tab-3">
-						<h2>Settings</h2>
-						<label><input type="checkbox" />Hide collected</label>
-						<button>Edit collected</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="sidepanel-toggle-container">
-			<button class="sidepanel-toggle-button" type="button" aria-label="toggle side panel"></button>
-		</div>
-	</div>
-
-	<script src="./map.js" type="module"></script>
+	<script src="./main.js" type="module"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier-Leaflet/0.2.6/oms.min.js"></script>
-	<script src="./data.js" type="module"></script>
-	<script src="/lib/sidepanel.js" type="module"></script>
 	<script src="/lib/condensed-attribution.js" type="module"></script>
 </body>
 

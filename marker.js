@@ -126,18 +126,13 @@ class RespawningMarker extends BaseMarker {
             riseOnHover: true,
             icon: icons.find(i => i.name === this.itemName).icon ?? L.icon({iconUrl: './se-marker.svg'})
         }).bindPopup(`
-<div id="popup" class="card-content p-0">
-<div class="card-header">
+<div class="leaflet-popup-content">
             <h2 class="card-title h5">${this.itemName}</h2>
-      
-            <p id="last-collected" class="card-subtitle text-gray h6">Last collected: ${ this.lastCollectedDate ? `<sl-relative-time date="${new Date(Number(this.lastCollectedDate))}"></sl-relative-time>` : `<span id="na">N/A</span>`}</p>
-
-</div>
-            <p class="is-size-6 mb-2">${this.description ?? ""}</p>
+            <small id="last-collected" class="card-subtitle text-gray h6">Last collected: ${ this.lastCollectedDate ? `<sl-relative-time date="${new Date(Number(this.lastCollectedDate))}"></sl-relative-time>` : `<span id="na">N/A</span>`}</small>
+            <p>${this.description}</p>
             <div class="spawn-buttons">
             <sl-button id="collect" variant="primary">Collect</sl-button><sl-icon-button id="no-respawn" name="calendar-x" label="Not respawned" ></sl-icon-button></div>
-
-        `, {minWidth: 200})
+</div>`, {minWidth: 220})
     const popup = document.querySelector("#popup");
        popup && document.getElementById("collect").addEventListener("sl-click", () => {
            let lastCollectedText;
