@@ -35,23 +35,19 @@
             </nav>
 
             <div class="sidepanel-content-wrapper">
-                {#if $activeTabIndex === 1}
                     <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 1}
                          data-tab-content={"tab-1"}>
                         <slot name="slot-1"/>
                     </div>
-                {:else if $activeTabIndex === 2}
 
                     <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
                          data-tab-content={"tab-2"}>
                         <slot name="slot-2"/>
                     </div>
-                {:else if $activeTabIndex === 3}
                     <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
                          data-tab-content={"tab-3"}>
                         <slot name="slot-3"/>
                     </div>
-                {/if}
             </div>
 
         </div>
@@ -125,6 +121,11 @@
 
     .sidepanel-tab-content {
         margin-top: 24px;
+        display: none;
+    }
+
+    .sidepanel-tab-content.active {
+        display: inherit;
     }
 
     .sidepanel-tabs-wrapper {

@@ -1,7 +1,7 @@
 <script>
     import {onDestroy, onMount} from "svelte";
     import Sidepanel from "./Sidepanel.svelte";
-    import {items, shownFilters, selectedMarker} from "./stores.js"
+    import {items, shownFilters, selectedMarker, activeTabIndex} from "./stores.js"
     import {locations, counts} from "../locations.js";
     import {Marker} from "../marker.js";
 
@@ -45,6 +45,7 @@
             crs.unproject(L.point(mapExtent[ 2 ], mapExtent[ 3 ])),
             crs.unproject(L.point(mapExtent[ 0 ], mapExtent[ 1 ]))
         ]);
+        // Resolves itself at runtime
          oms =  new OverlappingMarkerSpiderfier(map, {
             keepSpiderfied: true,
             legColors: {
@@ -110,6 +111,7 @@
     }
 
     $: {
+        $activeTabIndex = $activeTabIndex;
         // Whenever shownFilters updates, remove all the markers and add back those from shownFilters
         markers.forEach(marker => marker.remove())
         $shownFilters.forEach(item => valueToMarker(item).forEach(marker => marker.addTo(map)))
@@ -122,6 +124,7 @@
             })
         });
     }
+
 
     function valueToMarker(name){
         return markers.filter(marker => marker.options.name === formatName(name));
