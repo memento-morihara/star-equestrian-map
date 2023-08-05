@@ -1,7 +1,5 @@
 <script>
     import {activeTabIndex, sidepanelOpen, shownFilters} from "./stores.js";
-    import {onMount} from "svelte";
-
     export let panelPosition;
     export let darkMode;
     export let tabs;

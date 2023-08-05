@@ -87,8 +87,8 @@ class BaseMarker {
             riseOnHover: true,
             icon: icons.find(i => i.name === this.itemName).icon ?? L.icon({iconUrl: './se-marker.svg'})
         }).bindPopup(`
-            <h2 class="title is-size-5 mb-2">${this.itemName}</h2>
-            <p class="is-size-6 mb-2">${this.description ?? ""}</p>
+            <h3>${this.itemName}</h3>
+            <p>${this.description ?? ""}</p>
         `)
     }
 }
@@ -127,12 +127,12 @@ class RespawningMarker extends BaseMarker {
             icon: icons.find(i => i.name === this.itemName).icon ?? L.icon({iconUrl: './se-marker.svg'})
         }).bindPopup(`
 <div class="leaflet-popup-content">
-            <h2 class="card-title h5">${this.itemName}</h2>
-            <small id="last-collected" class="card-subtitle text-gray h6">Last collected: ${ this.lastCollectedDate ? `<sl-relative-time date="${new Date(Number(this.lastCollectedDate))}"></sl-relative-time>` : `<span id="na">N/A</span>`}</small>
+            <h3>${this.itemName}</h3>
+<!--            <small id="last-collected">Last collected: ${ this.lastCollectedDate ? `<sl-relative-time date="${new Date(Number(this.lastCollectedDate))}"></sl-relative-time>` : `<span id="na">N/A</span>`}</small>-->
             <p>${this.description}</p>
-            <div class="spawn-buttons">
-            <sl-button id="collect" variant="primary">Collect</sl-button><sl-icon-button id="no-respawn" name="calendar-x" label="Not respawned" ></sl-icon-button></div>
-</div>`, {minWidth: 220})
+<!--            <div class="spawn-buttons">-->
+<!--            <sl-button id="collect" variant="primary">Collect</sl-button><sl-icon-button id="no-respawn" name="calendar-x" label="Not respawned" ></sl-icon-button></div>-->
+</div>`)
     const popup = document.querySelector("#popup");
        popup && document.getElementById("collect").addEventListener("sl-click", () => {
            let lastCollectedText;
@@ -179,10 +179,10 @@ class OneTimeMarker extends BaseMarker {
             riseOnHover: true,
             icon: icons.find(i => i.name === this.itemName).icon ?? L.icon({iconUrl: './se-marker.svg'})
         }).bindPopup(`
-            <h2 class="title is-size-4 mb-2">${this.itemName}</h2>
-            <p class="is-size-6 mb-2">${this.description ?? ""}</p>
+            <h3>${this.itemName}</h3>
+            <p>${this.description ?? ""}</p>
             <div>
-            <button id="collect" class="button is-primary is-rounded is-fullwidth">Collect</button>
+<!--            <button id="collect" class="button is-primary is-rounded is-fullwidth">Collect</button>-->
 </div>
         `)
 

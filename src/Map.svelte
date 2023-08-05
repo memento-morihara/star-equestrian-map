@@ -1,14 +1,13 @@
 <script>
-    import L from "leaflet";
     import {onDestroy, onMount} from "svelte";
     import Sidepanel from "./Sidepanel.svelte";
     import {items, shownFilters, selectedMarker} from "./stores.js"
     import {locations, counts} from "../locations.js";
     import {Marker} from "../marker.js";
-    import Popup from "./Popup.svelte";
 
     let mapEl;
     let map;
+    let oms;
 
     let markers = [];
 
@@ -46,14 +45,17 @@
             crs.unproject(L.point(mapExtent[ 2 ], mapExtent[ 3 ])),
             crs.unproject(L.point(mapExtent[ 0 ], mapExtent[ 1 ]))
         ]);
-        // const oms = new OverlappingMarkerSpiderfier(map, {
-        //     keepSpiderfied: true,
-        //     legColors: {
-        //         usual: "black",
-        //         highlighted: "red"
-        //     }
-        // });
+         oms =  new OverlappingMarkerSpiderfier(map, {
+            keepSpiderfied: true,
+            legColors: {
+                usual: "white",
+                highlighted: "red"
+            }
+        });
 
+        oms.addListener('spiderfy', function () {
+            map.closePopup();
+        });
 
         await initMarkers().then((markers) => {
             markers.forEach(marker => {
@@ -90,7 +92,7 @@
         if (obj.lastCollectedDate) {
             marker.setOpacity(0.5)
         }
-        // oms.addMarker(marker);
+        oms.addMarker(marker)
         // addFeatures(marker);
         marker.on('contextmenu click', () => {
             $selectedMarker = marker;
@@ -158,15 +160,13 @@
         </svelte:fragment>
 
         <div slot="slot-2">
-            More Content
+            Coming soon
         </div>
 
         <div slot="slot-3">
-            <sl-checkbox>Hide collected</sl-checkbox>
+            Coming soon
         </div>
-    </Sidepanel>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier-Leaflet/0.2.6/oms.min.js"></script>
-</div>
+    </Sidepanel></div>
 
 <style>
     @import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";

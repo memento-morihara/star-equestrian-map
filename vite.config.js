@@ -16,10 +16,10 @@ export default defineConfig({
                     'sidepanel-css': "/lib/sidepanel.css",
                     "condensedAttribution-css": "/lib/condensed-attribution.css",
                     "shoelace": "/lib/shoelace",
-                    "oms": "https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier-Leaflet/0.2.6/oms.min.js"
+                    "leaflet": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
                 }
             },
-            external: [ 'sidepanel', 'condensedAttribution', "sidepanel-css", "condensedAttribution-css", "shoelace", "oms"]
+            external: [ 'sidepanel', 'condensedAttribution', "sidepanel-css", "condensedAttribution-css", "shoelace", "leaflet",]
         },
     }
 })
