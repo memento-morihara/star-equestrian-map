@@ -1,11 +1,14 @@
 <script>
     import Map from "./src/Map.svelte"
+    import MarkerController from "./src/MarkerController.svelte";
     import Sidepanel from "./src/Sidepanel.svelte";
-
 </script>
 
 <main>
-    <Map />
+    <Map>
+        <MarkerController/>
+        <Sidepanel panelPosition="left" darkMode={false} tabs={["Filter", "Progress", "Settings"]}/>
+    </Map>
 
 </main>
 
@@ -25,4 +28,5 @@
         --sl-color-primary-950: var(--sl-color-purple-950);
 
     }
+
 </style>

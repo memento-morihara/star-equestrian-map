@@ -128,11 +128,11 @@ class RespawningMarker extends BaseMarker {
         }).bindPopup(`
 <div class="leaflet-popup-content">
             <h3>${this.itemName}</h3>
-<!--            <small id="last-collected">Last collected: ${ this.lastCollectedDate ? `<sl-relative-time date="${new Date(Number(this.lastCollectedDate))}"></sl-relative-time>` : `<span id="na">N/A</span>`}</small>-->
+            <small id="last-collected">Last collected: ${ this.lastCollectedDate ? `<sl-relative-time date="${new Date(Number(this.lastCollectedDate))}"></sl-relative-time>` : `<span id="na">N/A</span>`}</small>
             <p>${this.description}</p>
-<!--            <div class="spawn-buttons">-->
-<!--            <sl-button id="collect" variant="primary">Collect</sl-button><sl-icon-button id="no-respawn" name="calendar-x" label="Not respawned" ></sl-icon-button></div>-->
-</div>`)
+            <div class="spawn-buttons">
+            <sl-button id="collect" variant="primary">Collect</sl-button><sl-icon-button id="no-respawn" name="calendar-x" label="Not respawned" ></sl-icon-button></div>
+</div>`, {minWidth: 220})
     const popup = document.querySelector("#popup");
        popup && document.getElementById("collect").addEventListener("sl-click", () => {
            let lastCollectedText;
@@ -182,7 +182,7 @@ class OneTimeMarker extends BaseMarker {
             <h3>${this.itemName}</h3>
             <p>${this.description ?? ""}</p>
             <div>
-<!--            <button id="collect" class="button is-primary is-rounded is-fullwidth">Collect</button>-->
+            <button id="collect">Collect</button>
 </div>
         `)
 
