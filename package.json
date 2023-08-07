@@ -11,11 +11,12 @@
   },
   "author": "",
   "dependencies": {
-    "dotenv": "^16.3.1",
+    "@shoelace-style/shoelace": "^2.6.0",
+    "@sveltejs/vite-plugin-svelte": "^2.4.3",
     "leaflet": "^1.9.4",
     "leaflet-contextmenu": "^1.4.0",
-    "nanostores": "^0.9.3",
     "pocketbase": "^0.15.3",
+    "svelte": "^4.1.2",
     "vite": "^4.4.6"
   },
   "compilerOptions": {

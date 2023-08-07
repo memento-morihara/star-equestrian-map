@@ -18,9 +18,9 @@ Take a look at the dev branch if you want to see the beautiful new basemap.
 - [x] Finish basemap and patch various defects (thanks, @Random Spider!)
 - [ ] Fix weird popup placement and icon sizing
 - [ ] Different icons for chests
-- [ ] Add ability to mark items as collected
+- [x] Add ability to mark items as collected
 - [ ] Finish adding locations
-- [ ] UI improvements (side menu, popups, etc.)
+- [x] UI improvements (side menu, popups, etc.)
 - [ ] Accessibility
 - [ ] Mobile support
 - [ ] Marker visibility
@@ -35,3 +35,4 @@ This is an unofficial fan-made project. Game, logo, and all imagery &copy; [Foxi
 - [Leaflet](https://leafletjs.com)
 - [Leaflet.contextmenu](https://github.com/aratcliffe/Leaflet.contextmenu)
 - [Leaflet.SidePanel](https://github.com/maxwell-ilai/Leaflet.SidePanel)
+- [Shoelace](https://shoelace.style)
