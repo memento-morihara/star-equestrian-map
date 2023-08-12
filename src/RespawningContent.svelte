@@ -39,6 +39,7 @@
 
     $: date = localStorage.getItem(`${marker.options.id}.lastCollected`);
     $: notRespawned = localStorage.getItem(`${marker.options.id}.lastNegativeRespawn`);
+    $: collected = new Date(Number(date)).getDay() === new Date().getDay();
 </script>
 
 <div class="container">
@@ -50,7 +51,7 @@
         {/if}
     </small>
     {#if marker.options.description}<p>{marker.options.description}</p>{/if}
-    {#if collected && date !== previous}
+    {#if collected}
         <div class="spawn-buttons">
             <sl-button on:click={uncollect} variant="default">Remove</sl-button>
         </div>

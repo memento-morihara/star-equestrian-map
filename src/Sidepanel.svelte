@@ -114,7 +114,8 @@
 
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
                      data-tab-content={"tab-2"}>
-                    <p>Coming soon</p>
+                    <p>The marker opacity doesn't reset properly right now, so if you don't like them at half opacity, click the button to make them all opaque.</p>
+                    <sl-button variant="primary" on:click={() => $allMarkers.forEach(marker => new Date(Number(localStorage.getItem(`${marker.options.id}.lastCollected`))).getDay() !== new Date().getDay() && marker.options.markerType === "respawning" ? marker.setOpacity(1) : null)}>Reset opacity</sl-button>
 <!--                    <table>-->
 <!--                        <thead>-->
 <!--                        <tr>-->
