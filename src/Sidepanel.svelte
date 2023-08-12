@@ -10,6 +10,8 @@
         dialog
     } from "./stores.js";
     import {counts} from "../locations.js";
+    import {onMount} from "svelte";
+    import Progress from "./Progress.svelte";
 
     // Props
     export let panelPosition;
@@ -56,7 +58,6 @@
         keys.forEach(key => localStorage.removeItem(`${key}.lastCollected`));
         window.location.reload(true);
     }
-
 
 </script>
 
@@ -114,30 +115,37 @@
 
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
                      data-tab-content={"tab-2"}>
-                    <p>The marker opacity doesn't reset properly right now, so if you don't like them at half opacity, click the button to make them all opaque.</p>
-                    <sl-button variant="primary" on:click={() => $allMarkers.forEach(marker => new Date(Number(localStorage.getItem(`${marker.options.id}.lastCollected`))).getDay() !== new Date().getDay() && marker.options.markerType === "respawning" ? marker.setOpacity(1) : null)}>Reset opacity</sl-button>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Collected</th>
-                            <th>Last Negative Respawn</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {#each $shownMarkers as marker}
-                            <tr>
-                                <td>{marker.options.name}</td>
-                                <td>{marker.options.lastCollected ? new Date(Number(marker.options.lastCollected)).toLocaleDateString() : "N/A"}</td>
-                                <td>N/A</td>
-                            </tr>
-                        {/each}
-                        </tbody>
-                    </table>
+                    <Progress/>
+
+                    <!--                    <table>-->
+                    <!--                        <thead>-->
+                    <!--                        <tr>-->
+                    <!--                            <th>Item</th>-->
+                    <!--                            <th>Collected</th>-->
+                    <!--                            <th>Last Negative Respawn</th>-->
+                    <!--                        </tr>-->
+                    <!--                        </thead>-->
+                    <!--                        <tbody>-->
+                    <!--                        {#each $shownMarkers as marker}-->
+                    <!--                            <tr>-->
+                    <!--                                <td>{marker.options.name}</td>-->
+                    <!--                                <td>{marker.options.lastCollected ? new Date(Number(marker.options.lastCollected)).toLocaleDateString() : "N/A"}</td>-->
+                    <!--                                <td>N/A</td>-->
+                    <!--                            </tr>-->
+                    <!--                        {/each}-->
+                    <!--                        </tbody>-->
+                    <!--                    </table>-->
                 </div>
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
                      data-tab-content={"tab-3"}>
                     <div class="settings">
+                        <h2>Fix marker opacity</h2>
+                        <p>Click if marker opacity on uncollected items is incorrect.</p>
+                        <sl-button variant="primary"
+                                   on:click={() => $allMarkers.forEach(marker => new Date(Number(localStorage.getItem(`${marker.options.id}.lastCollected`))).getDay() !== new Date().getDay() && marker.options.markerType === "respawning" ? marker.setOpacity(1) : null)}>
+                            Reset opacity
+                        </sl-button>
+
                         <h2>Reset collected items</h2>
                         <p>In case of emergency, reset all of your collected items data.</p>
                         <p>Your browser will refresh automatically.</p>
@@ -428,8 +436,8 @@
         align-items: flex-start;
         row-gap: 1em;
         font-size: 1.3em;
-        line-height: 1.2;
-        margin-left: 1em;
+        line-height: 1.3;
+        margin: 0 1em;
     }
 
     .settings h2 {
@@ -438,6 +446,10 @@
 
     .settings p {
         margin: 0;
+    }
+
+    .settings sl-checkbox {
+        margin-bottom: 0.2rem;
     }
 
     table {
