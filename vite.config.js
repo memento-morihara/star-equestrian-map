@@ -16,10 +16,9 @@ export default defineConfig({
                     'sidepanel-css': "/lib/sidepanel.css",
                     "condensedAttribution-css": "/lib/condensed-attribution.css",
                     "shoelace": "/lib/shoelace",
-                    "leaflet": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
                 }
             },
-            external: [ 'sidepanel', 'condensedAttribution', "sidepanel-css", "condensedAttribution-css", "shoelace", "leaflet",]
+            external: [ 'sidepanel', 'condensedAttribution', "sidepanel-css", "condensedAttribution-css", "shoelace",]
         },
     }
 })

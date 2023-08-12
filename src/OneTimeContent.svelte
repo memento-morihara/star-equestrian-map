@@ -1,39 +1,35 @@
 <script>
     import {getContext} from "svelte";
 
-    const {getMarker, collectMarker} = getContext("marker");
-    const marker = getMarker();
+    export let collected;
 
-    function handleCollect() {
-        // collectMarker();
+    const marker = getContext("marker")();
+
+    function collect() {
+        localStorage.setItem(`${marker.options.id}.collected`, "true");
+        collected = true;
+        marker.setOpacity(0.5);
     }
+
+    function uncollect() {
+        localStorage.removeItem(`${marker.options.id}.collected`);
+        collected = false;
+        marker.setOpacity(1);
+    }
+
+    $: collected = localStorage.getItem(`${marker.options.id}.collected`);
 </script>
 
-<div class="container">
-    <strong class:no-desc={!marker.options.description}>{marker.options.name}</strong>
-    {#if marker.options.description}
-        <p>{marker.options.description}</p>
+
+<div class="single-button">
+    {#if collected}
+        <sl-button on:click={uncollect} variant="default">Remove</sl-button>
+    {:else}
+        <sl-button on:click={collect} variant="primary">Collect</sl-button>
     {/if}
-    <div class="single-button">
-        <sl-button use:handleCollect variant="primary">Collect</sl-button>
-    </div>
 </div>
 
 <style>
-    .container {
-        font-size: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    strong {
-        font-size: 1.3rem;
-        vertical-align: middle;
-    }
-    .no-desc {
-        margin: 0 0 0.34em;
-    }
-
     .single-button {
         margin: 0.5em auto 0;
         width: 80%;
@@ -42,9 +38,5 @@
 
     .single-button sl-button {
         width: 100%;
-    }
-
-    p {
-        margin: 0.5em 0 0.8em;
     }
 </style>

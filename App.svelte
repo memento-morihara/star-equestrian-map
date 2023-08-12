@@ -3,9 +3,11 @@
     import MarkerController from "./src/MarkerController.svelte";
     import Sidepanel from "./src/Sidepanel.svelte";
     import DataView from "./src/DataView.svelte";
-    import {dialog} from "./src/stores.js";
-
 </script>
+
+<svelte:head>
+
+</svelte:head>
 
 <main>
     <Map>
