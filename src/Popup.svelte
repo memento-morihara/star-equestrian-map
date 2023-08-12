@@ -6,6 +6,7 @@
 
     export let popup = undefined;
     export let collected;
+    export let notRespawned;
 
     const dispatch = createEventDispatcher();
     const marker = getContext('marker')();
@@ -33,7 +34,7 @@
             popupOpen = true;
             showContents = true;
         });
-        marker.setOpacity(collected ? 0.5 : 1);
+        marker.setOpacity(collected || notRespawned ? 0.5 : 1);
     })
 </script>
 

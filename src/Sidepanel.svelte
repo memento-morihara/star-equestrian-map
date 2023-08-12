@@ -116,24 +116,24 @@
                      data-tab-content={"tab-2"}>
                     <p>The marker opacity doesn't reset properly right now, so if you don't like them at half opacity, click the button to make them all opaque.</p>
                     <sl-button variant="primary" on:click={() => $allMarkers.forEach(marker => new Date(Number(localStorage.getItem(`${marker.options.id}.lastCollected`))).getDay() !== new Date().getDay() && marker.options.markerType === "respawning" ? marker.setOpacity(1) : null)}>Reset opacity</sl-button>
-<!--                    <table>-->
-<!--                        <thead>-->
-<!--                        <tr>-->
-<!--                            <th>Item</th>-->
-<!--                            <th>Collected</th>-->
-<!--                            <th>Last Negative Respawn</th>-->
-<!--                        </tr>-->
-<!--                        </thead>-->
-<!--                        <tbody>-->
-<!--                        {#each $shownMarkers as marker}-->
-<!--                            <tr>-->
-<!--                                <td>{marker.options.name}</td>-->
-<!--                                <td>{marker.options.lastCollected ? new Date(Number(marker.options.lastCollected)).toLocaleDateString() : "N/A"}</td>-->
-<!--                                <td>N/A</td>-->
-<!--                            </tr>-->
-<!--                        {/each}-->
-<!--                        </tbody>-->
-<!--                    </table>-->
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Collected</th>
+                            <th>Last Negative Respawn</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {#each $shownMarkers as marker}
+                            <tr>
+                                <td>{marker.options.name}</td>
+                                <td>{marker.options.lastCollected ? new Date(Number(marker.options.lastCollected)).toLocaleDateString() : "N/A"}</td>
+                                <td>N/A</td>
+                            </tr>
+                        {/each}
+                        </tbody>
+                    </table>
                 </div>
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
                      data-tab-content={"tab-3"}>

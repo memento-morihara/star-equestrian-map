@@ -16,13 +16,14 @@ onMount(() => {
    $shownMarkers.forEach(marker => marker.addTo(map))
 })
 
-$: collected = (marker) => localStorage.getItem(`${marker.id}.lastCollected`) || localStorage.getItem(`${marker.id}.collected`)
+$: collected = (marker) => localStorage.getItem(`${marker.id}.lastCollected`) || localStorage.getItem(`${marker.id}.collected`);
+$: notRespawned = (marker) => localStorage.getItem(`${marker.id}.lastNegativeRespawn`);
 
 </script>
 
 {#each locations as marker}
     <Marker {marker} latLng={[marker.lat, marker.lng]}>
-        <Popup collected={collected(marker)}>
+        <Popup collected={collected(marker)} notRespawned={notRespawned(marker)}>
                 <strong slot="title">{marker.name}</strong>
             <p class:no-desc={!marker.description} slot="description">{marker.description}</p>
         </Popup>

@@ -1,5 +1,5 @@
 <script>
-    import {getContext, createEventDispatcher} from "svelte";
+    import {getContext, createEventDispatcher, onMount} from "svelte";
 
     export let collected;
 
@@ -8,7 +8,7 @@
 
     let date = localStorage.getItem(`${marker.options.id}.lastCollected`);
     let previous = date;
-    let notRespawned = false;
+    let negSpawnDate = localStorage.getItem(`${marker.options.id}.lastNegativeRespawn`);
 
     function collect() {
         localStorage.setItem(`${marker.options.id}.lastCollected`, Date.now().toString());
@@ -35,11 +35,22 @@
     function noRespawn() {
         localStorage.setItem(`${marker.options.id}.lastNegativeRespawn`, Date.now().toString());
         marker.setOpacity(0.5);
+        negSpawnDate = Date.now();
+        notRespawned = true;
+    }
+
+    function undoNoRespawn() {
+        localStorage.removeItem(`${marker.options.id}.lastNegativeRespawn`);
+        marker.setOpacity(1);
+        notRespawned = false;
     }
 
     $: date = localStorage.getItem(`${marker.options.id}.lastCollected`);
-    $: notRespawned = localStorage.getItem(`${marker.options.id}.lastNegativeRespawn`);
+    $: negSpawnDate = localStorage.getItem(`${marker.options.id}.lastNegativeRespawn`);
+    // Check if an item was collected today
     $: collected = new Date(Number(date)).getDay() === new Date().getDay();
+    $: notRespawned = new Date(Number(negSpawnDate)).getDate() === new Date().getDate();
+
 </script>
 
 <div class="container">
@@ -50,11 +61,19 @@
             N/A
         {/if}
     </small>
+    {#if notRespawned}
+        <small>
+            Last checked:
+            <sl-relative-time date={new Date(Number(negSpawnDate))} sync></sl-relative-time>
+        </small>
+    {/if}
     {#if marker.options.description}<p>{marker.options.description}</p>{/if}
     {#if collected}
         <div class="spawn-buttons">
             <sl-button on:click={uncollect} variant="default">Remove</sl-button>
         </div>
+    {:else if notRespawned}
+        <sl-button on:click={undoNoRespawn}>Remove</sl-button>
     {:else}
         <div class="spawn-buttons">
             <sl-button on:click={collect} variant="primary">Collect</sl-button>

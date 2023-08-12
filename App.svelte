@@ -2,12 +2,8 @@
     import Map from "./src/Map.svelte"
     import MarkerController from "./src/MarkerController.svelte";
     import Sidepanel from "./src/Sidepanel.svelte";
-    import DataView from "./src/DataView.svelte";
+    // import DataView from "./src/DataView.svelte";
 </script>
-
-<svelte:head>
-
-</svelte:head>
 
 <main>
     <Map>
@@ -16,7 +12,7 @@
     </Map>
 </main>
 
-    <DataView  />
+<!--    <DataView  />-->
 
 <style>
     :root {
