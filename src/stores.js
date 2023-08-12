@@ -37,3 +37,11 @@ export const selectedMarkerId = writable("");
 export const allMarkers = writable([]);
 // Store to hold markers currently shown on map as a global state so all components can access it
 export const shownMarkers = derived([shownFilters, allMarkers], ([$shownFilters, $allMarkers]) => $allMarkers.filter(marker => $shownFilters.includes(formatName(marker.options.name))));
+
+export const omsStore = writable();
+
+export const stateStore = writable({});
+
+export const renderer = writable(0)
+
+export const dialog = writable(false);

@@ -7,6 +7,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		stat: "Speed",
+		rarity: "Common"
 	},
 	{
 		name: "Berries",
@@ -16,6 +18,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		stat: "Speed",
+		rarity: "Uncommon"
 	},
 	{
 		name: "Brown Mushroom",

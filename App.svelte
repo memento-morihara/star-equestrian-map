@@ -2,6 +2,9 @@
     import Map from "./src/Map.svelte"
     import MarkerController from "./src/MarkerController.svelte";
     import Sidepanel from "./src/Sidepanel.svelte";
+    import DataView from "./src/DataView.svelte";
+    import {dialog} from "./src/stores.js";
+
 </script>
 
 <main>
@@ -9,8 +12,9 @@
         <MarkerController/>
         <Sidepanel panelPosition="left" darkMode={false} tabs={["Filter", "Progress", "Settings"]}/>
     </Map>
-
 </main>
+
+    <DataView  />
 
 <style>
     :root {

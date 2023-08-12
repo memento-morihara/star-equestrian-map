@@ -4,12 +4,15 @@
 import Popup from "./Popup.svelte";
 import Marker from "./Marker.svelte";
 import {allMarkers, shownMarkers, selectedMarkerId} from "./stores.js";
-import {getContext, onMount} from "svelte";
+import {getContext, onDestroy, onMount} from "svelte";
 import {chests, collectibles, food, other, resources} from "../markers.js";
 import {locations} from "../locations.js";
+import PopupContent from "./PopupContent.svelte";
 
-const {getMap} = getContext("map");
+const {getMap, getOms} = getContext("map");
 const map = getMap();
+const oms = getOms();
+
 
 
 const icons = [food, chests, resources, collectibles, other].flat();
@@ -27,13 +30,19 @@ function initMarkers() {
                 description: location.description,
             }
         );
-        marker.on("click", () => $selectedMarkerId = marker.options.id);
+        marker.on("click", () => $selectedMarkerId = marker);
         if (marker.options.markerType === "respawning") {
             marker.options.respawnTime = markerIcon.respawnTime;
         }
         arr.push(marker);
     }
     return arr;
+}
+
+function createMarker(node, marker) {
+    marker = L.marker({...marker}).addTo(map)
+    popup = L.popup({content: "I'm a popup"});
+    marker.bindPopup(popup)
 }
 
 $: {
@@ -45,6 +54,11 @@ onMount(() => {
    $allMarkers = initMarkers();
 })
 
+onDestroy(() => {
+    $allMarkers.forEach(marker => marker.remove());
+})
+
+let popupEl;
 
 </script>
 

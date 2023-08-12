@@ -1,12 +1,23 @@
 <script>
-    import {activeTabIndex, sidepanelOpen, shownFilters, items, formatName} from "./stores.js";
+    import {
+        activeTabIndex,
+        sidepanelOpen,
+        shownFilters,
+        items,
+        formatName,
+        allMarkers,
+        shownMarkers,
+        dialog
+    } from "./stores.js";
     import {counts} from "../locations.js";
-    import {disableScrollPropagation} from "leaflet/src/dom/DomEvent.js";
+    import DataView from "./DataView.svelte";
+    import {writable} from "svelte/store";
 
     // Props
     export let panelPosition;
     export let darkMode;
     export let tabs;
+
 
 
     function handleClick(tabIndex) {
@@ -33,9 +44,25 @@
         });
     }
 
+    function reset() {
+        const checkboxes = document.querySelectorAll("sl-checkbox");
+            const keys = $allMarkers.map(marker => marker.options.id)
+        if (!checkboxes[0].checked && !checkboxes[1].checked) {
+            localStorage.clear();
+        }
+        if (!checkboxes[0].checked) {
+            keys.forEach(key => localStorage.removeItem(`${key}.collected`));
+        }
+        if (!checkboxes[1].checked) {
+            localStorage.removeItem("shownItems")
+        }
+        keys.forEach(key => localStorage.removeItem(`${key}.lastCollected`));
+    }
+
+
 </script>
 
-<div on:mousewheel|stopPropagation|passive id="sidepanel" class="sidepanel {`sidepanel-${panelPosition}`}"
+<div on:dblclick|stopPropagation on:mousewheel|stopPropagation id="sidepanel" class="sidepanel {`sidepanel-${panelPosition}`}"
      class:opened={$sidepanelOpen} class:closed={!$sidepanelOpen}
      class:sidepanel-dark={darkMode}>
     <div class="sidepanel-toggle-container" class:opened={$sidepanelOpen} class:closed={!$sidepanelOpen}>
@@ -60,6 +87,8 @@
 
             <div class="sidepanel-tab-content" class:active={$activeTabIndex === 1}
                  data-tab-content={"tab-1"}>
+                <h2>Filters</h2>
+                <h3>Category</h3>
                 <sl-tree selection="multiple" on:sl-selection-change={e => handleFilterChange(e)}>
                     {#each items as item}
                         <sl-tree-item data-value="{item.parent.toLowerCase()}">
@@ -78,19 +107,51 @@
                         </sl-tree-item>
                     {/each}
                 </sl-tree>
+
+                <h3>Stat</h3>
+                <sl-tree>
+
+                </sl-tree>
             </div>
 
             <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
                  data-tab-content={"tab-2"}>
-                <slot name="slot-2"/>
+                <table>
+                    <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Item</th>
+                    <th>Last Collected</th>
+                    <th>Last Negative Respawn</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {#each $shownMarkers as marker}
+                <tr>
+                    <td>{marker.options.id}</td>
+                    <td>{marker.options.name}</td>
+                    <td>{marker.options.lastCollected ? new Date(Number(marker.options.lastCollected)).toLocaleDateString() : "N/A"}</td>
+                    <td>N/A</td>
+                </tr>
+                        {/each}
+                    </tbody>
+                </table>
             </div>
             <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
                  data-tab-content={"tab-3"}>
-                <slot name="slot-3"/>
+                <div class="settings">
+                    <h2>Reset collected items</h2>
+                    <p>In case of emergency, reset all of your collected items data.</p>
+                    <p>Refresh to update the map.</p>
+                <sl-checkbox checked>Preserve non-respawning items</sl-checkbox>
+                    <sl-checkbox checked>Preserve filter selections</sl-checkbox>
+                <sl-button on:click={reset} variant="danger">Reset</sl-button>
+
+                    <sl-button on:click={() => $dialog = !$dialog}>View Data</sl-button>
+                </div>
             </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -113,6 +174,8 @@
         box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
         z-index: 3000;
         cursor: default;
+        left: 0;
+        transform: translateX(-100%);
     }
 
     @media screen and (max-width: 450px) {
@@ -121,10 +184,6 @@
         }
     }
 
-    .sidepanel {
-        left: 0;
-        transform: translateX(-100%);
-    }
     .sidepanel.opened {
         animation: slide-right 0.5s ease 0s 1 both;
     }
@@ -133,17 +192,15 @@
     }
 
     .sidepanel-inner-wrapper {
-        position: absolute;
-        left: 0;
-        top: 0;
         width: 100%;
         height: 100%;
         background-color: #ffffff;
         z-index: 1000;
+        display: flex;
+        flex-direction: column;
     }
 
     .sidepanel-content-wrapper {
-        position: absolute;
         height: 100%;
         width: 100%;
         color: #191a1d;
@@ -152,10 +209,11 @@
     }
 
     .sidepanel-content-wrapper .sidepanel-content {
-        position: absolute;
-        padding: 1rem;
+        width: 100%;
+        margin: 0;
+        padding: 0;
     }
-    .sidepanel-content-wrapper .sidepanel-content .sidepanel-tab-content {
+    .sidepanel-tab-content {
         color: inherit;
         display: none;
     }
@@ -178,7 +236,6 @@
     }
 
     .sidepanel-tabs-wrapper {
-        position: absolute;
         height: 48px;
         width: 100%;
         background-color: #ffffff;
@@ -197,12 +254,15 @@
         flex-wrap: nowrap;
         height: 100%;
         width: 100%;
+        top: 0;
+        box-shadow: inset 0 -1px 0 #d4d4d4;
     }
     .sidepanel-tabs-wrapper .sidepanel-tabs .sidepanel-tab {
         flex-grow: 1;
         flex-basis: 0;
         align-self: stretch;
     }
+
     @media screen and (max-width: 230px) {
         .sidepanel-tabs-wrapper .sidepanel-tabs {
             overflow: scroll;
@@ -244,9 +304,9 @@
         border-bottom-color: var(--accent-color);
     }
 
-    .sidepanel.tabs-top .sidepanel-tabs-wrapper {
-        top: 0;
-        box-shadow: inset 0 -1px 0 #d4d4d4;
+    .sidepanel-tab-content {
+        position: relative;
+        margin: 1rem;
     }
 
     .sidepanel .sidepanel-toggle-container {
@@ -325,7 +385,7 @@
     }
 
     sl-tree {
-        margin-top: 3em;
+        margin-top: 1em;
         font-size: 1.3em;
     }
 
@@ -333,6 +393,10 @@
         font-size: 1.4em;
         font-weight: 500;
         line-height: 2em;
+    }
+
+    .child:last-of-type {
+        margin-bottom: 0.3em;
     }
 
     .child {
@@ -344,4 +408,43 @@
         background-color: transparent;
         border-inline-start-color: transparent;
     }
+
+    .settings {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 1em;
+        font-size: 1.3em;
+        line-height: 1.2;
+        margin-left: 1em;
+    }
+
+    .settings h2 {
+        margin-bottom: 0;
+    }
+
+    .settings p {
+        margin: 0;
+    }
+
+    table {
+        text-align: left;
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+    }
+    td, th {
+        padding: 4px 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    h3 {
+        text-transform: uppercase;
+    }
+
+    h2 {
+        font-size: 1.63rem;
+        text-align: center;
+    }
+
 </style>

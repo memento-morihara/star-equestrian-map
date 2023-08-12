@@ -1,5 +1,5 @@
 <script>
-    import {onMount, setContext} from "svelte";
+    import {onDestroy, onMount, setContext} from "svelte";
 
     let mapEl;
     let map;
@@ -43,8 +43,9 @@
             crs.unproject(L.point(mapExtent[ 2 ], mapExtent[ 3 ])),
             crs.unproject(L.point(mapExtent[ 0 ], mapExtent[ 1 ]))
         ]);
+
         // Resolves itself at runtime
-         oms =  new OverlappingMarkerSpiderfier(map, {
+        oms =  new OverlappingMarkerSpiderfier(map, {
             keepSpiderfied: true,
             legColors: {
                 usual: "white",
@@ -52,14 +53,17 @@
             }
         });
 
-        oms.addListener('spiderfy', function () {
-            map.closePopup();
-        });
 
         L.control.condensedAttribution({
             prefix: `Images &copy; <a href="https://www.foxieventures.com">Foxie Ventures</a>`
         }).addTo(map)
     });
+
+    onDestroy(() => {
+        map.remove();
+    })
+
+
 </script>
 
 <div id="container">
