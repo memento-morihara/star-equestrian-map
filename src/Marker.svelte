@@ -1,37 +1,44 @@
 <script>
     import {getContext, onMount, setContext} from "svelte";
+    import {chests, collectibles, food, other, resources} from "../markers.js";
+    import {allMarkers} from "./stores.js";
 
-    const {getMap, getOms} = getContext("map");
-    const map = getMap();
-    const oms = getOms();
+    // oms.addListener('spiderfy', function () {
+    //     map.closePopup();
+    // });
 
-    export let marker;
+    export let marker = undefined;
+    export let latLng;
 
-    setContext(L.Marker, {
-        getMarker: () => marker,
-        collectMarker: () => collect(marker)
-    });
+    let thisMarker;
 
-    marker.addTo(map);
-    oms.addMarker(marker)
+    setContext("marker", () => thisMarker);
 
-    if (marker.options.markerType === "respawning") {
-        marker.options.lastCollected = localStorage.getItem(`${marker.options.id}.lastCollected`);
-        new Date().getUTCDate() - new Date(marker.options.lastCollected).getUTCDate() !== 0 ? marker.setOpacity(1) : marker.setOpacity(0.3)
-    } else if (marker.options.markerType === "one-time") {
-        marker.options.collected = localStorage.getItem(`${marker.options.id}.collected`);
-        marker.options.collected ? marker.setOpacity(0.3) : marker.setOpacity(1);
+    const map = getContext("map")();
+    const icons = [food, chests, resources, collectibles, other].flat();
+
+    function markerProps() {
+        let markerIcon = icons.find(i => i.name === marker.name);
+        let props =
+            {
+                id: marker.id,
+                name: marker.name,
+                markerType: markerIcon.markerType,
+                icon: markerIcon.icon,
+                description: marker.description,
+            }
+        if (props.markerType === "respawning") {
+            props.respawnTime = markerIcon.respawnTime;
+        }
+        return props;
     }
 
-    function collect(marker) {
-        marker.options.markerType === "respawning"
-            ? localStorage.setItem(`${marker.options.id}.lastCollected`, Date.now().toString())
-            : localStorage.setItem(`${marker.options.id}.collected`, "true");
-        marker.setOpacity(0.3);
-        marker.options.lastCollected = localStorage.getItem(`${marker.options.id}.lastCollected`);
-    }
+    thisMarker = L.marker(latLng, {...markerProps()}).addTo(map);
+    $allMarkers = [...$allMarkers, thisMarker]
 </script>
 
-{#if marker}
-<slot />
+{#if thisMarker}
+    <slot/>
 {/if}
+
+

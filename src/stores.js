@@ -1,4 +1,4 @@
-import {writable, derived, readonly} from "svelte/store";
+import {writable, derived} from "svelte/store";
 
 export const activeTabIndex = writable(1);
 export const sidepanelOpen = writable(false);
@@ -37,3 +37,5 @@ export const selectedMarkerId = writable("");
 export const allMarkers = writable([]);
 // Store to hold markers currently shown on map as a global state so all components can access it
 export const shownMarkers = derived([shownFilters, allMarkers], ([$shownFilters, $allMarkers]) => $allMarkers.filter(marker => $shownFilters.includes(formatName(marker.options.name))));
+
+export const dialog = writable(false);

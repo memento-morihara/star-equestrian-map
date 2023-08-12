@@ -1,55 +1,46 @@
-<!-- Controls marker behavior (show/hide, collect, init, etc.) -->
-<!-- The marker component renders the marker and a slot for the popup -->
 <script>
 import Popup from "./Popup.svelte";
 import Marker from "./Marker.svelte";
 import {allMarkers, shownMarkers, selectedMarkerId} from "./stores.js";
-import {getContext, onMount} from "svelte";
-import {chests, collectibles, food, other, resources} from "../markers.js";
+import {getContext, onDestroy, onMount} from "svelte";
 import {locations} from "../locations.js";
 
-const {getMap} = getContext("map");
-const map = getMap();
-
-
-const icons = [food, chests, resources, collectibles, other].flat();
-
-function initMarkers() {
-    let arr = [];
-    for (let location of locations) {
-    let markerIcon = icons.find(i => i.name === location.name);
-        let marker = L.marker( [location.lat, location.lng],
-             {
-                id: location.id,
-                name: location.name,
-                markerType: markerIcon.markerType,
-                icon: markerIcon.icon,
-                description: location.description,
-            }
-        );
-        marker.on("click", () => $selectedMarkerId = marker.options.id);
-        if (marker.options.markerType === "respawning") {
-            marker.options.respawnTime = markerIcon.respawnTime;
-        }
-        arr.push(marker);
-    }
-    return arr;
-}
+const map = getContext("map")();
 
 $: {
     $allMarkers.forEach(marker => marker.remove());
-    $shownMarkers.forEach(marker => marker.addTo(map));
+    $shownMarkers.forEach(marker => marker.addTo(map))
 }
 
 onMount(() => {
-   $allMarkers = initMarkers();
+   $shownMarkers.forEach(marker => marker.addTo(map))
 })
 
+$: collected = (marker) => localStorage.getItem(`${marker.id}.lastCollected`) || localStorage.getItem(`${marker.id}.collected`)
 
 </script>
 
-{#each $shownMarkers as marker (marker.options.id)}
-    <Marker {marker}>
-        <Popup />
+{#each locations as marker}
+    <Marker {marker} latLng={[marker.lat, marker.lng]}>
+        <Popup collected={collected(marker)}>
+                <strong slot="title">{marker.name}</strong>
+            <p class:no-desc={!marker.description} slot="description">{marker.description}</p>
+        </Popup>
     </Marker>
 {/each}
+
+<style>
+    strong {
+        font-size: 1.3rem;
+        vertical-align: middle;
+    }
+
+    p {
+        font-size: 1rem;
+        margin: 0.5em 0;
+    }
+
+    .no-desc {
+        margin: 0 0 0.34em;
+    }
+</style>

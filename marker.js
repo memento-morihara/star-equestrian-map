@@ -1,12 +1,9 @@
 import {chests, collectibles, food, other, resources} from "./markers.js";
-import {howManyDays} from "./dateutils.js";
 import './style.css'
 
 const staticMarkers = ["Cave Entrance"];
 const oneTimeMarkers = ["Toy Unicorn", "Sheriff Badge", "Horseshoe", "Message in a Bottle"]
 const icons = [ food, resources, chests, collectibles, other ].flat();
-
-console.log(howManyDays(1690766044205))
 
 // Umbrella class to abstract away the marker types
 export class Marker {

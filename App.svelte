@@ -2,15 +2,21 @@
     import Map from "./src/Map.svelte"
     import MarkerController from "./src/MarkerController.svelte";
     import Sidepanel from "./src/Sidepanel.svelte";
+    import DataView from "./src/DataView.svelte";
 </script>
+
+<svelte:head>
+
+</svelte:head>
 
 <main>
     <Map>
         <MarkerController/>
         <Sidepanel panelPosition="left" darkMode={false} tabs={["Filter", "Progress", "Settings"]}/>
     </Map>
-
 </main>
+
+    <DataView  />
 
 <style>
     :root {
