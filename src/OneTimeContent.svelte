@@ -2,9 +2,10 @@
     import {getContext} from "svelte";
     import {collectionProgress} from "./stores.js";
 
-    export let collected;
-
     const marker = getContext("marker")();
+
+    export let collected = !!localStorage.getItem(`${marker.options.id}.collected`);
+
 
     function updateCollectionProgress(name, adding) {
         let index;
@@ -40,6 +41,7 @@
     }
 
     $: collected ? marker.setOpacity(0.5) : marker.setOpacity(1);
+    $: collected = !!localStorage.getItem(`${marker.options.id}.collected`);
 </script>
 
 
