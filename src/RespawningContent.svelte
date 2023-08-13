@@ -1,14 +1,16 @@
 <script>
-    import {getContext, createEventDispatcher, onMount} from "svelte";
-
-    export let collected;
+    import {getContext, createEventDispatcher} from "svelte";
 
     const marker = getContext('marker')();
     const dispatch = createEventDispatcher();
 
-    let date = localStorage.getItem(`${marker.options.id}.lastCollected`);
+
+    export let date = localStorage.getItem(`${marker.options.id}.lastCollected`);
     let previous = date;
-    let negSpawnDate = localStorage.getItem(`${marker.options.id}.lastNegativeRespawn`);
+    export let negSpawnDate = localStorage.getItem(`${marker.options.id}.lastNegativeRespawn`);
+
+    $: collected = new Date(Number(date)).getUTCDate() === new Date().getUTCDate();
+    $: notRespawned = new Date(Number(negSpawnDate)).getUTCDate() === new Date().getUTCDate();
 
     function collect() {
         localStorage.setItem(`${marker.options.id}.lastCollected`, Date.now().toString());
@@ -27,7 +29,6 @@
             localStorage.removeItem(`${marker.options.id}.lastCollected`);
             date = null;
         }
-        collected = false;
         marker.setOpacity(1);
         dispatch("collected");
     }
@@ -36,20 +37,13 @@
         localStorage.setItem(`${marker.options.id}.lastNegativeRespawn`, Date.now().toString());
         marker.setOpacity(0.5);
         negSpawnDate = Date.now();
-        notRespawned = true;
     }
 
     function undoNoRespawn() {
         localStorage.removeItem(`${marker.options.id}.lastNegativeRespawn`);
         marker.setOpacity(1);
-        notRespawned = false;
+        negSpawnDate = null;
     }
-
-    $: date = localStorage.getItem(`${marker.options.id}.lastCollected`);
-    $: negSpawnDate = localStorage.getItem(`${marker.options.id}.lastNegativeRespawn`);
-    // Check if an item was collected today
-    $: collected = new Date(Number(date)).getDay() === new Date().getDay();
-    $: notRespawned = new Date(Number(negSpawnDate)).getDate() === new Date().getDate();
 
 </script>
 

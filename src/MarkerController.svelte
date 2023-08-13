@@ -1,8 +1,8 @@
 <script>
 import Popup from "./Popup.svelte";
 import Marker from "./Marker.svelte";
-import {allMarkers, shownMarkers, selectedMarkerId} from "./stores.js";
-import {getContext, onDestroy, onMount} from "svelte";
+import {allMarkers, shownMarkers} from "./stores.js";
+import {getContext, onMount} from "svelte";
 import {locations} from "../locations.js";
 
 const map = getContext("map")();
@@ -13,11 +13,27 @@ $: {
 }
 
 onMount(() => {
-   $shownMarkers.forEach(marker => marker.addTo(map))
-})
+    $shownMarkers.forEach(marker => {
+        marker.addTo(map)
+    });
+});
 
-$: collected = (marker) => localStorage.getItem(`${marker.id}.lastCollected`) || localStorage.getItem(`${marker.id}.collected`);
-$: notRespawned = (marker) => localStorage.getItem(`${marker.id}.lastNegativeRespawn`);
+$: collected = marker => new Date(Number(localStorage.getItem(`${marker.id}.lastCollected`))).getUTCDate() === new Date().getUTCDate() || localStorage.getItem(`${marker.id}.collected`);
+$: notRespawned = marker => new Date(Number(localStorage.getItem(`${marker.id}.lastNegativeRespawn`))).getUTCDate() === new Date().getUTCDate();
+
+// function fixOpacity() {
+//     const respawning = $allMarkers.filter(marker => marker.options.markerType === "respawning");
+//     respawning.forEach(marker => {
+//         const lastCollected = new Date(Number(localStorage.getItem(`${marker.options.id}.lastCollected`)));
+//         const lastNegativeRespawn = new Date(Number(localStorage.getItem(`${marker.options.id}.lastNegativeRespawn`)));
+//         let broken;
+//
+//         broken = !(!lastCollected || lastCollected.getDate() === new Date().getDate()) && !(!lastNegativeRespawn || lastNegativeRespawn.getDate() === new Date().getDate());
+//         broken ? marker.setOpacity(1) && dispatch("opacityReset", marker) : marker.setOpacity(0.5);
+//     })
+// }
+//
+// $: $shownMarkers.forEach(marker => collected(marker) || notRespawned(marker) ? fixOpacity() : null)
 
 </script>
 

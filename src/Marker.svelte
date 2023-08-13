@@ -1,5 +1,5 @@
 <script>
-    import {getContext, onMount, setContext} from "svelte";
+    import {getContext, setContext} from "svelte";
     import {chests, collectibles, food, other, resources} from "../markers.js";
     import {allMarkers} from "./stores.js";
 
@@ -11,7 +11,6 @@
     export let latLng;
 
     let thisMarker;
-
     setContext("marker", () => thisMarker);
 
     const map = getContext("map")();

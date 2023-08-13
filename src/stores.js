@@ -28,20 +28,6 @@ export function formatName(name) {
     }
 }
 
-function getCollectiblesProgress() {
-    const unicornIds = $allMarkers.filter(marker => marker.options.name === "Toy Unicorn");
-    const horseshoeIds = $allMarkers.filter(marker => marker.options.name === "Horseshoe");
-    const sheriffBadgeIds = $allMarkers.filter(marker => marker.options.name === "Sheriff Badge");
-    let temp = [0, 0, 0];
-    [unicornIds, horseshoeIds, sheriffBadgeIds].forEach((category, i) => category.map((item) => {
-        if (localStorage.getItem(`${item.options.id}.collected`)) {
-            temp[i]++;
-        }
-    }))
-    return temp;
-}
-
-
 export const shownFilters = writable(ls());
 
 export const selectedMarkerId = writable("");
@@ -54,3 +40,5 @@ export const shownMarkers = derived([shownFilters, allMarkers], ([$shownFilters,
 export const dialog = writable(false);
 
 export const collectionProgress = writable([])
+
+export const needsOpacityFixed = writable();

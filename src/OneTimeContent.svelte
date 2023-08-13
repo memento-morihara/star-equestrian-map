@@ -39,7 +39,7 @@
         updateCollectionProgress(marker.options.name, false);
     }
 
-    $: collected = localStorage.getItem(`${marker.options.id}.collected`);
+    $: collected ? marker.setOpacity(0.5) : marker.setOpacity(1);
 </script>
 
 

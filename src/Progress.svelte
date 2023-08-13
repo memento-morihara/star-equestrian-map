@@ -38,8 +38,9 @@
 </div>
 <style>
 
+
     sl-progress-ring {
-        --size: 5rem;
+        --size: 80px;
     }
 
     .container {
@@ -55,7 +56,21 @@
     }
 
     .progress-inner img {
-        margin-top: 0.8rem;
-        margin-bottom: -0.5rem;
+        margin: 0.8rem 0 -0.5rem;
+    }
+
+
+    @media screen and (max-width: 450px) {
+        .container {
+            width: 250px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            margin: 0 auto;
+        }
+
+        sl-progress-ring {
+            margin: 0 auto 2rem;
+        }
     }
 </style>

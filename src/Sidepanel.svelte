@@ -6,11 +6,8 @@
         items,
         formatName,
         allMarkers,
-        shownMarkers,
-        dialog
     } from "./stores.js";
     import {counts} from "../locations.js";
-    import {onMount} from "svelte";
     import Progress from "./Progress.svelte";
 
     // Props
@@ -58,7 +55,6 @@
         keys.forEach(key => localStorage.removeItem(`${key}.lastCollected`));
         window.location.reload(true);
     }
-
 </script>
 
 <div on:dblclick|stopPropagation on:mousewheel|stopPropagation id="sidepanel"
@@ -87,7 +83,7 @@
 
                 <div class="sidepanel-tab-content" class:active={$activeTabIndex === 1}
                      data-tab-content={"tab-1"}>
-<!--                    <h3>Category</h3>-->
+                    <!--                    <h3>Category</h3>-->
                     <sl-tree selection="multiple" on:sl-selection-change={e => handleFilterChange(e)}>
                         {#each items as item}
                             <sl-tree-item data-value="{item.parent.toLowerCase()}">
@@ -107,10 +103,10 @@
                         {/each}
                     </sl-tree>
 
-<!--                    <h3>Stat</h3>-->
-<!--                    <sl-tree>-->
+                    <!--                    <h3>Stat</h3>-->
+                    <!--                    <sl-tree>-->
 
-<!--                    </sl-tree>-->
+                    <!--                    </sl-tree>-->
                 </div>
 
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
@@ -139,12 +135,6 @@
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
                      data-tab-content={"tab-3"}>
                     <div class="settings">
-                        <h2>Fix marker opacity</h2>
-                        <p>Click if marker opacity on uncollected items is incorrect.</p>
-                        <sl-button variant="primary"
-                                   on:click={() => $allMarkers.forEach(marker => new Date(Number(localStorage.getItem(`${marker.options.id}.lastCollected`))).getDay() !== new Date().getDay() && marker.options.markerType === "respawning" ? marker.setOpacity(1) : null)}>
-                            Reset opacity
-                        </sl-button>
 
                         <h2>Reset collected items</h2>
                         <p>In case of emergency, reset all of your collected items data.</p>
@@ -153,7 +143,7 @@
                         <sl-checkbox checked>Preserve filter selections</sl-checkbox>
                         <sl-button on:click={reset} variant="danger">Reset</sl-button>
 
-<!--                        <sl-button on:click={() => $dialog = !$dialog}>View Data</sl-button>-->
+                        <!--                        <sl-button on:click={() => $dialog = !$dialog}>View Data</sl-button>-->
                     </div>
                 </div>
             </div>

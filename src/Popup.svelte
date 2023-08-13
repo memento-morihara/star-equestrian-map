@@ -34,7 +34,16 @@
             popupOpen = true;
             showContents = true;
         });
-        marker.setOpacity(collected || notRespawned ? 0.5 : 1);
+
+        if (marker.options.markerType === "respawning" && collected) {
+            marker.setOpacity(0.5);
+        } else if (marker.options.markerType === "respawning" && notRespawned) {
+            marker.setOpacity(0.5);
+        } else if (marker.options.markerType === "one-time" && collected) {
+            marker.setOpacity(0.5);
+        } else {
+            marker.setOpacity(1);
+        }
     })
 </script>
 
@@ -43,7 +52,7 @@
         <slot name="title" />
         <!--    Respawning markers add their own description, so don't show here    -->
         {#if marker.options.markerType !== "respawning"}<slot name="description" />{/if}
-        <svelte:component this={popupContent()} {collected} />
+        <svelte:component this={popupContent()}/>
     {/if}
 </div>
 
