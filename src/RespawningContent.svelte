@@ -22,7 +22,7 @@
     }
 
     function uncollect() {
-        if (previous) {
+        if (previous && new Date(Number(previous)).getUTCDate() < new Date().getUTCDate()) {
             localStorage.setItem(`${marker.options.id}.lastCollected`, previous);
             date = previous;
         } else {
@@ -63,9 +63,7 @@
     {/if}
     {#if marker.options.description}<p>{marker.options.description}</p>{/if}
     {#if collected}
-        <div class="spawn-buttons">
-            <sl-button on:click={uncollect} variant="default">Remove</sl-button>
-        </div>
+        <sl-button on:click={uncollect} variant="danger">Remove</sl-button>
     {:else if notRespawned}
         <sl-button on:click={undoNoRespawn}>Remove</sl-button>
     {:else}
