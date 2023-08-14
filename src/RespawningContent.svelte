@@ -63,9 +63,13 @@
     {/if}
     {#if marker.options.description}<p>{marker.options.description}</p>{/if}
     {#if collected}
+        <div class="single-button">
         <sl-button on:click={uncollect} variant="danger">Remove</sl-button>
+        </div>
     {:else if notRespawned}
-        <sl-button on:click={undoNoRespawn}>Remove</sl-button>
+        <div class="single-button">
+            <sl-button on:click={undoNoRespawn} variant="danger">Remove</sl-button>
+        </div>
     {:else}
         <div class="spawn-buttons">
             <sl-button on:click={collect} variant="primary">Collect</sl-button>
@@ -101,7 +105,22 @@
         width: 100%;
     }
 
+    .spawn-buttons sl-button {
+        width: 50%;
+    }
+
     p {
-        margin: 0.5em 0;
+        margin: 0.3em 0;
+    }
+
+    .single-button {
+        margin: 0.3em auto 0.1em;
+        width: 50%;
+        max-width: 150px;
+    }
+
+    .single-button sl-button {
+        width: 100%;
+        margin: 0 auto;
     }
 </style>

@@ -4,7 +4,7 @@
 
     const marker = getContext("marker")();
 
-    export let collected = !!localStorage.getItem(`${marker.options.id}.collected`);
+    let collected = !!localStorage.getItem(`${marker.options.id}.collected`);
 
 
     function updateCollectionProgress(name, adding) {
@@ -55,12 +55,13 @@
 
 <style>
     .single-button {
-        margin: 0.5em auto 0;
-        width: 80%;
+        margin: 0.3em auto 0.1em;
+        width: 50%;
         max-width: 150px;
     }
 
     .single-button sl-button {
         width: 100%;
+        margin: 0 auto;
     }
 </style>
