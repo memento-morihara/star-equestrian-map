@@ -68,7 +68,7 @@
             <span in:fade={fadeTransition}>N/A</span>
         {/if}
     </small>
-    {#if notRespawned || negSpawnDate}
+    {#if !collected && (notRespawned || negSpawnDate)}
         <small transition:slide>
             Last checked:
             <sl-relative-time date={new Date(Number(negSpawnDate))} sync></sl-relative-time>
