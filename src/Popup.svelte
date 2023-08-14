@@ -3,6 +3,7 @@
     import { getContext, createEventDispatcher, onMount } from 'svelte';
     import RespawningContent from "./RespawningContent.svelte";
     import OneTimeContent from "./OneTimeContent.svelte";
+    import {selectedMarkerId} from "./stores.js";
 
     export let popup = undefined;
     export let collected;
@@ -28,11 +29,13 @@
     }
 
     onMount(() =>{
-        popup = L.popup({minWidth: 200, minHeight: 180}).setContent(popupEl);
+        popup = L.popup({minWidth: 200, minHeight: 180,})
         marker.bindPopup(popup);
+
         marker.on('popupopen', () => {
             popupOpen = true;
             showContents = true;
+            popup.setContent(popupEl)
         });
 
         if (marker.options.markerType === "respawning" && collected) {
