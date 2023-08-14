@@ -2,16 +2,17 @@
 
 <img src="assets/StarEquestrianLogo_Color.png" alt="Star Equestrian game logo" width="300" />
 
-
 An interactive map for [Star Equestrian](https://www.foxieventures.com/star-equestrian/).
 
-Very much a work in progress, but maybe someone will find it useful.
+Shoutout to the awesome folks at Foxie Ventures who provided me with a large map image.
 
-Not too much to say about it yet. Click on the icons to open a popup that might have more information about the item's location. Use the checkboxes in the side menu to show/hide icons.
+## Features
 
-Also, shoutout to the awesome folks at Foxie Ventures who provided me with a large map image.
-
-Take a look at the dev branch if you want to see the beautiful new basemap.
+- Filter markers by type
+- Mark items as collected (markers for items that respawn reset at midnight UTC)
+- Mark items that haven't respawned yet
+- Progress indicators for collectibles
+- No data collected. Everything is stored in your browser's storage.
 
 ## To Do
 
@@ -24,6 +25,10 @@ Take a look at the dev branch if you want to see the beautiful new basemap.
 - [ ] Accessibility
 - [ ] Mobile support
 - [ ] Marker visibility
+- [ ] Filter food items by stat
+- [ ] Markers for resource traders
+- [ ] Markers for quest items
+- [ ] More settings options
 
 ---
 
@@ -32,7 +37,7 @@ This is an unofficial fan-made project. Game, logo, and all imagery &copy; [Foxi
 **Credits:**
 
 - [MapTiler Engine](https://www.maptiler.com/engine/)
+- [Svelte](https://svelte.dev)
 - [Leaflet](https://leafletjs.com)
-- [Leaflet.contextmenu](https://github.com/aratcliffe/Leaflet.contextmenu)
 - [Leaflet.SidePanel](https://github.com/maxwell-ilai/Leaflet.SidePanel)
 - [Shoelace](https://shoelace.style)
