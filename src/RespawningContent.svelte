@@ -30,7 +30,7 @@
             date = previousCollected;
         } else {
             localStorage.removeItem(`${marker.options.id}.lastCollected`);
-            date = null;
+            date = undefined;
         }
         marker.setOpacity(1);
         dispatch("collected", marker.options.id);
@@ -51,7 +51,7 @@
         } else {
 
         localStorage.removeItem(`${marker.options.id}.lastNegativeRespawn`);
-            negSpawnDate = null;
+            negSpawnDate = undefined;
         }
         marker.setOpacity(1);
     }
@@ -68,7 +68,7 @@
             <span in:fade={fadeTransition}>N/A</span>
         {/if}
     </small>
-    {#if notRespawned || previousNoSpawn}
+    {#if notRespawned || negSpawnDate}
         <small transition:slide>
             Last checked:
             <sl-relative-time date={new Date(Number(negSpawnDate))} sync></sl-relative-time>
