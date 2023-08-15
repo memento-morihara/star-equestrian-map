@@ -1,6 +1,7 @@
 <script>
-    import {getContext, createEventDispatcher} from "svelte";
+    import {createEventDispatcher, getContext} from "svelte";
     import {fade, slide} from "svelte/transition";
+    import {autoClosePopups} from "./stores.js";
 
     const marker = getContext('marker')();
     const dispatch = createEventDispatcher();
@@ -13,7 +14,7 @@
     $: collected = new Date(Number(date)).getUTCDate() === new Date().getUTCDate();
     $: notRespawned = new Date(Number(negSpawnDate)).getUTCDate() === new Date().getUTCDate();
 
-    function collect(e) {
+    function collect() {
         localStorage.setItem(`${marker.options.id}.lastCollected`, Date.now().toString());
         localStorage.removeItem(`${marker.options.id}.lastNegativeRespawn`);
         date = Date.now();
@@ -54,6 +55,7 @@
             negSpawnDate = undefined;
         }
         marker.setOpacity(1);
+
     }
 
     const fadeTransition = {duration: 800}
@@ -77,16 +79,23 @@
     {#if marker.options.description}<p>{marker.options.description}</p>{/if}
     {#if collected}
         <div class="spawn-buttons" in:fade={fadeTransition}>
-            <sl-button on:click|stopPropagation={uncollect} variant="danger">Remove</sl-button>
+            <sl-button on:click={e => {uncollect(); !$autoClosePopups ? e.stopPropagation() : null;}} variant="danger">
+                Remove
+            </sl-button>
         </div>
     {:else if notRespawned}
         <div class="spawn-buttons" in:fade={fadeTransition}>
-            <sl-button on:click|stopPropagation={undoNoRespawn} variant="danger">Remove</sl-button>
+            <sl-button on:click={e => {undoNoRespawn(); !$autoClosePopups ? e.stopPropagation() : null}}
+                       variant="danger">Remove
+            </sl-button>
         </div>
     {:else}
         <div class="spawn-buttons" in:fade={fadeTransition}>
-            <sl-button on:click|stopPropagation={collect} variant="primary">Collect</sl-button>
-            <sl-icon-button on:click|stopPropagation={noRespawn} class="no-respawn" name="calendar-x"
+            <sl-button on:click={e => {collect(); !$autoClosePopups ? e.stopPropagation() : null}} variant="primary">
+                Collect
+            </sl-button>
+            <sl-icon-button on:click={e => {noRespawn(); !$autoClosePopups ? e.stopPropagation() : null}}
+                            class="no-respawn" name="calendar-x"
                             label="Not respawned"></sl-icon-button>
         </div>
     {/if}

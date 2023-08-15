@@ -1,4 +1,4 @@
-import {writable, derived} from "svelte/store";
+import {derived, writable} from "svelte/store";
 
 export const activeTabIndex = writable(1);
 export const sidepanelOpen = writable(false);
@@ -28,6 +28,7 @@ export function formatName(name) {
     }
 }
 
+
 export const shownFilters = writable(ls());
 
 export const selectedMarkerId = writable("");
@@ -41,4 +42,12 @@ export const dialog = writable(false);
 
 export const collectionProgress = writable([])
 
-export const needsOpacityFixed = writable();
+export const hideCollected = writable([]);
+
+export const hiddenCollected = derived([shownMarkers, hideCollected], ([$shownMarkers, $hideCollected]) => $shownMarkers.filter(marker => $hideCollected.includes(marker.options.category)));
+
+function getChildren(parent) {
+    return items.find(item => item.parent === formatName(parent)).children;
+}
+
+export const autoClosePopups = writable(!!localStorage.getItem("autoClosePopups"));

@@ -2,6 +2,7 @@
     import {
         activeTabIndex,
         allMarkers,
+        autoClosePopups,
         formatName,
         items,
         shownFilters,
@@ -60,6 +61,11 @@
 
     function hideCollected(e) {
         $shownMarkers.forEach(marker => marker.options.collected && e.target.checked ? marker.remove() : !map.hasLayer(marker) && marker.addTo(map))
+    }
+
+    function setAutoClose(e) {
+        e.target.checked ? localStorage.setItem("autoClosePopups", "true") : localStorage.removeItem("autoClosePopups");
+        $autoClosePopups = e.target.checked;
     }
 
 </script>
@@ -143,7 +149,8 @@
                     <div class="settings">
                         <h2>Settings</h2>
 
-
+                        <sl-checkbox on:sl-change={e => setAutoClose(e)}>Close popups automatically on button click
+                        </sl-checkbox>
                         <sl-checkbox on:sl-change={(e) => hideCollected(e)}>Hide collected items</sl-checkbox>
 
                         <h2>Reset collected items</h2>
