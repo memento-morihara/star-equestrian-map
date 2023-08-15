@@ -8,7 +8,8 @@ export const food = [
 		markerType: "respawning",
 		respawnTime: 1,
 		stat: "Speed",
-		rarity: "Common"
+		rarity: "Common",
+		category: "food"
 	},
 	{
 		name: "Berries",
@@ -19,7 +20,8 @@ export const food = [
 		markerType: "respawning",
 		respawnTime: 1,
 		stat: "Speed",
-		rarity: "Uncommon"
+		rarity: "Uncommon",
+		category: "food"
 	},
 	{
 		name: "Brown Mushroom",
@@ -29,6 +31,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Carrot",
@@ -38,6 +41,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Honey",
@@ -47,6 +51,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Lemon",
@@ -56,6 +61,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Lettuce",
@@ -65,6 +71,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Orange",
@@ -74,6 +81,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Pumpkin",
@@ -83,6 +91,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Strawberries",
@@ -92,6 +101,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Truffle",
@@ -101,6 +111,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Turnip",
@@ -110,6 +121,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Watermelon",
@@ -119,6 +131,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "Wheat",
@@ -128,6 +141,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 	{
 		name: "White Mushroom",
@@ -137,6 +151,7 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "food"
 	},
 ]
 
@@ -149,6 +164,7 @@ export const resources = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "resources"
 	},
 	{
 		name: "Eggs",
@@ -158,6 +174,7 @@ export const resources = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "resources"
 	},
 	{
 		name: "Fish",
@@ -167,6 +184,7 @@ export const resources = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "resources"
 	},
 	{
 		name: "Milk",
@@ -176,6 +194,7 @@ export const resources = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "resources"
 	},
 	{
 		name: "Wool",
@@ -185,6 +204,7 @@ export const resources = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "resources"
 	},
 ]
 
@@ -199,6 +219,7 @@ export const chests = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "chests"
 	},
 	{
 		name: "Uncommon Chest",
@@ -210,6 +231,7 @@ export const chests = [
 		}),
 		markerType: "respawning",
 		respawnTime: 7,
+		category: "chests"
 	},
 	{
 		name: "Rare Chest",
@@ -221,6 +243,7 @@ export const chests = [
 		}),
 		markerType: "respawning",
 		respawnTime: 14,
+		category: "chests"
 	},
 	{
 		name: "Epic Chest",
@@ -232,6 +255,7 @@ export const chests = [
 		}),
 		markerType: "respawning",
 		respawnTime: 30,
+		category: "chests"
 	},
 	{
 		name: "Legendary Chest",
@@ -242,6 +266,7 @@ export const chests = [
 			popupAnchor: [ 0, -14 ]
 		}),
 		markerType: "one-time",
+		category: "chests"
 	},
 ]
 
@@ -253,6 +278,7 @@ export const collectibles = [
 			iconSize: [ 24, 24 ]
 		}),
 		markerType: "one-time",
+		category: "collectibles"
 	},
 	{
 		name: "Horseshoe",
@@ -261,6 +287,7 @@ export const collectibles = [
 			iconSize: [ 18, 18 ]
 		}),
 		markerType: "one-time",
+		category: "collectibles"
 	},
 	{
 		name: "Toy Unicorn",
@@ -269,6 +296,7 @@ export const collectibles = [
 			iconSize: [ 24, 24 ]
 		}),
 		markerType: "one-time",
+		category: "collectibles"
 	},
 	{
 		name: "Bottle",
@@ -277,6 +305,7 @@ export const collectibles = [
 			iconSize: [ 18, 24 ]
 		}),
 		markerType: "one-time",
+		category: "collectibles"
 	}
 ]
 
@@ -289,6 +318,7 @@ export const other = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "other"
 	},
 	{
 		name: "Wood",
@@ -298,6 +328,7 @@ export const other = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
+		category: "other"
 	},
 	{
 		name: "Cave Entrance",
@@ -307,5 +338,6 @@ export const other = [
 			iconAnchor: [ 14, 14 ],
 		}),
 		markerType: "static",
+		category: "other"
 	}
 ]

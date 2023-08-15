@@ -1,21 +1,23 @@
 <script>
     import {
         activeTabIndex,
-        sidepanelOpen,
-        shownFilters,
-        items,
-        formatName,
         allMarkers,
+        formatName,
+        items,
+        shownFilters,
+        shownMarkers,
+        sidepanelOpen
     } from "./stores.js";
     import {counts} from "../locations.js";
     import Progress from "./Progress.svelte";
+    import {getContext} from "svelte";
 
     // Props
     export let panelPosition;
     export let darkMode;
     export let tabs;
 
-
+    const map = getContext("map")();
     function handleClick(tabIndex) {
         $activeTabIndex = tabIndex;
     }
@@ -55,6 +57,11 @@
         keys.forEach(key => localStorage.removeItem(`${key}.lastCollected`));
         window.location.reload(true);
     }
+
+    function hideCollected(e) {
+        $shownMarkers.forEach(marker => marker.options.collected && e.target.checked ? marker.remove() : !map.hasLayer(marker) && marker.addTo(map))
+    }
+
 </script>
 
 <div on:dblclick|stopPropagation on:mousewheel|stopPropagation id="sidepanel"
@@ -112,7 +119,6 @@
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
                      data-tab-content={"tab-2"}>
                     <Progress/>
-
                     <!--                    <table>-->
                     <!--                        <thead>-->
                     <!--                        <tr>-->
@@ -135,6 +141,10 @@
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
                      data-tab-content={"tab-3"}>
                     <div class="settings">
+                        <h2>Settings</h2>
+
+
+                        <sl-checkbox on:sl-change={(e) => hideCollected(e)}>Hide collected items</sl-checkbox>
 
                         <h2>Reset collected items</h2>
                         <p>In case of emergency, reset all of your collected items data.</p>
@@ -426,8 +436,8 @@
         align-items: flex-start;
         row-gap: 1em;
         font-size: 1.3em;
-        line-height: 1.3;
-        margin: 0 1em;
+        line-height: 1.2;
+        margin-left: 1em;
     }
 
     .settings h2 {
@@ -436,10 +446,6 @@
 
     .settings p {
         margin: 0;
-    }
-
-    .settings sl-checkbox {
-        margin-bottom: 0.2rem;
     }
 
     table {
