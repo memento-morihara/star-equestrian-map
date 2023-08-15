@@ -1,7 +1,7 @@
 <script>
     import {createEventDispatcher, getContext} from "svelte";
     import {fade, slide} from "svelte/transition";
-    import {autoClosePopups} from "./stores.js";
+    import {autoClosePopups, hideCollected} from "./stores.js";
 
     const marker = getContext('marker')();
     const dispatch = createEventDispatcher();
@@ -21,7 +21,9 @@
         collected = true;
         marker.setOpacity(0.5);
         dispatch("collected", marker.options.id);
+        marker.options.collected = true;
 
+        marker.on("popupclose", () => $hideCollected ? marker.remove() : null)
     }
 
     function uncollect() {
@@ -35,6 +37,7 @@
         }
         marker.setOpacity(1);
         dispatch("collected", marker.options.id);
+        marker.options.collected = false;
     }
 
     function noRespawn() {
@@ -42,6 +45,8 @@
         localStorage.setItem(`${marker.options.id}.lastNegativeRespawn`, Date.now().toString());
         marker.setOpacity(0.5);
         negSpawnDate = Date.now();
+        marker.options.collected = true;
+        marker.on("popupclose", () => $hideCollected ? marker.remove() : null)
     }
 
     function undoNoRespawn() {
@@ -55,7 +60,7 @@
             negSpawnDate = undefined;
         }
         marker.setOpacity(1);
-
+        marker.options.collected = false;
     }
 
     const fadeTransition = {duration: 800}
