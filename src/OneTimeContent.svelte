@@ -1,6 +1,6 @@
 <script>
     import {getContext} from "svelte";
-    import {collectionProgress} from "./stores.js";
+    import {autoClosePopups, collectionProgress} from "./stores.js";
     import {fade} from "svelte/transition";
 
     const marker = getContext("marker")();
@@ -48,9 +48,13 @@
 
 <div class="single-button">
     {#if collected}
-        <sl-button on:click|stopPropagation={uncollect} in:fade={{duration: 800}} variant="danger">Remove</sl-button>
+        <sl-button on:click={e => {uncollect(); $autoClosePopups ? null : e.stopPropagation()}}
+                   in:fade={{duration: 800}} variant="danger">Remove
+        </sl-button>
     {:else}
-        <sl-button on:click|stopPropagation={collect} in:fade={{duration: 800}} variant="primary">Collect</sl-button>
+        <sl-button on:click={e => {collect(); $autoClosePopups ? null : e.stopPropagation()}} in:fade={{duration: 800}}
+                   variant="primary">Collect
+        </sl-button>
     {/if}
 </div>
 
