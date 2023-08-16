@@ -96,7 +96,7 @@
 
                 <div class="sidepanel-tab-content" class:active={$activeTabIndex === 1}
                      data-tab-content={"tab-1"}>
-                    <!--                    <h3>Category</h3>-->
+                    <h3>Category</h3>
                     <sl-tree selection="multiple" on:sl-selection-change={e => handleFilterChange(e)}>
                         {#each items as item}
                             <sl-tree-item data-value="{item.parent.toLowerCase()}">
@@ -116,10 +116,13 @@
                         {/each}
                     </sl-tree>
 
-                    <!--                    <h3>Stat</h3>-->
-                    <!--                    <sl-tree>-->
+                    <h3>Stat</h3>
+                    <div class="filter-container">
 
-                    <!--                    </sl-tree>-->
+                        {#each ["agility", "speed", "stamina", "jump", "acceleration"] as stat}
+                            <sl-checkbox>{formatName(stat)}</sl-checkbox>
+                        {/each}
+                    </div>
                 </div>
 
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
@@ -429,6 +432,18 @@
 
     .child {
         margin-left: 0.3rem;
+    }
+
+    .filter-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 3.3rem;
+        line-height: 3rem;
+    }
+
+    .filter-container sl-checkbox::part(base) {
+        font-size: 1.5rem;
+        display: block;
     }
 
     /* Hide selected item highlight for Shoelace tree items */
