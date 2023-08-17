@@ -1,31 +1,39 @@
 <script>
-import Popup from "./Popup.svelte";
-import Marker from "./Marker.svelte";
-import {allMarkers, shownMarkers} from "./stores.js";
-import {getContext, onMount} from "svelte";
-import {locations} from "../locations.js";
+    import Popup from "./Popup.svelte";
+    import Marker from "./Marker.svelte";
+    import {allMarkers, shownMarkers, stats} from "./stores.js";
+    import {getContext, onMount} from "svelte";
+    import {locations} from "../locations.js";
 
-const map = getContext("map")();
+    const map = getContext("map")();
 
-$: {
-    $allMarkers.forEach(marker => marker.remove());
-    $shownMarkers.forEach(marker => marker.addTo(map))
-}
+    $: {
+        $allMarkers.forEach(marker => marker.remove());
+        $shownMarkers.forEach(marker => marker.addTo(map))
+    }
 
-onMount(() => {
-    $shownMarkers.forEach(marker => {
-        marker.addTo(map)
+    onMount(() => {
+        $shownMarkers.forEach(marker => {
+            marker.addTo(map)
+        });
     });
-});
 
-$: collected = marker => new Date(Number(localStorage.getItem(`${marker.id}.lastCollected`))).getUTCDate() === new Date().getUTCDate() || localStorage.getItem(`${marker.id}.collected`);
-$: notRespawned = marker => new Date(Number(localStorage.getItem(`${marker.id}.lastNegativeRespawn`))).getUTCDate() === new Date().getUTCDate();
+    const stat = markerName => {
+        let arr = stats.find(s => s.food.includes(markerName));
+        return arr?.name;
+    }
+
+    $: collected = marker => new Date(Number(localStorage.getItem(`${marker.id}.lastCollected`))).getUTCDate() === new Date().getUTCDate() || localStorage.getItem(`${marker.id}.collected`);
+    $: notRespawned = marker => new Date(Number(localStorage.getItem(`${marker.id}.lastNegativeRespawn`))).getUTCDate() === new Date().getUTCDate();
 </script>
 
 {#each locations as marker}
     <Marker {marker} latLng={[marker.lat, marker.lng]}>
         <Popup collected={collected(marker)} notRespawned={notRespawned(marker)}>
-                <strong slot="title">{marker.name}</strong>
+            <div class="title" slot="title">
+                <strong>{marker.name}</strong>
+                {#if stat(marker.name)}<img src={`./icons/${stat(marker.name)}.svg`} height="18" title={stat(marker.name)} alt={`${stat(marker.name)}`}/>{/if}
+            </div>
             <p class:no-desc={!marker.description} slot="description">{marker.description}</p>
         </Popup>
     </Marker>
@@ -35,6 +43,7 @@ $: notRespawned = marker => new Date(Number(localStorage.getItem(`${marker.id}.l
     strong {
         font-size: 1.3rem;
         vertical-align: middle;
+        margin-right: 0.5rem;
     }
 
     p {
@@ -44,5 +53,10 @@ $: notRespawned = marker => new Date(Number(localStorage.getItem(`${marker.id}.l
 
     .no-desc {
         margin: 0 0 0.34em;
+    }
+
+    .title {
+        display: flex;
+        align-items: center;
     }
 </style>

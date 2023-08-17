@@ -10,6 +10,28 @@ export const items = [{parent: "Food", children: ["apple", "berries", "brown-mus
     {parent: "Other", children: ["cave-entrance", "picnic-basket", "wood"]}
 ]
 
+export const stats = [{
+    name: "Stamina",
+    food: ["Wheat", "Strawberries", "White Mushrooms"]
+},
+    {
+        name: "Speed",
+        food: ["Apple", "Berries", "Honey", "Royal Jelly"]
+    },
+    {
+        name: "Acceleration",
+        food: ["Pumpkin", "Lemon", "Orange"]
+    },
+    {
+        name: "Jump",
+        food: ["Carrot", "Watermelon", "Brown Mushroom"]
+    },
+    {
+        name: "Agility",
+        food: ["Lettuce", "Turnip", "Truffle"]
+    }
+]
+
 let ls = () => {
     if (!localStorage.getItem("shownItems")) {
         localStorage.setItem("shownItems", items.map(item => item.children).flat())
