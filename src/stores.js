@@ -12,7 +12,7 @@ export const items = [{parent: "Food", children: ["apple", "berries", "brown-mus
 
 export const stats = [{
     name: "Stamina",
-    food: ["Wheat", "Strawberries", "White Mushrooms"]
+    food: ["Wheat", "Strawberries", "White Mushroom"]
 },
     {
         name: "Speed",
@@ -64,12 +64,6 @@ export const dialog = writable(false);
 
 export const collectionProgress = writable([])
 
-export const hideCollected = writable([]);
+export const hideCollected = writable(localStorage.getItem("hideCollected"));
 
-export const hiddenCollected = derived([shownMarkers, hideCollected], ([$shownMarkers, $hideCollected]) => $shownMarkers.filter(marker => $hideCollected.includes(marker.options.category)));
-
-function getChildren(parent) {
-    return items.find(item => item.parent === formatName(parent)).children;
-}
-
-export const autoClosePopups = writable(!!localStorage.getItem("autoClosePopups"));
+export const autoClosePopups = writable(localStorage.getItem("autoClosePopups"));

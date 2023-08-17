@@ -7,7 +7,6 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		stat: "Speed",
 		rarity: "Common",
 		category: "food"
 	},
@@ -19,7 +18,6 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		stat: "Speed",
 		rarity: "Uncommon",
 		category: "food"
 	},
@@ -212,7 +210,7 @@ export const chests = [
 	{
 		name: "Common Chest",
 		icon: L.icon({
-			iconUrl: "./se-marker.svg",
+			iconUrl: "./icons/common.svg",
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 28 ],
 			popupAnchor: [ 0, -14 ]
@@ -224,7 +222,7 @@ export const chests = [
 	{
 		name: "Uncommon Chest",
 		icon: L.icon({
-			iconUrl: "./se-marker.svg",
+			iconUrl: "./icons/uncommon.svg",
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 28 ],
 			popupAnchor: [ 0, -14 ]
@@ -236,7 +234,7 @@ export const chests = [
 	{
 		name: "Rare Chest",
 		icon: L.icon({
-			iconUrl: "./se-marker.svg",
+			iconUrl: "./icons/rare.svg",
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 28 ],
 			popupAnchor: [ 0, -14 ]
@@ -248,7 +246,7 @@ export const chests = [
 	{
 		name: "Epic Chest",
 		icon: L.icon({
-			iconUrl: "./se-marker.svg",
+			iconUrl: "./icons/epic.svg",
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 28 ],
 			popupAnchor: [ 0, -14 ]
@@ -260,7 +258,7 @@ export const chests = [
 	{
 		name: "Legendary Chest",
 		icon: L.icon({
-			iconUrl: "./se-marker.svg",
+			iconUrl: "./icons/legendary.svg",
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 28 ],
 			popupAnchor: [ 0, -14 ]

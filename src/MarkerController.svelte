@@ -15,6 +15,7 @@
     onMount(() => {
         $shownMarkers.forEach(marker => {
             marker.addTo(map)
+            console.log(stat(marker.options.name))
         });
     });
 
@@ -32,7 +33,8 @@
         <Popup collected={collected(marker)} notRespawned={notRespawned(marker)}>
             <div class="title" slot="title">
                 <strong>{marker.name}</strong>
-                {#if stat(marker.name)}<img src={`./icons/${stat(marker.name)}.svg`} height="18" title={stat(marker.name)} alt={`${stat(marker.name)}`}/>{/if}
+                {#if stat(marker.name)}<img src={`./icons/${stat(marker.name)}.svg`} height="18"
+                                            title={stat(marker.name)} alt={`${stat(marker.name)}`}/>{/if}
             </div>
             <p class:no-desc={!marker.description} slot="description">{marker.description}</p>
         </Popup>

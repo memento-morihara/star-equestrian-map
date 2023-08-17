@@ -4,6 +4,7 @@
         allMarkers,
         autoClosePopups,
         formatName,
+        hideCollected,
         items,
         shownFilters,
         shownMarkers,
@@ -56,15 +57,17 @@
             localStorage.removeItem("shownItems")
         }
         keys.forEach(key => localStorage.removeItem(`${key}.lastCollected`));
-        window.location.reload(true);
+        window.location.reload();
     }
 
-    function hideCollected(e) {
+    function setHideCollected(e) {
         $shownMarkers.forEach(marker => marker.options.collected && e.target.checked ? marker.remove() : !map.hasLayer(marker) && marker.addTo(map))
+        e.target.checked ? localStorage.setItem("hideCollected", "checked") : localStorage.removeItem("hideCollected");
+        $hideCollected = e.target.checked;
     }
 
     function setAutoClose(e) {
-        e.target.checked ? localStorage.setItem("autoClosePopups", "true") : localStorage.removeItem("autoClosePopups");
+        e.target.checked ? localStorage.setItem("autoClosePopups", "checked") : localStorage.removeItem("autoClosePopups");
         $autoClosePopups = e.target.checked;
     }
 
@@ -128,33 +131,18 @@
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
                      data-tab-content={"tab-2"}>
                     <Progress/>
-                    <!--                    <table>-->
-                    <!--                        <thead>-->
-                    <!--                        <tr>-->
-                    <!--                            <th>Item</th>-->
-                    <!--                            <th>Collected</th>-->
-                    <!--                            <th>Last Negative Respawn</th>-->
-                    <!--                        </tr>-->
-                    <!--                        </thead>-->
-                    <!--                        <tbody>-->
-                    <!--                        {#each $shownMarkers as marker}-->
-                    <!--                            <tr>-->
-                    <!--                                <td>{marker.options.name}</td>-->
-                    <!--                                <td>{marker.options.lastCollected ? new Date(Number(marker.options.lastCollected)).toLocaleDateString() : "N/A"}</td>-->
-                    <!--                                <td>N/A</td>-->
-                    <!--                            </tr>-->
-                    <!--                        {/each}-->
-                    <!--                        </tbody>-->
-                    <!--                    </table>-->
                 </div>
                 <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
                      data-tab-content={"tab-3"}>
                     <div class="settings">
                         <h2>Settings</h2>
 
-                        <sl-checkbox on:sl-change={e => setAutoClose(e)}>Close popups automatically on button click
+                        <sl-checkbox checked={$autoClosePopups} on:sl-change={e => setAutoClose(e)}>Close popups
+                            automatically on button click
                         </sl-checkbox>
-                        <sl-checkbox on:sl-change={(e) => hideCollected(e)}>Hide collected items</sl-checkbox>
+                        <sl-checkbox checked={$hideCollected} on:sl-change={(e) => setHideCollected(e)}>Hide collected
+                            items
+                        </sl-checkbox>
 
                         <h2>Reset collected items</h2>
                         <p>In case of emergency, reset all of your collected items data.</p>

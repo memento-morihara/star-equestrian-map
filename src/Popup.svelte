@@ -1,9 +1,8 @@
 <script>
     import L from 'leaflet';
-    import { getContext, createEventDispatcher, onMount } from 'svelte';
+    import {createEventDispatcher, getContext, onMount} from 'svelte';
     import RespawningContent from "./RespawningContent.svelte";
     import OneTimeContent from "./OneTimeContent.svelte";
-    import {selectedMarkerId} from "./stores.js";
 
     export let popup = undefined;
     export let collected;
@@ -29,7 +28,7 @@
     }
 
     onMount(() =>{
-        popup = L.popup({minWidth: 200, minHeight: 180,})
+        popup = L.popup({minWidth: 200, minHeight: 180, maxWidth: 300})
         marker.bindPopup(popup);
 
         marker.on('popupopen', () => {
@@ -70,6 +69,7 @@
     .centered {
         margin: 0 auto;
         text-align: center;
+        flex-wrap: nowrap;
     }
 </style>
 
