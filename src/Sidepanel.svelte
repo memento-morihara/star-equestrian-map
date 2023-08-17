@@ -61,7 +61,6 @@
     }
 
     function setHideCollected(e) {
-        $shownMarkers.forEach(marker => marker.options.collected && e.target.checked ? marker.remove() : !map.hasLayer(marker) && marker.addTo(map))
         e.target.checked ? localStorage.setItem("hideCollected", "checked") : localStorage.removeItem("hideCollected");
         $hideCollected = e.target.checked;
     }
@@ -71,9 +70,16 @@
         $autoClosePopups = e.target.checked;
     }
 
+    $: {
+        if (!!$hideCollected) {
+            $shownMarkers.forEach(marker => marker.options.collected && marker.remove());
+        } else {
+            $shownMarkers.forEach(marker => marker.addTo(map));
+        }
+    }
 </script>
 
-<div on:dblclick|stopPropagation on:mousewheel|stopPropagation id="sidepanel"
+<aside id="sidepanel" on:dblclick|stopPropagation on:mousewheel|stopPropagation
      class="sidepanel {`sidepanel-${panelPosition}`}"
      class:opened={$sidepanelOpen} class:closed={!$sidepanelOpen}
      class:sidepanel-dark={darkMode}>
@@ -86,7 +92,8 @@
             <ul class="sidepanel-tabs sidepanel-tabs-top">
                 {#each tabs as tab, i}
                     <li class="sidepanel-tab">
-                        <sl-button variant="text" class="sidepanel-tab-link" class:active={$activeTabIndex === (i + 1)}
+                        <sl-button role="tab" variant="text" class="sidepanel-tab-link"
+                                   class:active={$activeTabIndex === (i + 1)}
                                    data-tab-link={"tab-" + (i + 1)}
                                    on:click={() => handleClick(i + 1)}>{tab}</sl-button>
                     </li>
@@ -97,7 +104,7 @@
         <div class="sidepanel-content-wrapper">
             <div class="sidepanel-content">
 
-                <div class="sidepanel-tab-content" class:active={$activeTabIndex === 1}
+                <section class="sidepanel-tab-content" class:active={$activeTabIndex === 1}
                      data-tab-content={"tab-1"}>
                     <h3>Category</h3>
                     <sl-tree selection="multiple" on:sl-selection-change={e => handleFilterChange(e)}>
@@ -126,15 +133,15 @@
                             <sl-checkbox>{formatName(stat)}</sl-checkbox>
                         {/each}
                     </div>
-                </div>
+                </section>
 
-                <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
+                <section class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
                      data-tab-content={"tab-2"}>
                     <Progress/>
-                </div>
-                <div class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
+                </section>
+                <section class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
                      data-tab-content={"tab-3"}>
-                    <div class="settings">
+                    <section class="settings">
                         <h2>Settings</h2>
 
                         <sl-checkbox checked={$autoClosePopups} on:sl-change={e => setAutoClose(e)}>Close popups
@@ -150,14 +157,12 @@
                         <sl-checkbox checked>Preserve non-respawning items</sl-checkbox>
                         <sl-checkbox checked>Preserve filter selections</sl-checkbox>
                         <sl-button on:click={reset} variant="danger">Reset</sl-button>
-
-                        <!--                        <sl-button on:click={() => $dialog = !$dialog}>View Data</sl-button>-->
-                    </div>
-                </div>
+                    </section>
+                </section>
             </div>
         </div>
     </div>
-</div>
+</aside>
 
 
 <style>
