@@ -24,23 +24,10 @@
 
     onMount(() => {
         // Set stat filter checkbox initial state
-        document.querySelectorAll("sl-checkbox[data-stat]").forEach(c => c.checked = $shownStats[c.getAttribute("data-stat")])
-        // Set marker visibility according to stat filters
-        $shownMarkers.forEach(marker => {
-                if (marker.options.category !== "food") {
-
-                } else if (map.hasLayer(marker) !== $shownStats[formatName(marker.options.stat)]) {
-                    if ($shownStats[formatName(marker.options.stat)]) {
-                        marker.addTo(map);
-                    } else {
-                        marker.remove();
-                    }
-                }
-            }
-        )
+        document.querySelectorAll("sl-checkbox[data-stat]").forEach(c => c.checked = $shownStats[c.getAttribute("data-stat")]);
     });
 
-    function handleClick(tabIndex) {
+    function handleTabClick(tabIndex) {
         $activeTabIndex = tabIndex;
     }
 
@@ -49,9 +36,14 @@
     }
 
     function handleFilterChange(e) {
-        $shownFilters = e.detail.selection.filter(i => !["chests", "food", "resources", "collectibles", "other"].includes(i.dataset.value)).map(x => x.dataset.value);
-        localStorage.setItem("shownItems", $shownFilters)
+        // When the sl-selection-change event is emitted, get the array of selected values from the event
+        // and the dataset property from the tree
+        // Then filter out the category names to get only the children
+        $shownFilters = e.detail.selection.filter(selected => !["chests", "food", "resources", "collectibles", "other"].includes(selected.dataset.value)).map(child => child.dataset.value);
+        localStorage.setItem("shownItems", $shownFilters.toString());
     }
+
+    // TODO: handle checkbox state in the tree if the stat filters are enabled and vice-versa
 
     const treeItems = document.querySelectorAll("sl-tree-item[data-value]")
     $: {
@@ -99,26 +91,13 @@
     }
 
     function filterStat(e, filter) {
+        // TODO: disable checkboxes if the food category filter is off
         $shownStats[filter] = e.target.checked;
         $shownStats = {...$shownStats};
         $shownMarkers.forEach(marker => marker.options.stat === formatName(filter) && $shownStats[filter] !== map.hasLayer(marker) ? marker.addTo(map) : marker.options.stat && marker.remove())
     }
 
     $: localStorage.setItem("shownStats", JSON.stringify($shownStats));
-    $: {
-        $shownMarkers.forEach(marker => {
-                if (marker.options.category !== "food") {
-
-                } else if (map.hasLayer(marker) !== $shownStats[formatName(marker.options.stat)]) {
-                    if ($shownStats[formatName(marker.options.stat)]) {
-                        marker.addTo(map);
-                    } else {
-                        marker.remove();
-                    }
-                }
-            }
-        )
-    }
 </script>
 
 <aside id="sidepanel" on:dblclick|stopPropagation on:mousewheel|stopPropagation
@@ -137,7 +116,7 @@
                         <sl-button role="tab" variant="text" class="sidepanel-tab-link"
                                    class:active={$activeTabIndex === (i + 1)}
                                    data-tab-link={"tab-" + (i + 1)}
-                                   on:click={() => handleClick(i + 1)}>{tab}</sl-button>
+                                   on:click={() => handleTabClick(i + 1)}>{tab}</sl-button>
                     </li>
                 {/each}
             </ul>

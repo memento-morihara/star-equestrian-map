@@ -1,25 +1,26 @@
 <script>
     import Popup from "./Popup.svelte";
     import Marker from "./Marker.svelte";
-    import {allMarkers, shownMarkers, stat} from "./stores.js";
-    import {getContext, onMount} from "svelte";
+    import {allMarkers, formatName, shownMarkers, shownStats, stat} from "./stores.js";
+    import {getContext} from "svelte";
     import {locations} from "../locations.js";
 
     const map = getContext("map")();
 
     $: {
-        $allMarkers.forEach(marker => marker.remove());
-        $shownMarkers.forEach(marker => marker.addTo(map))
-    }
-
-    onMount(() => {
+        map && $allMarkers.forEach(marker => marker.remove());
+        // Add all non-food markers to map, then conditionally add food markers
         $shownMarkers.forEach(marker => {
-            marker.addTo(map);
-        });
-    });
-
-
-
+                if (marker.options.category !== "food") {
+                    marker.addTo(map);
+                } else if (map.hasLayer(marker) !== $shownStats[formatName(marker.options.stat)]) {
+                    if ($shownStats[formatName(marker.options.stat)]) {
+                        marker.addTo(map);
+                    }
+                }
+            }
+        )
+    }
     $: collected = marker => new Date(Number(localStorage.getItem(`${marker.id}.lastCollected`))).getUTCDate() === new Date().getUTCDate() || localStorage.getItem(`${marker.id}.collected`);
     $: notRespawned = marker => new Date(Number(localStorage.getItem(`${marker.id}.lastNegativeRespawn`))).getUTCDate() === new Date().getUTCDate();
 </script>
