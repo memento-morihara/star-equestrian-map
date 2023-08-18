@@ -2,12 +2,15 @@
     import Map from "./src/Map.svelte"
     import MarkerController from "./src/MarkerController.svelte";
     import Sidepanel from "./src/Sidepanel.svelte";
+    import Spiderfier from "./src/Spiderfier.svelte";
     // import DataView from "./src/DataView.svelte";
 </script>
 
 <main>
     <Map>
-        <MarkerController/>
+        <Spiderfier>
+            <MarkerController/>
+        </Spiderfier>
         <Sidepanel panelPosition="left" darkMode={false} tabs={["Filter", "Progress", "Settings"]}/>
     </Map>
 </main>

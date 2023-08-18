@@ -1,8 +1,7 @@
 <script>
-    import {onDestroy, onMount, setContext, createEventDispatcher} from "svelte";
+    import {createEventDispatcher, onMount, setContext} from "svelte";
 
     let map;
-    let oms;
     let zoom;
 
     const dispatch = createEventDispatcher();
@@ -50,19 +49,9 @@
             }).addTo(map);
             map.fitBounds(bounds);
 
-            // Resolves itself at runtime
-            oms = new OverlappingMarkerSpiderfier(map, {
-                keepSpiderfied: true,
-                legColors: {
-                    usual: "white",
-                    highlighted: "red"
-                }
-            });
-
             L.control.condensedAttribution({
                 prefix: `Images &copy; <a href="https://www.foxieventures.com">Foxie Ventures</a>`
             }).addTo(map)
-
         })
 
 
