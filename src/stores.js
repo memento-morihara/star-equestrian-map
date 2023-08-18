@@ -50,6 +50,11 @@ export function formatName(name) {
     }
 }
 
+export const stat = markerName => {
+    let arr = stats.find(s => s.food.includes(markerName));
+    return arr?.name;
+}
+
 
 export const shownFilters = writable(ls());
 
@@ -67,3 +72,11 @@ export const collectionProgress = writable([])
 export const hideCollected = writable(localStorage.getItem("hideCollected"));
 
 export const autoClosePopups = writable(localStorage.getItem("autoClosePopups"));
+
+export const shownStats = writable(JSON.parse(localStorage.getItem("shownStats")) ?? {
+    agility: true,
+    speed: true,
+    stamina: true,
+    acceleration: true,
+    jump: true
+});

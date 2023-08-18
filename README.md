@@ -18,14 +18,14 @@ Shoutout to the awesome folks at Foxie Ventures who provided me with a large map
 
 - [x] Finish basemap and patch various defects (thanks, @Random Spider!)
 - [ ] Fix weird popup placement and icon sizing
-- [ ] Different icons for chests
+- [x] Different icons for chests
 - [x] Add ability to mark items as collected
 - [ ] Finish adding locations
 - [x] UI improvements (side menu, popups, etc.)
 - [ ] Accessibility
 - [ ] Mobile support
 - [ ] Marker visibility
-- [ ] Filter food items by stat
+- [x] Filter food items by stat
 - [ ] Markers for resource traders
 - [ ] Markers for quest items
 - [ ] More settings options

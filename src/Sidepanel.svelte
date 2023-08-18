@@ -8,11 +8,12 @@
         items,
         shownFilters,
         shownMarkers,
+        shownStats,
         sidepanelOpen
     } from "./stores.js";
     import {counts} from "../locations.js";
     import Progress from "./Progress.svelte";
-    import {getContext} from "svelte";
+    import {getContext, onMount} from "svelte";
 
     // Props
     export let panelPosition;
@@ -20,6 +21,25 @@
     export let tabs;
 
     const map = getContext("map")();
+
+    onMount(() => {
+        // Set stat filter checkbox initial state
+        document.querySelectorAll("sl-checkbox[data-stat]").forEach(c => c.checked = $shownStats[c.getAttribute("data-stat")])
+        // Set marker visibility according to stat filters
+        $shownMarkers.forEach(marker => {
+                if (marker.options.category !== "food") {
+
+                } else if (map.hasLayer(marker) !== $shownStats[formatName(marker.options.stat)]) {
+                    if ($shownStats[formatName(marker.options.stat)]) {
+                        marker.addTo(map);
+                    } else {
+                        marker.remove();
+                    }
+                }
+            }
+        )
+    });
+
     function handleClick(tabIndex) {
         $activeTabIndex = tabIndex;
     }
@@ -77,12 +97,34 @@
             $shownMarkers.forEach(marker => marker.addTo(map));
         }
     }
+
+    function filterStat(e, filter) {
+        $shownStats[filter] = e.target.checked;
+        $shownStats = {...$shownStats};
+        $shownMarkers.forEach(marker => marker.options.stat === formatName(filter) && $shownStats[filter] !== map.hasLayer(marker) ? marker.addTo(map) : marker.options.stat && marker.remove())
+    }
+
+    $: localStorage.setItem("shownStats", JSON.stringify($shownStats));
+    $: {
+        $shownMarkers.forEach(marker => {
+                if (marker.options.category !== "food") {
+
+                } else if (map.hasLayer(marker) !== $shownStats[formatName(marker.options.stat)]) {
+                    if ($shownStats[formatName(marker.options.stat)]) {
+                        marker.addTo(map);
+                    } else {
+                        marker.remove();
+                    }
+                }
+            }
+        )
+    }
 </script>
 
 <aside id="sidepanel" on:dblclick|stopPropagation on:mousewheel|stopPropagation
-     class="sidepanel {`sidepanel-${panelPosition}`}"
-     class:opened={$sidepanelOpen} class:closed={!$sidepanelOpen}
-     class:sidepanel-dark={darkMode}>
+       class="sidepanel {`sidepanel-${panelPosition}`}"
+       class:closed={!$sidepanelOpen} class:opened={$sidepanelOpen}
+       class:sidepanel-dark={darkMode}>
     <div class="sidepanel-toggle-container" class:opened={$sidepanelOpen} class:closed={!$sidepanelOpen}>
         <button class="sidepanel-toggle-button" on:click={() => toggleSidepanel()} type="button"
                 aria-label="toggle side panel"></button>
@@ -105,7 +147,8 @@
             <div class="sidepanel-content">
 
                 <section class="sidepanel-tab-content" class:active={$activeTabIndex === 1}
-                     data-tab-content={"tab-1"}>
+                         data-tab-content={"tab-1"}>
+                    <sl-visually-hidden><h2>Filters</h2></sl-visually-hidden>
                     <h3>Category</h3>
                     <sl-tree selection="multiple" on:sl-selection-change={e => handleFilterChange(e)}>
                         {#each items as item}
@@ -129,18 +172,20 @@
                     <h3>Stat</h3>
                     <div class="filter-container">
 
-                        {#each ["agility", "speed", "stamina", "jump", "acceleration"] as stat}
-                            <sl-checkbox>{formatName(stat)}</sl-checkbox>
+                        {#each ["acceleration", "agility", "jump", "speed", "stamina"] as stat}
+                            <sl-checkbox class="stat-filter"
+                                         data-stat={stat}
+                                         on:sl-change={e => filterStat(e, stat)}>{formatName(stat)}</sl-checkbox>
                         {/each}
                     </div>
                 </section>
 
                 <section class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
-                     data-tab-content={"tab-2"}>
+                         data-tab-content={"tab-2"}>
                     <Progress/>
                 </section>
                 <section class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
-                     data-tab-content={"tab-3"}>
+                         data-tab-content={"tab-3"}>
                     <section class="settings">
                         <h2>Settings</h2>
 
@@ -409,12 +454,12 @@
     }
 
     sl-tree {
-        margin-top: 1em;
+        margin-top: -0.5em;
         font-size: 1.3em;
     }
 
     .parent {
-        font-size: 1.4em;
+        font-size: 1.1em;
         font-weight: 500;
         line-height: 2em;
     }
@@ -431,12 +476,17 @@
         display: flex;
         flex-direction: column;
         margin-left: 3.3rem;
-        line-height: 3rem;
+        margin-bottom: 1rem;
+        margin-top: -0.5rem;
     }
 
-    .filter-container sl-checkbox::part(base) {
-        font-size: 1.5rem;
-        display: block;
+    .filter-container sl-checkbox {
+        margin-bottom: 1.2em;
+    }
+
+    .filter-container sl-checkbox::part(label) {
+        font-size: 1.1rem;
+        font-weight: 500;
     }
 
     /* Hide selected item highlight for Shoelace tree items */
@@ -461,18 +511,6 @@
 
     .settings p {
         margin: 0;
-    }
-
-    table {
-        text-align: left;
-        border-collapse: separate;
-        border-spacing: 0;
-        width: 100%;
-    }
-
-    td, th {
-        padding: 4px 20px;
-        border-bottom: 1px solid #eee;
     }
 
     h3 {

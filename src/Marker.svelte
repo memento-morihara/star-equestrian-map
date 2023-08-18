@@ -25,7 +25,8 @@
                 markerType: markerIcon.markerType,
                 icon: markerIcon.icon,
                 description: marker.description,
-                category: marker.category,
+                category: markerIcon.category,
+                stat: markerIcon?.stat,
             }
         if (props.markerType === "respawning") {
             props.respawnTime = markerIcon.respawnTime;

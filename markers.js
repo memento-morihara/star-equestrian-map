@@ -8,7 +8,8 @@ export const food = [
 		markerType: "respawning",
 		respawnTime: 1,
 		rarity: "Common",
-		category: "food"
+		category: "food",
+		stat: "Speed"
 	},
 	{
 		name: "Berries",
@@ -19,7 +20,8 @@ export const food = [
 		markerType: "respawning",
 		respawnTime: 1,
 		rarity: "Uncommon",
-		category: "food"
+		category: "food",
+		stat: "Speed"
 	},
 	{
 		name: "Brown Mushroom",
@@ -29,7 +31,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Jump",
 	},
 	{
 		name: "Carrot",
@@ -39,7 +42,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Jump",
 	},
 	{
 		name: "Honey",
@@ -49,7 +53,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Speed",
 	},
 	{
 		name: "Lemon",
@@ -59,7 +64,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Acceleration",
 	},
 	{
 		name: "Lettuce",
@@ -69,7 +75,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Agility"
 	},
 	{
 		name: "Orange",
@@ -79,7 +86,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Acceleration"
 	},
 	{
 		name: "Pumpkin",
@@ -89,7 +97,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Acceleration"
 	},
 	{
 		name: "Strawberries",
@@ -99,7 +108,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Stamina"
 	},
 	{
 		name: "Truffle",
@@ -109,7 +119,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Agility"
 	},
 	{
 		name: "Turnip",
@@ -119,7 +130,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Agility"
 	},
 	{
 		name: "Watermelon",
@@ -129,7 +141,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Jump"
 	},
 	{
 		name: "Wheat",
@@ -139,7 +152,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Stamina"
 	},
 	{
 		name: "White Mushroom",
@@ -149,7 +163,8 @@ export const food = [
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
-		category: "food"
+		category: "food",
+		stat: "Stamina"
 	},
 ]
 
