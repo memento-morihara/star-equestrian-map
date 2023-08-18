@@ -81,7 +81,7 @@ export const food = [
 	{
 		name: "Orange",
 		icon: L.icon({
-			iconUrl: "./icons/orange.png",
+			iconUrl: "./icons/webp/orange.webp",
 			iconSize: [ 16, 16 ]
 		}),
 		markerType: "respawning",
@@ -92,7 +92,7 @@ export const food = [
 	{
 		name: "Pumpkin",
 		icon: L.icon({
-			iconUrl: "./icons/pumpkin.png",
+			iconUrl: "./icons/webp/pumpkin.webp",
 			iconSize: [ 18, 18 ]
 		}),
 		markerType: "respawning",
@@ -172,7 +172,7 @@ export const resources = [
 	{
 		name: "Butterflies",
 		icon: L.icon({
-			iconUrl: "./icons/butterfly.png",
+			iconUrl: "./icons/webp/butterfly.webp",
 			iconSize: [ 22, 22 ]
 		}),
 		markerType: "respawning",
@@ -182,7 +182,7 @@ export const resources = [
 	{
 		name: "Eggs",
 		icon: L.icon({
-			iconUrl: "./icons/eggs.png",
+			iconUrl: "./icons/webp/eggs.webp",
 			iconSize: [ 16, 16 ]
 		}),
 		markerType: "respawning",
@@ -192,7 +192,7 @@ export const resources = [
 	{
 		name: "Fish",
 		icon: L.icon({
-			iconUrl: "./icons/fish.png",
+			iconUrl: "./icons/webp/fish.webp",
 			iconSize: [ 20, 20 ]
 		}),
 		markerType: "respawning",
@@ -202,7 +202,7 @@ export const resources = [
 	{
 		name: "Milk",
 		icon: L.icon({
-			iconUrl: "./icons/milk.png",
+			iconUrl: "./icons/webp/milk.webp",
 			iconSize: [ 20, 20 ]
 		}),
 		markerType: "respawning",
@@ -287,7 +287,7 @@ export const collectibles = [
 	{
 		name: "Sheriff Badge",
 		icon: L.icon({
-			iconUrl: "./icons/sheriffs-badge.png",
+			iconUrl: "./icons/webp/sheriffs-badge.webp",
 			iconSize: [ 24, 24 ]
 		}),
 		markerType: "one-time",
@@ -296,7 +296,7 @@ export const collectibles = [
 	{
 		name: "Horseshoe",
 		icon: L.icon({
-			iconUrl: "./icons/horseshoe.png",
+			iconUrl: "./icons/webp/horseshoe.webp",
 			iconSize: [ 18, 18 ]
 		}),
 		markerType: "one-time",
@@ -314,7 +314,7 @@ export const collectibles = [
 	{
 		name: "Bottle",
 		icon: L.icon({
-			iconUrl: "./icons/message-in-a-bottle.png",
+			iconUrl: "./icons/webp/message-in-a-bottle.webp",
 			iconSize: [ 18, 24 ]
 		}),
 		markerType: "one-time",

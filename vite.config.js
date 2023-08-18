@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite';
-import { svelte } from '@sveltejs/vite-plugin-svelte'
+import {defineConfig} from 'vite';
+import {svelte} from '@sveltejs/vite-plugin-svelte'
+
 export default defineConfig({
     plugins: [svelte()],
     build: {
@@ -13,7 +14,6 @@ export default defineConfig({
                 paths: {
                     'sidepanel': "/lib/sidepanel.js",
                     'condensedAttribution': "/lib/condensed-attribution.js",
-                    'sidepanel-css': "/lib/sidepanel.css",
                     "condensedAttribution-css": "/lib/condensed-attribution.css",
                     "shoelace": "/lib/shoelace",
                 }
