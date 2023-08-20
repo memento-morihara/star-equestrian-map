@@ -1,6 +1,7 @@
 <script>
     import {getContext, onMount, setContext} from "svelte";
     import {shownMarkers} from "./stores.js";
+    import "overlapping-marker-spiderfier-leaflet";
 
     const map = getContext("map")();
     let oms;

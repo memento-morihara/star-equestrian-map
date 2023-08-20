@@ -1,11 +1,8 @@
 <script>
-    import {createEventDispatcher, onMount, setContext} from "svelte";
+    import {onMount, setContext} from "svelte";
 
     let map;
     let zoom;
-
-    const dispatch = createEventDispatcher();
-
 
     setContext("map", () => map);
 
@@ -37,21 +34,16 @@
                 maxZoom: mapMaxZoom,
                 minZoom: mapMinZoom,
                 crs: crs,
-                condensedAttributionControl: false,
+                attributionControl: false, // Attribution is added as a custom Svelte component
             });
 
             L.tileLayer('./tiles/{z}/{x}/{y}.webp', {
                 minZoom: mapMinZoom, maxZoom: mapMaxZoom,
                 tileSize: L.point(512, 512),
-                attribution: '<a href="https://www.maptiler.com/engine/">Rendered with MapTiler Engine</a>, non-commercial use only',
                 noWrap: true,
                 tms: false
             }).addTo(map);
             map.fitBounds(bounds);
-
-            L.control.condensedAttribution({
-                prefix: `Images &copy; <a href="https://www.foxieventures.com">Foxie Ventures</a>`
-            }).addTo(map)
         })
 
 
@@ -72,7 +64,7 @@
 
 
 <style>
-    @import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+    @import "leaflet/dist/leaflet.css";
 
     #map {
         height: 100vh;

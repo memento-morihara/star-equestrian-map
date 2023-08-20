@@ -24,15 +24,16 @@
             <p>{$collectionProgress[0]} / 5</p></div>
     </sl-progress-ring>
     <sl-progress-ring label="Number of horseshoes collected" value={$collectionProgress[1] * 100 / 35}>
-        <div class="progress-inner"><img src="./icons/horseshoe.png" width="32" height="32" alt="Horseshoe"/>
+        <div class="progress-inner"><img alt="Horseshoe" height="32" src="./icons/webp/horseshoe.webp" width="32"/>
             <p>{$collectionProgress[1]} / 35</p></div>
     </sl-progress-ring>
     <sl-progress-ring label="Number of sheriff badges collected" value={$collectionProgress[2] * 100 / 15}>
-        <div class="progress-inner"><img src="./icons/sheriffs-badge.png" width="32" height="32" alt="Sheriff Badge"/>
+        <div class="progress-inner"><img alt="Sheriff Badge" height="32" src="./icons/webp/sheriffs-badge.webp"
+                                         width="32"/>
             <p>{$collectionProgress[2]} / 15</p></div>
     </sl-progress-ring>
     <sl-progress-ring label="Number of bottles collected" value={$collectionProgress[3] * 100 / 18}>
-        <div class="progress-inner"><img src="./icons/message-in-a-bottle.png" height="32" alt="Bottle"/>
+        <div class="progress-inner"><img alt="Bottle" height="32" src="./icons/webp/message-in-a-bottle.webp"/>
             <p>{$collectionProgress[3]} / 18</p></div>
     </sl-progress-ring>
 </div>
