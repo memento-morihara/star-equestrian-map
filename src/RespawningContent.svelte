@@ -1,9 +1,9 @@
 <script>
-    import {createEventDispatcher, getContext} from "svelte";
+    import {createEventDispatcher} from "svelte";
     import {fade, slide} from "svelte/transition";
-    import {autoClosePopups, hideCollected} from "./stores.js";
+    import {autoClosePopups, hideCollected, selectedMarkerId} from "./stores.js";
 
-    const marker = getContext('marker')();
+    export let marker = $selectedMarkerId;
     const dispatch = createEventDispatcher();
 
     export let date = localStorage.getItem(`${marker.options.id}.lastCollected`);

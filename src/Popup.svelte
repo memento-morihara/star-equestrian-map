@@ -1,41 +1,20 @@
 <script>
     import L from 'leaflet';
-    import {createEventDispatcher, getContext, onMount} from 'svelte';
-    import RespawningContent from "./RespawningContent.svelte";
-    import OneTimeContent from "./OneTimeContent.svelte";
+    import {getContext, onMount} from 'svelte';
+    import Container from "./PopupContent.svelte";
+    import {selectedMarkerId} from "./stores.js";
 
     export let popup = undefined;
     export let collected;
     export let notRespawned;
 
-    const dispatch = createEventDispatcher();
     const marker = getContext('marker')();
 
-    // export let marker;
-    let showContents = false;
-    let popupOpen = false;
-    let popupEl;
-
-    const popupContent = () =>  {
-        switch(marker.options.markerType) {
-            case "respawning":
-                return RespawningContent;
-            case "one-time":
-                return OneTimeContent
-            case "static":
-                return null;
-        }
-    }
-
-    onMount(() =>{
-        popup = L.popup({minWidth: 200, minHeight: 180, maxWidth: 300})
+    let container;
+    onMount(() => {
+            popup = L.popup({minWidth: 210, minHeight: 180, maxWidth: 300})
         marker.bindPopup(popup);
-
-        marker.on('popupopen', () => {
-            popupOpen = true;
-            showContents = true;
-            popup.setContent(popupEl)
-        });
+            $selectedMarkerId && (container = new Container({target: $selectedMarkerId.getPopup().getElement().children[0].children[0]}));
 
         if (marker.options.markerType === "respawning" && collected) {
             marker.setOpacity(0.5);
@@ -46,30 +25,20 @@
         } else {
             marker.setOpacity(1);
         }
-    })
+        }
+    )
+
+    marker.on('popupopen', () => {
+        $selectedMarkerId = marker;
+        $selectedMarkerId && (container = new Container({target: $selectedMarkerId.getPopup().getElement().children[0].children[0]}));
+    });
+
+
+    marker.on('popupclose', () => {
+        if (container) {
+            // Wait for popup to fade before destroying content
+            setTimeout(() => container.$destroy(), 150);
+            $selectedMarkerId = undefined;
+        }
+    });
 </script>
-
-<div class="container" class:centered={marker.options.markerType === "static" && !marker.options.description} bind:this={popupEl}>
-    {#if showContents}
-        <slot name="title" />
-        <!--    Respawning markers add their own description, so don't show here    -->
-        {#if marker.options.markerType !== "respawning"}<slot name="description" />{/if}
-        <svelte:component this={popupContent()}/>
-    {/if}
-</div>
-
-<style>
-    .container {
-        font-size: 1.14em;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .centered {
-        margin: 0 auto;
-        text-align: center;
-        flex-wrap: nowrap;
-    }
-</style>
-

@@ -1,10 +1,8 @@
 <script>
-    import {getContext} from "svelte";
-    import {autoClosePopups, collectionProgress} from "./stores.js";
+    import {autoClosePopups, collectionProgress, selectedMarkerId} from "./stores.js";
     import {fade} from "svelte/transition";
 
-    const marker = getContext("marker")();
-
+    export let marker = $selectedMarkerId;
     let collected = !!localStorage.getItem(`${marker.options.id}.collected`);
 
 
@@ -44,7 +42,6 @@
     $: collected ? marker.setOpacity(0.5) : marker.setOpacity(1);
     $: collected = !!localStorage.getItem(`${marker.options.id}.collected`);
 </script>
-
 
 <div class="single-button">
     {#if collected}

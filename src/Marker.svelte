@@ -3,10 +3,6 @@
     import {chests, collectibles, food, other, resources} from "../markers.js";
     import {allMarkers} from "./stores.js";
 
-    // oms.addListener('spiderfy', function () {
-    //     map.closePopup();
-    // });
-
     export let marker = undefined;
     export let latLng;
 

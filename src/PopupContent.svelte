@@ -6,8 +6,8 @@
     export let marker = $selectedMarkerId;
 
 
-    const popupContent = () =>  {
-        switch(marker.options.markerType) {
+    const popupContent = () => {
+        switch (marker.options.markerType) {
             case "respawning":
                 return RespawningContent;
             case "one-time":
@@ -19,10 +19,10 @@
 
 </script>
 
-<div class="title" class:no-desc={!marker.options.description}>
+<div class="title" class:no-desc={!marker.options.description && marker.options.markerType !== "respawning"}>
     <strong>{marker.options.name}</strong>
     {#if stat(marker.options.name)}<img src={`./icons/${stat(marker.options.name)}.svg`} height="18"
-                                title={stat(marker.options.name)} alt={`${stat(marker.options.name)}`}/>{/if}
+                                        title={stat(marker.options.name)} alt={`${stat(marker.options.name)}`}/>{/if}
 </div>
 {#if marker.options.markerType !== "respawning"}<p>{marker.options.description}</p>{/if}
 <svelte:component this={popupContent()}/>
@@ -36,7 +36,7 @@
 
     p {
         font-size: 1rem;
-        margin: 0.5em 0;
+        margin: 0.5em 0 0.7em;
     }
 
     .no-desc {
