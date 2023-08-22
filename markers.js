@@ -46,6 +46,26 @@ export const food = [
 		stat: "Jump",
 	},
 	{
+		name: "Daikon Radish",
+		icon: L.icon({
+			iconUrl: "./icons/daikon-radish.png",
+			iconSize: [24, 24],
+		}),
+		category: "food",
+		markerType: "respawning",
+		stat: "Agility"
+	},
+	{
+		name: "Grapes",
+		icon: L.icon({
+			iconUrl: "./icons/grapes.png",
+			iconSize: [22, 22],
+		}),
+		category: "food",
+		markerType: "respawning",
+		stat: "Stamina"
+	},
+	{
 		name: "Honey",
 		icon: L.icon({
 			iconUrl: "./icons/webp/honey.webp",
@@ -99,6 +119,16 @@ export const food = [
 		respawnTime: 1,
 		category: "food",
 		stat: "Acceleration"
+	},
+	{
+		name: "Purple Carrot",
+		icon: L.icon({
+			iconUrl: "./icons/purple-carrot.png",
+			iconSize: [18, 18],
+		}),
+		category: "food",
+		markerType: "respawning",
+		stat: "Jump"
 	},
 	{
 		name: "Strawberries",
@@ -165,6 +195,16 @@ export const food = [
 		respawnTime: 1,
 		category: "food",
 		stat: "Stamina"
+	},
+	{
+		name: "Zucchini",
+		icon: L.icon({
+			iconUrl: "./icons/zucchini.png",
+			iconSize: [22, 22],
+		}),
+		category: "food",
+		markerType: "respawning",
+		stat: "Acceleration"
 	},
 ]
 
@@ -344,12 +384,31 @@ export const other = [
 		category: "other"
 	},
 	{
+		name: "Leather",
+		icon: L.icon({
+			iconUrl: "./icons/leather.png",
+			iconSize: [20, 20],
+		}),
+		category: "other",
+		markerType: "respawning",
+	},
+	{
 		name: "Cave Entrance",
 		icon: L.icon({
 			iconUrl: './icons/cave-entrance.svg',
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 14 ],
 		}),
+		markerType: "static",
+		category: "other"
+	},
+	{
+		name: "Quest Item",
+		icon: L.icon(
+			{
+				iconUrl: "./icons/quest-icon.svg"
+			}
+		),
 		markerType: "static",
 		category: "other"
 	}

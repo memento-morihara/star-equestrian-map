@@ -3,16 +3,19 @@ import {derived, writable} from "svelte/store";
 export const activeTabIndex = writable(1);
 export const sidepanelOpen = writable(false);
 
-export const items = [{parent: "Food", children: ["apple", "berries", "brown-mushroom", "carrot", "honey", "lemon", "lettuce", "orange", "pumpkin", "strawberries", "truffle", "turnip", "watermelon", "wheat", "white-mushroom" ]},
+export const items = [{
+    parent: "Food",
+    children: ["apple", "berries", "brown-mushroom", "carrot", "daikon-radish", "grapes", "honey", "lemon", "lettuce", "orange", "pumpkin", "purple-carrot", "strawberries", "truffle", "turnip", "watermelon", "wheat", "white-mushroom", "zucchini",]
+},
     {parent: "Chests", children: ["common-chest", "uncommon-chest", "rare-chest", "epic-chest", "legendary-chest"]},
     {parent: "Resources", children: ["butterflies", "eggs", "fish", "milk", "wool"]},
     {parent: "Collectibles", children: ["bottle", "horseshoe", "sheriff-badge", "toy-unicorn"]},
-    {parent: "Other", children: ["cave-entrance", "picnic-basket", "wood"]}
+    {parent: "Other", children: ["cave-entrance", "leather", "picnic-basket", "wood"]}
 ]
 
 export const stats = [{
     name: "Stamina",
-    food: ["Wheat", "Strawberries", "White Mushroom"]
+    food: ["Wheat", "Strawberries", "White Mushroom", "Grapes"]
 },
     {
         name: "Speed",
@@ -20,15 +23,15 @@ export const stats = [{
     },
     {
         name: "Acceleration",
-        food: ["Pumpkin", "Lemon", "Orange"]
+        food: ["Pumpkin", "Lemon", "Orange", "Zucchini"]
     },
     {
         name: "Jump",
-        food: ["Carrot", "Watermelon", "Brown Mushroom"]
+        food: ["Carrot", "Watermelon", "Brown Mushroom", "Purple Carrot"]
     },
     {
         name: "Agility",
-        food: ["Lettuce", "Turnip", "Truffle"]
+        food: ["Lettuce", "Turnip", "Truffle", "Daikon Radish"]
     }
 ]
 
