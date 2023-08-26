@@ -27,7 +27,7 @@
 <h2>Collectibles</h2>
 <div class="container">
     {#each itemNames as item, i}
-<sl-progress-ring label={`Number of ${item}s collected`} value={$collectionProgress[i] !== 0 && ($collectionProgress[i] * 100 / counts.find(x => x.name === formatName(item)).count)}>
+<sl-progress-ring label={`Number of ${item}s collected`} value={$collectionProgress[i] * 100 / counts.find(x => x.name === formatName(item)).count}>
     <div class="progress-inner">
         <img src={item !== "toy-unicorn" ? `./icons/webp/${item}.webp` : `./icons/${item}.png`} alt={formatName(item)} height="32" />
         <p>{$collectionProgress[i]} / {counts.find(x => x.name === formatName(item)).count}</p>
