@@ -13,18 +13,18 @@
     let container;
     onMount(() => {
             popup = L.popup({minWidth: 210, minHeight: 180, maxWidth: 300})
-        marker.bindPopup(popup);
+            marker.bindPopup(popup);
             $selectedMarkerId && (container = new Container({target: $selectedMarkerId.getPopup().getElement().children[0].children[0]}));
 
-        if (marker.options.markerType === "respawning" && collected) {
-            marker.setOpacity(0.5);
-        } else if (marker.options.markerType === "respawning" && notRespawned) {
-            marker.setOpacity(0.5);
-        } else if (marker.options.markerType === "one-time" && collected) {
-            marker.setOpacity(0.5);
-        } else {
-            marker.setOpacity(1);
-        }
+            if (marker.options.markerType === "respawning" && collected) {
+                marker.setOpacity(0.5);
+            } else if (marker.options.markerType === "respawning" && notRespawned) {
+                marker.setOpacity(0.5);
+            } else if (marker.options.markerType === "one-time" && collected) {
+                marker.setOpacity(0.5);
+            } else {
+                marker.setOpacity(1);
+            }
         }
     )
 
@@ -36,9 +36,9 @@
 
     marker.on('popupclose', () => {
         if (container) {
-            // Wait for popup to fade before destroying content
-            setTimeout(() => container.$destroy(), 150);
             $selectedMarkerId = undefined;
+            // Wait for popup to fade before destroying content
+            setTimeout(() =>container.$destroy(), 150);
         }
     });
 </script>

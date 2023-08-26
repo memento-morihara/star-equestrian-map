@@ -1,5 +1,5 @@
 <script>
-    import {allMarkers, collectionProgress} from "./stores.js";
+    import {allMarkers, collectionProgress, formatName} from "./stores.js";
     import {counts} from "../locations.js";
 
     function getCollectiblesProgress() {
@@ -7,8 +7,9 @@
         const horseshoeIds = $allMarkers.filter(marker => marker.options.name === "Horseshoe");
         const sheriffBadgeIds = $allMarkers.filter(marker => marker.options.name === "Sheriff Badge");
         const bottleIds = $allMarkers.filter(marker => marker.options.name === "Bottle");
-        let temp = [0, 0, 0, 0];
-        [unicornIds, horseshoeIds, sheriffBadgeIds, bottleIds].forEach((category, i) => category.map((item) => {
+        const brazierIds = $allMarkers.filter(marker => marker.options.name === "Brazier");
+        let temp = [0, 0, 0, 0, 0];
+        [unicornIds, horseshoeIds, sheriffBadgeIds, bottleIds, brazierIds].forEach((category, i) => category.map((item) => {
             if (localStorage.getItem(`${item.options.id}.collected`)) {
                 temp[i]++;
             }
@@ -17,27 +18,29 @@
     }
 
     $collectionProgress = getCollectiblesProgress();
+
+    // Exclude braziers since they appear under a different heading
+    const itemNames = ["toy-unicorn", "horseshoe", "sheriff-badge", "bottle"];
+
+    // TODO: Make unicorn icon into webp for consistency
 </script>
 <h2>Collectibles</h2>
 <div class="container">
-    <sl-progress-ring label="Number of toy unicorns collected" value={$collectionProgress[0] * 20}>
-        <div class="progress-inner"><img src="./icons/toy-unicorn.png" width="32" height="32" alt="Toy Unicorn"/>
-            <p>{$collectionProgress[0]} / {counts.find(x => x.name === "Toy Unicorn").count}</p></div>
-    </sl-progress-ring>
-    <sl-progress-ring label="Number of horseshoes collected" value={$collectionProgress[1] * 100 / 35}>
-        <div class="progress-inner"><img alt="Horseshoe" height="32" src="./icons/webp/horseshoe.webp" width="32"/>
-            <p>{$collectionProgress[1]} / {counts.find(x => x.name === "Horseshoe").count}</p></div>
-    </sl-progress-ring>
-    <sl-progress-ring label="Number of sheriff badges collected" value={$collectionProgress[2] * 100 / 15}>
-        <div class="progress-inner"><img alt="Sheriff Badge" height="32" src="./icons/webp/sheriffs-badge.webp"
-                                         width="32"/>
-            <p>{$collectionProgress[2]} / {counts.find(x => x.name === "Sheriff Badge").count}</p></div>
-    </sl-progress-ring>
-    <sl-progress-ring label="Number of bottles collected" value={$collectionProgress[3] * 100 / 18}>
-        <div class="progress-inner"><img alt="Bottle" height="32" src="./icons/webp/message-in-a-bottle.webp"/>
-            <p>{$collectionProgress[3]} / {counts.find(x => x.name === "Bottle").count}</p></div>
-    </sl-progress-ring>
+    {#each itemNames as item, i}
+<sl-progress-ring label={`Number of ${item}s collected`} value={$collectionProgress[i] !== 0 && ($collectionProgress[i] * 100 / counts.find(x => x.name === formatName(item)).count)}>
+    <div class="progress-inner">
+        <img src={item !== "toy-unicorn" ? `./icons/webp/${item}.webp` : `./icons/${item}.png`} alt={formatName(item)} height="32" />
+        <p>{$collectionProgress[i]} / {counts.find(x => x.name === formatName(item)).count}</p>
+    </div>
+</sl-progress-ring>
+        {/each}
 </div>
+
+<h2>Agricola Lighthouse</h2>
+    <sl-progress-ring label="Number of braziers lit" value={$collectionProgress[4] * 100 / counts.find(x => x.name === "Brazier").count}>
+        <div class="progress-inner"><p class="braziers">Braziers</p>
+            <p>{$collectionProgress[4]} / {counts.find(x => x.name === "Brazier").count}</p></div>
+    </sl-progress-ring>
 <style>
 
 
@@ -59,6 +62,10 @@
 
     .progress-inner img {
         margin: 0.8rem 0 -0.5rem;
+    }
+
+    .braziers {
+        margin: 0.8rem auto -0.3rem;
     }
 
 
