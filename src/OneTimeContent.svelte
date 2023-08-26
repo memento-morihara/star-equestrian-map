@@ -21,6 +21,9 @@
             case "Bottle":
                 index = 3;
                 break;
+            case "Brazier":
+                index = 4;
+                break;
         }
         $collectionProgress[index] = adding ? $collectionProgress[index] + 1 : $collectionProgress[index] - 1;
     }

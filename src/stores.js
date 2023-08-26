@@ -10,7 +10,7 @@ export const items = [{
     {parent: "Chests", children: ["common-chest", "uncommon-chest", "rare-chest", "epic-chest", "legendary-chest"]},
     {parent: "Resources", children: ["butterflies", "eggs", "fish", "milk", "wool"]},
     {parent: "Collectibles", children: ["bottle", "horseshoe", "sheriff-badge", "toy-unicorn"]},
-    {parent: "Other", children: ["cave-entrance", "leather", "picnic-basket", "wood"]}
+    {parent: "Other", children: ["brazier", "cave-entrance", "leather", "picnic-basket", "quest-item", "wood"]}
 ]
 
 export const stats = [{

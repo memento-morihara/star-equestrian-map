@@ -41,7 +41,6 @@
     }
 
     function noRespawn() {
-
         localStorage.setItem(`${marker.options.id}.lastNegativeRespawn`, Date.now().toString());
         marker.setOpacity(0.5);
         negSpawnDate = Date.now();
@@ -51,12 +50,11 @@
 
     function undoNoRespawn() {
         // If a date exists in localStorage, revert to it as long is it is not today
-        if (previousNoSpawn && new Date(Number(previousNoSpawn)).getUTCDate() < new Date().getUTCDate()) {
+        if (previousNoSpawn && new Date(Number(previousNoSpawn)).getUTCDate() !== new Date().getUTCDate()) {
             localStorage.setItem(`${marker.options.id}.lastNegativeRespawn`, previousNoSpawn);
             negSpawnDate = previousNoSpawn;
         } else {
-
-        localStorage.removeItem(`${marker.options.id}.lastNegativeRespawn`);
+            localStorage.removeItem(`${marker.options.id}.lastNegativeRespawn`);
             negSpawnDate = undefined;
         }
         marker.setOpacity(1);
@@ -65,6 +63,7 @@
 
     const fadeTransition = {duration: 800}
 
+    // TODO: It's confusing to have e.g. UTC date change over but relative time still say "today." Change relative time to UTC? Add option to do so?
 </script>
 
 <div class="container">

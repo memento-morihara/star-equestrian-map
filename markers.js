@@ -327,7 +327,7 @@ export const collectibles = [
 	{
 		name: "Sheriff Badge",
 		icon: L.icon({
-			iconUrl: "./icons/webp/sheriffs-badge.webp",
+			iconUrl: "./icons/webp/sheriff-badge.webp",
 			iconSize: [ 24, 24 ]
 		}),
 		markerType: "one-time",
@@ -354,7 +354,7 @@ export const collectibles = [
 	{
 		name: "Bottle",
 		icon: L.icon({
-			iconUrl: "./icons/webp/message-in-a-bottle.webp",
+			iconUrl: "./icons/webp/bottle.webp",
 			iconSize: [ 18, 24 ]
 		}),
 		markerType: "one-time",
@@ -406,10 +406,20 @@ export const other = [
 		name: "Quest Item",
 		icon: L.icon(
 			{
-				iconUrl: "./icons/quest-icon.svg"
+				iconUrl: "./icons/quest-icon.svg",
+				iconSize: [18, 18]
 			}
 		),
-		markerType: "static",
+		markerType: "one-time",
+		category: "other"
+	},
+	{
+		name: "Brazier",
+		icon: L.icon({
+			iconUrl: "./icons/brazier.svg",
+			iconSize: [18, 18],
+		}),
+		markerType: "one-time",
 		category: "other"
 	}
 ]
