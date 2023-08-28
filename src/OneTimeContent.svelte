@@ -1,10 +1,13 @@
 <script>
-    import {autoClosePopups, collectionProgress, selectedMarkerId} from "./stores.js";
-    import {fade} from "svelte/transition";
+    import {
+        autoClosePopups,
+        collectionProgress,
+        selectedMarkerId,
+    } from "./stores.js";
+    import { fade } from "svelte/transition";
 
     export let marker = $selectedMarkerId;
     let collected = !!localStorage.getItem(`${marker.options.id}.collected`);
-
 
     function updateCollectionProgress(name, adding) {
         let index;
@@ -25,7 +28,9 @@
                 index = 4;
                 break;
         }
-        $collectionProgress[index] = adding ? $collectionProgress[index] + 1 : $collectionProgress[index] - 1;
+        $collectionProgress[index] = adding
+            ? $collectionProgress[index] + 1
+            : $collectionProgress[index] - 1;
     }
 
     function collect() {
@@ -48,12 +53,28 @@
 
 <div class="single-button">
     {#if collected}
-        <sl-button on:click={e => {uncollect(); $autoClosePopups ? null : e.stopPropagation()}}
-                   in:fade={{duration: 800}} variant="danger">Remove
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <sl-button
+            on:click={(e) => {
+                uncollect();
+                $autoClosePopups ? null : e.stopPropagation();
+            }}
+            in:fade={{ duration: 800 }}
+            variant="danger"
+            >Remove
         </sl-button>
     {:else}
-        <sl-button on:click={e => {collect(); $autoClosePopups ? null : e.stopPropagation()}} in:fade={{duration: 800}}
-                   variant="primary">Collect
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <sl-button
+            on:click={(e) => {
+                collect();
+                $autoClosePopups ? null : e.stopPropagation();
+            }}
+            in:fade={{ duration: 800 }}
+            variant="primary"
+            >Collect
         </sl-button>
     {/if}
 </div>

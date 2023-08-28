@@ -9,11 +9,11 @@
         shownFilters,
         shownMarkers,
         shownStats,
-        sidepanelOpen
+        sidepanelOpen,
     } from "./stores.js";
-    import {counts} from "../locations.js";
+    import { counts } from "../locations.js";
     import Progress from "./Progress.svelte";
-    import {getContext, onMount} from "svelte";
+    import { getContext, onMount } from "svelte";
 
     // Props
     export let panelPosition;
@@ -24,7 +24,11 @@
 
     onMount(() => {
         // Set stat filter checkbox initial state
-        document.querySelectorAll("sl-checkbox[data-stat]").forEach(c => c.checked = $shownStats[c.getAttribute("data-stat")]);
+        document
+            .querySelectorAll("sl-checkbox[data-stat]")
+            .forEach(
+                (c) => (c.checked = $shownStats[c.getAttribute("data-stat")])
+            );
     });
 
     function handleTabClick(tabIndex) {
@@ -32,91 +36,133 @@
     }
 
     function toggleSidepanel() {
-        sidepanelOpen.update(state => !state);
+        sidepanelOpen.update((state) => !state);
     }
 
     function handleFilterChange(e) {
         // When the sl-selection-change event is emitted, get the array of selected values from the event
         // and the dataset property from the tree
         // Then filter out the category names to get only the children
-        $shownFilters = e.detail.selection.filter(selected => !["chests", "food", "resources", "collectibles", "other"].includes(selected.dataset.value)).map(child => child.dataset.value);
+        $shownFilters = e.detail.selection
+            .filter(
+                (selected) =>
+                    ![
+                        "chests",
+                        "food",
+                        "resources",
+                        "collectibles",
+                        "other",
+                    ].includes(selected.dataset.value)
+            )
+            .map((child) => child.dataset.value);
         localStorage.setItem("shownItems", $shownFilters.toString());
     }
 
     // TODO: handle checkbox state in the tree if the stat filters are enabled and vice-versa
 
-    const treeItems = document.querySelectorAll("sl-tree-item[data-value]")
+    const treeItems = document.querySelectorAll("sl-tree-item[data-value]");
     $: {
-        $shownFilters.forEach(item => {
-            treeItems.forEach(c => {
+        $shownFilters.forEach((item) => {
+            treeItems.forEach((c) => {
                 if (c.getAttribute("data-value") === item) {
                     c.setAttribute("selected", "true");
                 }
-            })
+            });
         });
     }
 
     function reset() {
         const checkboxes = document.querySelectorAll("sl-checkbox");
-        const keys = $allMarkers.map(marker => marker.options.id)
+        const keys = $allMarkers.map((marker) => marker.options.id);
         if (!checkboxes[0].checked && !checkboxes[1].checked) {
             localStorage.clear();
         }
         if (!checkboxes[0].checked) {
-            keys.forEach(key => localStorage.removeItem(`${key}.collected`));
+            keys.forEach((key) => localStorage.removeItem(`${key}.collected`));
         }
         if (!checkboxes[1].checked) {
-            localStorage.removeItem("shownItems")
+            localStorage.removeItem("shownItems");
         }
-        keys.forEach(key => localStorage.removeItem(`${key}.lastCollected`));
+        keys.forEach((key) => localStorage.removeItem(`${key}.lastCollected`));
         window.location.reload();
     }
 
     function setHideCollected(e) {
-        e.target.checked ? localStorage.setItem("hideCollected", "checked") : localStorage.removeItem("hideCollected");
+        e.target.checked
+            ? localStorage.setItem("hideCollected", "checked")
+            : localStorage.removeItem("hideCollected");
         $hideCollected = e.target.checked;
     }
 
     function setAutoClose(e) {
-        e.target.checked ? localStorage.setItem("autoClosePopups", "checked") : localStorage.removeItem("autoClosePopups");
+        e.target.checked
+            ? localStorage.setItem("autoClosePopups", "checked")
+            : localStorage.removeItem("autoClosePopups");
         $autoClosePopups = e.target.checked;
     }
 
     $: {
         if (!!$hideCollected) {
-            $shownMarkers.forEach(marker => marker.options.collected && marker.remove());
+            $shownMarkers.forEach(
+                (marker) => marker.options.collected && marker.remove()
+            );
         } else {
-            $shownMarkers.forEach(marker => marker.addTo(map));
+            $shownMarkers.forEach((marker) => marker.addTo(map));
         }
     }
 
     function filterStat(e, filter) {
         // TODO: disable checkboxes if the food category filter is off
         $shownStats[filter] = e.target.checked;
-        $shownStats = {...$shownStats};
-        $shownMarkers.forEach(marker => marker.options.stat === formatName(filter) && $shownStats[filter] !== map.hasLayer(marker) ? marker.addTo(map) : marker.options.stat && marker.remove())
+        $shownStats = { ...$shownStats };
+        $shownMarkers.forEach((marker) =>
+            marker.options.stat === formatName(filter) &&
+            $shownStats[filter] !== map.hasLayer(marker)
+                ? marker.addTo(map)
+                : marker.options.stat && marker.remove()
+        );
     }
 
     $: localStorage.setItem("shownStats", JSON.stringify($shownStats));
 </script>
 
-<aside id="sidepanel" on:dblclick|stopPropagation on:mousewheel|stopPropagation
-       class="sidepanel {`sidepanel-${panelPosition}`}"
-       class:closed={!$sidepanelOpen} class:opened={$sidepanelOpen}
-       class:sidepanel-dark={darkMode}>
-    <div class="sidepanel-toggle-container" class:opened={$sidepanelOpen} class:closed={!$sidepanelOpen}>
-        <button class="sidepanel-toggle-button" on:click={() => toggleSidepanel()} type="button"
-                aria-label="toggle side panel"></button>
+<aside
+    id="sidepanel"
+    on:dblclick|stopPropagation
+    on:mousewheel|stopPropagation
+    class="sidepanel {`sidepanel-${panelPosition}`}"
+    class:closed={!$sidepanelOpen}
+    class:opened={$sidepanelOpen}
+    class:sidepanel-dark={darkMode}
+>
+    <div
+        class="sidepanel-toggle-container"
+        class:opened={$sidepanelOpen}
+        class:closed={!$sidepanelOpen}
+    >
+        <button
+            class="sidepanel-toggle-button"
+            on:click={() => toggleSidepanel()}
+            type="button"
+            aria-label="toggle side panel"
+        />
     </div>
     <div class="sidepanel-inner-wrapper">
         <nav class="sidepanel-tabs-wrapper">
             <ul class="sidepanel-tabs sidepanel-tabs-top">
                 {#each tabs as tab, i}
                     <li class="sidepanel-tab">
-                        <sl-button role="tab" variant="text" class="sidepanel-tab-link"
-                                   class:active={$activeTabIndex === (i + 1)}
-                                   data-tab-link={"tab-" + (i + 1)}
-                                   on:click={() => handleTabClick(i + 1)}>{tab}</sl-button>
+                        <!-- svelte-ignore a11y-interactive-supports-focus -->
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <sl-button
+                            role="tab"
+                            variant="text"
+                            class="sidepanel-tab-link"
+                            class:active={$activeTabIndex === i + 1}
+                            data-tab-link={"tab-" + (i + 1)}
+                            on:click={() => handleTabClick(i + 1)}
+                            >{tab}</sl-button
+                        >
                     </li>
                 {/each}
             </ul>
@@ -124,23 +170,43 @@
 
         <div class="sidepanel-content-wrapper">
             <div class="sidepanel-content">
-
-                <section class="sidepanel-tab-content" class:active={$activeTabIndex === 1}
-                         data-tab-content={"tab-1"}>
+                <section
+                    class="sidepanel-tab-content"
+                    class:active={$activeTabIndex === 1}
+                    data-tab-content={"tab-1"}
+                >
                     <sl-visually-hidden><h2>Filters</h2></sl-visually-hidden>
                     <h3>Category</h3>
-                    <sl-tree selection="multiple" on:sl-selection-change={e => handleFilterChange(e)}>
+                    <sl-tree
+                        selection="multiple"
+                        on:sl-selection-change={(e) => handleFilterChange(e)}
+                    >
                         {#each items as item}
-                            <sl-tree-item data-value="{item.parent.toLowerCase()}">
+                            <sl-tree-item
+                                data-value={item.parent.toLowerCase()}
+                            >
                                 <span class="parent">{item.parent}</span>
                                 {#each item.children as child}
                                     {#if $shownFilters.includes(child)}
-                                        <sl-tree-item data-value="{child}" selected class="child">{formatName(child)}
-                                            ({counts.find(c => c.name === formatName(child)).count})
+                                        <sl-tree-item
+                                            data-value={child}
+                                            selected
+                                            class="child"
+                                            >{formatName(child)}
+                                            ({counts.find(
+                                                (c) =>
+                                                    c.name === formatName(child)
+                                            ).count})
                                         </sl-tree-item>
                                     {:else}
-                                        <sl-tree-item data-value="{child}" class="child">{formatName(child)}
-                                            ({counts.find(c => c.name === formatName(child)).count})
+                                        <sl-tree-item
+                                            data-value={child}
+                                            class="child"
+                                            >{formatName(child)}
+                                            ({counts.find(
+                                                (c) =>
+                                                    c.name === formatName(child)
+                                            ).count})
                                         </sl-tree-item>
                                     {/if}
                                 {/each}
@@ -150,44 +216,66 @@
 
                     <h3>Stat</h3>
                     <div class="filter-container">
-
                         {#each ["acceleration", "agility", "jump", "speed", "stamina"] as stat}
-                            <sl-checkbox class="stat-filter"
-                                         data-stat={stat}
-                                         on:sl-change={e => filterStat(e, stat)}>{formatName(stat)}</sl-checkbox>
+                            <sl-checkbox
+                                class="stat-filter"
+                                data-stat={stat}
+                                on:sl-change={(e) => filterStat(e, stat)}
+                                >{formatName(stat)}</sl-checkbox
+                            >
                         {/each}
                     </div>
                 </section>
 
-                <section class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 2}
-                         data-tab-content={"tab-2"}>
-                    <Progress/>
+                <section
+                    class="sidepanel-tab-content tab-content-centered"
+                    class:active={$activeTabIndex === 2}
+                    data-tab-content={"tab-2"}
+                >
+                    <Progress />
                 </section>
-                <section class="sidepanel-tab-content tab-content-centered" class:active={$activeTabIndex === 3}
-                         data-tab-content={"tab-3"}>
+                <section
+                    class="sidepanel-tab-content tab-content-centered"
+                    class:active={$activeTabIndex === 3}
+                    data-tab-content={"tab-3"}
+                >
                     <section class="settings">
                         <h2>Settings</h2>
 
-                        <sl-checkbox checked={$autoClosePopups} on:sl-change={e => setAutoClose(e)}>Close popups
-                            automatically on button click
+                        <sl-checkbox
+                            checked={$autoClosePopups}
+                            on:sl-change={(e) => setAutoClose(e)}
+                            >Close popups automatically on button click
                         </sl-checkbox>
-                        <sl-checkbox checked={$hideCollected} on:sl-change={(e) => setHideCollected(e)}>Hide collected
-                            items
+                        <sl-checkbox
+                            checked={$hideCollected}
+                            on:sl-change={(e) => setHideCollected(e)}
+                            >Hide collected items
                         </sl-checkbox>
 
                         <h2>Reset collected items</h2>
-                        <p>In case of emergency, reset all of your collected items data.</p>
+                        <p>
+                            In case of emergency, reset all of your collected
+                            items data.
+                        </p>
                         <p>Your browser will refresh automatically.</p>
-                        <sl-checkbox checked>Preserve non-respawning items</sl-checkbox>
-                        <sl-checkbox checked>Preserve filter selections</sl-checkbox>
-                        <sl-button on:click={reset} variant="danger">Reset</sl-button>
+                        <sl-checkbox checked
+                            >Preserve non-respawning items</sl-checkbox
+                        >
+                        <sl-checkbox checked
+                            >Preserve filter selections</sl-checkbox
+                        >
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-static-element-interactions -->
+                        <sl-button on:click={reset} variant="danger"
+                            >Reset</sl-button
+                        >
                     </section>
                 </section>
             </div>
         </div>
     </div>
 </aside>
-
 
 <style>
     /* Modified to use CSS variable for theming */
@@ -203,11 +291,13 @@
     .sidepanel {
         width: 400px;
         height: 100%;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
         border: 0;
         position: absolute;
         background-color: #ffffff;
-        box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+        box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),
+            0 2px 6px 2px rgba(60, 64, 67, 0.15);
         z-index: 3000;
         cursor: default;
         left: 0;
@@ -256,7 +346,9 @@
         display: none;
     }
 
-    .sidepanel-content-wrapper .sidepanel-content .sidepanel-tab-content.active {
+    .sidepanel-content-wrapper
+        .sidepanel-content
+        .sidepanel-tab-content.active {
         display: block;
         animation: fade-in 0.36s ease-out;
     }
@@ -375,7 +467,8 @@
         border: 0;
         border-left: 1px solid #d4d4d4;
         border-radius: 0 8px 8px 0;
-        box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+        box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),
+            0 2px 6px 2px rgba(60, 64, 67, 0.15);
     }
 
     .sidepanel-toggle-button::before {
@@ -385,7 +478,8 @@
         height: 48px;
         top: 0;
         left: 0;
-        background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%234B5057%22%20class%3D%22bi%20bi-caret-right-fill%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22m12.14%208.753-5.482%204.796c-.646.566-1.658.106-1.658-.753V3.204a1%201%200%200%201%201.659-.753l5.48%204.796a1%201%200%200%201%200%201.506z%22%2F%3E%3C%2Fsvg%3E") no-repeat 50% 50%;
+        background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%234B5057%22%20class%3D%22bi%20bi-caret-right-fill%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22m12.14%208.753-5.482%204.796c-.646.566-1.658.106-1.658-.753V3.204a1%201%200%200%201%201.659-.753l5.48%204.796a1%201%200%200%201%200%201.506z%22%2F%3E%3C%2Fsvg%3E")
+            no-repeat 50% 50%;
         opacity: 1;
     }
 
@@ -393,17 +487,22 @@
         outline: none;
     }
 
-    .sidepanel.opened .sidepanel-toggle-container .sidepanel-toggle-button::before {
-        background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%234B5057%22%20class%3D%22bi%20bi-caret-right-fill%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22m12.14%208.753-5.482%204.796c-.646.566-1.658.106-1.658-.753V3.204a1%201%200%200%201%201.659-.753l5.48%204.796a1%201%200%200%201%200%201.506z%22%2F%3E%3C%2Fsvg%3E") no-repeat 50% 50%;
+    .sidepanel.opened
+        .sidepanel-toggle-container
+        .sidepanel-toggle-button::before {
+        background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%234B5057%22%20class%3D%22bi%20bi-caret-right-fill%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22m12.14%208.753-5.482%204.796c-.646.566-1.658.106-1.658-.753V3.204a1%201%200%200%201%201.659-.753l5.48%204.796a1%201%200%200%201%200%201.506z%22%2F%3E%3C%2Fsvg%3E")
+            no-repeat 50% 50%;
         transform: rotate(180deg);
     }
 
     .sidepanel .sidepanel-toggle-container .sidepanel-toggle-button::before,
-    .sidepanel.closed .sidepanel-toggle-container .sidepanel-toggle-button::before {
-        background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%234B5057%22%20class%3D%22bi%20bi-caret-right-fill%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22m12.14%208.753-5.482%204.796c-.646.566-1.658.106-1.658-.753V3.204a1%201%200%200%201%201.659-.753l5.48%204.796a1%201%200%200%201%200%201.506z%22%2F%3E%3C%2Fsvg%3E") no-repeat 50% 50%;
+    .sidepanel.closed
+        .sidepanel-toggle-container
+        .sidepanel-toggle-button::before {
+        background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%234B5057%22%20class%3D%22bi%20bi-caret-right-fill%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22m12.14%208.753-5.482%204.796c-.646.566-1.658.106-1.658-.753V3.204a1%201%200%200%201%201.659-.753l5.48%204.796a1%201%200%200%201%200%201.506z%22%2F%3E%3C%2Fsvg%3E")
+            no-repeat 50% 50%;
         transform: rotate(0deg);
     }
-
 
     @keyframes slide-left {
         0% {
@@ -500,5 +599,4 @@
         font-size: 1.63rem;
         text-align: center;
     }
-
 </style>
