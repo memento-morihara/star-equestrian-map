@@ -12,11 +12,12 @@
   "author": "",
   "dependencies": {
     "@shoelace-style/shoelace": "^2.6.0",
-    "@sveltejs/vite-plugin-svelte": "^2.4.3",
     "leaflet": "^1.9.4",
-    "leaflet-contextmenu": "^1.4.0",
     "overlapping-marker-spiderfier-leaflet": "^0.2.7",
-    "pocketbase": "^0.15.3",
+    "pocketbase": "^0.15.3"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.4.3",
     "svelte": "^4.1.2",
     "vite": "^4.4.6"
   },
