@@ -3,7 +3,8 @@ export const food = [
 		name: "Apple",
 		icon: L.icon({
 			iconUrl: "./icons/webp/apple.webp",
-			iconSize: [ 18, 18 ]
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -14,8 +15,9 @@ export const food = [
 	{
 		name: "Berries",
 		icon: L.icon({
-			iconUrl: "./icons/berries.png",
-			iconSize: [ 22, 22 ]
+			iconUrl: "./icons/webp/berries.webp",
+			iconSize: [ 22, 22 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -27,7 +29,8 @@ export const food = [
 		name: "Brown Mushroom",
 		icon: L.icon({
 			iconUrl: "./icons/webp/brown-mushroom.webp",
-			iconSize: [ 20, 20 ]
+			iconSize: [ 20, 20 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -38,7 +41,8 @@ export const food = [
 		name: "Carrot",
 		icon: L.icon({
 			iconUrl: "./icons/webp/carrot.webp",
-			iconSize: [ 18, 18 ]
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -48,8 +52,9 @@ export const food = [
 	{
 		name: "Daikon Radish",
 		icon: L.icon({
-			iconUrl: "./icons/daikon-radish.png",
-			iconSize: [24, 24],
+			iconUrl: "./icons/webp/daikon-radish.webp",
+			iconSize: [ 24, 24 ],
+			className: "lazyload",
 		}),
 		category: "food",
 		markerType: "respawning",
@@ -58,8 +63,9 @@ export const food = [
 	{
 		name: "Grapes",
 		icon: L.icon({
-			iconUrl: "./icons/grapes.png",
-			iconSize: [22, 22],
+			iconUrl: "./icons/webp/grapes.webp",
+			iconSize: [ 22, 22 ],
+			className: "lazyload",
 		}),
 		category: "food",
 		markerType: "respawning",
@@ -69,7 +75,8 @@ export const food = [
 		name: "Honey",
 		icon: L.icon({
 			iconUrl: "./icons/webp/honey.webp",
-			iconSize: [ 18, 18 ]
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -80,7 +87,8 @@ export const food = [
 		name: "Lemon",
 		icon: L.icon({
 			iconUrl: "./icons/webp/lemon.webp",
-			iconSize: [ 18, 18 ]
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -91,7 +99,8 @@ export const food = [
 		name: "Lettuce",
 		icon: L.icon({
 			iconUrl: "./icons/webp/lettuce.webp",
-			iconSize: [ 18, 18 ]
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -102,7 +111,8 @@ export const food = [
 		name: "Orange",
 		icon: L.icon({
 			iconUrl: "./icons/webp/orange.webp",
-			iconSize: [ 16, 16 ]
+			iconSize: [ 16, 16 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -113,7 +123,8 @@ export const food = [
 		name: "Pumpkin",
 		icon: L.icon({
 			iconUrl: "./icons/webp/pumpkin.webp",
-			iconSize: [ 18, 18 ]
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -123,8 +134,9 @@ export const food = [
 	{
 		name: "Purple Carrot",
 		icon: L.icon({
-			iconUrl: "./icons/purple-carrot.png",
-			iconSize: [18, 18],
+			iconUrl: "./icons/webp/purple-carrot.webp",
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		category: "food",
 		markerType: "respawning",
@@ -133,8 +145,9 @@ export const food = [
 	{
 		name: "Strawberries",
 		icon: L.icon({
-			iconUrl: "./icons/strawberry.png",
-			iconSize: [ 24, 24 ]
+			iconUrl: "./icons/webp/strawberry.webp",
+			iconSize: [ 24, 24 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -144,8 +157,9 @@ export const food = [
 	{
 		name: "Truffle",
 		icon: L.icon({
-			iconUrl: "./icons/truffle.png",
-			iconSize: [ 22, 22 ]
+			iconUrl: "./icons/webp/truffle.webp",
+			iconSize: [ 22, 22 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -155,8 +169,9 @@ export const food = [
 	{
 		name: "Turnip",
 		icon: L.icon({
-			iconUrl: "./icons/turnip.png",
-			iconSize: [ 28, 28 ]
+			iconUrl: "./icons/webp/turnip.webp",
+			iconSize: [ 28, 28 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -166,8 +181,9 @@ export const food = [
 	{
 		name: "Watermelon",
 		icon: L.icon({
-			iconUrl: "./icons/watermelon.png",
-			iconSize: [ 20, 20 ]
+			iconUrl: "./icons/webp/watermelon.webp",
+			iconSize: [ 20, 20 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -177,8 +193,9 @@ export const food = [
 	{
 		name: "Wheat",
 		icon: L.icon({
-			iconUrl: "./icons/wheat.png",
-			iconSize: [ 28, 28 ]
+			iconUrl: "./icons/webp/wheat.webp",
+			iconSize: [ 28, 28 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -188,8 +205,9 @@ export const food = [
 	{
 		name: "White Mushroom",
 		icon: L.icon({
-			iconUrl: "./icons/white-mushroom.png",
-			iconSize: [ 20, 20 ]
+			iconUrl: "./icons/webp/white-mushroom.webp",
+			iconSize: [ 20, 20 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -199,8 +217,9 @@ export const food = [
 	{
 		name: "Zucchini",
 		icon: L.icon({
-			iconUrl: "./icons/zucchini.png",
-			iconSize: [22, 22],
+			iconUrl: "./icons/webp/zucchini.webp",
+			iconSize: [ 22, 22 ],
+			className: "lazyload",
 		}),
 		category: "food",
 		markerType: "respawning",
@@ -213,7 +232,8 @@ export const resources = [
 		name: "Butterflies",
 		icon: L.icon({
 			iconUrl: "./icons/webp/butterfly.webp",
-			iconSize: [ 22, 22 ]
+			iconSize: [ 22, 22 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -223,7 +243,8 @@ export const resources = [
 		name: "Eggs",
 		icon: L.icon({
 			iconUrl: "./icons/webp/eggs.webp",
-			iconSize: [ 16, 16 ]
+			iconSize: [ 16, 16 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -233,7 +254,8 @@ export const resources = [
 		name: "Fish",
 		icon: L.icon({
 			iconUrl: "./icons/webp/fish.webp",
-			iconSize: [ 20, 20 ]
+			iconSize: [ 20, 20 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -243,7 +265,8 @@ export const resources = [
 		name: "Milk",
 		icon: L.icon({
 			iconUrl: "./icons/webp/milk.webp",
-			iconSize: [ 20, 20 ]
+			iconSize: [ 20, 20 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -252,8 +275,9 @@ export const resources = [
 	{
 		name: "Wool",
 		icon: L.icon({
-			iconUrl: "./icons/wool.png",
-			iconSize: [ 18, 18 ]
+			iconUrl: "./icons/webp/wool.webp",
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -268,7 +292,8 @@ export const chests = [
 			iconUrl: "./icons/common.svg",
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 28 ],
-			popupAnchor: [ 0, -14 ]
+			popupAnchor: [ 0, -14 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -280,7 +305,8 @@ export const chests = [
 			iconUrl: "./icons/uncommon.svg",
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 28 ],
-			popupAnchor: [ 0, -14 ]
+			popupAnchor: [ 0, -14 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 7,
@@ -292,7 +318,8 @@ export const chests = [
 			iconUrl: "./icons/rare.svg",
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 28 ],
-			popupAnchor: [ 0, -14 ]
+			popupAnchor: [ 0, -14 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 14,
@@ -304,7 +331,8 @@ export const chests = [
 			iconUrl: "./icons/epic.svg",
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 28 ],
-			popupAnchor: [ 0, -14 ]
+			popupAnchor: [ 0, -14 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 30,
@@ -316,7 +344,8 @@ export const chests = [
 			iconUrl: "./icons/legendary.svg",
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 28 ],
-			popupAnchor: [ 0, -14 ]
+			popupAnchor: [ 0, -14 ],
+			className: "lazyload",
 		}),
 		markerType: "one-time",
 		category: "chests"
@@ -328,7 +357,8 @@ export const collectibles = [
 		name: "Sheriff Badge",
 		icon: L.icon({
 			iconUrl: "./icons/webp/sheriff-badge.webp",
-			iconSize: [ 24, 24 ]
+			iconSize: [ 24, 24 ],
+			className: "lazyload",
 		}),
 		markerType: "one-time",
 		category: "collectibles"
@@ -337,7 +367,8 @@ export const collectibles = [
 		name: "Horseshoe",
 		icon: L.icon({
 			iconUrl: "./icons/webp/horseshoe.webp",
-			iconSize: [ 18, 18 ]
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		markerType: "one-time",
 		category: "collectibles"
@@ -345,8 +376,9 @@ export const collectibles = [
 	{
 		name: "Toy Unicorn",
 		icon: L.icon({
-			iconUrl: "./icons/toy-unicorn.png",
-			iconSize: [ 24, 24 ]
+			iconUrl: "./icons/webp/toy-unicorn.webp",
+			iconSize: [ 24, 24 ],
+			className: "lazyload",
 		}),
 		markerType: "one-time",
 		category: "collectibles"
@@ -355,7 +387,8 @@ export const collectibles = [
 		name: "Bottle",
 		icon: L.icon({
 			iconUrl: "./icons/webp/bottle.webp",
-			iconSize: [ 18, 24 ]
+			iconSize: [ 18, 24 ],
+			className: "lazyload",
 		}),
 		markerType: "one-time",
 		category: "collectibles"
@@ -366,8 +399,9 @@ export const other = [
 	{
 		name: "Picnic Basket",
 		icon: L.icon({
-			iconUrl: "./icons/picnic-basket.png",
-			iconSize: [ 18, 18 ]
+			iconUrl: "./icons/webp/picnic-basket.webp",
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -376,8 +410,9 @@ export const other = [
 	{
 		name: "Wood",
 		icon: L.icon({
-			iconUrl: "./icons/wood.png",
-			iconSize: [ 22, 22 ]
+			iconUrl: "./icons/webp/wood.webp",
+			iconSize: [ 22, 22 ],
+			className: "lazyload",
 		}),
 		markerType: "respawning",
 		respawnTime: 1,
@@ -386,8 +421,9 @@ export const other = [
 	{
 		name: "Leather",
 		icon: L.icon({
-			iconUrl: "./icons/leather.png",
-			iconSize: [20, 20],
+			iconUrl: "./icons/webp/leather.webp",
+			iconSize: [ 20, 20 ],
+			className: "lazyload",
 		}),
 		category: "other",
 		markerType: "respawning",
@@ -398,6 +434,7 @@ export const other = [
 			iconUrl: './icons/cave-entrance.svg',
 			iconSize: [ 28, 28 ],
 			iconAnchor: [ 14, 14 ],
+			className: "lazyload",
 		}),
 		markerType: "static",
 		category: "other"
@@ -407,7 +444,8 @@ export const other = [
 		icon: L.icon(
 			{
 				iconUrl: "./icons/quest-icon.svg",
-				iconSize: [18, 18]
+				iconSize: [ 18, 18 ],
+				className: "lazyload",
 			}
 		),
 		markerType: "one-time",
@@ -417,7 +455,8 @@ export const other = [
 		name: "Brazier",
 		icon: L.icon({
 			iconUrl: "./icons/brazier.svg",
-			iconSize: [18, 18],
+			iconSize: [ 18, 18 ],
+			className: "lazyload",
 		}),
 		markerType: "one-time",
 		category: "other"

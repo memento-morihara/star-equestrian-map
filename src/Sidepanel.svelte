@@ -180,15 +180,22 @@
                     <sl-tree
                         selection="multiple"
                         on:sl-selection-change={(e) => handleFilterChange(e)}
+                        role="tree"
                     >
                         {#each items as item}
                             <sl-tree-item
                                 data-value={item.parent.toLowerCase()}
+                                role="treeitem"
+                                aria-selected={$shownFilters.includes(
+                                    formatName(item.parent)
+                                )}
                             >
                                 <span class="parent">{item.parent}</span>
                                 {#each item.children as child}
                                     {#if $shownFilters.includes(child)}
                                         <sl-tree-item
+                                            aria-selected={true}
+                                            role="treeitem"
                                             data-value={child}
                                             selected
                                             class="child"
@@ -200,6 +207,8 @@
                                         </sl-tree-item>
                                     {:else}
                                         <sl-tree-item
+                                            aria-selected={false}
+                                            role="treeitem"
                                             data-value={child}
                                             class="child"
                                             >{formatName(child)}

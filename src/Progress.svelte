@@ -39,23 +39,19 @@
 
     // Exclude braziers since they appear under a different heading
     const itemNames = ["toy-unicorn", "horseshoe", "sheriff-badge", "bottle"];
-
-    // TODO: Make unicorn icon into webp for consistency
 </script>
 
 <h2>Collectibles</h2>
 <div class="container">
     {#each itemNames as item, i}
         <sl-progress-ring
-            label={`Number of ${item}s collected`}
+            label={`Number of ${formatName(item)}s collected`}
             value={($collectionProgress[i] * 100) /
                 counts.find((x) => x.name === formatName(item)).count}
         >
             <div class="progress-inner">
                 <img
-                    src={item !== "toy-unicorn"
-                        ? `./icons/webp/${item}.webp`
-                        : `./icons/${item}.png`}
+                    src={`./icons/webp/${item}.webp`}
                     alt={formatName(item)}
                     height="32"
                 />

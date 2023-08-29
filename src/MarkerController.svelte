@@ -40,7 +40,7 @@
 </script>
 
 {#each locations as marker}
-    <Marker {marker} latLng={[marker.lat, marker.lng]}>
+    <Marker {marker}>
         <Popup
             collected={collected(marker)}
             notRespawned={notRespawned(marker)}

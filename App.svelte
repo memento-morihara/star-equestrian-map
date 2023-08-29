@@ -1,20 +1,25 @@
 <script>
-    import Map from "./src/Map.svelte"
+    import Map from "./src/Map.svelte";
     import MarkerController from "./src/MarkerController.svelte";
     import Sidepanel from "./src/Sidepanel.svelte";
     import Spiderfier from "./src/Spiderfier.svelte";
     import CondensedAttribution from "./src/CondensedAttribution.svelte";
 
-    const attribution = 'Images &copy; <a href="https://www.foxieventures.com">Foxie Ventures</a> | <a href="https://www.maptiler.com/engine/">Rendered with MapTiler Engine</a>, non-commercial use only';
+    const attribution =
+        'Images &copy; <a href="https://www.foxieventures.com">Foxie Ventures</a> | <a href="https://www.maptiler.com/engine/">Rendered with MapTiler Engine</a>, non-commercial use only';
 </script>
 
 <main>
     <Map>
         <Spiderfier>
-            <MarkerController/>
+            <MarkerController />
         </Spiderfier>
-        <Sidepanel panelPosition="left" darkMode={false} tabs={["Filter", "Progress", "Settings"]}/>
-        <CondensedAttribution fullText={attribution}/>
+        <Sidepanel
+            panelPosition="left"
+            darkMode={false}
+            tabs={["Filter", "Progress", "Settings"]}
+        />
+        <CondensedAttribution fullText={attribution} />
     </Map>
 </main>
 
