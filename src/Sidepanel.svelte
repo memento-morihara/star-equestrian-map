@@ -6,6 +6,7 @@
         formatName,
         hideCollected,
         items,
+        keepOnTop,
         shownFilters,
         shownMarkers,
         shownStats,
@@ -14,6 +15,8 @@
     import { counts } from "../locations.js";
     import Progress from "./Progress.svelte";
     import { getContext, onMount } from "svelte";
+    import { appWindow } from "@tauri-apps/api/window";
+    import App from "../App.svelte";
 
     // Props
     export let panelPosition;
@@ -124,6 +127,8 @@
     }
 
     $: localStorage.setItem("shownStats", JSON.stringify($shownStats));
+
+    $: appWindow.setAlwaysOnTop($keepOnTop);
 </script>
 
 <aside
@@ -262,6 +267,13 @@
                             >Hide collected items
                         </sl-checkbox>
 
+                        <h2>Window</h2>
+                        <sl-checkbox
+                            on:sl-change={(e) =>
+                                ($keepOnTop = e.target.checked)}
+                            >Keep on top</sl-checkbox
+                        >
+
                         <h2>Reset collected items</h2>
                         <p>
                             In case of emergency, reset all of your collected
@@ -325,6 +337,7 @@
 
     .sidepanel.closed {
         animation: slide-left 0.5s ease 0s 1 both;
+        box-shadow: none;
     }
 
     .sidepanel-inner-wrapper {
