@@ -51,7 +51,7 @@
         >
             <div class="progress-inner">
                 <img
-                    src={`./icons/webp/${item}.webp`}
+                    src={`./icons/${item}.webp`}
                     alt={formatName(item)}
                     height="32"
                 />
