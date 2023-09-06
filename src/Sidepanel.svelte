@@ -126,8 +126,6 @@
     }
 
     $: localStorage.setItem("shownStats", JSON.stringify($shownStats));
-
-    $: appWindow.setAlwaysOnTop($keepOnTop);
 </script>
 
 <aside
@@ -265,13 +263,6 @@
                             on:sl-change={(e) => setHideCollected(e)}
                             >Hide collected items
                         </sl-checkbox>
-
-                        <h2>Window</h2>
-                        <sl-checkbox
-                            on:sl-change={(e) =>
-                                ($keepOnTop = e.target.checked)}
-                            >Keep on top</sl-checkbox
-                        >
 
                         <h2>Reset collected items</h2>
                         <p>

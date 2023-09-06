@@ -7,18 +7,6 @@
 
     const attribution =
         'Images &copy; <a href="https://www.foxieventures.com">Foxie Ventures</a> | <a href="https://www.maptiler.com/engine/">Rendered with MapTiler Engine</a>, non-commercial use only';
-
-        const registerServiceWorker = async () => {
-    if ("serviceWorker" in navigator) {
-        try {
-            navigator.serviceWorker.register("./serviceworker.js");
-        } catch (e) {
-            console.error("Failed to register service worker.");
-        }
-    }
-}
-
-registerServiceWorker();
 </script>
 
 <main>
