@@ -15,7 +15,6 @@
     import { counts } from "../locations.js";
     import Progress from "./Progress.svelte";
     import { getContext, onMount } from "svelte";
-    import { appWindow } from "@tauri-apps/api/window";
     import App from "../App.svelte";
 
     // Props
