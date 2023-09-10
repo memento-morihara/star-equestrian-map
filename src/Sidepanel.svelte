@@ -15,7 +15,6 @@
     import { counts } from "../locations.js";
     import Progress from "./Progress.svelte";
     import { getContext, onMount } from "svelte";
-    import App from "../App.svelte";
 
     // Props
     export let panelPosition;
@@ -52,6 +51,7 @@
                         "chests",
                         "food",
                         "resources",
+                        "resource-traders",
                         "collectibles",
                         "other",
                     ].includes(selected.dataset.value)
@@ -202,10 +202,13 @@
                                             selected
                                             class="child"
                                             >{formatName(child)}
-                                            ({counts.find(
-                                                (c) =>
-                                                    c.name === formatName(child)
-                                            ).count})
+                                            ({parent === "Traders"
+                                                ? 0
+                                                : counts.find(
+                                                      (c) =>
+                                                          c.name ===
+                                                          formatName(child)
+                                                  )?.count})
                                         </sl-tree-item>
                                     {:else}
                                         <sl-tree-item
@@ -214,10 +217,13 @@
                                             data-value={child}
                                             class="child"
                                             >{formatName(child)}
-                                            ({counts.find(
-                                                (c) =>
-                                                    c.name === formatName(child)
-                                            ).count})
+                                            ({parent === "Traders"
+                                                ? 0
+                                                : counts.find(
+                                                      (c) =>
+                                                          c.name ===
+                                                          formatName(child)
+                                                  )?.count})
                                         </sl-tree-item>
                                     {/if}
                                 {/each}
@@ -541,6 +547,11 @@
         100% {
             opacity: 1;
         }
+    }
+
+    .dark {
+        background-color: #191a1d;
+        color: #d4d4d4;
     }
 
     sl-tree {
