@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Star Equestrian Map</title>
-    <meta charset="utf-8" />
-    <meta
-      content="An unofficial interactive map for Foxie Ventures' game Star Equestrian - Horse Ranch."
-      name="description"
-    />
-    <meta
-      name="viewport"
-      content="initial-scale=1.0, width=device-width,user-scalable=no"
-    />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <script>
-      navigator.serviceWorker.register("/service-worker.js");
-    </script>
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.6.0/cdn/shoelace-autoloader.js"
-    ></script>
-    <link rel="manifest" href="/site.webmanifest" />
-  </head>
 
-  <body>
-    <div id="app"></div>
-    <script src="./main.js" type="module"></script>
-  </body>
+<head>
+  <title>Star Equestrian Map</title>
+  <meta charset="utf-8" />
+  <meta content="An unofficial interactive map for Foxie Ventures' game Star Equestrian - Horse Ranch."
+    name="description" />
+  <meta name="viewport" content="initial-scale=1.0, width=device-width,user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/service-worker.js");
+    }
+  </script>
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.6.0/cdn/shoelace-autoloader.js"></script>
+  <link rel="manifest" href="/site.webmanifest" />
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="./main.js" type="module"></script>
+</body>
+
 </html>

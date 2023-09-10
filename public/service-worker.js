@@ -77,19 +77,22 @@ self.addEventListener("fetch", (event) => {
     // If the fetch fails (e.g disconnected), wait for the cache.
     // If there’s nothing in cache, wait for the fetch.
     // If neither yields a response, return offline pages.
+
     event.respondWith(
-      Promise.race([fetched.catch((_) => cached), cached])
+      Promise.race([ fetched.catch((_) => cached), cached ])
         .then((resp) => resp || fetched)
         .catch((_) => {
           /* eat any errors */
         })
     );
 
+
+
     // Update the cache with the version we fetched (only for ok status)
     event.waitUntil(
-      Promise.all([fetchedCopy, caches.open("pwa-cache")])
+      Promise.all([ fetchedCopy, caches.open("pwa-cache") ])
         .then(
-          ([response, cache]) =>
+          ([ response, cache ]) =>
             response.ok && cache.put(event.request, response)
         )
         .catch((_) => {
