@@ -2,30 +2,24 @@
     import { allMarkers, collectionProgress, formatName } from "./stores.js";
     import { counts } from "../locations.js";
 
+    const itemNames = [
+        "Toy Unicorn",
+        "Horseshoe",
+        "Sheriff Badge",
+        "Bottle",
+        "Brazier",
+    ];
+
     function getCollectiblesProgress() {
-        const unicornIds = $allMarkers.filter(
-            (marker) => marker.options.name === "Toy Unicorn"
-        );
-        const horseshoeIds = $allMarkers.filter(
-            (marker) => marker.options.name === "Horseshoe"
-        );
-        const sheriffBadgeIds = $allMarkers.filter(
-            (marker) => marker.options.name === "Sheriff Badge"
-        );
-        const bottleIds = $allMarkers.filter(
-            (marker) => marker.options.name === "Bottle"
-        );
-        const brazierIds = $allMarkers.filter(
-            (marker) => marker.options.name === "Brazier"
-        );
+        let itemIds = [];
+        for (const { name, i } of itemNames) {
+            itemIds[i] = $allMarkers.filter(
+                (marker) => marker.options.name === name
+            );
+        }
         let temp = [0, 0, 0, 0, 0];
-        [
-            unicornIds,
-            horseshoeIds,
-            sheriffBadgeIds,
-            bottleIds,
-            brazierIds,
-        ].forEach((category, i) =>
+
+        itemIds.forEach((category, i) =>
             category.map((item) => {
                 if (localStorage.getItem(`${item.options.id}.collected`)) {
                     temp[i]++;
@@ -36,32 +30,31 @@
     }
 
     $collectionProgress = getCollectiblesProgress();
-
-    // Exclude braziers since they appear under a different heading
-    const itemNames = ["toy-unicorn", "horseshoe", "sheriff-badge", "bottle"];
 </script>
 
 <h2>Collectibles</h2>
 <div class="container">
     {#each itemNames as item, i}
-        <sl-progress-ring
-            label={`Number of ${formatName(item)}s collected`}
-            value={($collectionProgress[i] * 100) /
-                counts.find((x) => x.name === formatName(item)).count}
-        >
-            <div class="progress-inner">
-                <img
-                    src={`./icons/${item}.webp`}
-                    alt={formatName(item)}
-                    height="32"
-                />
-                <p>
-                    {$collectionProgress[i]} / {counts.find(
-                        (x) => x.name === formatName(item)
-                    ).count}
-                </p>
-            </div>
-        </sl-progress-ring>
+        {#if item !== "Brazier"}
+            <sl-progress-ring
+                label={`Number of ${item}s collected`}
+                value={($collectionProgress[i] * 100) /
+                    counts.find((x) => x.name === item).count}
+            >
+                <div class="progress-inner">
+                    <img
+                        src={`./icons/${formatName(item)}.webp`}
+                        alt={item}
+                        height="32"
+                    />
+                    <p>
+                        {$collectionProgress[i]} / {counts.find(
+                            (x) => x.name === item
+                        ).count}
+                    </p>
+                </div>
+            </sl-progress-ring>
+        {/if}
     {/each}
 </div>
 
