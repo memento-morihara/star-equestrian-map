@@ -6,6 +6,7 @@
         formatName,
         hideCollected,
         items,
+        keepOnTop,
         shownFilters,
         shownMarkers,
         shownStats,
@@ -50,6 +51,7 @@
                         "chests",
                         "food",
                         "resources",
+                        "resource-traders",
                         "collectibles",
                         "other",
                     ].includes(selected.dataset.value)
@@ -200,10 +202,13 @@
                                             selected
                                             class="child"
                                             >{formatName(child)}
-                                            ({counts.find(
-                                                (c) =>
-                                                    c.name === formatName(child)
-                                            ).count})
+                                            ({parent === "Traders"
+                                                ? 0
+                                                : counts.find(
+                                                      (c) =>
+                                                          c.name ===
+                                                          formatName(child)
+                                                  )?.count})
                                         </sl-tree-item>
                                     {:else}
                                         <sl-tree-item
@@ -212,10 +217,13 @@
                                             data-value={child}
                                             class="child"
                                             >{formatName(child)}
-                                            ({counts.find(
-                                                (c) =>
-                                                    c.name === formatName(child)
-                                            ).count})
+                                            ({parent === "Traders"
+                                                ? 0
+                                                : counts.find(
+                                                      (c) =>
+                                                          c.name ===
+                                                          formatName(child)
+                                                  )?.count})
                                         </sl-tree-item>
                                     {/if}
                                 {/each}
@@ -325,6 +333,7 @@
 
     .sidepanel.closed {
         animation: slide-left 0.5s ease 0s 1 both;
+        box-shadow: none;
     }
 
     .sidepanel-inner-wrapper {
@@ -538,6 +547,11 @@
         100% {
             opacity: 1;
         }
+    }
+
+    .dark {
+        background-color: #191a1d;
+        color: #d4d4d4;
     }
 
     sl-tree {
