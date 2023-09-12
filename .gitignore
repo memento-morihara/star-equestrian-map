@@ -1,10 +1,14 @@
+.DS_Store
 node_modules
+/build
+/.svelte-kit
+/package
 .env
-dist/**
-.idea/**
-deploy.sh
-
-#IDE artifacts
-run.json
-launch.json
-settings.json
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+.idea
+.vscode
+dist
+public

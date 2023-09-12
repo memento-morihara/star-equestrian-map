@@ -1,12 +1,6 @@
-import {defineConfig} from 'vite';
-import {svelte} from '@sveltejs/vite-plugin-svelte';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-    plugins: [svelte()],
-    build: {
-        emptyOutDir: true,
-        target: 'esnext',
-        base: '/star-equestrian-map/',
-        assetsInclude: ['**/*.png', '**/*.svg', '**/*.webp'],
-    }
-})
+	plugins: [sveltekit()]
+});

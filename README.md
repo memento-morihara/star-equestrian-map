@@ -1,4 +1,4 @@
-# Star Equestrian Map (WIP)
+# Star Equestrian Map
 
 <img src="assets/StarEquestrianLogo_Color.png" alt="Star Equestrian game logo" width="300" />
 

@@ -1,12 +1,12 @@
 <script>
-    import Popup from "./Popup.svelte";
+    import Popup from "./lib/Popup.svelte";
     import Marker from "./Marker.svelte";
     import {
         allMarkers,
         formatName,
         shownMarkers,
         shownStats,
-    } from "./stores.js";
+    } from "./lib/stores.js";
     import { getContext } from "svelte";
     import { locations } from "../locations.js";
 

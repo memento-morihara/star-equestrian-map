@@ -1,7 +1,7 @@
 <script>
     // Adapted from https://github.com/route360/Leaflet.CondensedAttribution
     export let emblem = "?";
-    export let fullText;
+    export let fullText = `Images &copy; <a href="https://foxieventures.com">Foxie Ventures</a> | Rendered with <a href="https://maptiler.com">MapTiler Engine</a>`;
 </script>
 
 <div class="leaflet-condensed-attribution">
