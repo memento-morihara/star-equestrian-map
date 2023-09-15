@@ -1,4 +1,4 @@
-# Star Equestrian Map (WIP)
+# Star Equestrian Map
 
 <img src="assets/StarEquestrianLogo_Color.png" alt="Star Equestrian game logo" width="300" />
 
@@ -13,7 +13,13 @@ Shoutout to the awesome folks at Foxie Ventures who provided me with a large map
 - Mark items as collected (markers for items that respawn reset at midnight UTC)
 - Mark items that haven't respawned yet
 - Progress indicators for collectibles
+- Progressive web app
 - No data collected. Everything is stored in your browser's storage.
+
+## Screenshots
+
+![A popup for a collected marker showing the time last collected.](/static/Screenshot1.png)
+![Some of the available filter options in the side menu.](/static/Screenshot2.png)
 
 ---
 
