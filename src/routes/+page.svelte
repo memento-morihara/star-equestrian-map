@@ -3,16 +3,18 @@
     import Marker from "$lib/Marker.svelte";
     import Sidebar from "$lib/Sidebar.svelte";
     import CondensedAttribution from "$lib/CondensedAttribution.svelte";
+    import Popup from "../lib/Popup.svelte";
 
     export let data;
-    console.log(data);
 </script>
 
 <Sidebar {data} tabs={["Filters", "Progress", "Settings"]} />
 <main>
     <Map>
         {#each data.locations as location}
-            <Marker {location} />
+            <Marker {location}>
+                <Popup />
+            </Marker>
         {/each}
     </Map>
 </main>

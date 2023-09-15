@@ -1,5 +1,5 @@
 <script>
-    import { getContext, onMount } from "svelte";
+    import { getContext, setContext, onMount } from "svelte";
     import { browser } from "$app/environment";
     import { slugifyName } from "$lib/utils";
     import { markerData } from "$lib/markerData";
@@ -7,6 +7,7 @@
     export let location;
 
     let marker;
+    setContext("marker", () => marker);
 
     const map = getContext("map")();
 
@@ -21,8 +22,12 @@
             marker = L.marker([location.lat, location.lng], {
                 ...props,
             }).addTo(map);
-            marker.bindPopup(location.name);
         }
+        marker.bindPopup(
+            L.popup({
+                minWidth: 210,
+            })
+        );
     });
 </script>
 

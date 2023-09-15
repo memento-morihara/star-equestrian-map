@@ -31,6 +31,8 @@ export const activeFilters = writable([ {
 }
 ]);
 
+export const selectedMarker = writable({});
+
 // let ls = () => {
 //     if (!localStorage.getItem("shownItems")) {
 //         localStorage.setItem("shownItems", items.map(item => item.children).flat())
