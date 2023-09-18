@@ -5,6 +5,7 @@
         collectibles,
         food,
         other,
+        traders,
         resources,
     } from "../markers.js";
     import { allMarkers } from "./stores.js";
@@ -15,17 +16,24 @@
     setContext("marker", () => thisMarker);
 
     const map = getContext("map")();
-    const icons = [food, chests, resources, collectibles, other].flat();
+    const icons = [
+        food,
+        chests,
+        resources,
+        traders,
+        collectibles,
+        other,
+    ].flat();
 
     let markerIcon = icons.find((i) => i.name === marker.name);
     function markerProps() {
         let props = {
             id: marker.id,
             name: marker.name,
-            markerType: markerIcon.markerType,
-            icon: markerIcon.icon,
+            markerType: markerIcon?.markerType,
+            icon: markerIcon?.icon ?? L.icon({ iconUrl: "./icons/common.svg" }),
             description: marker.description,
-            category: markerIcon.category,
+            category: markerIcon?.category,
             stat: markerIcon?.stat,
         };
         if (props.markerType === "respawning") {

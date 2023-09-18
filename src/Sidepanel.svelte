@@ -16,7 +16,6 @@
     import Progress from "./Progress.svelte";
     import { getContext, onMount } from "svelte";
     import { appWindow } from "@tauri-apps/api/window";
-    import App from "../App.svelte";
 
     // Props
     export let panelPosition;
@@ -53,6 +52,7 @@
                         "chests",
                         "food",
                         "resources",
+                        "resource-traders",
                         "collectibles",
                         "other",
                     ].includes(selected.dataset.value)
@@ -205,10 +205,13 @@
                                             selected
                                             class="child"
                                             >{formatName(child)}
-                                            ({counts.find(
-                                                (c) =>
-                                                    c.name === formatName(child)
-                                            ).count})
+                                            ({parent === "Traders"
+                                                ? 0
+                                                : counts.find(
+                                                      (c) =>
+                                                          c.name ===
+                                                          formatName(child)
+                                                  )?.count})
                                         </sl-tree-item>
                                     {:else}
                                         <sl-tree-item
@@ -217,10 +220,13 @@
                                             data-value={child}
                                             class="child"
                                             >{formatName(child)}
-                                            ({counts.find(
-                                                (c) =>
-                                                    c.name === formatName(child)
-                                            ).count})
+                                            ({parent === "Traders"
+                                                ? 0
+                                                : counts.find(
+                                                      (c) =>
+                                                          c.name ===
+                                                          formatName(child)
+                                                  )?.count})
                                         </sl-tree-item>
                                     {/if}
                                 {/each}
@@ -268,11 +274,7 @@
                         </sl-checkbox>
 
                         <h2>Window</h2>
-                        <sl-checkbox
-                            on:sl-change={(e) =>
-                                ($keepOnTop = e.target.checked)}
-                            >Keep on top</sl-checkbox
-                        >
+                        <sl-checkbox on:sl-change={e => ($keepOnTop = e.target.checked)}>Keep on top</sl-checkbox>
 
                         <h2>Reset collected items</h2>
                         <p>
@@ -551,6 +553,11 @@
         100% {
             opacity: 1;
         }
+    }
+
+    .dark {
+        background-color: #191a1d;
+        color: #d4d4d4;
     }
 
     sl-tree {
