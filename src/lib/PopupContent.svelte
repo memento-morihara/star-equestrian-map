@@ -1,15 +1,50 @@
 <script>
     import { selectedMarker } from "$lib/stores.js";
+    import OneTimeContent from "./OneTimeContent.svelte";
     import RespawningContent from "./RespawningContent.svelte";
     import { fade } from "svelte/transition";
-    // Chooses the correct content component according to the marker type
 
-    // Store that holds the marker object of the Leaflet marker whose popup is currently open
+    const popupContent = () => {
+        switch ($selectedMarker.options.markerType) {
+            case "respawning":
+                return RespawningContent;
+            case "one-time":
+                return OneTimeContent;
+        }
+    };
+
+    const marker = $selectedMarker;
 </script>
 
-<div out:fade>
-    <div class="title">
+<div class="popup-content">
+    <div
+        class="title"
+        class:centered={!marker.options.description &&
+            marker.options.markerType === "static"}
+    >
         <strong>{$selectedMarker.options.name}</strong>
     </div>
-    <svelte:component this={RespawningContent} />
+    {#if $selectedMarker.options.markerType !== "respawning" && $selectedMarker.options.description}
+        <p>{$selectedMarker.options.description}</p>
+    {/if}
+    {#if marker.options.markerType !== "static"}
+        <svelte:component this={popupContent()} />
+    {/if}
 </div>
+
+<style>
+    .popup-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sl-spacing-2x-small);
+    }
+
+    .title {
+        width: 100%;
+        font-size: var(--sl-font-size-large);
+    }
+
+    .centered {
+        text-align: center;
+    }
+</style>

@@ -20,6 +20,7 @@
         if (browser && markerData) {
             const L = await import("leaflet");
             marker = L.marker([location.lat, location.lng], {
+                description: location.description,
                 ...props,
             }).addTo(map);
         }
