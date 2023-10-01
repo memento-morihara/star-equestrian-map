@@ -487,6 +487,7 @@
         border-radius: 0 8px 8px 0;
         box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),
             0 2px 6px 2px rgba(60, 64, 67, 0.15);
+        z-index: inherit;
     }
 
     .sidepanel-toggle-button::before {
