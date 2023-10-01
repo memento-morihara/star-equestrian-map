@@ -77,6 +77,7 @@
 <style>
     .sidebar {
         width: 400px;
+        max-width: 87%;
         height: 100%;
         background-color: white;
         position: absolute;
@@ -147,6 +148,7 @@
             0 2px 6px 2px rgba(60, 64, 67, 0.15);
         cursor: pointer;
         overflow: hidden;
+        z-index: inherit;
     }
 
     .toggle-btn::before {
