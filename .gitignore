@@ -12,3 +12,5 @@ vite.config.ts.timestamp-*
 .vscode
 dist
 public
+src-tauri/icons
+src-tauri/target
