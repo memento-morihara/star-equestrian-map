@@ -10,18 +10,17 @@
     export let marker = $selectedMarkerId;
     const dispatch = createEventDispatcher();
 
-    export let date = localStorage.getItem(
-        `${marker.options.id}.lastCollected`
-    );
+    let date = localStorage.getItem(`${marker.options.id}.lastCollected`);
     let previousCollected = date;
-    export let negSpawnDate = localStorage.getItem(
+    let negSpawnDate = localStorage.getItem(
         `${marker.options.id}.lastNegativeRespawn`
     );
     let previousNoSpawn = negSpawnDate;
 
     $: collected =
-        new Date(Number(date)).getUTCDate() === new Date().getUTCDate();
+        date && new Date(Number(date)).getUTCDate() === new Date().getUTCDate();
     $: notRespawned =
+        negSpawnDate &&
         new Date(Number(negSpawnDate)).getUTCDate() === new Date().getUTCDate();
 
     function collect() {

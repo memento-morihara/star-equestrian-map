@@ -11,3 +11,5 @@ run.json
 launch.json
 settings.json
 .idea
+
+src-tauri

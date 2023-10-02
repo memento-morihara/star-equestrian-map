@@ -29,11 +29,12 @@
         });
     }
     $: collected = (marker) =>
+        localStorage.getItem(`${marker.id}.lastCollected`) &&
         new Date(
             Number(localStorage.getItem(`${marker.id}.lastCollected`))
-        ).getUTCDate() === new Date().getUTCDate() ||
-        localStorage.getItem(`${marker.id}.collected`);
+        ).getUTCDate() === new Date().getUTCDate();
     $: notRespawned = (marker) =>
+        localStorage.getItem(`${marker.id}.lastNegativeRespawn`) &&
         new Date(
             Number(localStorage.getItem(`${marker.id}.lastNegativeRespawn`))
         ).getUTCDate() === new Date().getUTCDate();
