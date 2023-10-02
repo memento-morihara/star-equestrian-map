@@ -30,6 +30,7 @@
         margin: 10px;
         padding: 0;
         z-index: 1000;
+        font-size: 0.75rem;
     }
 
     .emblem {
@@ -39,6 +40,7 @@
         height: 28px;
         line-height: 28px;
         font-size: 1.2em;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
     }
 
     .attributes-body {
