@@ -2,7 +2,6 @@
     import { markerData } from "$lib/markerData.js";
 
     export let data;
-    console.log(data);
 </script>
 
 <sl-tree selection="multiple">

@@ -1,3 +1,5 @@
+// Basically a development server since production build is a static site
+
 export function GET({ route, fetch }) {
     // Leaflet makes requests in the [baseUrl]/x/y/z format,
     // so this route uses the SvelteKit rest parameter to match the request
