@@ -14,6 +14,10 @@
 </div>
 
 <style>
+    p {
+        margin: var(--sl-spacing-x-small) 0;
+    }
+
     small {
         font-size: var(--sl-font-size-x-small);
     }
@@ -27,6 +31,6 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        margin-top: var(--sl-spacing-2x-small);
+        margin-top: var(--sl-spacing-x-small);
     }
 </style>

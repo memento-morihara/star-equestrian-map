@@ -6,30 +6,36 @@
     export let location;
 
     let marker;
+    let popup;
     setContext("marker", () => marker);
 
     const map = getContext("map")();
 
-    onMount(async () => {
-        const props = await markerData().then((data) =>
-            data
-                .flatMap((obj) => obj.items)
-                .find((obj) => obj.name === location.name)
+    function initPopup(marker) {
+        popup = marker.bindPopup(
+            L.popup({
+                minWidth: 210,
+                content: `<div id="${marker.options.id}"></div>`,
+            })
         );
-        if (browser && markerData) {
+    }
+
+    if (browser && window) {
+        onMount(async () => {
+            const props = await markerData().then((data) =>
+                data
+                    .flatMap((obj) => obj.items)
+                    .find((obj) => obj.name === location.name)
+            );
             const L = await import("leaflet");
             marker = L.marker([location.lat, location.lng], {
                 id: location.id,
                 description: location.description,
                 ...props,
             }).addTo(map);
-        }
-        marker.bindPopup(
-            L.popup({
-                minWidth: 210,
-            })
-        );
-    });
+            initPopup(marker);
+        });
+    }
 </script>
 
 {#if marker}

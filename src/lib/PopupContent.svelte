@@ -2,7 +2,6 @@
     import { selectedMarker } from "$lib/stores.js";
     import OneTimeContent from "./OneTimeContent.svelte";
     import RespawningContent from "./RespawningContent.svelte";
-    import { fade } from "svelte/transition";
     import { page } from "$app/stores";
 
     const popupContent = () => {
@@ -17,7 +16,7 @@
     const marker = $selectedMarker;
     const url = new URL($page.url);
     const search = url.searchParams;
-    search.set("id", $selectedMarker.options.id);
+    search.set("id", marker.options.id);
 </script>
 
 {#if $selectedMarker}
@@ -25,8 +24,8 @@
         <div class="header">
             <div
                 class="title"
-                class:centered={!marker.options.description &&
-                    marker.options.markerType === "static"}
+                class:centered={!$selectedMarker.options.description &&
+                    $selectedMarker.options.markerType === "static"}
             >
                 <strong>{$selectedMarker.options.name} </strong>
             </div>
@@ -36,11 +35,15 @@
                 success-label="Copied!"
             />
         </div>
-        <div class="content">
+        <div
+            class="content"
+            class:no-desc={$selectedMarker.options.markerType !==
+                "respawning" && !$selectedMarker.options.description}
+        >
             {#if $selectedMarker.options.markerType !== "respawning" && $selectedMarker.options.description}
-                <p>{$selectedMarker.options.description}</p>
+                <p class="desc">{$selectedMarker.options.description}</p>
             {/if}
-            {#if marker.options.markerType !== "static"}
+            {#if $selectedMarker.options.markerType !== "static"}
                 <svelte:component this={popupContent()} />
             {/if}
         </div>
@@ -48,15 +51,14 @@
 {/if}
 
 <style>
-    p {
-        margin: 0.2rem 0 0.4rem 0;
-        font-size: 1rem;
+    .desc {
+        margin: 0;
+        font-size: var(--sl-font-size-medium);
     }
 
     .popup-content {
         display: flex;
         flex-direction: column;
-        gap: var(--sl-spacing-2x-small);
     }
 
     .title {
@@ -72,17 +74,18 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        font-size: var(--sl-font-size-medium);
     }
 
     .header {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
+        margin: 0;
     }
 
     .header sl-copy-button {
         font-size: var(--sl-font-size-medium);
-        align-self: center;
         margin-top: -3px;
     }
 </style>
