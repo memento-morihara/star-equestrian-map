@@ -8,7 +8,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@shoelace-style/shoelace": "^2.6.0",
+		"@shoelace-style/shoelace": "^2.7.0",
 		"leaflet": "^1.9.4",
 		"overlapping-marker-spiderfier-leaflet": "^0.2.7",
 		"pocketbase": "^0.15.3"
