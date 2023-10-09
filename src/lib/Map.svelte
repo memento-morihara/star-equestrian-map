@@ -1,9 +1,11 @@
 <script>
     import { onMount, setContext } from "svelte";
     import { browser } from "$app/environment";
+    import { selectedMarker } from "./stores.js";
 
     let map;
     let mapEl;
+    export let initialLocation;
 
     setContext("map", () => map);
     function initMap(node) {
@@ -49,13 +51,18 @@
                 map.on("dblclick", (e) => {
                     L.popup(e.latlng, { content: `${e.latlng}` }).addTo(map);
                 });
+
+                if (initialLocation) {
+                    map.whenReady(() => {
+                        map.setView(initialLocation, 5);
+                    });
+                }
             }
         });
 
         return {
             destroy() {
-                map = null;
-                map.destroy();
+                map.remove();
             },
         };
     }

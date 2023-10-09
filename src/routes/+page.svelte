@@ -3,14 +3,18 @@
     import Marker from "$lib/Marker.svelte";
     import Sidebar from "$lib/Sidebar.svelte";
     import CondensedAttribution from "$lib/CondensedAttribution.svelte";
-    import Popup from "../lib/Popup.svelte";
+    import Popup from "$lib/Popup.svelte";
 
     export let data;
+
+    const initialLocation = data.searchId
+        ? data.locations.find((location) => location.id === data.searchId)
+        : null;
 </script>
 
 <Sidebar {data} tabs={["Filters", "Progress", "Settings"]} />
 <main>
-    <Map>
+    <Map initialLocation={[initialLocation?.lat, initialLocation?.lng]}>
         {#each data.locations as location}
             <Marker {location}>
                 <Popup />

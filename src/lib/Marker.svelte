@@ -1,7 +1,6 @@
 <script>
     import { getContext, setContext, onMount } from "svelte";
     import { browser } from "$app/environment";
-    import { slugifyName } from "$lib/utils";
     import { markerData } from "$lib/markerData";
 
     export let location;
@@ -20,6 +19,7 @@
         if (browser && markerData) {
             const L = await import("leaflet");
             marker = L.marker([location.lat, location.lng], {
+                id: location.id,
                 description: location.description,
                 ...props,
             }).addTo(map);
