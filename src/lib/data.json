@@ -1,0 +1,526 @@
+{
+    "food": [
+        {
+            "name": "Apple",
+            "stat": "speed",
+            "rarity": 0,
+            "locations": [
+                {
+                    "description": "",
+                    "lat": -4906,
+                    "lng": 10318
+                },
+                {
+                    "description": "",
+                    "lat": -5226,
+                    "lng": 13450
+                },
+                {
+                    "description": "",
+                    "lat": -4976,
+                    "lng": 12920
+                },
+                {
+                    "description": "",
+                    "lat": -4842,
+                    "lng": 15320
+                },
+                {
+                    "description": "",
+                    "lat": -2672,
+                    "lng": 12846
+                },
+                {
+                    "description": "",
+                    "lat": -2990,
+                    "lng": 10964
+                },
+                {
+                    "description": "",
+                    "lat": -4914,
+                    "lng": 8836
+                },
+                {
+                    "description": "",
+                    "lat": -4354,
+                    "lng": 8872
+                },
+                {
+                    "description": "",
+                    "lat": -4500,
+                    "lng": 8722
+                },
+                {
+                    "description": "",
+                    "lat": -5364,
+                    "lng": 9206
+                },
+                {
+                    "description": "",
+                    "lat": -5654,
+                    "lng": 9530
+                },
+                {
+                    "description": "",
+                    "lat": -5658,
+                    "lng": 9496
+                },
+                {
+                    "description": "",
+                    "lat": -5662,
+                    "lng": 9468
+                },
+                {
+                    "description": "",
+                    "lat": -4924,
+                    "lng": 15174
+                },
+                {
+                    "description": "",
+                    "lat": -5056,
+                    "lng": 14954
+                },
+                {
+                    "description": "",
+                    "lat": -3082,
+                    "lng": 10598
+                },
+                {
+                    "description": "",
+                    "lat": -3048,
+                    "lng": 10580
+                },
+                {
+                    "description": "",
+                    "lat": -3046,
+                    "lng": 10636
+                },
+                {
+                    "description": "",
+                    "lat": -3862,
+                    "lng": 12794
+                },
+                {
+                    "description": "",
+                    "lat": -3826,
+                    "lng": 13030
+                },
+                {
+                    "description": "",
+                    "lat": -2520,
+                    "lng": 11800
+                },
+                {
+                    "description": "",
+                    "lat": -7296,
+                    "lng": 10616
+                },
+                {
+                    "description": "",
+                    "lat": -7438,
+                    "lng": 10704
+                },
+                {
+                    "description": "",
+                    "lat": -5158,
+                    "lng": 11312
+                },
+                {
+                    "description": "",
+                    "lat": -7248,
+                    "lng": 11420
+                },
+                {
+                    "description": "",
+                    "lat": -6952,
+                    "lng": 12986
+                },
+                {
+                    "description": "",
+                    "lat": -6834,
+                    "lng": 12818
+                },
+                {
+                    "description": "",
+                    "lat": -6820,
+                    "lng": 13148
+                },
+                {
+                    "description": "",
+                    "lat": -6106,
+                    "lng": 12440
+                },
+                {
+                    "description": "",
+                    "lat": -3602,
+                    "lng": 12970
+                },
+                {
+                    "description": "",
+                    "lat": -3714,
+                    "lng": 9550
+                },
+                {
+                    "description": "",
+                    "lat": -3744,
+                    "lng": 9610
+                },
+                {
+                    "description": "",
+                    "lat": -6910,
+                    "lng": 11488
+                },
+                {
+                    "description": "",
+                    "lat": -6234,
+                    "lng": 14040
+                },
+                {
+                    "description": "",
+                    "lat": -6312,
+                    "lng": 14138
+                },
+                {
+                    "description": "",
+                    "lat": -6138,
+                    "lng": 14182
+                },
+                {
+                    "description": "",
+                    "lat": -6970,
+                    "lng": 13180
+                },
+                {
+                    "description": "",
+                    "lat": -5252,
+                    "lng": 14858
+                },
+                {
+                    "description": "",
+                    "lat": -4884,
+                    "lng": 14564
+                },
+                {
+                    "description": "",
+                    "lat": -4820,
+                    "lng": 14666
+                },
+                {
+                    "description": "",
+                    "lat": -7446,
+                    "lng": 10748
+                },
+                {
+                    "description": "",
+                    "lat": -4192,
+                    "lng": 13046
+                }
+            ]
+        },
+        {
+            "name": "Berries",
+            "stat": "speed",
+            "rarity": 1,
+            "locations": [
+                {
+                    "description": "",
+                    "lat": -5092,
+                    "lng": 3660
+                },
+                {
+                    "description": "",
+                    "lat": -4650,
+                    "lng": 2260
+                },
+                {
+                    "description": "",
+                    "lat": -3016,
+                    "lng": 12722
+                },
+                {
+                    "description": "",
+                    "lat": -3082,
+                    "lng": 13320
+                },
+                {
+                    "description": "",
+                    "lat": -3112,
+                    "lng": 13334
+                },
+                {
+                    "description": "",
+                    "lat": -3090,
+                    "lng": 13324
+                },
+                {
+                    "description": "",
+                    "lat": -3364,
+                    "lng": 12808
+                },
+                {
+                    "description": "",
+                    "lat": -5592,
+                    "lng": 4614
+                },
+                {
+                    "description": "",
+                    "lat": -5550,
+                    "lng": 4316
+                },
+                {
+                    "description": "",
+                    "lat": -6952,
+                    "lng": 1314
+                },
+                {
+                    "description": "",
+                    "lat": -5536,
+                    "lng": 2046
+                },
+                {
+                    "description": "",
+                    "lat": -5268,
+                    "lng": 1310
+                },
+                {
+                    "description": "",
+                    "lat": -4900,
+                    "lng": 2554
+                },
+                {
+                    "description": "",
+                    "lat": -4942,
+                    "lng": 2608
+                },
+                {
+                    "description": "",
+                    "lat": -4584,
+                    "lng": 2662
+                },
+                {
+                    "description": "",
+                    "lat": -4536,
+                    "lng": 2828
+                },
+                {
+                    "description": "",
+                    "lat": -4606,
+                    "lng": 3268
+                },
+                {
+                    "description": "",
+                    "lat": -5560,
+                    "lng": 4340
+                },
+                {
+                    "description": "",
+                    "lat": -5542,
+                    "lng": 4308
+                },
+                {
+                    "description": "",
+                    "lat": -5250,
+                    "lng": 2534
+                },
+                {
+                    "description": "",
+                    "lat": -5908,
+                    "lng": 3928
+                },
+                {
+                    "description": "",
+                    "lat": -4550,
+                    "lng": 12700
+                },
+                {
+                    "description": "",
+                    "lat": -4214,
+                    "lng": 12570
+                },
+                {
+                    "description": "",
+                    "lat": -5108,
+                    "lng": 5088
+                },
+                {
+                    "description": "",
+                    "lat": -5408,
+                    "lng": 5820
+                },
+                {
+                    "description": "",
+                    "lat": -4804,
+                    "lng": 5544
+                },
+                {
+                    "description": "",
+                    "lat": -4422,
+                    "lng": 13320
+                }
+            ]
+        },
+        {
+            "name": "Carrot",
+            "stat": "jump",
+            "rarity": 0,
+            "locations": [
+                {
+                    "description": "",
+                    "lat": -4112.964504695925,
+                    "lng": 11119.623827149804
+                },
+                {
+                    "description": "",
+                    "lat": -4196,
+                    "lng": 10608
+                },
+                {
+                    "description": "",
+                    "lat": -5114,
+                    "lng": 9912
+                },
+                {
+                    "description": "",
+                    "lat": -5072,
+                    "lng": 9942
+                },
+                {
+                    "description": "",
+                    "lat": -6496,
+                    "lng": 11522
+                },
+                {
+                    "description": "",
+                    "lat": -7086,
+                    "lng": 11142
+                },
+                {
+                    "description": "",
+                    "lat": -5016,
+                    "lng": 9018
+                },
+                {
+                    "description": "",
+                    "lat": -4826,
+                    "lng": 10522
+                },
+                {
+                    "description": "",
+                    "lat": -4432,
+                    "lng": 10998
+                },
+                {
+                    "description": "",
+                    "lat": -4880,
+                    "lng": 11034
+                },
+                {
+                    "description": "",
+                    "lat": -4242,
+                    "lng": 11320
+                },
+                {
+                    "description": "",
+                    "lat": -4382,
+                    "lng": 11672
+                },
+                {
+                    "description": "",
+                    "lat": -3902,
+                    "lng": 11624
+                },
+                {
+                    "description": "",
+                    "lat": -3930,
+                    "lng": 12252
+                },
+                {
+                    "description": "",
+                    "lat": -2864,
+                    "lng": 11874
+                },
+                {
+                    "description": "",
+                    "lat": -3456,
+                    "lng": 13104
+                },
+                {
+                    "description": "",
+                    "lat": -7525.013947915592,
+                    "lng": 10200.260427654814
+                },
+                {
+                    "description": "Available after delivering 30 carrots to Farmer Joe for the quest Crop Circles.",
+                    "lat": -5888,
+                    "lng": 8534
+                },
+                {
+                    "description": "Available after delivering 30 carrots to Farmer Joe for the quest Crop Circles.",
+                    "lat": -5900,
+                    "lng": 8484
+                },
+                {
+                    "description": "Available after delivering 30 carrots to Farmer Joe for the quest Crop Circles.",
+                    "lat": -5902,
+                    "lng": 8434
+                },
+                {
+                    "description": "Available after delivering 30 carrots to Farmer Joe for the quest Crop Circles.",
+                    "lat": -5866,
+                    "lng": 8454
+                },
+                {
+                    "description": "Available after delivering 30 carrots to Farmer Joe for the quest Crop Circles.",
+                    "lat": -5864,
+                    "lng": 8502
+                },
+                {
+                    "description": "Available after delivering 30 carrots to Farmer Joe for the quest Crop Circles.",
+                    "lat": -5864,
+                    "lng": 8546
+                },
+                {
+                    "description": "Available after delivering 30 carrots to Farmer Joe for the quest Crop Circles.",
+                    "lat": -5830,
+                    "lng": 8470
+                },
+                {
+                    "description": "Available after delivering 30 carrots to Farmer Joe for the quest Crop Circles.",
+                    "lat": -5824,
+                    "lng": 8520
+                },
+                {
+                    "description": "Available after delivering 30 carrots to Farmer Joe for the quest Crop Circles.",
+                    "lat": -5828,
+                    "lng": 8556
+                },
+                {
+                    "description": "",
+                    "lat": -5680.000642734063,
+                    "lng": 6798.016711085632
+                },
+                {
+                    "description": "",
+                    "lat": -5876,
+                    "lng": 6250
+                },
+                {
+                    "description": "",
+                    "lat": -4484,
+                    "lng": 15048
+                },
+                {
+                    "description": "",
+                    "lat": -4700,
+                    "lng": 13758
+                }
+            ]
+        },
+        {
+            "name": "Lemon",
+            "stat": "acceleration",
+            "rarity": 1,
+            "locations": []
+        }
+    ]
+}
