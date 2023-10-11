@@ -9,7 +9,7 @@ export async function load({ fetch, url }) {
     }
     return {
         searchId: searchId,
-        data: fetch("/src/lib/data.json").then(res => res.json()),
+        data: fetch("/data.json").then(res => res.json()),
         locations: await db.collection("list_new").getFullList(),
         counts: await db.collection("count").getFullList(),
     };
