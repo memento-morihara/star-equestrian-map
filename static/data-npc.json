@@ -1,0 +1,32 @@
+[
+        {
+            "name": "Butterflies Trader",
+            "locations": [
+                {"lat":-6194, "lng":11464, "description": "Trade Butterflies for Wheat."}
+            ]
+        },
+        {
+            "name": "Eggs Trader",
+            "locations": [
+                {"lat":-5674, "lng":12190, "description": "Trade Eggs for Pumpkins."}
+            ]
+        },
+        {
+            "name": "Fish Trader",
+            "locations": [
+                {"lat":-4636, "lng":7720, "description": "Trade 6 Fish for 5 Lettuce."}
+            ]
+        },
+        {
+            "name": "Milk Trader",
+            "locations": [
+                {"lat":-7319.4, "lng":10823, "description": "Trade 6 Milk for 5 Carrots."}
+            ]
+        },
+        {
+            "name": "Wool Trader",
+            "locations": [
+                {"lat":-5128, "lng":11436, "description": "Trade Wool for Apples."}
+            ]
+        }
+    ]

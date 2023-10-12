@@ -1,0 +1,42 @@
+[
+        {
+            "name": "Cave Entrance",
+            "locations": [
+                {"lat":-5980, "lng":12328, "description": "Behind the waterfall."},
+                {"lat":-6316, "lng":8766, "description": ""},
+                {"lat":-7642, "lng":9978, "description": ""},
+                {"lat":-4960, "lng":3944, "description": ""},
+                {"lat":-2724, "lng":15144, "description": ""},
+                {"lat":-4164, "lng":14188, "description": ""}
+            ]
+        },
+        {
+            "name": "Picnic Basket",
+            "locations": [
+                {"lat":-4504, "lng":8304, "description": ""},
+                {"lat":-3780, "lng":7690, "description": ""},
+                {"lat":-6680, "lng":2578, "description": ""},
+                {"lat":-6704, "lng":2502, "description": ""},
+                {"lat":-5828, "lng":1296, "description": ""},
+                {"lat":-4544, "lng":15430, "description": ""},
+                {"lat":-4704, "lng":15570, "description": ""},
+                {"lat":-3246, "lng":10336, "description": ""},
+                {"lat":-6186, "lng":9332, "description": ""},
+                {"lat":-6164, "lng":9270, "description": ""},
+                {"lat":-4102, "lng":13062, "description": ""},
+                {"lat":-4342, "lng":8430, "description": ""},
+                {"lat":-568, "lng":12646, "description": ""},
+                {"lat":-316, "lng":12898, "description": ""},
+                {"lat":-718, "lng":13506, "description": ""},
+                {"lat":-1428, "lng":14476, "description": ""},
+                {"lat":-2728, "lng":13728, "description": ""}
+            ]
+        },
+        {
+            "name": "Quest Item",
+            "locations": [
+                {"lat":-1934, "lng":13608, "description": "Missing Papers under the bridge in the flowerbed."},
+                {"lat":-4898, "lng":4524, "description": "Notebook on the ground next to the signpost."}
+            ]
+        }
+    ]

@@ -10,15 +10,21 @@
     const initialLocation = data.searchId
         ? data.locations.find((location) => location.id === data.searchId)
         : null;
+
+    const locations = Object.values(data.locationsNew);
 </script>
 
 <Sidebar {data} tabs={["Filters", "Progress", "Settings"]} />
 <main>
     <Map initialLocation={initialLocation ? [initialLocation?.lat, initialLocation?.lng] : ""}>
-        {#each data.locations as location}
-            <Marker {location}>
-                <Popup />
-            </Marker>
+        {#each locations as category, i}
+            {#each locations[i] as item}
+                {#each item.locations as location}
+                    <Marker location={{name: item.name, ...location}}>
+                        <Popup />
+                    </Marker>
+                {/each}
+            {/each}
         {/each}
     </Map>
 </main>

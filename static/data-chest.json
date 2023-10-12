@@ -1,0 +1,104 @@
+[
+        {
+            "name": "Common Chest",
+            "rarity": 0,
+            "locations": [
+                {"lat":-3978, "lng":10864, "description": "Inside the church."},
+                {"lat":-4234, "lng":10236, "description": ""},
+                {"lat":-5582, "lng":12192, "description": ""},
+                {"lat":-5270, "lng":11238, "description": ""},
+                {"lat":-5150, "lng":9344, "description": "In the stands."},
+                {"lat":-5532, "lng":14158, "description": ""},
+                {"lat":-5692, "lng":8322, "description": ""},
+                {"lat":-4850, "lng":5744, "description": ""},
+                {"lat":-5338, "lng":6232, "description": "In the grass behind the rock."},
+                {"lat":-2824, "lng":11932, "description": ""},
+                {"lat":-4402, "lng":10984, "description": ""},
+                {"lat":-3124, "lng":12818, "description": "On the porch."},
+                {"lat":-4065.2, "lng":5785.7, "description": ""},
+                {"lat":-3932, "lng":5104, "description": ""},
+                {"lat":-7710, "lng":10332, "description": ""},
+                {"lat":-4996, "lng":14286, "description": "On the second floor."},
+                {"lat":-4754, "lng":15440, "description": ""},
+                {"lat":-6492, "lng":15216, "description": ""},
+                {"lat":-4068, "lng":12474, "description": ""},
+                {"lat":-1942, "lng":12580, "description": ""},
+                {"lat":-2648, "lng":13302, "description": ""},
+                {"lat":-1694, "lng":11946, "description": "On the wooden platform."},
+                {"lat":-2124, "lng":13808, "description": ""},
+                {"lat":-914, "lng":14118, "description": "Inside the tower."},
+                {"lat":-2426, "lng":13910, "description": "Up the stairs on the side of the perfume shop."},
+                {"lat":-2674, "lng":13472, "description": ""},
+                {"lat":-1418, "lng":13482, "description": "On the pedestal in the middle of the water."},
+                {"lat":-2074, "lng":15258, "description": ""},
+                {"lat":-2610, "lng":14324, "description": ""}
+            ]
+        },
+        {
+            "name": "Uncommon Chest",
+            "rarity": 1,
+            "locations": [
+                {"lat":-6440, "lng":1486, "description": "On the porch."},
+                {"lat":-3564, "lng":9476, "description": ""},
+                {"lat":-7372, "lng":8020, "description": "In the wagon."},
+                {"lat":-6380, "lng":688, "description": ""},
+                {"lat":-4930, "lng":1578, "description": ""},
+                {"lat":-7496, "lng":14236, "description": ""},
+                {"lat":-4514, "lng":2188, "description": ""},
+                {"lat":-5858, "lng":4714, "description": ""},
+                {"lat":-6146, "lng":9150, "description": ""},
+                {"lat":-6506, "lng":10350, "description": ""},
+                {"lat":-2536, "lng":10504, "description": ""},
+                {"lat":-3664, "lng":10420, "description": "Inside the tree stump."},
+                {"lat":-7098, "lng":9090, "description": ""},
+                {"lat":-3508, "lng":15578, "description": ""},
+                {"lat":-4364, "lng":12358, "description": ""},
+                {"lat":-3658, "lng":12024, "description": "On the rock."},
+                {"lat":-1174, "lng":11990, "description": ""},
+                {"lat":-1548, "lng":13438, "description": "In the corner of the stable."},
+                {"lat":-2540, "lng":14590, "description": ""},
+                {"lat":-2078, "lng":12526, "description": "On the wooden platform above the manure."},
+                {"lat":-536, "lng":13604, "description": "Hidden in the hay bales under the stairs."}
+            ]
+        },
+        {
+            "name": "Rare Chest",
+            "rarity": 2,
+            "locations": [
+                {"lat":-6316, "lng":11940, "description": "Inside the cave."},
+                {"lat":-5418, "lng":5314, "description": "Underneath the broken bridge."},
+                {"lat":-4870, "lng":3648, "description": "On the stump."},
+                {"lat":-5802, "lng":3246, "description": ""},
+                {"lat":-4092, "lng":9930, "description": "In the water under the bridge."},
+                {"lat":-7602, "lng":10952, "description": ""},
+                {"lat":-6888, "lng":12098, "description": ""},
+                {"lat":-5848, "lng":15616, "description": ""},
+                {"lat":-6504, "lng":15716, "description": ""},
+                {"lat":-2182, "lng":15082, "description": "In the cavern."},
+                {"lat":-2012, "lng":11856, "description": "On the scaffolding, one level from the bottom."},
+                {"lat":-1586, "lng":13998, "description": "Go inside and follow the stairs all the way up."},
+                {"lat":-4102, "lng":14326, "description": "Inside the cave."}
+            ]
+        },
+        {
+            "name": "Epic Chest",
+            "rarity": 3,
+            "locations": [
+                {"lat":-4486, "lng":7898, "description": "Underwater at the end of the dock."},
+                {"lat":-4892, "lng":3692, "description": "Inside the cave."},
+                {"lat":-2936, "lng":11164, "description": ""},
+                {"lat":-7839, "lng":9976.2, "description": "Underwater."},
+                {"lat":-8768, "lng":9784, "description": "Inside the cave."},
+                {"lat":-1684, "lng":14614, "description": ""},
+                {"lat":-82, "lng":15670, "description": "Behind the top tier of seats in the arena."}
+            ]
+        },
+        {
+            "name": "Legendary Chest",
+            "rarity": 4,
+            "locations": [
+                {"lat":-6502, "lng":8738, "description": "Inside the cave."},
+                {"lat":-250, "lng":12558, "description": "At the top of the lighthouse. You need to light the 10 braziers around Agricola to open the door (you'll get a message once you've done it)."}
+            ]
+        }
+    ]
