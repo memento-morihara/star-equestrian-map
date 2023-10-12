@@ -14,7 +14,7 @@
 
 <Sidebar {data} tabs={["Filters", "Progress", "Settings"]} />
 <main>
-    <Map initialLocation={[initialLocation?.lat, initialLocation?.lng]}>
+    <Map initialLocation={initialLocation ? [initialLocation?.lat, initialLocation?.lng] : ""}>
         {#each data.locations as location}
             <Marker {location}>
                 <Popup />
@@ -26,6 +26,7 @@
 
 <style>
     @import "@shoelace-style/shoelace/dist/themes/light.css";
+    @import "leaflet-draw/dist/leaflet.draw.css";
 
     :root {
         font-family: var(--sl-font-sans);
