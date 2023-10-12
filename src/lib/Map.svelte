@@ -1,8 +1,10 @@
 <script>
     import { onMount, setContext } from "svelte";
     import { browser } from "$app/environment";
+    import AddMarker from "$lib/AddMarker.svelte";
 
     let map;
+    let drawnItems;
     export let initialLocation;
 
     setContext("map", () => map);
@@ -10,6 +12,7 @@
         onMount(async () => {
             if (browser) {
                 const L = await import("leaflet");
+                await import("leaflet-draw");
                 const mapExtent = [0.0, -16384.0, 16384.0, 0.0];
                 const mapMinZoom = 0;
                 const mapMaxZoom = 4;
@@ -55,7 +58,51 @@
                         map.setView(initialLocation, 5);
                     });
                 }
+
+                drawnItems = new L.FeatureGroup();
+                map.addLayer(drawnItems);
+                let drawControl = new L.Control.Draw({
+                  draw: {
+                    polygon: false,
+                    rectangle: false,
+                    circlemarker: false,
+                    circle: false,
+                    polyline: {
+                      showLength: false,
+                    },
+                  },
+                  edit: {
+                    featureGroup: drawnItems,
+                  },
+                });
+
+                L.control.layers({"drawLayer": drawnItems} ).addTo(map);
+
+                map.addControl(drawControl);
+
+
             }
+            map.on(L.Draw.Event.CREATED, (e) => {
+              // Get the type of feature that was added
+              switch (e.layerType) {
+                case "marker":
+                  // Bind a popup to hold a form for setting properties for the new marker
+                  e.layer.bindPopup('<div id="new-marker"></div>', {minWidth: 250});
+                  break;
+                case "polyline":
+                  console.log(e.layer.toGeoJSON());
+                  break;
+              }
+              drawnItems.addLayer(e.layer);
+
+              // Open marker popup automatically and set its content
+              if (e.layerType === "marker") {
+                e.layer.openPopup();
+                let popup = new AddMarker({target: document.getElementById("new-marker")});
+                popup.$set({marker: e.layer});
+              }
+            });
+
         });
 
         return {
@@ -64,6 +111,8 @@
             },
         };
     }
+
+
 </script>
 
 <div id="map" use:initMap>

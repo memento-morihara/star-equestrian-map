@@ -1,0 +1,119 @@
+[
+        {
+            "name": "Butterflies",
+            "rarity": 1,
+            "locations": [
+                {"lat":-5764, "lng":12528, "description": ""},
+                {"lat":-4852, "lng":13038, "description": ""},
+                {"lat":-7246, "lng":13426, "description": ""},
+                {"lat":-4720, "lng":12110, "description": ""},
+                {"lat":-7036, "lng":11136, "description": ""},
+                {"lat":-5096, "lng":7902, "description": ""},
+                {"lat":-4668, "lng":8420, "description": ""},
+                {"lat":-5652, "lng":10302, "description": ""},
+                {"lat":-6248, "lng":7956, "description": ""},
+                {"lat":-4772, "lng":1960, "description": ""},
+                {"lat":-5656, "lng":8664, "description": ""},
+                {"lat":-5946, "lng":6778, "description": ""},
+                {"lat":-6710, "lng":14678, "description": ""},
+                {"lat":-4260, "lng":15236, "description": ""},
+                {"lat":-5762, "lng":15416, "description": ""},
+                {"lat":-6572, "lng":13654, "description": ""},
+                {"lat":-4918, "lng":12400, "description": ""},
+                {"lat":-7888, "lng":8320, "description": ""},
+                {"lat":-6114, "lng":9108, "description": ""},
+                {"lat":-7574, "lng":9228, "description": ""},
+                {"lat":-6786, "lng":12464, "description": ""},
+                {"lat":-5348, "lng":13868, "description": ""},
+                {"lat":-5676, "lng":12644, "description": ""},
+                {"lat":-7204, "lng":9884, "description": ""},
+                {"lat":-7036, "lng":9512, "description": ""},
+                {"lat":-5208, "lng":6280, "description": ""},
+                {"lat":-600, "lng":13850, "description": ""},
+                {"lat":-956, "lng":13796, "description": ""},
+                {"lat":-1198, "lng":13536, "description": ""},
+                {"lat":-1650, "lng":12636, "description": ""},
+                {"lat":-1196, "lng":12940, "description": ""},
+                {"lat":-944, "lng":12658, "description": ""},
+                {"lat":-484, "lng":12894, "description": ""},
+                {"lat":-1892, "lng":13218, "description": ""},
+                {"lat":-1786, "lng":14198, "description": ""},
+                {"lat":-1176, "lng":12402, "description": ""},
+                {"lat":-5412, "lng":11316, "description": ""},
+                {"lat":-5620, "lng":14696, "description": ""}
+            ]
+        },
+        {
+            "name": "Eggs",
+            "rarity": 1,
+            "locations": [
+                {"lat":-7270, "lng":11030, "description": ""},
+                {"lat":-5478, "lng":7910, "description": ""},
+                {"lat":-5852, "lng":14034, "description": ""},
+                {"lat":-5326, "lng":10730, "description": ""}
+            ]
+        },
+        {
+            "name": "Fish",
+            "rarity": 1,
+            "locations": [
+                {"lat":-5184, "lng":9948, "description": ""},
+                {"lat":-4550, "lng":7854, "description": ""},
+                {"lat":-3560, "lng":12220, "description": ""},
+                {"lat":-7830, "lng":9978, "description": ""},
+                {"lat":-4062, "lng":15464, "description": ""},
+                {"lat":-2792, "lng":14822, "description": ""},
+                {"lat":-6694, "lng":12250, "description": ""},
+                {"lat":-5314, "lng":13022, "description": ""},
+                {"lat":-4790, "lng":15980, "description": ""},
+                {"lat":-7440, "lng":1188, "description": ""},
+                {"lat":-1624, "lng":12004, "description": ""},
+                {"lat":-2144, "lng":11462, "description": ""},
+                {"lat":-870, "lng":14404, "description": ""},
+                {"lat":-1814, "lng":12742, "description": ""},
+                {"lat":-1196, "lng":11880, "description": "On the rocks, slightly above the level of the beacon island."}
+            ]
+        },
+        {
+            "name": "Milk",
+            "rarity": 1,
+            "locations": [
+                {"lat":-5120, "lng":11220, "description": ""},
+                {"lat":-7218, "lng":10818, "description": ""},
+                {"lat":-7358, "lng":10834, "description": ""},
+                {"lat":-7374, "lng":10874, "description": ""},
+                {"lat":-7262, "lng":10854, "description": ""},
+                {"lat":-7322, "lng":10880, "description": ""},
+                {"lat":-5954, "lng":13852, "description": ""},
+                {"lat":-6062, "lng":13970, "description": ""},
+                {"lat":-5132, "lng":10972, "description": ""},
+                {"lat":-5198, "lng":11010, "description": ""},
+                {"lat":-5142, "lng":11032, "description": ""},
+                {"lat":-5210, "lng":11102, "description": "Inside the barn, but reachable through the wall."},
+                {"lat":-5256, "lng":11160, "description": ""},
+                {"lat":-5140, "lng":11166, "description": ""},
+                {"lat":-5794, "lng":13726, "description": ""}
+            ]
+        },
+        {
+            "name": "Wool",
+            "rarity": 1,
+            "locations": [
+                {"lat":-5728, "lng":11274, "description": ""},
+                {"lat":-5788, "lng":11266, "description": ""},
+                {"lat":-5818, "lng":11360, "description": ""},
+                {"lat":-5766, "lng":11370, "description": ""},
+                {"lat":-5820, "lng":11228, "description": ""},
+                {"lat":-6310, "lng":7566, "description": ""},
+                {"lat":-6264, "lng":7532, "description": ""},
+                {"lat":-6242, "lng":7472, "description": ""},
+                {"lat":-6218, "lng":7642, "description": ""},
+                {"lat":-5492, "lng":14268, "description": ""},
+                {"lat":-5628, "lng":14254, "description": ""},
+                {"lat":-5572, "lng":14300, "description": ""},
+                {"lat":-5440, "lng":14322, "description": ""},
+                {"lat":-5474, "lng":14404, "description": ""},
+                {"lat":-5536, "lng":14354, "description": ""}
+            ]
+        }
+    ]
