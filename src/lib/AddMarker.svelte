@@ -1,5 +1,4 @@
 <script>
-  import { activeFilters } from "$lib/stores.js";
   import { markerData } from "$lib/markerData.js";
   import { onMount } from "svelte";
 
@@ -27,13 +26,15 @@
 </script>
 
 <select bind:value>
-    {#each $activeFilters as group}
-        <optgroup label={group.name}>
-            {#each group.items as item}
-                <option value={`${group.name},${item.name}`}>{item.name}</option>
-            {/each}
-        </optgroup>
-    {/each}
+    {#await markerData() then data}
+        {#each data as group}
+            <optgroup label={group.name}>
+                {#each group.items as item}
+                    <option value={`${group.name},${item.name}`}>{item.name}</option>
+                {/each}
+            </optgroup>
+        {/each}
+    {/await}
 </select>
 
 <textarea bind:value={description}></textarea>
