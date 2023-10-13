@@ -1,144 +1,704 @@
 [
-        {
-            "name": "Bottle",
-            "rarity": 4,
-            "locations": [
-                {"lat":-4956, "lng":14190, "description": "In the water under the waterwheel."},
-                {"lat":-3734, "lng":14552, "description": ""},
-                {"lat":-3640, "lng":15274, "description": ""},
-                {"lat":-2186, "lng":15902, "description": ""},
-                {"lat":-3046, "lng":12288, "description": ""},
-                {"lat":-4828, "lng":11472, "description": ""},
-                {"lat":-4274, "lng":12258, "description": ""},
-                {"lat":-5920, "lng":12306, "description": "Next to the cave entrance."},
-                {"lat":-6058, "lng":9706, "description": "On the rocks near the top of the waterfall."},
-                {"lat":-3660, "lng":9780, "description": ""},
-                {"lat":-3826, "lng":7850, "description": ""},
-                {"lat":-7078, "lng":10216, "description": "At the top of the waterfall."},
-                {"lat":-2428, "lng":11396, "description": "Floating in the water."},
-                {"lat":-8266, "lng":7860, "description": "Behind the waterfall."},
-                {"lat":-7120, "lng":2334, "description": "Underwater"},
-                {"lat":-5316, "lng":13206, "description": "In the water."},
-                {"lat":-4848, "lng":13254, "description": ""},
-                {"lat":-6308, "lng":12210, "description": ""},
-                {"lat":-306, "lng":12492, "description": ""},
-                {"lat":-1878, "lng":13602, "description": "Under the ramp."},
-                {"lat":-1566, "lng":14578, "description": ""},
-                {"lat":-2192, "lng":15692, "description": "Inside the cavern behind a stalagmite."},
-                {"lat":-2478, "lng":14648, "description": ""}
-            ]
-        },
-        {
-            "name": "Horseshoe",
-            "rarity": 4,
-            "locations": [
-                {"lat":-4856, "lng":9862, "description": "In the pile of hay in the barn."},
-                {"lat":-4728, "lng":7658, "description": ""},
-                {"lat":-4020, "lng":5796, "description": "Behind the logs."},
-                {"lat":-6150, "lng":4574, "description": ""},
-                {"lat":-4024, "lng":9302, "description": "In the stands."},
-                {"lat":-8025, "lng":9976.2, "description": "Inside the waterfall. Swim straight into the waterfall and you'll see the prompt to pick it up."},
-                {"lat":-5980, "lng":5534, "description": ""},
-                {"lat":-5558, "lng":5402, "description": ""},
-                {"lat":-5816, "lng":4872, "description": ""},
-                {"lat":-6498, "lng":2042, "description": "Inside the tree stump."},
-                {"lat":-6710, "lng":1588, "description": ""},
-                {"lat":-6136, "lng":1024, "description": ""},
-                {"lat":-4592, "lng":3300, "description": ""},
-                {"lat":-6538, "lng":14562, "description": ""},
-                {"lat":-5316, "lng":3280, "description": ""},
-                {"lat":-6892, "lng":3352, "description": ""},
-                {"lat":-3692, "lng":9292, "description": ""},
-                {"lat":-5876, "lng":7364, "description": ""},
-                {"lat":-7319.6, "lng":10642, "description": "On the roof."},
-                {"lat":-6628, "lng":7762, "description": ""},
-                {"lat":-7028, "lng":9212, "description": ""},
-                {"lat":-6372, "lng":10590, "description": "On the rocks next to the waterfall."},
-                {"lat":-3494, "lng":12176, "description": ""},
-                {"lat":-5816, "lng":13672, "description": ""},
-                {"lat":-5470, "lng":14172, "description": ""},
-                {"lat":-5152, "lng":15056, "description": ""},
-                {"lat":-4926, "lng":15446, "description": "Behind the windmill."},
-                {"lat":-6316, "lng":15612, "description": ""},
-                {"lat":-6620, "lng":15128, "description": "In a corner next to a tree."},
-                {"lat":-7362, "lng":14324, "description": ""},
-                {"lat":-3036, "lng":14984, "description": ""},
-                {"lat":-2398, "lng":11718, "description": ""},
-                {"lat":-5460, "lng":9606, "description": ""},
-                {"lat":-5700, "lng":3700, "description": ""},
-                {"lat":-4846, "lng":10692, "description": ""},
-                {"lat":-2084, "lng":13740, "description": "In the flowerbed."},
-                {"lat":-2692, "lng":14050, "description": "In a nook in the wall."},
-                {"lat":-694, "lng":13726, "description": "On the second floor."},
-                {"lat":-2872, "lng":13712, "description": "In the wheelbarrow."},
-                {"lat":-1824, "lng":14152, "description": "On the trash can on the corner."},
-                {"lat":-1452, "lng":12448, "description": "Up the stairs."},
-                {"lat":-730, "lng":12414, "description": "On top of the hedge."},
-                {"lat":-1502, "lng":15414, "description": "On the horse statue's hoof."},
-                {"lat":-1764, "lng":15518, "description": "Under the wheel."},
-                {"lat":-1926, "lng":14350, "description": ""},
-                {"lat":-2020, "lng":12468, "description": "Inside a broken crate."},
-                {"lat":-1782, "lng":11664, "description": "On the hay bale hanging over the water."},
-                {"lat":-278, "lng":16026, "description": "Outside of the arena, on the railing behind the hedge."},
-                {"lat":-1640, "lng":12404, "description": ""},
-                {"lat":-2226, "lng":15102, "description": "On the ledge on the corner of the tower."}
-            ]
-        },
-        {
-            "name": "Sheriff Badge",
-            "rarity": 4,
-            "locations": [
-                {"lat":-4170, "lng":10492, "description": "On top of the train station chimney."},
-                {"lat":-4484, "lng":2930, "description": "Clipping into the tree trunk next to the rock."},
-                {"lat":-4812, "lng":10594, "description": "Underneath the picnic table."},
-                {"lat":-6022, "lng":698, "description": ""},
-                {"lat":-6736, "lng":3670, "description": ""},
-                {"lat":-4662, "lng":1756, "description": ""},
-                {"lat":-7072, "lng":15600, "description": "Inside the cave."},
-                {"lat":-7142, "lng":13480, "description": ""},
-                {"lat":-4084, "lng":12044, "description": "Inside the tree stump."},
-                {"lat":-6448, "lng":8862, "description": "Inside the cave."},
-                {"lat":-5322, "lng":7888, "description": "On the roof."},
-                {"lat":-2524, "lng":10732, "description": ""},
-                {"lat":-6144, "lng":12044, "description": "Inside the cave on top of a stalagmite."},
-                {"lat":-7448, "lng":9400, "description": "In the tent."},
-                {"lat":-3776, "lng":14724, "description": ""},
-                {"lat":-560, "lng":13144, "description": "On the balcony. Go inside, climb the stairs, and jump along the wall."},
-                {"lat":-2904, "lng":13850, "description": "Above the gate."},
-                {"lat":-1286, "lng":11938, "description": "On the corner of the ledge on the outside of the tower."},
-                {"lat":-1668, "lng":12558, "description": "On the roof."}
-            ]
-        },
-        {
-            "name": "Toy Unicorn",
-            "rarity": 4,
-            "locations": [
-                {"lat":-4180, "lng":10852, "description": "On top of the church steeple. Jump to the roof from the beam on the cliff to the northeast."},
-                {"lat":-4968, "lng":14266, "description": "On the third floor. Look up towards the ceiling."},
-                {"lat":-7564, "lng":10054, "description": "On the rocks -- not the very top, but a bit below."},
-                {"lat":-6330, "lng":12226, "description": "Inside the cave."},
-                {"lat":-6286, "lng":15306, "description": ""},
-                {"lat":-658, "lng":16134, "description": "On a crate in the top tier of seats in the arena."},
-                {"lat":-1848, "lng":14624, "description": "On the roof."},
-                {"lat":-2022, "lng":13802, "description": "On the roof."},
-                {"lat":-870, "lng":14120, "description": "Up top, next to the horse statue."},
-                {"lat":-2408, "lng":13272, "description": "On the brazier/bowl the big horse statues are holding."}
-            ]
-        },
-        {
-            "name": "Brazier",
-            "rarity": 4,
-            "locations": [
-                {"lat":-1518, "lng":14528, "description": ""},
-                {"lat":-1618, "lng":14592, "description": ""},
-                {"lat":-2168, "lng":12536, "description": "Up on the wall."},
-                {"lat":-1422, "lng":13826, "description": ""},
-                {"lat":-1812, "lng":12136, "description": ""},
-                {"lat":-3014, "lng":13698, "description": ""},
-                {"lat":-1176, "lng":11766, "description": ""},
-                {"lat":-2670.2, "lng":15158, "description": "Up on the cliff."},
-                {"lat":-418, "lng":12516, "description": ""},
-                {"lat":-370, "lng":12588, "description": ""}
-            ]
-        }
-    ]
+    {
+        "name": "Bottle",
+        "rarity": 4,
+        "locations": [
+            {
+                "lat": -4956,
+                "lng": 14190,
+                "id": "c959atbezlzxja6",
+                "description": "In the water under the waterwheel."
+            },
+            {
+                "lat": -3734,
+                "lng": 14552,
+                "id": "yqkrp0jj6u95bu5",
+                "description": ""
+            },
+            {
+                "lat": -3640,
+                "lng": 15274,
+                "id": "gqo2tnplkx9nxva",
+                "description": ""
+            },
+            {
+                "lat": -2186,
+                "lng": 15902,
+                "id": "kwyb9obl25v1emu",
+                "description": ""
+            },
+            {
+                "lat": -3046,
+                "lng": 12288,
+                "id": "6of2x7ek1bg7zy0",
+                "description": ""
+            },
+            {
+                "lat": -4828,
+                "lng": 11472,
+                "id": "t0aq90p7aehpw8x",
+                "description": ""
+            },
+            {
+                "lat": -4274,
+                "lng": 12258,
+                "id": "v7r2ykkvauyko4e",
+                "description": ""
+            },
+            {
+                "lat": -5920,
+                "lng": 12306,
+                "id": "2e8n3rfb6arqzms",
+                "description": "Next to the cave entrance."
+            },
+            {
+                "lat": -6058,
+                "lng": 9706,
+                "id": "1502ix42no4f6ic",
+                "description": "On the rocks near the top of the waterfall."
+            },
+            {
+                "lat": -3660,
+                "lng": 9780,
+                "id": "xengtuyuuyztmpg",
+                "description": ""
+            },
+            {
+                "lat": -3826,
+                "lng": 7850,
+                "id": "2them1736g1d9ul",
+                "description": ""
+            },
+            {
+                "lat": -7078,
+                "lng": 10216,
+                "id": "seqdvu96b1r95fk",
+                "description": "At the top of the waterfall."
+            },
+            {
+                "lat": -2428,
+                "lng": 11396,
+                "id": "tc4ep3dbvmi6pni",
+                "description": "Floating in the water."
+            },
+            {
+                "lat": -8266,
+                "lng": 7860,
+                "id": "6dddbdj174tr63m",
+                "description": "Behind the waterfall."
+            },
+            {
+                "lat": -7120,
+                "lng": 2334,
+                "id": "v1r1ne8qhgj8z8j",
+                "description": "Underwater"
+            },
+            {
+                "lat": -5316,
+                "lng": 13206,
+                "id": "nmmtog98r030zo9",
+                "description": "In the water."
+            },
+            {
+                "lat": -4848,
+                "lng": 13254,
+                "id": "e8ldsf287g3i7cn",
+                "description": ""
+            },
+            {
+                "lat": -6308,
+                "lng": 12210,
+                "id": "et8yi60ifhia74y",
+                "description": ""
+            },
+            {
+                "lat": -306,
+                "lng": 12492,
+                "id": "48dheatfld6hcy6",
+                "description": ""
+            },
+            {
+                "lat": -1878,
+                "lng": 13602,
+                "id": "xbxnkc1nvhvx1ik",
+                "description": "Under the ramp."
+            },
+            {
+                "lat": -1566,
+                "lng": 14578,
+                "id": "41d8i44w9n64ci7",
+                "description": ""
+            },
+            {
+                "lat": -2192,
+                "lng": 15692,
+                "id": "ml04n2k0flbtve9",
+                "description": "Inside the cavern behind a stalagmite."
+            },
+            {
+                "lat": -2478,
+                "lng": 14648,
+                "id": "tmdz65fzrv0vxer",
+                "description": ""
+            }
+        ]
+    },
+    {
+        "name": "Horseshoe",
+        "rarity": 4,
+        "locations": [
+            {
+                "lat": -4856,
+                "lng": 9862,
+                "id": "539xxwaw9ksc0g9",
+                "description": "In the pile of hay in the barn."
+            },
+            {
+                "lat": -4728,
+                "lng": 7658,
+                "id": "9uhii1xct52m5es",
+                "description": ""
+            },
+            {
+                "lat": -4020,
+                "lng": 5796,
+                "id": "0i5u9z7qcajkj15",
+                "description": "Behind the logs."
+            },
+            {
+                "lat": -6150,
+                "lng": 4574,
+                "id": "ffdfpvlk2ywveim",
+                "description": ""
+            },
+            {
+                "lat": -4024,
+                "lng": 9302,
+                "id": "09xyk7x6ouep8ze",
+                "description": "In the stands."
+            },
+            {
+                "lat": -8025,
+                "lng": 9976.2,
+                "id": "vxx39r3sjxzlne6",
+                "description": "Inside the waterfall. Swim straight into the waterfall and you'll see the prompt to pick it up."
+            },
+            {
+                "lat": -5980,
+                "lng": 5534,
+                "id": "pmxp9mnsxn82o0p",
+                "description": ""
+            },
+            {
+                "lat": -5558,
+                "lng": 5402,
+                "id": "frjoe7jled2snk7",
+                "description": ""
+            },
+            {
+                "lat": -5816,
+                "lng": 4872,
+                "id": "thw9sazclig2a7k",
+                "description": ""
+            },
+            {
+                "lat": -6498,
+                "lng": 2042,
+                "id": "w05ys4smz5dcnlr",
+                "description": "Inside the tree stump."
+            },
+            {
+                "lat": -6710,
+                "lng": 1588,
+                "id": "jout87xhmf05mtg",
+                "description": ""
+            },
+            {
+                "lat": -6136,
+                "lng": 1024,
+                "id": "trlppx6h8eq2wtu",
+                "description": ""
+            },
+            {
+                "lat": -4592,
+                "lng": 3300,
+                "id": "0wgcastsqvtqe92",
+                "description": ""
+            },
+            {
+                "lat": -6538,
+                "lng": 14562,
+                "id": "zag1d3epu130xow",
+                "description": ""
+            },
+            {
+                "lat": -5316,
+                "lng": 3280,
+                "id": "xi6wbrf5k6nmbqv",
+                "description": ""
+            },
+            {
+                "lat": -6892,
+                "lng": 3352,
+                "id": "7kzj0ztkrotvp30",
+                "description": ""
+            },
+            {
+                "lat": -3692,
+                "lng": 9292,
+                "id": "b6xznn85b19o9vs",
+                "description": ""
+            },
+            {
+                "lat": -5876,
+                "lng": 7364,
+                "id": "hgka6rgm9axyp8a",
+                "description": ""
+            },
+            {
+                "lat": -7319.6,
+                "lng": 10642,
+                "id": "jhp4qhqv0ichl04",
+                "description": "On the roof."
+            },
+            {
+                "lat": -6628,
+                "lng": 7762,
+                "id": "wshx364ox1timb1",
+                "description": ""
+            },
+            {
+                "lat": -7028,
+                "lng": 9212,
+                "id": "ugxf8rr1utq1hvy",
+                "description": ""
+            },
+            {
+                "lat": -6372,
+                "lng": 10590,
+                "id": "vtwsr7ytpj1ynsn",
+                "description": "On the rocks next to the waterfall."
+            },
+            {
+                "lat": -3494,
+                "lng": 12176,
+                "id": "l592am2kzujxg56",
+                "description": ""
+            },
+            {
+                "lat": -5816,
+                "lng": 13672,
+                "id": "lgqrrzcccgnyhw9",
+                "description": ""
+            },
+            {
+                "lat": -5470,
+                "lng": 14172,
+                "id": "tpjzbugmiuqlzx0",
+                "description": ""
+            },
+            {
+                "lat": -5152,
+                "lng": 15056,
+                "id": "s454p9k69v3bcdy",
+                "description": ""
+            },
+            {
+                "lat": -4926,
+                "lng": 15446,
+                "id": "9x83tpef0iik60k",
+                "description": "Behind the windmill."
+            },
+            {
+                "lat": -6316,
+                "lng": 15612,
+                "id": "4pfg7idxpkray74",
+                "description": ""
+            },
+            {
+                "lat": -6620,
+                "lng": 15128,
+                "id": "qtciaismbdxpeop",
+                "description": "In a corner next to a tree."
+            },
+            {
+                "lat": -7362,
+                "lng": 14324,
+                "id": "hm0u0j2p8jkkd9f",
+                "description": ""
+            },
+            {
+                "lat": -3036,
+                "lng": 14984,
+                "id": "33jf7w72s2mk2sl",
+                "description": ""
+            },
+            {
+                "lat": -2398,
+                "lng": 11718,
+                "id": "bnnu0g03mthk1pj",
+                "description": ""
+            },
+            {
+                "lat": -5460,
+                "lng": 9606,
+                "id": "o9nn1vgj68k6exo",
+                "description": ""
+            },
+            {
+                "lat": -5700,
+                "lng": 3700,
+                "id": "7nk9a9sd7qf4yel",
+                "description": ""
+            },
+            {
+                "lat": -4846,
+                "lng": 10692,
+                "id": "sdracm5vogv0cpe",
+                "description": ""
+            },
+            {
+                "lat": -2084,
+                "lng": 13740,
+                "id": "hmhdssofjn9o0ol",
+                "description": "In the flowerbed."
+            },
+            {
+                "lat": -2692,
+                "lng": 14050,
+                "id": "bfoenbbn4tp3lrg",
+                "description": "In a nook in the wall."
+            },
+            {
+                "lat": -694,
+                "lng": 13726,
+                "id": "u5bicyuq637djut",
+                "description": "On the second floor."
+            },
+            {
+                "lat": -2872,
+                "lng": 13712,
+                "id": "9nugiu55uvwazmx",
+                "description": "In the wheelbarrow."
+            },
+            {
+                "lat": -1824,
+                "lng": 14152,
+                "id": "22n8zvwiyx3sqq1",
+                "description": "On the trash can on the corner."
+            },
+            {
+                "lat": -1452,
+                "lng": 12448,
+                "id": "l5xtzuyvb29k4h9",
+                "description": "Up the stairs."
+            },
+            {
+                "lat": -730,
+                "lng": 12414,
+                "id": "3jb2oa6fynexrpp",
+                "description": "On top of the hedge."
+            },
+            {
+                "lat": -1502,
+                "lng": 15414,
+                "id": "jzpmsl83mzvbjdr",
+                "description": "On the horse statue's hoof."
+            },
+            {
+                "lat": -1764,
+                "lng": 15518,
+                "id": "5mgpiziz4ktrf7e",
+                "description": "Under the wheel."
+            },
+            {
+                "lat": -1926,
+                "lng": 14350,
+                "id": "lu1erf1019g1l7n",
+                "description": ""
+            },
+            {
+                "lat": -2020,
+                "lng": 12468,
+                "id": "shm0koalvzyy1qf",
+                "description": "Inside a broken crate."
+            },
+            {
+                "lat": -1782,
+                "lng": 11664,
+                "id": "j2w3ndowd9nuoze",
+                "description": "On the hay bale hanging over the water."
+            },
+            {
+                "lat": -278,
+                "lng": 16026,
+                "id": "ebo55hv3rs205ss",
+                "description": "Outside of the arena, on the railing behind the hedge."
+            },
+            {
+                "lat": -1640,
+                "lng": 12404,
+                "id": "sz68j193lki5677",
+                "description": ""
+            },
+            {
+                "lat": -2226,
+                "lng": 15102,
+                "id": "8pdksr155ogprnd",
+                "description": "On the ledge on the corner of the tower."
+            }
+        ]
+    },
+    {
+        "name": "Sheriff Badge",
+        "rarity": 4,
+        "locations": [
+            {
+                "lat": -4170,
+                "lng": 10492,
+                "id": "gzy2hzdhj8iaydm",
+                "description": "On top of the train station chimney."
+            },
+            {
+                "lat": -4484,
+                "lng": 2930,
+                "id": "gool0cm8deso7jp",
+                "description": "Clipping into the tree trunk next to the rock."
+            },
+            {
+                "lat": -4812,
+                "lng": 10594,
+                "id": "sz7ze8m1pox6a6b",
+                "description": "Underneath the picnic table."
+            },
+            {
+                "lat": -6022,
+                "lng": 698,
+                "id": "a5w8g9lp7ymhg3b",
+                "description": ""
+            },
+            {
+                "lat": -6736,
+                "lng": 3670,
+                "id": "sm86fa4vxrtzvww",
+                "description": ""
+            },
+            {
+                "lat": -4662,
+                "lng": 1756,
+                "id": "brqkriyqo4qw63s",
+                "description": ""
+            },
+            {
+                "lat": -7072,
+                "lng": 15600,
+                "id": "u1o2h9o3241uc20",
+                "description": "Inside the cave."
+            },
+            {
+                "lat": -7142,
+                "lng": 13480,
+                "id": "nbmletqkodujmy8",
+                "description": ""
+            },
+            {
+                "lat": -4084,
+                "lng": 12044,
+                "id": "q27yrzksi3qnr0v",
+                "description": "Inside the tree stump."
+            },
+            {
+                "lat": -6448,
+                "lng": 8862,
+                "id": "a77wj1d55ba8rmu",
+                "description": "Inside the cave."
+            },
+            {
+                "lat": -5322,
+                "lng": 7888,
+                "id": "zaarlss9em49oqq",
+                "description": "On the roof."
+            },
+            {
+                "lat": -2524,
+                "lng": 10732,
+                "id": "4kfyfzwf7e4622e",
+                "description": ""
+            },
+            {
+                "lat": -6144,
+                "lng": 12044,
+                "id": "y40qn2l85m5kg7y",
+                "description": "Inside the cave on top of a stalagmite."
+            },
+            {
+                "lat": -7448,
+                "lng": 9400,
+                "id": "j88ocio2d85gil8",
+                "description": "In the tent."
+            },
+            {
+                "lat": -3776,
+                "lng": 14724,
+                "id": "l2dicz2at3vh0xi",
+                "description": ""
+            },
+            {
+                "lat": -560,
+                "lng": 13144,
+                "id": "7pfoku0y9wxfjwd",
+                "description": "On the balcony. Go inside, climb the stairs, and jump along the wall."
+            },
+            {
+                "lat": -2904,
+                "lng": 13850,
+                "id": "y2xkow855r64t0u",
+                "description": "Above the gate."
+            },
+            {
+                "lat": -1286,
+                "lng": 11938,
+                "id": "q4z2f4d3onez8hy",
+                "description": "On the corner of the ledge on the outside of the tower."
+            },
+            {
+                "lat": -1668,
+                "lng": 12558,
+                "id": "o0o2vqk5wrhck46",
+                "description": "On the roof."
+            }
+        ]
+    },
+    {
+        "name": "Toy Unicorn",
+        "rarity": 4,
+        "locations": [
+            {
+                "lat": -4180,
+                "lng": 10852,
+                "id": "gtkoii1h7k08un6",
+                "description": "On top of the church steeple. Jump to the roof from the beam on the cliff to the northeast."
+            },
+            {
+                "lat": -4968,
+                "lng": 14266,
+                "id": "2knoytrfo5iwsky",
+                "description": "On the third floor. Look up towards the ceiling."
+            },
+            {
+                "lat": -7564,
+                "lng": 10054,
+                "id": "ari57p1tv8mqa37",
+                "description": "On the rocks -- not the very top, but a bit below."
+            },
+            {
+                "lat": -6330,
+                "lng": 12226,
+                "id": "mcngk2o98e26k7i",
+                "description": "Inside the cave."
+            },
+            {
+                "lat": -6286,
+                "lng": 15306,
+                "id": "4atme78owf05yxs",
+                "description": ""
+            },
+            {
+                "lat": -658,
+                "lng": 16134,
+                "id": "36b7slowoa5d4xt",
+                "description": "On a crate in the top tier of seats in the arena."
+            },
+            {
+                "lat": -1848,
+                "lng": 14624,
+                "id": "pndzpbqx5z57x16",
+                "description": "On the roof."
+            },
+            {
+                "lat": -2022,
+                "lng": 13802,
+                "id": "m8gi2ep9mvdef91",
+                "description": "On the roof."
+            },
+            {
+                "lat": -870,
+                "lng": 14120,
+                "id": "1i0tbactcesn12e",
+                "description": "Up top, next to the horse statue."
+            },
+            {
+                "lat": -2408,
+                "lng": 13272,
+                "id": "atfsohpcj789en0",
+                "description": "On the brazier/bowl the big horse statues are holding."
+            }
+        ]
+    },
+    {
+        "name": "Brazier",
+        "rarity": 4,
+        "locations": [
+            {
+                "lat": -1518,
+                "lng": 14528,
+                "id": "akexnh881be9pkz",
+                "description": ""
+            },
+            {
+                "lat": -1618,
+                "lng": 14592,
+                "id": "rmoircxofdcnob0",
+                "description": ""
+            },
+            {
+                "lat": -2168,
+                "lng": 12536,
+                "id": "p7oldv5euxufa1m",
+                "description": "Up on the wall."
+            },
+            {
+                "lat": -1422,
+                "lng": 13826,
+                "id": "q034frgckwbg4qj",
+                "description": ""
+            },
+            {
+                "lat": -1812,
+                "lng": 12136,
+                "id": "di870riy2q7cj7e",
+                "description": ""
+            },
+            {
+                "lat": -3014,
+                "lng": 13698,
+                "id": "s9tc7ol3un8uur1",
+                "description": ""
+            },
+            {
+                "lat": -1176,
+                "lng": 11766,
+                "id": "tq2x0nnkz754mdf",
+                "description": ""
+            },
+            {
+                "lat": -2670.2,
+                "lng": 15158,
+                "id": "ec3g1iazcgzcw5s",
+                "description": "Up on the cliff."
+            },
+            {
+                "lat": -418,
+                "lng": 12516,
+                "id": "nikdj4d02tb5qmv",
+                "description": ""
+            },
+            {
+                "lat": -370,
+                "lng": 12588,
+                "id": "bze7hbi9e80sgkk",
+                "description": ""
+            }
+        ]
+    }
+]
