@@ -5,17 +5,17 @@ let data = {};
 
 export async function load({ fetch, url }) {
     let searchId = null;
-    if (new URLSearchParams(url.search).get("id")) {
-        searchId = new URLSearchParams(url.search).get("id")
-    }
+    const params = new URLSearchParams(url.search);
+    searchId = params.get("id")
 
-    for (const category of ["chest", "collectible", "food", "npc", "other", "resource", "tack"]) {
-      data[category] = await fetch(`data-${category}.json`).then(res => res.json());
+
+    for (const category of [ "chest", "collectible", "food", "npc", "other", "resource", "tack" ]) {
+        data[ category ] = await fetch(`data-${category}.json`).then(res => res.json());
     }
 
     return {
         searchId: searchId,
-        locationsNew: data,
+        locations: data,
         counts: await db.collection("count").getFullList(),
     };
 }

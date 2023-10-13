@@ -7,20 +7,27 @@
 
     export let data;
 
+    // Flatten all locations into a single array and find the one with the ID from the URL search parameters (passed in from +page.js)
     const initialLocation = data.searchId
-        ? data.locations.find((location) => location.id === data.searchId)
+        ? Object.values(data.locations)
+              .flatMap((category) => category.flatMap((item) => item.locations))
+              .find((item) => data.searchId === item.id)
         : null;
 
-    const locations = Object.values(data.locationsNew);
+    const locations = Object.values(data.locations);
 </script>
 
 <Sidebar {data} tabs={["Filters", "Progress", "Settings"]} />
 <main>
-    <Map initialLocation={initialLocation ? [initialLocation?.lat, initialLocation?.lng] : ""}>
+    <Map
+        initialLocation={initialLocation
+            ? [initialLocation?.lat, initialLocation?.lng]
+            : ""}
+    >
         {#each locations as category, i}
             {#each locations[i] as item}
                 {#each item.locations as location}
-                    <Marker location={{name: item.name, ...location}}>
+                    <Marker location={{ name: item.name, ...location }}>
                         <Popup />
                     </Marker>
                 {/each}
