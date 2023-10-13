@@ -4,14 +4,21 @@
     import Sidebar from "$lib/Sidebar.svelte";
     import CondensedAttribution from "$lib/CondensedAttribution.svelte";
     import Popup from "$lib/Popup.svelte";
+    import { browser } from "$app/environment";
 
     export let data;
 
-    // Flatten all locations into a single array and find the one with the ID from the URL search parameters (passed in from +page.js)
-    const initialLocation = data.searchId
+    let searchId;
+
+    if (browser) {
+        searchId = new URL(window.location.href).searchParams.get("id");
+    }
+
+    // Flatten all locations into a single array and find the one with the ID from the URL search parameters
+    const initialLocation = searchId
         ? Object.values(data.locations)
               .flatMap((category) => category.flatMap((item) => item.locations))
-              .find((item) => data.searchId === item.id)
+              .find((item) => searchId === item.id)
         : null;
 
     const locations = Object.values(data.locations);
