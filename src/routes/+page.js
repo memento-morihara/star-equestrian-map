@@ -1,15 +1,14 @@
-import PocketBase from 'pocketbase';
+import { categories } from "$lib/utils";
 
-const db = new PocketBase("https://panicky-potato.pockethost.io");
 let data = {};
 
 export async function load({ fetch }) {
-    for (const category of [ "chest", "collectible", "food", "npc", "other", "resource", "tack" ]) {
-        data[ category ] = await fetch(`data-${category}.json`).then(res => res.json());
+    for (const category of categories) {
+        data[ category.name ] = await fetch(`data-${category.name}.json`).then(res => res.json());
     }
 
     return {
         locations: data,
-        counts: await db.collection("count").getFullList(),
+        counts: Object.values(data).flatMap(category => category.flatMap(item => ({ name: item.name, count: item.locations.length }))),
     };
 }

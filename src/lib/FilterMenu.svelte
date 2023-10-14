@@ -1,24 +1,22 @@
 <script>
-    import { markerData } from "$lib/markerData.js";
+    import { categories } from "$lib/utils.js";
 
     export let data;
 </script>
 
 <sl-tree selection="multiple">
-    {#await markerData() then markers}
-        {#each markers as category}
-            <sl-tree-item>
-                {category.name}
-                {#each category.items as item}
-                    <sl-tree-item>
-                        {item.name} ({data.counts.find(
-                            (count) => count.name === item.name
-                        ).count})</sl-tree-item
-                    >
-                {/each}
-            </sl-tree-item>
-        {/each}
-    {/await}
+    {#each Object.entries(data.locations) as category}
+        <sl-tree-item>
+            {categories.find((c) => c.name === category[0]).label}
+            {#each category[1] as item}
+                <sl-tree-item>
+                    {item.name} ({data.counts.find(
+                        (count) => count.name === item.name
+                    ).count})</sl-tree-item
+                >
+            {/each}
+        </sl-tree-item>
+    {/each}
 </sl-tree>
 
 <style>

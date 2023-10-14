@@ -1,3 +1,1 @@
-export function slugifyName(name) {
-    return name.split(" ").join("-").toLowerCase();
-}
+export const categories = [ { name: "chest", label: "Chests" }, { name: "collectible", label: "Collectibles" }, { name: "food", label: "Food" }, { name: "npc", label: "NPCs" }, { name: "other", label: "Other" }, { name: "resource", label: "Resources" }, { name: "tack", label: "Tack Upgrade" } ];
