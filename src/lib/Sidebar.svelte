@@ -1,6 +1,6 @@
 <script>
     import { activeFilters } from "$lib/stores.js";
-    import { setContext } from "svelte";
+    import { onMount, setContext } from "svelte";
     import FilterMenu from "$lib/FilterMenu.svelte";
 
     const treeItems = $activeFilters.map((category) => ({
@@ -13,8 +13,13 @@
     export let tabs;
     export let data;
 
-    $: open = true;
-    $: activeTabIndex = 0;
+    $: open = false;
+
+    // BUG: If activeTabIndex is set to 0, the filter menu doesn't render correctly
+    // until you switch to another tab and back
+    // So automate the process in the background for now
+    $: activeTabIndex = 1;
+    onMount(() => (activeTabIndex = 0));
 </script>
 
 <aside class="sidebar" class:open class:closed={!open}>
@@ -56,7 +61,9 @@
                         class:active={activeTabIndex === 0}
                         data-tab-content="tab-1"
                     >
-                        <FilterMenu {data} />
+                        <div>
+                            <FilterMenu {data} />
+                        </div>
                     </section>
                 {:else if activeTabIndex === 1}
                     <section
@@ -67,7 +74,11 @@
                         Tab 2
                     </section>
                 {:else if activeTabIndex === 2}
-                    <section class="sidepanel-tab-content" />
+                    <section
+                        class="sidepanel-tab-content"
+                        class:active={activeTabIndex === 2}
+                        data-tab-content="tab-3"
+                    />
                 {/if}
             </div>
         </div>
@@ -84,12 +95,12 @@
         z-index: 3000;
     }
 
-    .sidebar.closed {
+    .sidebar.open {
         left: -400px;
         animation: slide-right 0.5s ease 0s 1 both;
     }
 
-    .sidebar.open {
+    .sidebar.closed {
         left: 0;
         animation: slide-left 0.5s ease 0s 1 both;
     }
@@ -163,11 +174,11 @@
         opacity: 1;
     }
 
-    .sidebar.closed .toggle-btn::before {
+    .sidebar.open .toggle-btn::before {
         transform: rotate(180deg);
     }
 
-    .sidebar.open .toggle-btn::before {
+    .sidebar.closed .toggle-btn::before {
         transform: rotate(0deg);
     }
 
