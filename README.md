@@ -22,7 +22,11 @@ This is an unofficial fan-made project. Game, logo, and all imagery &copy; [Foxi
 **Credits:**
 
 - [MapTiler Engine](https://www.maptiler.com/engine/)
-- [Svelte](https://svelte.dev)
+- [SvelteKit](https://kit.svelte.dev)
 - [Leaflet](https://leafletjs.com)
+- [Leaflet.draw](https://github.com/Leaflet/Leaflet.draw)
 - [Leaflet.SidePanel](https://github.com/maxwell-ilai/Leaflet.SidePanel)
+- OverlappingMarkerSpiderfier: [Original](https://github.com/jawj/OverlappingMarkerSpiderfier-Leaflet) | [npm Package](https://www.npmjs.com/package/overlapping-marker-spiderfier-leaflet)
 - [Shoelace](https://shoelace.style)
+
+And a big thank you to Vesp for the updated map icons and mini debugging sessions, and for reformatting the data.
