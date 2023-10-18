@@ -4,9 +4,6 @@ export const markerData = async () => {
     if (browser) {
         const L = await import("leaflet");
 
-        // Calculate height and width of icons based on the existing values
-        // They vary a lot in terms of the visual space they occupy
-        // so the target size is determined case-by-case
         const scaleIcons = (dimensions, targetSize) => {
             const scale = dimensions[ 0 ] > dimensions[ 1 ] ? targetSize / dimensions[ 0 ] : targetSize / dimensions[ 1 ];
             return [ scale * dimensions[ 0 ], scale * dimensions[ 1 ] ];
@@ -17,7 +14,7 @@ export const markerData = async () => {
                 name: "Apple",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-01-apple.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -29,7 +26,7 @@ export const markerData = async () => {
                 name: "Berries",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-02-blueberry.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -41,7 +38,7 @@ export const markerData = async () => {
                 name: "Brown Mushroom",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-03-mush-brown.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -53,7 +50,7 @@ export const markerData = async () => {
                 name: "Carrot",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-01-carrot.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -64,7 +61,7 @@ export const markerData = async () => {
                 name: "Daikon Radish",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-04-daikon.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 category: "food",
                 markerType: "respawning",
@@ -74,7 +71,7 @@ export const markerData = async () => {
                 name: "Grapes",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-04-grapes.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 category: "food",
                 markerType: "respawning",
@@ -84,7 +81,7 @@ export const markerData = async () => {
                 name: "Honey",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-03-honey.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -95,7 +92,7 @@ export const markerData = async () => {
                 name: "Lemon",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-02-lemon.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -106,7 +103,7 @@ export const markerData = async () => {
                 name: "Lettuce",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-01-lettuce.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -117,7 +114,7 @@ export const markerData = async () => {
                 name: "Orange",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-03-orange.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -128,7 +125,7 @@ export const markerData = async () => {
                 name: "Pumpkin",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-01-pumpkin.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -139,7 +136,7 @@ export const markerData = async () => {
                 name: "Purple Carrot",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-04-carrot-purple.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 category: "food",
                 markerType: "respawning",
@@ -149,7 +146,7 @@ export const markerData = async () => {
                 name: "Strawberries",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-02-strawberry.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -160,7 +157,7 @@ export const markerData = async () => {
                 name: "Truffle",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-03-truffle.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -171,7 +168,7 @@ export const markerData = async () => {
                 name: "Turnip",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-02-turnip.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -182,7 +179,7 @@ export const markerData = async () => {
                 name: "Watermelon",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-02-watermelon.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -193,7 +190,7 @@ export const markerData = async () => {
                 name: "Wheat",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-01-wheat.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -204,7 +201,7 @@ export const markerData = async () => {
                 name: "White Mushroom",
                 icon: L.icon({
                     iconUrl: "./icons/food/resource-03-mush-white.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -214,8 +211,8 @@ export const markerData = async () => {
             {
                 name: "Zucchini",
                 icon: L.icon({
-                    iconUrl: "./icons/food/resource-04-zuccini.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconUrl: "./icons/food/resource-04-zucchini.webp",
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 category: "food",
                 markerType: "respawning",
@@ -228,7 +225,7 @@ export const markerData = async () => {
                 name: "Butterflies",
                 icon: L.icon({
                     iconUrl: "./icons/resource/material-01-butterfly.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -238,7 +235,7 @@ export const markerData = async () => {
                 name: "Eggs",
                 icon: L.icon({
                     iconUrl: "./icons/resource/material-01-egg.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -248,7 +245,7 @@ export const markerData = async () => {
                 name: "Fish",
                 icon: L.icon({
                     iconUrl: "./icons/resource/material-01-fish.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -258,7 +255,7 @@ export const markerData = async () => {
                 name: "Milk",
                 icon: L.icon({
                     iconUrl: "./icons/resource/material-01-milk.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -268,7 +265,7 @@ export const markerData = async () => {
                 name: "Wool",
                 icon: L.icon({
                     iconUrl: "./icons/resource/material-01-wool.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -391,7 +388,7 @@ export const markerData = async () => {
                 name: "Sheriff Badge",
                 icon: L.icon({
                     iconUrl: "./icons/collect/collect-sheriff-badge.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
                 category: "collectibles"
@@ -400,7 +397,7 @@ export const markerData = async () => {
                 name: "Horseshoe",
                 icon: L.icon({
                     iconUrl: "./icons/collect/collect-golden-horseshoe.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
                 category: "collectibles"
@@ -409,7 +406,7 @@ export const markerData = async () => {
                 name: "Toy Unicorn",
                 icon: L.icon({
                     iconUrl: "./icons/collect/collect-unicorn.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
                 category: "collectibles"
@@ -418,7 +415,7 @@ export const markerData = async () => {
                 name: "Bottle",
                 icon: L.icon({
                     iconUrl: "./icons/collect/collect-message-bottle.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
                 category: "collectibles"
@@ -430,7 +427,7 @@ export const markerData = async () => {
                 name: "Picnic Basket",
                 icon: L.icon({
                     iconUrl: "./icons/resource/map-00-picnic-basket.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -440,7 +437,7 @@ export const markerData = async () => {
                 name: "Wood",
                 icon: L.icon({
                     iconUrl: "./icons/resource/material-02-wood.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
@@ -450,7 +447,7 @@ export const markerData = async () => {
                 name: "Leather",
                 icon: L.icon({
                     iconUrl: "./icons/resource/material-03-leather.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 category: "other",
                 markerType: "respawning",
@@ -480,7 +477,7 @@ export const markerData = async () => {
                 name: "Brazier",
                 icon: L.icon({
                     iconUrl: "./icons/brazier.svg",
-                    iconSize: scaleIcons([64, 64], 20),
+                    iconSize: scaleIcons([ 64, 64 ], 20),
                 }),
                 markerType: "one-time",
                 category: "other"
