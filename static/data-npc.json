@@ -1,6 +1,8 @@
 [
     {
         "name": "Butterflies Trader",
+        "markerType": "static",
+        "iconUrl": "icons/quest-icon.svg",
         "locations": [
             {
                 "lat": -6194,
@@ -12,6 +14,8 @@
     },
     {
         "name": "Eggs Trader",
+        "markerType": "static",
+        "iconUrl": "icons/quest-icon.svg",
         "locations": [
             {
                 "lat": -5674,
@@ -23,6 +27,8 @@
     },
     {
         "name": "Fish Trader",
+        "markerType": "static",
+        "iconUrl": "icons/quest-icon.svg",
         "locations": [
             {
                 "lat": -4636,
@@ -34,6 +40,8 @@
     },
     {
         "name": "Milk Trader",
+        "markerType": "static",
+        "iconUrl": "icons/quest-icon.svg",
         "locations": [
             {
                 "lat": -7319.4,
@@ -45,6 +53,8 @@
     },
     {
         "name": "Wool Trader",
+        "markerType": "static",
+        "iconUrl": "icons/quest-icon.svg",
         "locations": [
             {
                 "lat": -5128,

@@ -8,9 +8,5 @@ node_modules
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-.idea
-.vscode
-dist
-public
-src-tauri/icons
-src-tauri/target
+.idea/
+.vscode/

@@ -1,6 +1,7 @@
 <script>
   import { markerData } from "$lib/markerData.js";
-  import { onMount } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
+  import { customMarkers } from "$lib/stores.js";
 
   export let marker = {};
 
@@ -8,12 +9,14 @@
   let description = "";
   let data;
 
-  onMount(async () => data = await markerData());
+  const dispatch = createEventDispatcher();
+
+  onMount(async () => (data = await markerData()));
 
   function changeIcon() {
     const [category, itemName] = value.split(",");
-    const dataCategory = data.find(c => c.name === category);
-    const dataItem = dataCategory.items.find(item => item.name === itemName)
+    const dataCategory = data.find((c) => c.name === category);
+    const dataItem = dataCategory.items.find((item) => item.name === itemName);
 
     marker.setIcon(dataItem.icon);
   }
@@ -22,21 +25,30 @@
     changeIcon(item);
     marker.closePopup();
     marker.unbindPopup();
+    dispatch("markerCreated", {item, location, description});
+    $customMarkers = [...$customMarkers, {item, location, description}]
   }
 </script>
 
-<select bind:value>
-    {#await markerData() then data}
-        {#each data as group}
-            <optgroup label={group.name}>
-                {#each group.items as item}
-                    <option value={`${group.name},${item.name}`}>{item.name}</option>
-                {/each}
-            </optgroup>
+<select class="select dark:text-on-surface-token my-1" bind:value>
+  {#await markerData() then data}
+    {#each data as group}
+      <optgroup label={group.name}>
+        {#each group.items as item}
+          <option value={`${group.name},${item.name}`}>{item.name}</option>
         {/each}
-    {/await}
+      </optgroup>
+    {/each}
+  {/await}
 </select>
 
-<textarea bind:value={description}></textarea>
+<textarea
+  class="textarea dark:text-on-surface-token"
+  bind:value={description}
+/>
 
-<button on:click={() => saveMarker(value, marker._latlng, description)}>Add Marker</button>
+<button
+  class="btn variant-filled-primary"
+  on:click={() => saveMarker(value, marker._latlng, description)}
+  >Add Marker</button
+>

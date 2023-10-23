@@ -2,6 +2,8 @@
     {
         "name": "Common Chest",
         "rarity": 0,
+        "markerType": "respawning",
+        "iconUrl": "icons/common-chest.svg",
         "locations": [
             {
                 "lat": -3978,
@@ -182,6 +184,8 @@
     {
         "name": "Uncommon Chest",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/uncommon-chest.svg",
         "locations": [
             {
                 "lat": -6440,
@@ -314,6 +318,8 @@
     {
         "name": "Rare Chest",
         "rarity": 2,
+        "markerType": "respawning",
+        "iconUrl": "icons/rare-chest.svg",
         "locations": [
             {
                 "lat": -6316,
@@ -398,6 +404,8 @@
     {
         "name": "Epic Chest",
         "rarity": 3,
+        "markerType": "respawning",
+        "iconUrl": "icons/epic-chest.svg",
         "locations": [
             {
                 "lat": -4486,
@@ -446,6 +454,8 @@
     {
         "name": "Legendary Chest",
         "rarity": 4,
+        "markerType": "one-time",
+        "iconUrl": "icons/epic-chest.svg",
         "locations": [
             {
                 "lat": -6502,

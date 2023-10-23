@@ -1,65 +1,59 @@
 <script>
-    import Map from "$lib/Map.svelte";
-    import Marker from "$lib/Marker.svelte";
-    import Sidebar from "$lib/Sidebar.svelte";
-    import CondensedAttribution from "$lib/CondensedAttribution.svelte";
-    import Popup from "$lib/Popup.svelte";
-    import { browser } from "$app/environment";
+  import Sidebar from "$lib/Sidebar.svelte";
+  import {LightSwitch, localStorageStore} from "@skeletonlabs/skeleton";
+  import Marker from "$lib/Marker.svelte";
+  import Popup from "$lib/Popup.svelte";
+  import Map from "$lib/Map.svelte";
+  import { categories } from "$lib/utils.js";
+  import Spiderfier from "$lib/Spiderfier.svelte";
+  import CondensedAttribution from "$lib/CondensedAttribution.svelte";
 
-    export let data;
+  export let data;
+  let initialLocation;
 
-    let searchId;
-
-    if (browser) {
-        searchId = new URL(window.location.href).searchParams.get("id");
-    }
-
-    // Flatten all locations into a single array and find the one with the ID from the URL search parameters
-    const initialLocation = searchId
-        ? Object.values(data.locations)
-              .flatMap((category) => category.flatMap((item) => item.locations))
-              .find((item) => searchId === item.id)
-        : null;
-
-    const locations = Object.values(data.locations);
+  const locations = Object.values(data.locations);
 </script>
 
-<Sidebar {data} tabs={["Filters", "Progress", "Settings"]} />
-<main>
-    <Map
-        initialLocation={initialLocation
-            ? [initialLocation?.lat, initialLocation?.lng]
-            : ""}
-    >
-        {#each locations as category, i}
-            {#each locations[i] as item}
-                {#each item.locations as location}
-                    <Marker location={{ name: item.name, ...location }}>
-                        <Popup />
-                    </Marker>
-                {/each}
-            {/each}
+<LightSwitch class="absolute right-3 top-3 lightswitch dark:bg-gray-950"/>
+<Map>
+  <Sidebar />
+  <Spiderfier>
+    {#each locations as category, i}
+      {#each locations[i] as item}
+        {#each item.locations as location}
+          <Marker
+                  location={{
+            name: item.name,
+            category: categories.find((c) => c.items.includes(item.name)),
+            ...location,
+          }}
+                  on:markerCreated
+          >
+            <Popup />
+          </Marker>
         {/each}
-    </Map>
-</main>
-<CondensedAttribution />
+      {/each}
+    {/each}
+  </Spiderfier>
+  <CondensedAttribution />
+</Map>
 
 <style>
-    @import "@shoelace-style/shoelace/dist/themes/light.css";
-    @import "leaflet-draw/dist/leaflet.draw.css";
+  @import "leaflet-draw/dist/leaflet.draw.css";
 
-    :root {
-        font-family: var(--sl-font-sans);
-        --sl-color-primary-50: var(--sl-color-purple-50);
-        --sl-color-primary-100: var(--sl-color-purple-100);
-        --sl-color-primary-200: var(--sl-color-purple-200);
-        --sl-color-primary-300: var(--sl-color-purple-300);
-        --sl-color-primary-400: var(--sl-color-purple-400);
-        --sl-color-primary-500: var(--sl-color-purple-500);
-        --sl-color-primary-600: var(--sl-color-purple-600);
-        --sl-color-primary-700: var(--sl-color-purple-700);
-        --sl-color-primary-800: var(--sl-color-purple-800);
-        --sl-color-primary-900: var(--sl-color-purple-900);
-        --sl-color-primary-950: var(--sl-color-purple-950);
-    }
+  /* TODO: find a better way of doing a dark mode on the toolbars besides inverting the colors */
+
+  :global(.leaflet-container) {
+    background-color: var(--bg-surface-300);
+  }
+
+  :global(.dark .leaflet-control) {
+    filter: invert();
+    -webkit-filter: invert();
+  }
+
+  :global(.dark .leaflet-draw-actions a) {
+    filter: invert();
+    -webkit-filter: invert();
+  }
 </style>

@@ -1,8 +1,12 @@
 import { derived, writable } from "svelte/store";
+import { localStorageStore } from "@skeletonlabs/skeleton";
 
-export const activeFilters = writable([ {
+export const customMarkers = localStorageStore("customMarkers", []);
+export const customRoutes = localStorageStore("customRoutes", []);
+
+export const lastCollectedDates = localStorageStore("lastCollectedDates", {});
+export const activeFilters = localStorageStore("activeFilters", [ {
     name: "Food",
-    enabled: true,
     items: [
         { name: "Apple", enabled: true },
         { name: "Brown Mushroom", enabled: true },
@@ -29,9 +33,22 @@ export const activeFilters = writable([ {
         { name: "Legendary", enabled: true },
     ]
 }
-]);
+].toString());
 
 export const selectedMarker = writable(undefined);
+
+export const searchParams = writable();
+
+export const items = [ {
+    parent: "Food",
+    children: [ "apple", "berries", "brown-mushroom", "carrot", "daikon-radish", "grapes", "honey", "lemon", "lettuce", "orange", "pumpkin", "purple-carrot", "strawberries", "truffle", "turnip", "watermelon", "wheat", "white-mushroom", "zucchini", ]
+},
+    { parent: "Chests", children: [ "common-chest", "uncommon-chest", "rare-chest", "epic-chest", "legendary-chest" ] },
+    { parent: "Resources", children: [ "butterflies", "eggs", "fish", "milk", "wool" ] },
+    { parent: "Traders", children: [ "butterflies-trader", "eggs-trader", "fish-trader", "milk-trader", "wool-trader" ] },
+    { parent: "Collectibles", children: [ "bottle", "horseshoe", "sheriff-badge", "toy-unicorn" ] },
+    { parent: "Other", children: [ "brazier", "cave-entrance", "leather", "picnic-basket", "quest-item", "wood" ] }
+]
 
 // let ls = () => {
 //     if (!localStorage.getItem("shownItems")) {
@@ -41,6 +58,8 @@ export const selectedMarker = writable(undefined);
 //         return localStorage.getItem("shownItems").split(",");
 //     }
 // }
+
+const lsStore = localStorageStore("shownItems", items.map(item => item.children.flat()))
 
 // export function formatName(name) {
 //     if (name.includes("-") || name.toLowerCase() === name) {
@@ -56,14 +75,14 @@ export const selectedMarker = writable(undefined);
 // }
 
 
-// export const shownFilters = writable(ls());
+export const shownFilters = writable();
 
 // export const selectedMarkerId = writable("");
 
 
-// export const allMarkers = writable([]);
+export const allMarkers = writable([]);
 // // Store to hold markers currently shown on map as a global state so all components can access it
-// export const shownMarkers = derived([ shownFilters, allMarkers ], ([ $shownFilters, $allMarkers ]) => $allMarkers.filter(marker => $shownFilters.includes(formatName(marker.options.name))));
+export const shownMarkers = derived([ shownFilters, allMarkers ], ([ $shownFilters, $allMarkers ]) => $allMarkers.filter(marker => $shownFilters.includes(formatName(marker.options.name))));
 
 // export const dialog = writable(false);
 

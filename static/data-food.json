@@ -1,8 +1,10 @@
 [
     {
         "name": "Apple",
-        "stat": "",
+        "stat": "speed",
         "rarity": 0,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-01-apple.webp",
         "locations": [
             {
                 "lat": -4906,
@@ -260,8 +262,10 @@
     },
     {
         "name": "Carrot",
-        "stat": "",
+        "stat": "jump",
         "rarity": 0,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-01-carrot.webp",
         "locations": [
             {
                 "lat": -4112,
@@ -591,8 +595,10 @@
     },
     {
         "name": "Lettuce",
-        "stat": "",
+        "stat": "agility",
         "rarity": 0,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-01-lettuce.webp",
         "locations": [
             {
                 "lat": -5622,
@@ -922,8 +928,10 @@
     },
     {
         "name": "Pumpkin",
-        "stat": "",
+        "stat": "acceleration",
         "rarity": 0,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-01-pumpkin.webp",
         "locations": [
             {
                 "lat": -4192,
@@ -1253,8 +1261,10 @@
     },
     {
         "name": "Wheat",
-        "stat": "",
+        "stat": "stamina",
         "rarity": 0,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-01-wheat.webp",
         "locations": [
             {
                 "lat": -5884,
@@ -1548,8 +1558,10 @@
     },
     {
         "name": "Berries",
-        "stat": "",
+        "stat": "speed",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-02-blueberry.webp",
         "locations": [
             {
                 "lat": -5092,
@@ -1717,8 +1729,10 @@
     },
     {
         "name": "Lemon",
-        "stat": "",
+        "stat": "acceleration",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-02-lemon.webp",
         "locations": [
             {
                 "lat": -3764,
@@ -1868,8 +1882,10 @@
     },
     {
         "name": "Strawberries",
-        "stat": "",
+        "stat": "stamina",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-02-strawberry.webp",
         "locations": [
             {
                 "lat": -7454,
@@ -2013,8 +2029,10 @@
     },
     {
         "name": "Turnip",
-        "stat": "",
+        "stat": "agility",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-02-turnip.webp",
         "locations": [
             {
                 "lat": -5624,
@@ -2236,8 +2254,10 @@
     },
     {
         "name": "Watermelon",
-        "stat": "",
+        "stat": "jump",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-02-watermelon.webp",
         "locations": [
             {
                 "lat": -5726,
@@ -2447,8 +2467,10 @@
     },
     {
         "name": "Honey",
-        "stat": "",
+        "stat": "speed",
         "rarity": 2,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-03-honey.webp",
         "locations": [
             {
                 "lat": -6172,
@@ -2580,8 +2602,10 @@
     },
     {
         "name": "Brown Mushroom",
-        "stat": "",
+        "stat": "jump",
         "rarity": 2,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-03-mush-brown.webp",
         "locations": [
             {
                 "lat": -5022,
@@ -2683,8 +2707,10 @@
     },
     {
         "name": "White Mushroom",
-        "stat": "",
+        "stat": "stamina",
         "rarity": 2,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-03-mush-white.webp",
         "locations": [
             {
                 "lat": -4834,
@@ -2780,8 +2806,10 @@
     },
     {
         "name": "Orange",
-        "stat": "",
+        "stat": "acceleration",
         "rarity": 2,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-03-orange.webp",
         "locations": [
             {
                 "lat": -2592,
@@ -2907,8 +2935,10 @@
     },
     {
         "name": "Truffle",
-        "stat": "",
+        "stat": "agility",
         "rarity": 2,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-03-truffle.webp",
         "locations": [
             {
                 "lat": -4268,
@@ -2976,6 +3006,8 @@
         "name": "Purple Carrot",
         "stat": "",
         "rarity": 3,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-04-carrot-purple.webp",
         "locations": [
             {
                 "lat": -2162,
@@ -3043,6 +3075,8 @@
         "name": "Daikon Radish",
         "stat": "",
         "rarity": 3,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-04-daikon.webp",
         "locations": [
             {
                 "lat": -1212,
@@ -3110,6 +3144,8 @@
         "name": "Grapes",
         "stat": "",
         "rarity": 3,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-04-grapes.webp",
         "locations": [
             {
                 "lat": -2046,
@@ -3165,6 +3201,8 @@
         "name": "Zucchini",
         "stat": "",
         "rarity": 3,
+        "markerType": "respawning",
+        "iconUrl": "icons/food/resource-04-zucchini.webp",
         "locations": [
             {
                 "lat": -748,

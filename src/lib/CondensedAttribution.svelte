@@ -3,7 +3,7 @@
     export let emblem = "?";
 </script>
 
-<div class="leaflet-condensed-attribution">
+<div class="leaflet-condensed-attribution text-black">
     <div class="attributes-body">
         Images &copy; <a href="https://foxieventures.com">Foxie Ventures</a> |
         Rendered with <a href="https://maptiler.com">MapTiler Engine</a>

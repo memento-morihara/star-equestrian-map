@@ -1,32 +1,38 @@
-# Star Equestrian Map
+# create-svelte
 
-<img src="assets/StarEquestrianLogo_Color.png" alt="Star Equestrian game logo" width="300" />
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-An interactive map for [Star Equestrian](https://www.foxieventures.com/star-equestrian/).
+## Creating a project
 
-Shoutout to the awesome folks at Foxie Ventures who provided me with a large map image. Thanks, @Random Spider!
+If you're seeing this, you've probably already done this step. Congrats!
 
-## Features
+```bash
+# create a new project in the current directory
+npm create svelte@latest
 
-- Filter markers by type
-- Filter food items by stat
-- Mark items as collected (markers for items that respawn reset at midnight UTC)
-- Mark items that haven't respawned yet
-- Progress indicators for collectibles
-- No data collected. Everything is stored in your browser's storage.
+# create a new project in my-app
+npm create svelte@latest my-app
+```
 
----
+## Developing
 
-This is an unofficial fan-made project. Game, logo, and all imagery &copy; [Foxie Ventures](https://www.foxieventures.com).
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-**Credits:**
+```bash
+npm run dev
 
-- [MapTiler Engine](https://www.maptiler.com/engine/)
-- [SvelteKit](https://kit.svelte.dev)
-- [Leaflet](https://leafletjs.com)
-- [Leaflet.draw](https://github.com/Leaflet/Leaflet.draw)
-- [Leaflet.SidePanel](https://github.com/maxwell-ilai/Leaflet.SidePanel)
-- OverlappingMarkerSpiderfier: [Original](https://github.com/jawj/OverlappingMarkerSpiderfier-Leaflet) | [npm Package](https://www.npmjs.com/package/overlapping-marker-spiderfier-leaflet)
-- [Shoelace](https://shoelace.style)
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
 
-And a big thank you to Vesp for the updated map icons and mini debugging sessions, and for reformatting the data.
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.

@@ -2,6 +2,8 @@
     {
         "name": "Butterflies",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/resource/material-01-butterfly.webp",
         "locations": [
             {
                 "lat": -5764,
@@ -236,6 +238,8 @@
     {
         "name": "Eggs",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/resource/material-01-egg.webp",
         "locations": [
             {
                 "lat": -7270,
@@ -266,6 +270,8 @@
     {
         "name": "Fish",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/resource/material-01-fish.webp",
         "locations": [
             {
                 "lat": -5184,
@@ -362,6 +368,8 @@
     {
         "name": "Milk",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/resource/material-01-milk.webp",
         "locations": [
             {
                 "lat": -5120,
@@ -458,6 +466,8 @@
     {
         "name": "Wool",
         "rarity": 1,
+        "markerType": "respawning",
+        "iconUrl": "icons/resource/material-01-wool.webp",
         "locations": [
             {
                 "lat": -5728,

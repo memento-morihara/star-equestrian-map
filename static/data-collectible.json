@@ -2,6 +2,8 @@
     {
         "name": "Bottle",
         "rarity": 4,
+        "markerType": "one-time",
+        "iconUrl": "icons/collect/collect-message-bottle.webp",
         "locations": [
             {
                 "lat": -4956,
@@ -146,6 +148,8 @@
     {
         "name": "Horseshoe",
         "rarity": 4,
+        "markerType": "one-time",
+        "iconUrl": "icons/collect/collect-golden-horseshoe.webp",
         "locations": [
             {
                 "lat": -4856,
@@ -452,6 +456,8 @@
     {
         "name": "Sheriff Badge",
         "rarity": 4,
+        "markerType": "one-time",
+        "iconUrl": "icons/collect/collect-sheriff-badge.webp",
         "locations": [
             {
                 "lat": -4170,
@@ -572,6 +578,8 @@
     {
         "name": "Toy Unicorn",
         "rarity": 4,
+        "iconUrl": "icons/collect/collect-unicorn.webp",
+        "markerType": "one-time",
         "locations": [
             {
                 "lat": -4180,
@@ -638,6 +646,8 @@
     {
         "name": "Brazier",
         "rarity": 4,
+        "iconUrl": "icons/collect/map-brazier.webp",
+        "markerType": "one-time",
         "locations": [
             {
                 "lat": -1518,

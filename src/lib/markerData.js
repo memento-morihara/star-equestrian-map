@@ -229,7 +229,7 @@ export const markerData = async () => {
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
-                category: "resources"
+                category: "resource"
             },
             {
                 name: "Eggs",
@@ -239,7 +239,7 @@ export const markerData = async () => {
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
-                category: "resources"
+                category: "resource"
             },
             {
                 name: "Fish",
@@ -249,7 +249,7 @@ export const markerData = async () => {
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
-                category: "resources"
+                category: "resource"
             },
             {
                 name: "Milk",
@@ -259,7 +259,7 @@ export const markerData = async () => {
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
-                category: "resources"
+                category: "resource"
             },
             {
                 name: "Wool",
@@ -269,7 +269,7 @@ export const markerData = async () => {
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
-                category: "resources"
+                category: "resource"
             },
         ]
 
@@ -281,7 +281,7 @@ export const markerData = async () => {
                     iconSize: [ 18, 18 ],
                 }),
                 markerType: "static",
-                category: "traders"
+                category: "npc"
             },
             {
                 name: "Eggs Trader",
@@ -290,7 +290,7 @@ export const markerData = async () => {
                     iconSize: [ 18, 18 ],
                 }),
                 markerType: "static",
-                category: "traders"
+                category: "npc"
             },
             {
                 name: "Fish Trader",
@@ -299,7 +299,7 @@ export const markerData = async () => {
                     iconSize: [ 18, 18 ],
                 }),
                 markerType: "static",
-                category: "traders"
+                category: "npc"
             },
             {
                 name: "Milk Trader",
@@ -308,7 +308,7 @@ export const markerData = async () => {
                     iconSize: [ 18, 18 ],
                 }),
                 markerType: "static",
-                category: "traders"
+                category: "npc"
             },
             {
                 name: "Wool Trader",
@@ -317,7 +317,7 @@ export const markerData = async () => {
                     iconSize: [ 18, 18 ],
                 }),
                 markerType: "static",
-                category: "traders"
+                category: "npc"
             }
         ]
 
@@ -332,7 +332,7 @@ export const markerData = async () => {
                 }),
                 markerType: "respawning",
                 respawnTime: 1,
-                category: "chests"
+                category: "chest"
             },
             {
                 name: "Uncommon Chest",
@@ -344,7 +344,7 @@ export const markerData = async () => {
                 }),
                 markerType: "respawning",
                 respawnTime: 7,
-                category: "chests"
+                category: "chest"
             },
             {
                 name: "Rare Chest",
@@ -356,7 +356,7 @@ export const markerData = async () => {
                 }),
                 markerType: "respawning",
                 respawnTime: 14,
-                category: "chests"
+                category: "chest"
             },
             {
                 name: "Epic Chest",
@@ -368,7 +368,7 @@ export const markerData = async () => {
                 }),
                 markerType: "respawning",
                 respawnTime: 30,
-                category: "chests"
+                category: "chest"
             },
             {
                 name: "Legendary Chest",
@@ -379,7 +379,7 @@ export const markerData = async () => {
                     popupAnchor: [ 0, -14 ],
                 }),
                 markerType: "one-time",
-                category: "chests"
+                category: "chest"
             },
         ]
 
@@ -391,7 +391,7 @@ export const markerData = async () => {
                     iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
-                category: "collectibles"
+                category: "collectible"
             },
             {
                 name: "Horseshoe",
@@ -400,7 +400,7 @@ export const markerData = async () => {
                     iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
-                category: "collectibles"
+                category: "collectible"
             },
             {
                 name: "Toy Unicorn",
@@ -409,7 +409,7 @@ export const markerData = async () => {
                     iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
-                category: "collectibles"
+                category: "collectible"
             },
             {
                 name: "Bottle",
@@ -418,7 +418,7 @@ export const markerData = async () => {
                     iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
-                category: "collectibles"
+                category: "collectible"
             }
         ]
 

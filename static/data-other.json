@@ -1,6 +1,8 @@
 [
     {
         "name": "Cave Entrance",
+        "markerType": "static",
+        "iconUrl": "icons/cave-entrance.svg",
         "locations": [
             {
                 "lat": -5980,
@@ -42,6 +44,8 @@
     },
     {
         "name": "Picnic Basket",
+        "markerType": "respawning",
+        "iconUrl": "icons/resource/map-00-picnic-basket.webp",
         "locations": [
             {
                 "lat": -4504,
@@ -149,6 +153,8 @@
     },
     {
         "name": "Quest Item",
+        "markerType": "one-time",
+        "iconUrl": "icons/quest-icon.svg",
         "locations": [
             {
                 "lat": -1934,
