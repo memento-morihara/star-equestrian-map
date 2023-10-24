@@ -1,11 +1,12 @@
 <script>
-  import { getContext, setContext, onMount } from "svelte";
-  import { browser } from "$app/environment";
-  import { markerData } from "$lib/markerData";
-  import { allMarkers, selectedMarker } from "$lib/stores.js";
-  import { slugifyName } from "$lib/utils.js";
-  import { localStorageStore } from "@skeletonlabs/skeleton";
-  import { get } from "svelte/store";
+  import {getContext, onMount, setContext} from "svelte";
+  import {browser} from "$app/environment";
+  import {markerData} from "$lib/markerData";
+  import {allMarkers, selectedMarker} from "$lib/stores.js";
+  import {slugifyName} from "$lib/utils.js";
+  import {localStorageStore} from "@skeletonlabs/skeleton";
+  import {get} from "svelte/store";
+  import PopupContent from "$lib/PopupContent.svelte";
 
   export let location;
 
@@ -44,6 +45,14 @@
 
       groups[name] && groups[name].addLayer(marker);
       $allMarkers = [...$allMarkers, marker];
+
+      marker.on("click", () => {
+        $selectedMarker = marker;
+        $selectedMarker.openPopup();
+        new PopupContent({
+          target: document.getElementById($selectedMarker.options.id),
+        });
+      });
 
       let lastCollected = get(marker.options.store)?.lastCollected;
 

@@ -1,10 +1,9 @@
 <script>
   import Sidebar from "$lib/Sidebar.svelte";
-  import {LightSwitch, localStorageStore} from "@skeletonlabs/skeleton";
+  import {LightSwitch} from "@skeletonlabs/skeleton";
   import Marker from "$lib/Marker.svelte";
-  import Popup from "$lib/Popup.svelte";
   import Map from "$lib/Map.svelte";
-  import { categories } from "$lib/utils.js";
+  import {categories} from "$lib/utils.js";
   import Spiderfier from "$lib/Spiderfier.svelte";
   import CondensedAttribution from "$lib/CondensedAttribution.svelte";
 
@@ -28,9 +27,7 @@
             ...location,
           }}
                   on:markerCreated
-          >
-            <Popup />
-          </Marker>
+          />
         {/each}
       {/each}
     {/each}
