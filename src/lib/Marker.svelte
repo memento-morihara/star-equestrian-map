@@ -6,7 +6,7 @@
   import {slugifyName} from "$lib/utils.js";
   import {localStorageStore} from "@skeletonlabs/skeleton";
   import {get} from "svelte/store";
-  import PopupContent from "$lib/PopupContent.svelte";
+  import PopupContent from "$lib/Popup.svelte";
 
   export let location;
 

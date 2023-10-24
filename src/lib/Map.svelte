@@ -4,7 +4,7 @@
     import AddMarker from "$lib/AddMarker.svelte";
     import { categories } from "$lib/utils.js";
     import { allMarkers, selectedMarker, searchParams, customMarkers, customRoutes } from "$lib/stores.js";
-    import PopupContent from "$lib/PopupContent.svelte";
+    import PopupContent from "$lib/Popup.svelte";
 
     let map;
     let drawnItems;

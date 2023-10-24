@@ -3,7 +3,7 @@
   import FilterTree from "$lib/FilterTree.svelte";
   import { getContext } from "svelte";
   import {allMarkers, selectedMarker} from "$lib/stores.js";
-  import PopupContent from "$lib/PopupContent.svelte";
+  import PopupContent from "$lib/Popup.svelte";
 
   const map = getContext("map")();
 
