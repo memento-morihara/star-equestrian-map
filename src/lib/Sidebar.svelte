@@ -1,9 +1,7 @@
 <script>
-  import { Tab, TabGroup, LightSwitch } from "@skeletonlabs/skeleton";
+  import {Tab, TabGroup} from "@skeletonlabs/skeleton";
   import FilterTree from "$lib/FilterTree.svelte";
-  import { getContext } from "svelte";
-  import {allMarkers, selectedMarker} from "$lib/stores.js";
-  import PopupContent from "$lib/Popup.svelte";
+  import {getContext} from "svelte";
 
   const map = getContext("map")();
 
@@ -15,7 +13,7 @@
 
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <aside
-  class="sidebar bg-white dark:bg-surface-800 shadow-md"
+        class="sidebar bg-white dark:bg-surface-800 shadow-md"
   class:open
   class:closed={!open}
   on:dblclick|stopPropagation
@@ -46,7 +44,7 @@
   </div>
   <div class="toggle-container bg-white dark:bg-surface-800 shadow-md">
     <button
-      class="toggle-btn leaflet-control z-50"
+            class="toggle-btn leaflet-control"
       on:click={() => (open = !open)}
     />
   </div>
@@ -55,9 +53,9 @@
 <style>
   .sidebar {
     width: 400px;
+    max-width: 85%;
     display: flex;
     position: absolute;
-    left: 0;
     z-index: 5000;
     height: 100%;
     /*box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),*/
@@ -73,7 +71,7 @@
   }
 
   .closed {
-    left: -400px;
+    right: 100%;
   }
 
   .toggle-container {
@@ -120,9 +118,5 @@
 
   .sidebar.closed .toggle-btn::before {
     transform: rotate(0deg);
-  }
-
-  :global(.lightswitch) {
-    z-index: 10000;
   }
 </style>
