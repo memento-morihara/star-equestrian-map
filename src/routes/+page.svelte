@@ -13,7 +13,7 @@
   const locations = Object.values(data.locations);
 </script>
 
-<LightSwitch class="absolute right-3 top-3 lightswitch dark:bg-gray-950"/>
+<LightSwitch class="absolute right-3 top-3 lightswitch dark:bg-gray-950 z-[500]"/>
 <Map>
   <Sidebar />
   <Spiderfier>
