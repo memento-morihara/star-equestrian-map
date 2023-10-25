@@ -14,7 +14,7 @@ export const categories = [{
     name: "npc",
     label: "NPCs",
     items: ["butterflies-trader", "eggs-trader", "fish-trader", "milk-trader", "wool-trader"]
-}, {name: "other", label: "Other", items: ["quest-item", "picnic-basket"]}, {
+}, {name: "other", label: "Other", items: ["cave-entrance", "picnic-basket", "quest-item"]}, {
     name: "resource",
     label: "Resources",
     items: ["butterflies", "eggs", "fish", "milk", "wool"]
