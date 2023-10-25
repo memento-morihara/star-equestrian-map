@@ -1,11 +1,11 @@
 <script>
-  import Sidebar from "$lib/Sidebar.svelte";
   import {LightSwitch} from "@skeletonlabs/skeleton";
   import Marker from "$lib/Marker.svelte";
   import Map from "$lib/Map.svelte";
   import {categories} from "$lib/utils.js";
   import Spiderfier from "$lib/Spiderfier.svelte";
   import CondensedAttribution from "$lib/CondensedAttribution.svelte";
+  import Sidebar from "$lib/Sidebar.svelte";
 
   export let data;
   let initialLocation;
@@ -14,8 +14,8 @@
 </script>
 
 <LightSwitch class="absolute right-3 top-3 lightswitch dark:bg-gray-950 z-[500]"/>
-<Map>
-  <Sidebar />
+<Map {data}>
+  <Sidebar/>
   <Spiderfier>
     {#each locations as category, i}
       {#each locations[i] as item}

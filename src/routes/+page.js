@@ -1,8 +1,8 @@
-import { categories } from "$lib/utils";
+import {categories} from "$lib/utils";
 import {browser} from "$app/environment";
 
 let data = {};
-let url, id;
+let url, id, initial;
 
 export async function load({ fetch }) {
     for (const category of categories) {
@@ -11,6 +11,13 @@ export async function load({ fetch }) {
 if (browser) {
      url = new URL(window.location.href);
      id = url.searchParams.get("id");
+    let arr = [];
+
+    if (id) {
+        let d = Object.values(data)
+        d.forEach(x => Object.values(x).flatMap(z => arr = [...arr, ...z.locations]))
+        initial = arr.find(x => x.id === id);
+    }
 }
 
 
@@ -18,5 +25,6 @@ if (browser) {
         locations: data,
         counts: Object.values(data).flatMap(category => category.flatMap(item => ({ name: item.name, count: item.locations.length }))),
         searchId: id,
+        initial: initial ?? null,
     };
 }

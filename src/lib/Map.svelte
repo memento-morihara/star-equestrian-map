@@ -1,10 +1,10 @@
 <script>
-    import { onDestroy, onMount, setContext } from "svelte";
-    import { browser } from "$app/environment";
+    import {setContext} from "svelte";
+    import {browser} from "$app/environment";
     import AddMarker from "$lib/AddMarker.svelte";
-    import { categories } from "$lib/utils.js";
-    import { allMarkers, selectedMarker, searchParams, customMarkers, customRoutes } from "$lib/stores.js";
-    import PopupContent from "$lib/Popup.svelte";
+    import {flatItems} from "$lib/utils.js";
+    import {allMarkers, customRoutes, selectedMarker} from "$lib/stores.js";
+    import Popup from "$lib/Popup.svelte";
 
     let map;
     let drawnItems;
@@ -13,13 +13,12 @@
     let url;
     let id;
 
-    $: initialLocation = $allMarkers.find((x) => x.options.id === id);
+    export let data;
 
     setContext("map", () => map);
     setContext("groups", () => featureGroups);
 
     async function initMap(node) {
-        // onMount(async () => {
         if (browser) {
             url = new URL(window.location.href);
             id = url.searchParams.get("id");
@@ -52,6 +51,28 @@
                 attributionControl: false,
             }).fitBounds(bounds);
 
+            // Zoom to the location of the permalinked marker
+            // There is no Leaflet marker at this point, so zoom to the
+            // coordinates of the location with an ID matching the URL parameter
+            // using the data from the static JSON files
+            if (data.initial) {
+                map.flyTo([data.initial.lat, data.initial.lng], 4);
+            }
+
+            // Add a one-off event listener for when the flyTo animation ends
+            // which binds a popup containing an empty div with an ID
+            // that can be targeted with the Svelte component constructor
+            map.once("zoomend", function () {
+                $selectedMarker = $allMarkers.find((x) => x.options.id === id);
+
+                if ($selectedMarker) {
+                    $selectedMarker.bindPopup(`<div id="init"></div>`);
+                    $selectedMarker.openPopup();
+                    new Popup({target: document.getElementById("init")});
+                }
+            });
+
+
             L.tileLayer("tiles/{z}/{x}/{y}.webp", {
                 maxZoom: mapMaxZoom,
                 minZoom: mapMinZoom,
@@ -60,17 +81,9 @@
                 tms: false,
             }).addTo(map);
 
-            if (initialLocation) {
-                $searchParams = $allMarkers.find((x) => x.options.id === id);
-                $selectedMarker = $searchParams;
-                map.setView($searchParams._latlng, 4);
-                $selectedMarker.openPopup()
-            }
 
             // Create feature groups for each item to easily hide and show them later
-            for (const item of categories.flatMap(
-                (category) => category.items
-            )) {
+            for (const item of flatItems) {
                 featureGroups[item] = L.featureGroup().addTo(map);
             }
 
@@ -141,6 +154,8 @@
             },
         };
     }
+
+
 </script>
 
 <div id="map" use:initMap>
