@@ -15,7 +15,7 @@
 
 <LightSwitch class="absolute right-3 top-3 lightswitch dark:bg-gray-950 z-[500]"/>
 <Map {data}>
-  <Sidebar/>
+    <Sidebar counts={data.counts}/>
   <Spiderfier>
     {#each locations as category, i}
       {#each locations[i] as item}
@@ -26,7 +26,6 @@
             category: categories.find((c) => c.items.includes(item.name)),
             ...location,
           }}
-                  on:markerCreated
           />
         {/each}
       {/each}

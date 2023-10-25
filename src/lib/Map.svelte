@@ -119,7 +119,7 @@
                 },
             });
 
-            map.addControl(drawControl);
+            // map.addControl(drawControl);
         }
 
         /* Leaflet.Draw event handlers */

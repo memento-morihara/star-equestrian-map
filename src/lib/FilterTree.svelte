@@ -1,19 +1,13 @@
 <script>
-  import {
-    RecursiveTreeView,
-    TreeView,
-    TreeViewItem,
-  } from "@skeletonlabs/skeleton";
-  import { categories, flatNames, flatItems } from "$lib/utils.js";
-  import {activeFilters, allMarkers} from "$lib/stores.js";
-  import { getContext } from "svelte";
-  import Layout from "../routes/+layout.svelte";
+    import {RecursiveTreeView,} from "@skeletonlabs/skeleton";
+    import {categories, flatItems, flatNames, slugifyName} from "$lib/utils.js";
+    import {getContext} from "svelte";
 
-  export let map;
+    export let map;
+  export let counts;
 
   const groups = getContext("groups")();
 
-  // TODO: Add counts to the checkbox labels
   const nodes = categories.map((c) => ({
     id: c.name,
     content: c.label,
@@ -22,7 +16,7 @@
       content: item
         .split("-")
         .map((name) => (name = name[0].toUpperCase() + name.slice(1)))
-        .join(" "),
+          .join(" ") + " (" + counts.find(count => slugifyName(count.name) === item)?.count + ")",
     })),
   }));
 

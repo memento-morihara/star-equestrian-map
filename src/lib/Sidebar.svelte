@@ -3,6 +3,8 @@
   import FilterTree from "$lib/FilterTree.svelte";
   import {getContext} from "svelte";
 
+  export let counts;
+
   const map = getContext("map")();
 
   const tabs = ["filters", "progress", "settings"];
@@ -30,7 +32,7 @@
       <svelte:fragment slot="panel">
         <div class="content overflow-y-auto">
           {#if activeTabIndex === 0}
-            <FilterTree {map} />
+            <FilterTree {map} {counts}/>
           {:else if activeTabIndex === 1}
             Progress
           {:else if activeTabIndex === 2}
