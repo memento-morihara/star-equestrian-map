@@ -13,22 +13,22 @@
 
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <aside
-        class="sidebar bg-white dark:bg-surface-800 shadow-md"
+        class="sidebar bg-white dark:bg-surface-800 shadow-md cursor-default"
   class:open
   class:closed={!open}
   on:dblclick|stopPropagation
   on:mousedown|stopPropagation
-
+        on:touchstart|stopPropagation
 >
-  <div class="sidebar-inner w-full"   on:mousewheel|stopImmediatePropagation>
-    <TabGroup class="tabs w-full py-0.5" justify="justify-evenly">
+  <div class="sidebar-inner w-full" on:mousewheel|stopImmediatePropagation on:touchstart|stopPropagation>
+    <TabGroup class="tabs w-full py-0.5 mt-1 pl-[8px]">
       {#each tabs as tab, i}
         <Tab bind:group={activeTabIndex} name={tab} value={i}
           ><span>{tab.toUpperCase()}</span></Tab
         >
       {/each}
       <svelte:fragment slot="panel">
-        <div class="content">
+        <div class="content overflow-y-auto">
           {#if activeTabIndex === 0}
             <FilterTree {map} />
           {:else if activeTabIndex === 1}
@@ -118,5 +118,9 @@
 
   .sidebar.closed .toggle-btn::before {
     transform: rotate(0deg);
+  }
+
+  .sidebar-inner {
+    scrollbar-gutter: stable;
   }
 </style>
