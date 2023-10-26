@@ -1,7 +1,8 @@
 <script>
     import {RecursiveTreeView,} from "@skeletonlabs/skeleton";
-    import {categories, flatItems, flatNames, slugifyName} from "$lib/utils.js";
+    import {categories, flatNames, slugifyName} from "$lib/utils.js";
     import {getContext} from "svelte";
+    import {filterStore} from "$lib/stores.js";
 
     export let map;
   export let counts;
@@ -22,12 +23,8 @@
 
   const items = categories.flatMap(c => c.items);
 
-  // Initialize all checkboxes as checked for now
-  // Later this should come from local storage
-  $: checkedNodes = flatItems;
-
   // Get all the checked items that aren't categories
-  $: itemNodes = checkedNodes.filter(item => !flatNames.includes(item));
+    $: itemNodes = $filterStore.filter(item => !flatNames.includes(item));
   $: itemNodes && toggleFeatureGroup();
 
   function toggleFeatureGroup() {
@@ -41,7 +38,7 @@
   selection
   multiple
   relational
-  bind:checkedNodes
+  bind:checkedNodes={$filterStore}
   {nodes}
   regionSummary="text-lg"
   regionChildren="text-base"

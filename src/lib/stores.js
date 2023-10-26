@@ -1,5 +1,6 @@
-import { derived, writable } from "svelte/store";
-import { localStorageStore } from "@skeletonlabs/skeleton";
+import {derived, writable} from "svelte/store";
+import {localStorageStore} from "@skeletonlabs/skeleton";
+import {categories} from "$lib/utils.js";
 
 export const customMarkers = localStorageStore("customMarkers", []);
 export const customRoutes = localStorageStore("customRoutes", []);
@@ -38,6 +39,10 @@ export const activeFilters = localStorageStore("activeFilters", [ {
 export const selectedMarker = writable(undefined);
 
 export const searchParams = writable();
+
+let filters = [];
+const initialFilters = categories.flatMap(category => filters = [...filters, ...category.items, category.name]);
+export const filterStore = localStorageStore("filters", filters);
 
 export const items = [ {
     parent: "Food",
