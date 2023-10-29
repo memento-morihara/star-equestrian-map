@@ -9,7 +9,7 @@ export const categories = [{
 }, {
     name: "food",
     label: "Food",
-    items: ["apple", "berries", "brown-mushroom", "carrot", "daikon-radish", "grapes", "lettuce", "lemon", "orange", "pumpkin", "purple-carrot", "strawberries", "turnip", "watermelon", "wheat", "zucchini"]
+    items: ["apple", "berries", "brown-mushroom", "carrot", "daikon-radish", "grapes", "honey", "lettuce", "lemon", "orange", "pumpkin", "purple-carrot", "strawberries", "truffle", "turnip", "watermelon", "wheat", "white-mushroom", "zucchini"]
 }, {
     name: "npc",
     label: "NPCs",
