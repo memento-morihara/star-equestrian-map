@@ -17,11 +17,11 @@
             $selectedMarker.options.store.update((store) => ({...store, lastCollected: new Date()}));
             // Reassignment to trigger reactivity
             lastCollected = lastCollected;
-            $settings.hideCollectedMarkers ? $selectedMarker.on("popupclose", () => $selectedMarker.remove()) : $selectedMarker.setOpacity(0.3);
+            $settings.hideCollectedMarkers ? $selectedMarker.on("popupclose", () => $selectedMarker.remove()) : $selectedMarker.setOpacity($settings.markerOpacity);
             isCollected = true;
         } else if (key === "lastChecked") {
             $selectedMarker.options.store.update((store) => ({...store, lastChecked: new Date()}));
-            $settings.hideCollectedMarkers ? $selectedMarker.addTo($selectedMarker.group) : $selectedMarker.setOpacity(0.3)
+            $settings.hideCollectedMarkers ? $selectedMarker.addTo($selectedMarker.group) : $selectedMarker.setOpacity($settings.markerOpacity);
             lastChecked = lastChecked;
             isChecked = true;
         }
@@ -49,7 +49,7 @@
 
     onMount(() => {
         if (isCollected || isChecked) {
-            $selectedMarker.setOpacity(0.3);
+            $selectedMarker.setOpacity($settings.markerOpacity);
         }
     })
 </script>
