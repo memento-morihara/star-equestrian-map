@@ -6,11 +6,15 @@
   import Spiderfier from "$lib/Spiderfier.svelte";
   import CondensedAttribution from "$lib/CondensedAttribution.svelte";
   import Sidebar from "$lib/Sidebar.svelte";
+  import {appWindow} from "@tauri-apps/api/window";
+  import {settings} from "$lib/stores.js";
 
   export let data;
   let initialLocation;
 
   const locations = Object.values(data.locations);
+
+  $: appWindow.setAlwaysOnTop($settings.keepOnTop);
 </script>
 
 <LightSwitch class="absolute right-3 top-3 lightswitch dark:bg-gray-950 z-[500]"/>

@@ -2,6 +2,7 @@
   import {Tab, TabGroup} from "@skeletonlabs/skeleton";
   import FilterTree from "$lib/FilterTree.svelte";
   import {getContext} from "svelte";
+  import Settings from "$lib/Settings.svelte";
 
   export let counts;
 
@@ -36,7 +37,7 @@
           {:else if activeTabIndex === 1}
             Progress
           {:else if activeTabIndex === 2}
-            Settings
+            <Settings/>
 
           {/if}
         </div>
