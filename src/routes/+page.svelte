@@ -1,35 +1,44 @@
 <script>
-  import {LightSwitch} from "@skeletonlabs/skeleton";
+  import { LightSwitch } from "@skeletonlabs/skeleton";
   import Marker from "$lib/Marker.svelte";
   import Map from "$lib/Map.svelte";
-  import {categories} from "$lib/utils.js";
+  import { categories } from "$lib/utils.js";
   import Spiderfier from "$lib/Spiderfier.svelte";
   import CondensedAttribution from "$lib/CondensedAttribution.svelte";
   import Sidebar from "$lib/Sidebar.svelte";
-  import {appWindow} from "@tauri-apps/api/window";
-  import {settings} from "$lib/stores.js";
+  import { settings } from "$lib/stores.js";
+  import { onMount } from "svelte";
 
   export let data;
   let initialLocation;
 
   const locations = Object.values(data.locations);
 
-  $: appWindow.setAlwaysOnTop($settings.keepOnTop);
+  // Check if it is running as a desktop app
+  onMount(() => async () => {
+    if (!window.__TAURI__) {
+      return;
+    }
+    const { appWindow } = await import("@tauri-apps/api/window");
+    appWindow.setAlwaysOnTop($settings.keepOnTop);
+  });
 </script>
 
-<LightSwitch class="absolute right-3 top-3 lightswitch dark:bg-gray-950 z-[500]"/>
+<LightSwitch
+  class="absolute right-3 top-3 lightswitch dark:bg-gray-950 z-[500]"
+/>
 <Map {data}>
-    <Sidebar counts={data.counts}/>
+  <Sidebar counts={data.counts} />
   <Spiderfier>
     {#each locations as category, i}
       {#each locations[i] as item}
         {#each item.locations as location}
           <Marker
-                  location={{
-            name: item.name,
-            category: categories.find((c) => c.items.includes(item.name)),
-            ...location,
-          }}
+            location={{
+              name: item.name,
+              category: categories.find((c) => c.items.includes(item.name)),
+              ...location,
+            }}
           />
         {/each}
       {/each}
