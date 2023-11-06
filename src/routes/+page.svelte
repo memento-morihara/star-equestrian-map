@@ -10,18 +10,20 @@
   import { onMount } from "svelte";
 
   export let data;
-  let initialLocation;
+  let appWindow;
 
   const locations = Object.values(data.locations);
 
   // Check if it is running as a desktop app
-  onMount(() => async () => {
+  onMount(async () => {
     if (!window.__TAURI__) {
       return;
     }
-    const { appWindow } = await import("@tauri-apps/api/window");
-    appWindow.setAlwaysOnTop($settings.keepOnTop);
+    let tauriWindow = await import("@tauri-apps/api/window");
+    appWindow = tauriWindow.appWindow;
   });
+
+  $: appWindow && appWindow?.setAlwaysOnTop($settings.keepOnTop);
 </script>
 
 <LightSwitch
