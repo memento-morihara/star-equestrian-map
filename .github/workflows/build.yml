@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - release
+  workflow_call:
 
 jobs:
   publish-tauri:
@@ -29,6 +30,8 @@ jobs:
           sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
       - name: install frontend dependencies
         run: npm install
+      - name: generate icons
+        run: npm run tauri icon ./static/favicon.png
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
