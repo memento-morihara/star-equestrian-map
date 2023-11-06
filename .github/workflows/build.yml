@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - release
+  workflow_call:
 
 jobs:
   publish-tauri:
