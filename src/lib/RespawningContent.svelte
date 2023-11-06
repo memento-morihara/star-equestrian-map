@@ -1,101 +1,107 @@
 <script>
-    import {selectedMarker, settings} from "$lib/stores.js";
+    import { selectedMarker, settings } from "$lib/stores.js";
     import Icon from "@iconify/svelte";
     import Time from "svelte-time";
-    import {get} from "svelte/store";
-    import {fade} from "svelte/transition";
-    import {onMount} from "svelte";
+    import { get } from "svelte/store";
+    import { fade } from "svelte/transition";
 
-    $: lastCollected = get($selectedMarker.options.store)?.lastCollected;
-    $: lastChecked = get($selectedMarker.options.store)?.lastChecked;
-    $: isCollected = new Date(lastCollected).getUTCDate() === new Date().getUTCDate();
-    $: isChecked = new Date(lastChecked).getUTCDate() === new Date().getUTCDate();
+    function isSameDay(date) {
+        return new Date(date).getUTCDate() === new Date().getUTCDate();
+    }
 
-    // TODO: Consolidate the (un)updateStore functions for this + OneTimeContent
+    $: lastCollected = get($selectedMarker.options.store)?.lastCollected[0];
+    $: lastChecked = get($selectedMarker.options.store)?.lastChecked[0];
+    $: isCollected = lastCollected && isSameDay(new Date(lastCollected));
+    $: isChecked = lastChecked && isSameDay(new Date(lastChecked));
+
+    // Add current date to the beginning of the array and remove the last item
+    const setArray = (store, key) => {
+        store[key].unshift(new Date());
+        return store[key].slice(0, 2);
+    };
+    // Since setArray will always add to the beginning and remove the last item,
+    // the two remaining elements will never be the same date and can be swapped safely
+    const undoSetArray = (store, key) => {
+        return store[key].reverse();
+    };
+    // If the collect/uncollect cycle is repeated, the "old" date is now the first element
+    // so it will be preserved
+
     const updateStore = (key) => {
-        if (key === "lastCollected") {
-            $selectedMarker.options.store.update((store) => ({...store, lastCollected: new Date()}));
-            // Reassignment to trigger reactivity
-            lastCollected = lastCollected;
-            $settings.hideCollectedMarkers ? $selectedMarker.on("popupclose", () => $selectedMarker.remove()) : $selectedMarker.setOpacity($settings.markerOpacity);
-            isCollected = true;
-        } else if (key === "lastChecked") {
-            $selectedMarker.options.store.update((store) => ({...store, lastChecked: new Date()}));
-            $settings.hideCollectedMarkers ? $selectedMarker.addTo($selectedMarker.group) : $selectedMarker.setOpacity($settings.markerOpacity);
-            lastChecked = lastChecked;
-            isChecked = true;
-        }
-    }
+        $selectedMarker.options.store.update((store) => ({
+            ...store,
+            lastCollected: setArray(store, key),
+        }));
 
-    const undoUpdateStore = () => {
-        if (isCollected) {
-            $selectedMarker.options.store.update((store) => ({
-                ...store,
-                lastCollected: new Date(store.previousCollected).getUTCDate() === new Date().getUTCDate() ? null : store.previousCollected
-            }));
-            $selectedMarker.setOpacity(1);
-            lastCollected = lastCollected;
-            isCollected = false;
-        } else if (isChecked) {
-            $selectedMarker.options.store.update(store => ({
-                ...store,
-                lastChecked: new Date(store.previousChecked).getUTCDate() === new Date().getUTCDate() ? null : store.previousChecked
-            }))
-            $selectedMarker.setOpacity(1);
-            lastChecked = lastChecked;
-            isChecked = false;
-        }
-    }
+        $settings.hideCollectedMarkers
+            ? $selectedMarker.on("popupclose", () => $selectedMarker.remove())
+            : $selectedMarker.setOpacity($settings.markerOpacity);
 
-    onMount(() => {
-        if (isCollected || isChecked) {
-            $selectedMarker.setOpacity($settings.markerOpacity);
-        }
-    })
+        lastChecked = lastChecked;
+        lastCollected = lastCollected;
+    };
+
+    const undoUpdateStore = (key) => {
+        $selectedMarker.options.store.update((store) => ({
+            ...store,
+            lastChecked: undoSetArray(store, key),
+        }));
+        $selectedMarker.setOpacity(1);
+
+        lastChecked = lastChecked;
+        lastCollected = lastCollected;
+    };
 </script>
 
 <div>
-    <small>Last collected:
+    <small class="text-sm pb-0"
+        >Last collected:
         {#if lastCollected}
-            <Time relative timestamp={get($selectedMarker.options.store)?.lastCollected}/>
+            <Time relative timestamp={lastCollected} />
         {:else}N/A
         {/if}
     </small>
-    {#if lastChecked}<br/><small in:fade>Last checked:
-        <Time relative timestamp={lastChecked}/>
-    </small>{/if}
+    {#if lastChecked && !isCollected}
+        <small class="text-sm" in:fade
+            >Last checked:
+            <Time relative timestamp={lastChecked} />
+        </small>
+    {/if}
 </div>
 {#if $selectedMarker.options.description}
-    <p>{$selectedMarker.options.description}</p>
+    <p class="text-base">{$selectedMarker.options.description}</p>
 {/if}
 <div class="spawn-buttons">
     {#if isCollected}
-        <button class="btn variant-ghost-primary" on:click={() => undoUpdateStore()}>Remove</button>
-    {:else if isChecked}
-        <button class="btn variant-ghost-secondary" on:click={() => undoUpdateStore()}>Remove</button>
-    {:else}
-
-
-        <button on:click={() => updateStore("lastCollected")} class="btn variant-filled-primary">Collect</button>
         <button
-                class="no-spawn btn-icon hover:variant-soft-primary"
-                title="Not respawned today" on:click={(e) => updateStore("lastChecked")}>
-            <Icon icon="bi:calendar-x"
-            />
+            class="btn variant-ghost-primary"
+            on:click={() => undoUpdateStore("lastCollected")}>Remove</button
+        >
+    {:else if isChecked}
+        <button
+            class="btn variant-ghost-primary"
+            on:click={() => undoUpdateStore("lastChecked")}>Remove</button
+        >
+    {:else}
+        <button
+            on:click={() => updateStore("lastCollected")}
+            class="btn variant-filled-primary">Collect</button
+        >
+        <button
+            class="no-spawn btn-icon hover:variant-soft-primary"
+            title="Not respawned today"
+            on:click={(e) => updateStore("lastChecked")}
+        >
+            <Icon icon="bi:calendar-x" />
         </button>
     {/if}
-
 </div>
 
 <style>
-    small {
-        font-size: 0.78rem;
-    }
-
-    p {
+    /* p {
         margin: 0.7rem 0 0 0 !important;
         padding: 0;
-    }
+    } */
 
     .spawn-buttons {
         display: flex;

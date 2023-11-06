@@ -1,11 +1,11 @@
 <script>
-    import {getContext, onMount, setContext} from "svelte";
-    import {browser} from "$app/environment";
-    import {markerData} from "$lib/markerData";
-    import {allMarkers, selectedMarker, settings} from "$lib/stores.js";
-    import {slugifyName} from "$lib/utils.js";
-    import {localStorageStore} from "@skeletonlabs/skeleton";
-    import {get} from "svelte/store";
+    import { getContext, onMount, setContext } from "svelte";
+    import { browser } from "$app/environment";
+    import { markerData } from "$lib/markerData";
+    import { allMarkers, selectedMarker, settings } from "$lib/stores.js";
+    import { slugifyName } from "$lib/utils.js";
+    import { localStorageStore } from "@skeletonlabs/skeleton";
+    import { get } from "svelte/store";
     import PopupContent from "$lib/Popup.svelte";
 
     export let location;
@@ -25,8 +25,17 @@
         );
     }
 
-    if (browser && window) {
+    const lsTemplate = (type) => {
+        if (type === "respawning") {
+            return { lastCollected: [null], lastChecked: [null] };
+        } else if (type === "one-time") {
+            return {};
+        } else {
+            return;
+        }
+    };
 
+    if (browser && window) {
         onMount(async () => {
             const props = await markerData().then((data) =>
                 data
@@ -38,7 +47,10 @@
                 id: location.id,
                 description: location.description,
                 riseOnHover: true,
-                store: localStorageStore(location.id, {}),
+                store: localStorageStore(
+                    location.id,
+                    lsTemplate(props.markerType)
+                ),
                 ...props,
             });
             initPopup(marker);
@@ -59,7 +71,10 @@
             let lastCollected = get(marker.options.store)?.lastCollected;
 
             if (lastCollected) {
-                if (new Date(lastCollected).getUTCDate() === new Date().getUTCDate()) {
+                if (
+                    new Date(lastCollected).getUTCDate() ===
+                    new Date().getUTCDate()
+                ) {
                     marker.setOpacity($settings.markerOpacity);
                 }
             }
@@ -68,5 +83,5 @@
 </script>
 
 {#if marker}
-    <slot/>
+    <slot />
 {/if}
