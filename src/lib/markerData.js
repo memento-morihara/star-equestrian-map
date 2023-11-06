@@ -476,7 +476,7 @@ export const markerData = async () => {
             {
                 name: "Brazier",
                 icon: L.icon({
-                    iconUrl: "./icons/brazier.svg",
+                    iconUrl: "./icons/collect/map-brazier.webp",
                     iconSize: scaleIcons([ 64, 64 ], 20),
                 }),
                 markerType: "one-time",
