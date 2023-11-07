@@ -94,10 +94,10 @@
 </div>
 
 <style>
-    /* p {
-        margin: 0.7rem 0 0 0 !important;
+    p {
+        margin: 0.4rem 0 0 0 !important;
         padding: 0;
-    } */
+    }
 
     .spawn-buttons {
         display: flex;
