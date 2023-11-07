@@ -56,14 +56,16 @@
         {/if}
     </small>
     {#if lastChecked && !isCollected}
-        <small class="text-sm" in:fade
-            >Last checked:
-            <Time relative timestamp={lastChecked} />
-        </small>
+        <div in:fade>
+            <small class="text-sm"
+                >Last checked:
+                <Time relative timestamp={lastChecked} />
+            </small>
+        </div>
     {/if}
 </div>
 {#if $selectedMarker.options.description}
-    <p class="text-base">{$selectedMarker.options.description}</p>
+    <p class="text-base m-0">{$selectedMarker.options.description}</p>
 {/if}
 <div class="spawn-buttons">
     {#if isCollected}
