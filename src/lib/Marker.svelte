@@ -19,7 +19,7 @@
     function initPopup(marker) {
         marker.bindPopup(
             L.popup({
-                minWidth: 210,
+                minWidth: 230,
                 content: `<div id="${marker.options.id}"></div>`,
             })
         );
@@ -30,8 +30,6 @@
             return { lastCollected: [null], lastChecked: [null] };
         } else if (type === "one-time") {
             return {};
-        } else {
-            return;
         }
     };
 

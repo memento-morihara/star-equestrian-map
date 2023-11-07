@@ -40,12 +40,11 @@
             </button>
         </div>
         <div
-            class="content"
             class:no-desc={$selectedMarker.options.markerType !==
                 "respawning" && !$selectedMarker.options.description}
         >
             {#if $selectedMarker.options.markerType !== "respawning" && $selectedMarker.options.description}
-                <p class="desc">{$selectedMarker.options.description}</p>
+                <p class="text-base my-0">{$selectedMarker.options.description}</p>
             {/if}
             {#if $selectedMarker.options.markerType !== "static"}
                 <svelte:component this={popupContent()} />
@@ -55,9 +54,8 @@
 {/if}
 
 <style>
-    .desc {
-        margin: 0;
-        font-size: var(--sl-font-size-medium);
+    p {
+        margin: 0.4 0 0 0 !important;
     }
 
     .popup-content {
@@ -65,19 +63,8 @@
         flex-direction: column;
     }
 
-    .title {
-        /* width: 100%; */
-        font-size: var(--sl-font-size-large);
-    }
-
     .centered {
         text-align: center;
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
     }
 
     .header {
