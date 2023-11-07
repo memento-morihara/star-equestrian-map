@@ -14,24 +14,13 @@
     $: isCollected = lastCollected && isSameDay(new Date(lastCollected));
     $: isChecked = lastChecked && isSameDay(new Date(lastChecked));
 
-    // Add current date to the beginning of the array and remove the last item
-    const setArray = (store, key) => {
-        store[key].unshift(new Date());
-        return store[key].slice(0, 2);
-    };
-    // Since setArray will always add to the beginning and remove the last item,
-    // the two remaining elements will never be the same date and can be swapped safely
-    const undoSetArray = (store, key) => {
-        return store[key].reverse();
-    };
-    // If the collect/uncollect cycle is repeated, the "old" date is now the first element
-    // so it will be preserved
-
     const updateStore = (key) => {
-        $selectedMarker.options.store.update((store) => ({
-            ...store,
-            lastCollected: setArray(store, key),
-        }));
+        let store = get($selectedMarker.options.store);
+
+        // Add current date to the beginning of the array and remove the last item
+        store[key].unshift(new Date());
+        store[key] = store[key].slice(0, 2);
+        $selectedMarker.options.store.update(s => ({...s, ...store}));
 
         $settings.hideCollectedMarkers
             ? $selectedMarker.on("popupclose", () => $selectedMarker.remove())
@@ -42,15 +31,20 @@
     };
 
     const undoUpdateStore = (key) => {
-        $selectedMarker.options.store.update((store) => ({
-            ...store,
-            lastChecked: undoSetArray(store, key),
-        }));
+        let store = get($selectedMarker.options.store);
+
+        // Since setArray will always add to the beginning and remove the last item,
+        // the two remaining elements will never be the same date and can be swapped safely
+        store[key].reverse();
+        $selectedMarker.options.store.update(s => ({...s, ...store}));
         $selectedMarker.setOpacity(1);
 
         lastChecked = lastChecked;
         lastCollected = lastCollected;
     };
+
+    // If the collect/uncollect cycle is repeated, the "old" date is now the first element
+    // so it will be preserved
 </script>
 
 <div>

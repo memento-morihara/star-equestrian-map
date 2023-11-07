@@ -30,8 +30,6 @@
             return { lastCollected: [null], lastChecked: [null] };
         } else if (type === "one-time") {
             return {};
-        } else {
-            return;
         }
     };
 
