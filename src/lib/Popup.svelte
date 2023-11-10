@@ -1,10 +1,10 @@
 <script>
-    import { selectedMarker } from "$lib/stores.js";
+    import {selectedMarker} from "$lib/stores.js";
     import OneTimeContent from "./OneTimeContent.svelte";
     import RespawningContent from "./RespawningContent.svelte";
-    import { page } from "$app/stores";
+    import {page} from "$app/stores";
     import Icon from "@iconify/svelte";
-    import { clipboard } from "@skeletonlabs/skeleton";
+    import {clipboard} from "@skeletonlabs/skeleton";
 
     const popupContent = () => {
         switch ($selectedMarker.options.markerType) {
@@ -55,7 +55,7 @@
 
 <style>
     p {
-        margin: 0.4 0 0 0 !important;
+        margin: 0.4rem 0 0 0 !important;
     }
 
     .popup-content {
