@@ -32,17 +32,18 @@
         >
       {/each}
       <svelte:fragment slot="panel">
-        <div class="content overflow-y-auto">
-          {#if activeTabIndex === 0}
-            <FilterTree {map} {counts}/>
-          {:else if activeTabIndex === 1}
-            <Progress/>
-          {:else if activeTabIndex === 2}
-            <Settings/>
+        <section class="text-base align-baseline px-2.5">
+          <div class="content overflow-y-auto">
+            {#if activeTabIndex === 0}
+              <FilterTree {map} {counts}/>
+            {:else if activeTabIndex === 1}
+              <Progress/>
+            {:else if activeTabIndex === 2}
+              <Settings/>
 
-          {/if}
-        </div>
-
+            {/if}
+          </div>
+        </section>
       </svelte:fragment>
     </TabGroup>
   </div>

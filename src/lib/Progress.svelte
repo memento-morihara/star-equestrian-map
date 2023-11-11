@@ -31,7 +31,7 @@
     const percentCollected = (item) => collected[item] ? collected[item] / grouped[item].length : 0;
 </script>
 
-<section>
+<section class="text-base align-baseline px-2.5">
     <h2 class="h3">Progress</h2>
     <div class="mx-2">
         {#each Object.keys(grouped) as item}
@@ -44,7 +44,8 @@
                     </div>
                     <p class="text-lg">{collected[item]} / {grouped[item].length}</p>
                 </div>
-                <ProgressBar value={percentCollected(item) * 100} height="h-3" labelledby={slugifyName(item)}/>
+                <ProgressBar meter="bg-primary-500" value={percentCollected(item) * 100} height="h-3"
+                             labelledby={slugifyName(item)}/>
             </div>
         {/each}
     </div>

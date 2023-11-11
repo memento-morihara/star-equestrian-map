@@ -3,8 +3,7 @@
     import {get} from "svelte/store";
     import {onMount} from "svelte";
 
-    // TODO: Consolidate the (un)updateStore functions for this + RespawningContent
-  function updateStore() {
+    function updateStore() {
       $selectedMarker.options.store.update(() => ({collected: true}));
       $selectedMarker.setOpacity($settings.markerOpacity);
       isCollected = isCollected;
@@ -27,8 +26,7 @@
 
 <div class="collect-button">
     {#if isCollected}
-        <button class="btn variant-ghost-secondary" on:click={undoUpdateStore}>Remove</button>
-
+        <button class="btn variant-ghost-primary" on:click={undoUpdateStore}>Remove</button>
     {:else}
         <button class="btn variant-filled-primary" on:click={updateStore}>Collect</button>
     {/if}
