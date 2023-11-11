@@ -3,6 +3,7 @@
   import FilterTree from "$lib/FilterTree.svelte";
   import {getContext} from "svelte";
   import Settings from "$lib/Settings.svelte";
+  import Progress from "$lib/Progress.svelte";
 
   export let counts;
 
@@ -35,7 +36,7 @@
           {#if activeTabIndex === 0}
             <FilterTree {map} {counts}/>
           {:else if activeTabIndex === 1}
-            Progress
+            <Progress/>
           {:else if activeTabIndex === 2}
             <Settings/>
 

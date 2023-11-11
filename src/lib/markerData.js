@@ -1,4 +1,4 @@
-import { browser } from "$app/environment";
+import {browser} from "$app/environment";
 
 export const markerData = async () => {
     if (browser) {
@@ -387,7 +387,7 @@ export const markerData = async () => {
             {
                 name: "Sheriff Badge",
                 icon: L.icon({
-                    iconUrl: "./icons/collect/collect-sheriff-badge.webp",
+                    iconUrl: "./icons/collect/sheriff-badge.webp",
                     iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
@@ -396,7 +396,7 @@ export const markerData = async () => {
             {
                 name: "Horseshoe",
                 icon: L.icon({
-                    iconUrl: "./icons/collect/collect-golden-horseshoe.webp",
+                    iconUrl: "./icons/collect/horseshoe.webp",
                     iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
@@ -405,7 +405,7 @@ export const markerData = async () => {
             {
                 name: "Toy Unicorn",
                 icon: L.icon({
-                    iconUrl: "./icons/collect/collect-unicorn.webp",
+                    iconUrl: "./icons/collect/toy-unicorn.webp",
                     iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
@@ -414,7 +414,7 @@ export const markerData = async () => {
             {
                 name: "Bottle",
                 icon: L.icon({
-                    iconUrl: "./icons/collect/collect-message-bottle.webp",
+                    iconUrl: "./icons/collect/bottle.webp",
                     iconSize: scaleIcons([ 64, 64 ], 24),
                 }),
                 markerType: "one-time",
@@ -476,7 +476,7 @@ export const markerData = async () => {
             {
                 name: "Brazier",
                 icon: L.icon({
-                    iconUrl: "./icons/collect/map-brazier.webp",
+                    iconUrl: "./icons/collect/brazier.webp",
                     iconSize: scaleIcons([ 64, 64 ], 20),
                 }),
                 markerType: "one-time",
