@@ -1,21 +1,24 @@
 <script>
     import {ProgressBar} from "@skeletonlabs/skeleton";
-    import {allMarkers} from "$lib/stores.js";
+    import {collectibleStores} from "$lib/stores.js";
     import {get} from "svelte/store";
     import {slugifyName} from "$lib/utils.js";
+    import {onDestroy, onMount} from "svelte";
 
     let items = [];
     let arr = [];
     let collected = {};
 
-    items.forEach(item => console.log(item.store))
+    let unsubscribers = [];
 
-    $allMarkers.forEach(marker => {
-        if (marker.options.markerType === "one-time" && !["Legendary Chest", "Quest Item"].includes(marker.options.name)) {
-            // Bring the name property to the root to reduce by
-            items.push({store: get(marker.options.store) ?? false, name: marker.options.name});
-        }
-    });
+    // $allMarkers.forEach(marker => {
+    //     if (marker.options.markerType === "one-time" && !["Legendary Chest", "Quest Item"].includes(marker.options.name)) {
+    //         // Bring the name property to the root to reduce by
+    //         items.push({store: get(marker.options.store) ?? false, name: marker.options.name});
+    //     }
+    // });
+
+    $collectibleStores.forEach(item => items.push(item))
 
     const groupBy = (prop, list) => list.reduce((groups, item) => ({
         ...groups,
@@ -24,11 +27,22 @@
     let grouped = groupBy("name", items);
 
     Object.keys(grouped).forEach(key => arr.push({[key]: [...grouped[key]]}));
-    Object.keys(grouped).forEach(key => {
-        collected[key] = [...grouped[key].filter(item => item.store?.collected)].length ?? 0
+
+    function getCollected() {
+        Object.keys(grouped).forEach(key => {
+            collected[key] = [...grouped[key].filter(item => get(item.store)?.collected)].length ?? 0
+        });
+    }
+
+    onMount(() => {
+        // Put the unsubscribe method returned from subscribe into an array
+        $collectibleStores.forEach(item => unsubscribers.push(item.store.subscribe(() => getCollected())))
     });
 
-    const percentCollected = (item) => collected[item] ? collected[item] / grouped[item].length : 0;
+    // Call the unsubscribe methods when component is unmounted
+    onDestroy(() => unsubscribers.forEach(s => s()))
+
+    $:  percentCollected = (item) => collected[item] ? collected[item] / grouped[item].length : 0;
 </script>
 
 <section class="text-base align-baseline px-2.5">

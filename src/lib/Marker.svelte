@@ -1,11 +1,11 @@
 <script>
-    import { getContext, onMount, setContext } from "svelte";
-    import { browser } from "$app/environment";
-    import { markerData } from "$lib/markerData";
-    import { allMarkers, selectedMarker, settings } from "$lib/stores.js";
-    import { slugifyName } from "$lib/utils.js";
-    import { localStorageStore } from "@skeletonlabs/skeleton";
-    import { get } from "svelte/store";
+    import {getContext, onMount, setContext} from "svelte";
+    import {browser} from "$app/environment";
+    import {markerData} from "$lib/markerData";
+    import {allMarkers, collectibleStores, selectedMarker, settings} from "$lib/stores.js";
+    import {slugifyName} from "$lib/utils.js";
+    import {localStorageStore} from "@skeletonlabs/skeleton";
+    import {get} from "svelte/store";
     import PopupContent from "$lib/Popup.svelte";
 
     export let location;
@@ -57,6 +57,10 @@
             groups[name] && groups[name].addLayer(marker);
             marker.options.group = groups[name];
             $allMarkers = [...$allMarkers, marker];
+
+            if (marker.options.markerType === "one-time" && !["Legendary Chest", "Quest Item"].includes(marker.options.name)) {
+                $collectibleStores = [...$collectibleStores, {name: marker.options.name, store: marker.options.store}]
+            }
 
             marker.on("click", () => {
                 $selectedMarker = marker;

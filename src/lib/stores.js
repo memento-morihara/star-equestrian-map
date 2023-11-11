@@ -1,6 +1,6 @@
-import { writable } from "svelte/store";
-import { localStorageStore } from "@skeletonlabs/skeleton";
-import { categories } from "$lib/utils.js";
+import {writable} from "svelte/store";
+import {localStorageStore} from "@skeletonlabs/skeleton";
+import {categories} from "$lib/utils.js";
 
 export const customMarkers = localStorageStore("customMarkers", []);
 export const customRoutes = localStorageStore("customRoutes", []);
@@ -20,3 +20,5 @@ export const settings = localStorageStore("settings", {
     markerOpacity: writable(0.3),
 });
 export const allMarkers = writable([]);
+
+export const collectibleStores = writable([]);
