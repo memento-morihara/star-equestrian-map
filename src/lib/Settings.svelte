@@ -1,7 +1,7 @@
 <script>
-  import { allMarkers, settings } from "$lib/stores.js";
-  import { getContext } from "svelte";
-  import { get } from "svelte/store";
+  import {allMarkers, settings} from "$lib/stores.js";
+  import {getContext} from "svelte";
+  import {get} from "svelte/store";
 
   const map = getContext("map")();
 
@@ -35,6 +35,8 @@
         isCollected(marker) && marker.setOpacity($settings.markerOpacity)
     );
   }
+
+  $: $settings.markerOpacity && changeOpacity()
 </script>
 
 <section class="text-base align-baseline pl-2.5">
