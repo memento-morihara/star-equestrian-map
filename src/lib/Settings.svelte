@@ -2,6 +2,7 @@
   import {allMarkers, settings} from "$lib/stores.js";
   import {getContext} from "svelte";
   import {get} from "svelte/store";
+  import {RangeSlider} from "@skeletonlabs/skeleton";
 
   const map = getContext("map")();
 
@@ -73,18 +74,10 @@
       /><span class="ml-2">Hide collected items</span></label
     >
     <div class="flex-col space-y-2">
-      <label for="opacity"><span>Collected marker opacity</span></label><input
-        bind:value={$settings.markerOpacity}
-        class="w-2/3 accent-primary-500"
-        disabled={$settings.hideCollectedMarkers}
-        id="opacity"
-        max="0.9"
-        min="0.1"
-        name="opacity"
-        on:change={changeOpacity}
-        step="0.1"
-        type="range"
-      />
+      <label for="opacity"><span>Collected marker opacity</span></label>
+      <RangeSlider accent="accent-primary-500 dark:accent-primary-500" bind:value={$settings.markerOpacity}
+                   class="w-2/3" disabled={$settings.hideCollectedMarkers}
+                   max="0.9" min="0.1" name="opacity" step="0.1"/>
     </div>
   </div>
 
