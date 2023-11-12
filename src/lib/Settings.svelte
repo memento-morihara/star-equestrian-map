@@ -1,19 +1,10 @@
 <script>
   import {allMarkers, settings} from "$lib/stores.js";
-  import {getContext} from "svelte";
-  import {get} from "svelte/store";
+  import {getContext, onMount} from "svelte";
   import {RangeSlider} from "@skeletonlabs/skeleton";
+  import {isCollected} from "$lib/utils.js";
 
   const map = getContext("map")();
-
-  function isCollected(marker) {
-    const lastCollected = get(marker.options.store)?.lastCollected;
-    return (
-      (lastCollected &&
-        new Date(lastCollected).getUTCDate() === new Date().getUTCDate()) ||
-      get(marker.options.store)?.collected
-    );
-  }
 
   function toggleHiddenMarkers(e) {
     e.target.checked
@@ -36,6 +27,10 @@
         isCollected(marker) && marker.setOpacity($settings.markerOpacity)
     );
   }
+
+  onMount(() => {
+    changeOpacity()
+  })
 
   $: $settings.markerOpacity && changeOpacity()
 </script>

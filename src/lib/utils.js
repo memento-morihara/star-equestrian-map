@@ -1,3 +1,5 @@
+import {get} from "svelte/store";
+
 export const categories = [{
     name: "chest",
     label: "Chests",
@@ -26,3 +28,29 @@ export function slugifyName(name) {
 
 export const flatNames = categories.flatMap(category => category.name);
 export const flatItems = categories.flatMap(category => category.items);
+
+
+export const isToday = (date) => {
+    // Check only the first date in the array
+    // If there is a date in the second spot, it has been "undone"
+    // and shouldn't be considered
+    if (date[0]) {
+        const date1 = new Date(date[0]).getUTCDate();
+        const date2 = new Date().getUTCDate();
+
+        return date1 === date2;
+    } else {
+        return false;
+    }
+}
+
+export const isCollected = (marker) => {
+    const store = get(marker.options.store);
+
+    switch (marker.options.markerType) {
+        case "one-time":
+            return store.collected;
+        case "respawning":
+            return isToday(store.lastCollected) || isToday(store.lastChecked);
+    }
+}

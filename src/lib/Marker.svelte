@@ -3,14 +3,12 @@
     import {browser} from "$app/environment";
     import {markerData} from "$lib/markerData";
     import {allMarkers, collectibleStores, selectedMarker, settings} from "$lib/stores.js";
-    import {slugifyName} from "$lib/utils.js";
+    import {isCollected, slugifyName} from "$lib/utils.js";
     import {localStorageStore} from "@skeletonlabs/skeleton";
-    import {get} from "svelte/store";
     import PopupContent from "$lib/Popup.svelte";
 
     export let location;
 
-    let store;
     let marker;
     setContext("marker", () => marker);
 
@@ -58,9 +56,6 @@
             marker.options.group = groups[name];
             $allMarkers = [...$allMarkers, marker];
 
-            if (marker.options.markerType === "one-time" && !["Legendary Chest", "Quest Item"].includes(marker.options.name)) {
-                $collectibleStores = [...$collectibleStores, {name: marker.options.name, store: marker.options.store}]
-            }
 
             marker.on("click", () => {
                 $selectedMarker = marker;
@@ -70,15 +65,16 @@
                 });
             });
 
-            let lastCollected = get(marker.options.store)?.lastCollected;
-
-            if (lastCollected) {
-                if (
-                    new Date(lastCollected).getUTCDate() ===
-                    new Date().getUTCDate()
-                ) {
-                    marker.setOpacity($settings.markerOpacity);
-                }
+            // Set opacity for markers that have been collected or checked
+            if (marker.options.markerType === "one-time" && !["Legendary Chest", "Quest Item"].includes(marker.options.name)) {
+                isCollected(marker) && marker.setOpacity($settings.markerOpacity)
+                $collectibleStores = [...$collectibleStores, {
+                    name: marker.options.name,
+                    id: marker.options.id,
+                    store: marker.options.store
+                }]
+            } else if (marker.options.markerType === "respawning") {
+                isCollected(marker) && marker.setOpacity($settings.markerOpacity);
             }
         });
     }

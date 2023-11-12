@@ -11,13 +11,6 @@
 
     let unsubscribers = [];
 
-    // $allMarkers.forEach(marker => {
-    //     if (marker.options.markerType === "one-time" && !["Legendary Chest", "Quest Item"].includes(marker.options.name)) {
-    //         // Bring the name property to the root to reduce by
-    //         items.push({store: get(marker.options.store) ?? false, name: marker.options.name});
-    //     }
-    // });
-
     $collectibleStores.forEach(item => items.push(item))
 
     const groupBy = (prop, list) => list.reduce((groups, item) => ({

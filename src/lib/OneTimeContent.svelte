@@ -1,7 +1,6 @@
 <script>
     import {selectedMarker, settings} from "$lib/stores.js";
     import {get} from "svelte/store";
-    import {onMount} from "svelte";
 
     function updateStore() {
       $selectedMarker.options.store.update(() => ({collected: true}));
@@ -17,11 +16,6 @@
 
     $: isCollected = get($selectedMarker.options.store)?.collected;
 
-    onMount(() => {
-        if (isCollected) {
-            $selectedMarker.setOpacity($settings.markerOpacity);
-        }
-    })
 </script>
 
 <div class="collect-button">

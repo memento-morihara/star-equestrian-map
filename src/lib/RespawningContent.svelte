@@ -1,18 +1,15 @@
 <script>
-    import { selectedMarker, settings } from "$lib/stores.js";
+    import {selectedMarker, settings} from "$lib/stores.js";
     import Icon from "@iconify/svelte";
     import Time from "svelte-time";
-    import { get } from "svelte/store";
-    import { fade } from "svelte/transition";
-
-    function isSameDay(date) {
-        return new Date(date).getUTCDate() === new Date().getUTCDate();
-    }
+    import {get} from "svelte/store";
+    import {fade} from "svelte/transition";
+    import {isToday} from "$lib/utils.js";
 
     $: lastCollected = get($selectedMarker.options.store)?.lastCollected[0];
     $: lastChecked = get($selectedMarker.options.store)?.lastChecked[0];
-    $: isCollected = lastCollected && isSameDay(new Date(lastCollected));
-    $: isChecked = lastChecked && isSameDay(new Date(lastChecked));
+    $: isCollected = lastCollected && isToday(lastCollected);
+    $: isChecked = lastChecked && isToday(lastChecked);
 
     const updateStore = (key) => {
         let store = get($selectedMarker.options.store);
@@ -86,7 +83,7 @@
         <button
             class="no-spawn btn-icon hover:variant-soft-primary"
             title="Not respawned today"
-            on:click={(e) => updateStore("lastChecked")}
+            on:click={() => updateStore("lastChecked")}
         >
             <Icon icon="bi:calendar-x" />
         </button>
