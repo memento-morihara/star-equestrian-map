@@ -9,13 +9,13 @@
   function toggleHiddenMarkers(e) {
     e.target.checked
       ? $allMarkers.forEach((marker) => {
-          if (isCollected(marker)) {
+              if (isCollected(marker) >= 0) {
             marker.remove();
           }
         })
       : $allMarkers.forEach((marker) => {
           marker.addTo(map);
-          isCollected(marker)
+              isCollected(marker) >= 0
             ? marker.setOpacity($settings.markerOpacity)
             : marker.setOpacity(1);
         });

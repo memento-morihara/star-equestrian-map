@@ -49,8 +49,14 @@ export const isCollected = (marker) => {
 
     switch (marker.options.markerType) {
         case "one-time":
-            return store.collected;
+            return store.collected ? 1 : -1;
         case "respawning":
-            return isToday(store.lastCollected) || isToday(store.lastChecked);
+            if (isToday(store.lastCollected)) {
+                return 1;
+            } else if (isToday(store.lastChecked)) {
+                return 0;
+            } else {
+                return -1;
+            }
     }
 }

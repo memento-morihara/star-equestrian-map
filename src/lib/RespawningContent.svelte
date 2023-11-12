@@ -50,7 +50,7 @@
         {:else}N/A
         {/if}
     </small>
-    {#if lastChecked && !isCollected($selectedMarker)}
+    {#if lastChecked && isCollected($selectedMarker) === 0}
         <div in:fade>
             <small class="text-sm"
                 >Last checked:
@@ -63,12 +63,12 @@
     <p class="text-base m-0">{$selectedMarker.options.description}</p>
 {/if}
 <div class="spawn-buttons">
-    {#if isCollected($selectedMarker)}
+    {#if isCollected($selectedMarker) > 0}
         <button
             class="btn variant-ghost-primary"
             on:click={() => undoUpdateStore("lastCollected")}>Remove</button
         >
-    {:else if isCollected($selectedMarker)}
+    {:else if isCollected($selectedMarker) === 0}
         <button
             class="btn variant-ghost-primary"
             on:click={() => undoUpdateStore("lastChecked")}>Remove</button
