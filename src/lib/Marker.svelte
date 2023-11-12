@@ -67,14 +67,14 @@
 
             // Set opacity for markers that have been collected or checked
             if (marker.options.markerType === "one-time" && !["Legendary Chest", "Quest Item"].includes(marker.options.name)) {
-                isCollected(marker) && marker.setOpacity($settings.markerOpacity)
+                isCollected(marker) > 0 && marker.setOpacity($settings.markerOpacity)
                 $collectibleStores = [...$collectibleStores, {
                     name: marker.options.name,
                     id: marker.options.id,
                     store: marker.options.store
                 }]
             } else if (marker.options.markerType === "respawning") {
-                isCollected(marker) && marker.setOpacity($settings.markerOpacity);
+                isCollected(marker) >= 0 && marker.setOpacity($settings.markerOpacity);
             }
         });
     }
