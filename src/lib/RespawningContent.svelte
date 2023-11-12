@@ -4,12 +4,10 @@
     import Time from "svelte-time";
     import {get} from "svelte/store";
     import {fade} from "svelte/transition";
-    import {isToday} from "$lib/utils.js";
+    import {isCollected} from "$lib/utils.js";
 
     $: lastCollected = get($selectedMarker.options.store)?.lastCollected[0];
     $: lastChecked = get($selectedMarker.options.store)?.lastChecked[0];
-    $: isCollected = lastCollected && isToday(lastCollected);
-    $: isChecked = lastChecked && isToday(lastChecked);
 
     const updateStore = (key) => {
         let store = get($selectedMarker.options.store);
@@ -52,7 +50,7 @@
         {:else}N/A
         {/if}
     </small>
-    {#if lastChecked && !isCollected}
+    {#if lastChecked && !isCollected($selectedMarker)}
         <div in:fade>
             <small class="text-sm"
                 >Last checked:
@@ -65,12 +63,12 @@
     <p class="text-base m-0">{$selectedMarker.options.description}</p>
 {/if}
 <div class="spawn-buttons">
-    {#if isCollected}
+    {#if isCollected($selectedMarker)}
         <button
             class="btn variant-ghost-primary"
             on:click={() => undoUpdateStore("lastCollected")}>Remove</button
         >
-    {:else if isChecked}
+    {:else if isCollected($selectedMarker)}
         <button
             class="btn variant-ghost-primary"
             on:click={() => undoUpdateStore("lastChecked")}>Remove</button
