@@ -9,7 +9,10 @@
     $: lastCollected = get($selectedMarker.options.store)?.lastCollected[0];
     $: lastChecked = get($selectedMarker.options.store)?.lastChecked[0];
 
-    const updateStore = (key) => {
+    const updateStore = (key, e) => {
+        // Prevent popups from closing
+        $settings.closePopups || e.stopPropagation()
+
         let store = get($selectedMarker.options.store);
 
         // Add current date to the beginning of the array and remove the last item
@@ -25,7 +28,9 @@
         lastCollected = lastCollected;
     };
 
-    const undoUpdateStore = (key) => {
+    const undoUpdateStore = (key, e) => {
+        $settings.closePopups || e.stopPropagation()
+
         let store = get($selectedMarker.options.store);
 
         // Since setArray will always add to the beginning and remove the last item,
@@ -66,22 +71,24 @@
     {#if isCollected($selectedMarker) > 0}
         <button
             class="btn variant-ghost-primary"
-            on:click={() => undoUpdateStore("lastCollected")}>Remove</button
+            on:click={(e) => undoUpdateStore("lastCollected", e)}>Remove
+        </button
         >
     {:else if isCollected($selectedMarker) === 0}
         <button
             class="btn variant-ghost-primary"
-            on:click={() => undoUpdateStore("lastChecked")}>Remove</button
+            on:click={(e) => undoUpdateStore("lastChecked", e)}>Remove
+        </button
         >
     {:else}
         <button
-            on:click={() => updateStore("lastCollected")}
+                on:click={(e) => updateStore("lastCollected", e)}
             class="btn variant-filled-primary">Collect</button
         >
         <button
             class="no-spawn btn-icon hover:variant-soft-primary"
             title="Not respawned today"
-            on:click={() => updateStore("lastChecked")}
+            on:click={(e) => updateStore("lastChecked", e)}
         >
             <Icon icon="bi:calendar-x" />
         </button>
