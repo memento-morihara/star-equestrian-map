@@ -3,7 +3,7 @@
     import Icon from "@iconify/svelte";
     import Time from "svelte-time";
     import {get} from "svelte/store";
-    import {fade} from "svelte/transition";
+    import {fade, slide} from "svelte/transition";
     import {isCollected} from "$lib/utils.js";
 
     $: lastCollected = get($selectedMarker.options.store)?.lastCollected[0];
@@ -48,18 +48,18 @@
 </script>
 
 <div>
-    <small class="text-sm pb-0"
-        >Last collected:
+    <small class="text-sm pb-0" transition:fade
+    >Last collected:
         {#if lastCollected}
-            <Time relative timestamp={lastCollected} />
+            <Time relative timestamp={lastCollected}/>
         {:else}N/A
         {/if}
     </small>
     {#if lastChecked && isCollected($selectedMarker) === 0}
-        <div in:fade>
+        <div transition:slide>
             <small class="text-sm"
-                >Last checked:
-                <Time relative timestamp={lastChecked} />
+            >Last checked:
+                <Time relative timestamp={lastChecked}/>
             </small>
         </div>
     {/if}
@@ -67,33 +67,40 @@
 {#if $selectedMarker.options.description}
     <p class="text-base m-0">{$selectedMarker.options.description}</p>
 {/if}
-<div class="spawn-buttons">
-    {#if isCollected($selectedMarker) > 0}
+
+{#if isCollected($selectedMarker) > 0}
+    <div class="spawn-buttons" in:fade>
         <button
-            class="btn variant-ghost-primary"
-            on:click={(e) => undoUpdateStore("lastCollected", e)}>Remove
+                class="btn variant-ghost-primary"
+                on:click={(e) => undoUpdateStore("lastCollected", e)}>Remove
         </button
         >
-    {:else if isCollected($selectedMarker) === 0}
+    </div>
+{:else if isCollected($selectedMarker) === 0}
+    <div class="spawn-buttons" in:fade>
         <button
-            class="btn variant-ghost-primary"
-            on:click={(e) => undoUpdateStore("lastChecked", e)}>Remove
+                class="btn variant-ghost-primary"
+                on:click={(e) => undoUpdateStore("lastChecked", e)}>Remove
         </button
         >
-    {:else}
+    </div>
+{:else}
+    <div class="spawn-buttons" in:fade>
         <button
                 on:click={(e) => updateStore("lastCollected", e)}
-            class="btn variant-filled-primary">Collect</button
+                class="btn variant-filled-primary">Collect
+        </button
         >
         <button
-            class="no-spawn btn-icon hover:variant-soft-primary"
-            title="Not respawned today"
-            on:click={(e) => updateStore("lastChecked", e)}
+                class="no-spawn btn-icon hover:variant-soft-primary h-[42px]"
+                title="Not respawned today"
+                on:click={(e) => updateStore("lastChecked", e)}
         >
-            <Icon icon="bi:calendar-x" />
+            <Icon icon="bi:calendar-x"/>
         </button>
-    {/if}
-</div>
+    </div>
+{/if}
+
 
 <style>
     p {

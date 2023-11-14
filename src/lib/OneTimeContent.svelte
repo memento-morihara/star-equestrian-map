@@ -1,15 +1,16 @@
 <script>
     import {selectedMarker, settings} from "$lib/stores.js";
     import {get} from "svelte/store";
+    import {fade} from "svelte/transition";
 
     function updateStore(e) {
         // Prevent popups from closing
         $settings.closePopups || e.stopPropagation();
 
-      $selectedMarker.options.store.update(() => ({collected: true}));
-      $selectedMarker.setOpacity($settings.markerOpacity);
-      isCollected = isCollected;
-  }
+        $selectedMarker.options.store.update(() => ({collected: true}));
+        $selectedMarker.setOpacity($settings.markerOpacity);
+        isCollected = isCollected;
+    }
 
     function undoUpdateStore(e) {
         $settings.closePopups || e.stopPropagation();
@@ -25,9 +26,9 @@
 
 <div class="collect-button">
     {#if isCollected}
-        <button class="btn variant-ghost-primary" on:click={(e) => undoUpdateStore(e)}>Remove</button>
+        <button in:fade class="btn variant-ghost-primary" on:click={(e) => undoUpdateStore(e)}>Remove</button>
     {:else}
-        <button class="btn variant-filled-primary" on:click={(e) => updateStore(e)}>Collect</button>
+        <button in:fade class="btn variant-filled-primary" on:click={(e) => updateStore(e)}>Collect</button>
     {/if}
 </div>
 
