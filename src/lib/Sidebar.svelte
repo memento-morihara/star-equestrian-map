@@ -24,23 +24,25 @@
   on:mousedown|stopPropagation
         on:touchstart|stopPropagation
 >
-  <div class="sidebar-inner w-full" on:mousewheel|stopImmediatePropagation on:touchstart|stopPropagation>
-    <TabGroup class="tabs w-full py-0.5 mt-1 pl-[8px]">
+  <div class="sidebar-inner pl-[8px] overflow-y-visible" on:mousewheel|stopImmediatePropagation
+       on:touchstart|stopPropagation>
+    <TabGroup padding="px-4 pb-2.5 pt-3" regionList="sticky top-0 relative right-1 mr-0 bg-white dark:bg-surface-800 -mr-5" regionPanel="w-[80%] bg-white dark:bg-surface-800 mt-0"
+              regionSymbol="filter-icon"
+              rounded="0">
       {#each tabs as tab, i}
-        <Tab bind:group={activeTabIndex} name={tab} value={i}
+        <Tab regionTab="white w-full" bind:group={activeTabIndex} name={tab} value={i}
           ><span>{tab.toUpperCase()}</span></Tab
         >
       {/each}
       <svelte:fragment slot="panel">
-        <section class="text-base align-baseline px-2.5">
-          <div class="content overflow-y-auto">
+        <section class="text-base w-[390px] pr-2 align-baseline">
+          <div class="content w-full">
             {#if activeTabIndex === 0}
               <FilterTree {map} {counts}/>
             {:else if activeTabIndex === 1}
               <Progress/>
             {:else if activeTabIndex === 2}
               <Settings/>
-
             {/if}
           </div>
         </section>
