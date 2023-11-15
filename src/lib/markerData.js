@@ -434,25 +434,6 @@ export const markerData = async () => {
                 category: "other"
             },
             {
-                name: "Wood",
-                icon: L.icon({
-                    iconUrl: "./icons/resource/material-02-wood.webp",
-                    iconSize: scaleIcons([ 64, 64 ], 24),
-                }),
-                markerType: "respawning",
-                respawnTime: 1,
-                category: "other"
-            },
-            {
-                name: "Leather",
-                icon: L.icon({
-                    iconUrl: "./icons/resource/material-03-leather.webp",
-                    iconSize: scaleIcons([ 64, 64 ], 24),
-                }),
-                category: "other",
-                markerType: "respawning",
-            },
-            {
                 name: "Cave Entrance",
                 icon: L.icon({
                     iconUrl: './icons/cave-entrance.svg',
@@ -482,20 +463,45 @@ export const markerData = async () => {
                 markerType: "one-time",
                 category: "other"
             }
+        ];
+
+        const tack = [
+            {
+                name: "Wood",
+                icon: L.icon({
+                    iconUrl: "./icons/resource/material-02-wood.webp",
+                    iconSize: scaleIcons([64, 64], 24),
+                }),
+                markerType: "respawning",
+                respawnTime: 1,
+                category: "other"
+            },
+            {
+                name: "Leather",
+                icon: L.icon({
+                    iconUrl: "./icons/resource/material-03-leather.webp",
+                    iconSize: scaleIcons([64, 64], 24),
+                }),
+                category: "other",
+                markerType: "respawning",
+            },
         ]
         return [
+            {name: "chest", label: "Chests", items: chests},
+            {name: "collectible", label: "Collectibles", items: collectibles},
             {
-                name: "Food",
+                name: "food",
+                label: "Food",
                 items: food
             },
+            {name: "npc", label: "NPCs", items: traders},
+            {name: "other", label: "Other", items: other},
             {
-                name: "Resources",
+                name: "resource",
+                label: "Resources",
                 items: resources,
             },
-            { name: "Traders", items: traders },
-            { name: "Collectibles", items: collectibles },
-            { name: "Chests", items: chests },
-            { name: "Other", items: other },
+            {name: "tack", label: "Tack Upgrade", items: tack},
         ]
     }
 }
