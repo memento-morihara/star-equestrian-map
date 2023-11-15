@@ -17,16 +17,17 @@
 
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <aside
-        class="sidebar bg-white dark:bg-surface-800 shadow-md cursor-default"
+        class="sidebar bg-white dark:bg-surface-800 shadow-md min-w-[290px]"
   class:open
   class:closed={!open}
   on:dblclick|stopPropagation
   on:mousedown|stopPropagation
         on:touchstart|stopPropagation
 >
-  <div class="sidebar-inner pl-[8px] overflow-y-visible" on:mousewheel|stopImmediatePropagation
+  <div class="sidebar-inner pl-[8px]" on:mousewheel|stopImmediatePropagation
        on:touchstart|stopPropagation>
-    <TabGroup padding="px-4 pb-2.5 pt-3" regionList="sticky top-0 relative right-1 mr-0 bg-white dark:bg-surface-800 -mr-5" regionPanel="w-[80%] bg-white dark:bg-surface-800 mt-0"
+    <TabGroup padding="px-4 pb-2.5 pt-3" regionList="sticky top-0 relative right-1 bg-white dark:bg-surface-800"
+              regionPanel="bg-white dark:bg-surface-800 mt-0"
               regionSymbol="filter-icon"
               rounded="0">
       {#each tabs as tab, i}
@@ -35,8 +36,7 @@
         >
       {/each}
       <svelte:fragment slot="panel">
-        <section class="text-base w-[390px] pr-2 align-baseline">
-          <div class="content w-full">
+        <section class="text-base max-w-[390px] pr-2 align-baseline">
             {#if activeTabIndex === 0}
               <FilterTree {map} {counts}/>
             {:else if activeTabIndex === 1}
@@ -44,7 +44,6 @@
             {:else if activeTabIndex === 2}
               <Settings/>
             {/if}
-          </div>
         </section>
       </svelte:fragment>
     </TabGroup>
@@ -61,7 +60,6 @@
   .sidebar {
     width: 400px;
     max-width: 85%;
-    display: flex;
     position: absolute;
     z-index: 5000;
     height: 100%;

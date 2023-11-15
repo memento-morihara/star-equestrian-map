@@ -49,22 +49,19 @@
 
 </script>
 
-<div class="flex flex-row-reverse bg-white dark:bg-surface-800 mb-0">
-    <button class="chip -mt-3 fixed variant-ghost-primary" on:click={changeAllFilters}>
+<div class="chip-container flex flex-row-reverse dark:bg-surface-800 mb-0 w-full">
+    <button class="chip -mt-3 absolute right-2.5 variant-primary" on:click={changeAllFilters}>
         <Icon icon={areAllNodesChecked ? "bi:check-square" : "bi:square"}/>&nbsp; {areAllNodesChecked ? "Uncheck all" : "Check all"}
     </button>
 </div>
 
-<div class="overflow-y-auto ">
-
+<div class="h-[90vh] max-w-[90%]">
     <RecursiveTreeView
             bind:checkedNodes={$filterStore}
             multiple
             {nodes}
-            regionSummary="text-lg hover:bg-transparent"
+            regionSummary="sm:text-lg hover:bg-transparent text-base max-w-[90%]"
             relational
             selection
-            width="w-full"
     />
 </div>
-
