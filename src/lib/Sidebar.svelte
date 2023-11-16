@@ -26,7 +26,7 @@
 >
   <div class="sidebar-inner pl-[8px]" on:mousewheel|stopImmediatePropagation
        on:touchstart|stopPropagation>
-    <TabGroup justify="justify-center" padding="px-9 pb-2.5 pt-3"
+    <TabGroup justify="justify-center" padding="sm:px-9 px-5 pb-2.5 pt-3"
               regionList="sticky top-0 relative right-1 bg-white dark:bg-surface-800"
               regionPanel="bg-white dark:bg-surface-800 mt-0"
               rounded="0">
