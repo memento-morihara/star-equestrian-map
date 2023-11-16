@@ -1,5 +1,5 @@
 <script>
-    import {RecursiveTreeView,} from "@skeletonlabs/skeleton";
+    import {RecursiveTreeView} from "@skeletonlabs/skeleton";
     import {categories, flatNames, slugifyName} from "$lib/utils.js";
     import {getContext, onMount} from "svelte";
     import {filterStore} from "$lib/stores.js";
@@ -50,12 +50,12 @@
 </script>
 
 <div class="chip-container flex flex-row-reverse dark:bg-surface-800 mb-0 w-full">
-    <button class="chip -mt-3 absolute right-2.5 variant-primary" on:click={changeAllFilters}>
+    <button class="chip bg-white -mt-3 absolute right-2.5 variant-primary" on:click={changeAllFilters}>
         <Icon icon={areAllNodesChecked ? "bi:check-square" : "bi:square"}/>&nbsp; {areAllNodesChecked ? "Uncheck all" : "Check all"}
     </button>
 </div>
 
-<div class="h-[90vh] max-w-[90%]">
+<div class="h-[94.5vh] w-full">
     <RecursiveTreeView
             bind:checkedNodes={$filterStore}
             multiple

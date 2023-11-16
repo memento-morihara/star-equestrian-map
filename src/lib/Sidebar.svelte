@@ -26,12 +26,12 @@
 >
   <div class="sidebar-inner pl-[8px]" on:mousewheel|stopImmediatePropagation
        on:touchstart|stopPropagation>
-    <TabGroup padding="px-4 pb-2.5 pt-3" regionList="sticky top-0 relative right-1 bg-white dark:bg-surface-800"
+    <TabGroup justify="justify-center" padding="px-9 pb-2.5 pt-3"
+              regionList="sticky top-0 relative right-1 bg-white dark:bg-surface-800"
               regionPanel="bg-white dark:bg-surface-800 mt-0"
-              regionSymbol="filter-icon"
               rounded="0">
       {#each tabs as tab, i}
-        <Tab regionTab="white w-full" bind:group={activeTabIndex} name={tab} value={i}
+        <Tab bind:group={activeTabIndex} name={tab} value={i}
           ><span>{tab.toUpperCase()}</span></Tab
         >
       {/each}
