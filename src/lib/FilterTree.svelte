@@ -50,7 +50,8 @@
 </script>
 
 <div class="chip-container flex flex-row-reverse dark:bg-surface-800 mb-0 w-full">
-    <button class="chip bg-white -mt-3 absolute right-2.5 variant-primary" on:click={changeAllFilters}>
+    <button class="chip bg-white dark:bg-surface-800 -mt-3 absolute right-2.5 variant-primary"
+            on:click={changeAllFilters}>
         <Icon icon={areAllNodesChecked ? "bi:check-square" : "bi:square"}/>&nbsp; {areAllNodesChecked ? "Uncheck all" : "Check all"}
     </button>
 </div>
