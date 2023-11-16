@@ -13,7 +13,7 @@
     setContext("marker", () => marker);
 
     const groups = getContext("groups")();
-
+    const oms = getContext("oms")();
     function initPopup(marker) {
         marker.bindPopup(
             L.popup({
@@ -56,6 +56,7 @@
             marker.options.group = groups[name];
             $allMarkers = [...$allMarkers, marker];
 
+            // oms && oms.addMarker(marker);
 
             marker.on("click", () => {
                 $selectedMarker = marker;
@@ -65,16 +66,22 @@
                 });
             });
 
-            // Set opacity for markers that have been collected or checked
+            // Hide or set opacity for markers that have been collected or checked
+            if (isCollected(marker) >= 0) {
+                if ($settings.hideCollectedMarkers) {
+                    marker.remove()
+                } else {
+                    marker.setOpacity($settings.markerOpacity)
+                }
+            }
+
+            // Add collectibles to a store to keep track of progress
             if (marker.options.markerType === "one-time" && !["Legendary Chest", "Quest Item"].includes(marker.options.name)) {
-                isCollected(marker) > 0 && marker.setOpacity($settings.markerOpacity)
                 $collectibleStores = [...$collectibleStores, {
                     name: marker.options.name,
                     id: marker.options.id,
                     store: marker.options.store
                 }]
-            } else if (marker.options.markerType === "respawning") {
-                isCollected(marker) >= 0 && marker.setOpacity($settings.markerOpacity);
             }
         });
     }
