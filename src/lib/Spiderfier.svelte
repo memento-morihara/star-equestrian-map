@@ -1,6 +1,7 @@
 <script>
-    import { getContext, onMount, setContext } from "svelte";
-    import { browser } from "$app/environment";
+    import {getContext, onMount, setContext} from "svelte";
+    import {browser} from "$app/environment";
+    import {allMarkers} from "$lib/stores.js";
 
     const map = getContext("map")();
     let oms;
@@ -17,7 +18,12 @@
                     highlighted: "red",
                 }
             });
-            oms.addListener("spiderfy", () => map.closePopup());
+
+            $allMarkers.forEach(marker => oms.addMarker(marker));
+
+            oms.addListener("spiderfy", () => {
+                map.closePopup()
+            });
         });
     }
 

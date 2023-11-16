@@ -56,8 +56,6 @@
             marker.options.group = groups[name];
             $allMarkers = [...$allMarkers, marker];
 
-            // oms && oms.addMarker(marker);
-
             marker.on("click", () => {
                 $selectedMarker = marker;
                 $selectedMarker.openPopup();
