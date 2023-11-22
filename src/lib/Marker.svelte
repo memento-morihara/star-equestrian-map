@@ -13,7 +13,6 @@
     setContext("marker", () => marker);
 
     const groups = getContext("groups")();
-    const oms = getContext("oms")();
     function initPopup(marker) {
         marker.bindPopup(
             L.popup({
