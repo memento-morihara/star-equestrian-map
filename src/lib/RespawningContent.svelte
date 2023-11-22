@@ -1,10 +1,10 @@
 <script>
     import {selectedMarker, settings} from "$lib/stores.js";
-    import Icon from "@iconify/svelte";
     import Time from "svelte-time";
     import {get} from "svelte/store";
     import {fade, slide} from "svelte/transition";
     import {isCollected} from "$lib/utils.js";
+    import CalendarIcon from 'virtual:icons/bi/calendar-x';
 
     $: lastCollected = get($selectedMarker.options.store)?.lastCollected[0];
     $: lastChecked = get($selectedMarker.options.store)?.lastChecked[0];
@@ -96,7 +96,7 @@
                 title="Not respawned today"
                 on:click={(e) => updateStore("lastChecked", e)}
         >
-            <Icon icon="bi:calendar-x"/>
+            <CalendarIcon style="font-size:20px"/>
         </button>
     </div>
 {/if}

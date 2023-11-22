@@ -4,7 +4,8 @@
     import {getContext, onMount} from "svelte";
     import {filterStore} from "$lib/stores.js";
     import {markerData} from "$lib/markerData.js";
-    import Icon from "@iconify/svelte";
+    import CheckIcon from 'virtual:icons/bi/check-square';
+    import SquareIcon from 'virtual:icons/bi/square';
 
     export let map;
     export let counts;
@@ -50,9 +51,14 @@
 </script>
 
 <div class="chip-container flex flex-row-reverse dark:bg-surface-800 mb-0 w-full">
-    <button class="chip bg-white dark:bg-surface-800 -mt-3 absolute right-2.5 variant-primary"
+    <button class="chip -mt-3 absolute right-2.5 variant-primary"
             on:click={changeAllFilters}>
-        <Icon icon={areAllNodesChecked ? "bi:check-square" : "bi:square"}/>&nbsp; {areAllNodesChecked ? "Uncheck all" : "Check all"}
+        {#if areAllNodesChecked}
+            <CheckIcon class="text-[10px]"/>
+        {:else}
+            <SquareIcon class="text-[10px]"/>
+        {/if}
+        <span>{areAllNodesChecked ? "Uncheck all" : "Check all"}</span>
     </button>
 </div>
 
