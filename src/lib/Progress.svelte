@@ -51,7 +51,8 @@
                     </div>
                     <p class="text-lg">{collected[item]} / {grouped[item].length}</p>
                 </div>
-                <ProgressBar meter="bg-primary-500" value={percentCollected(item) * 100} height="h-3"
+                <ProgressBar meter="bg-primary-500" track="dark:bg-surface-400 bg-surface-200"
+                             value={percentCollected(item) * 100} height="h-3"
                              labelledby={slugifyName(item)}/>
             </div>
         {/each}
