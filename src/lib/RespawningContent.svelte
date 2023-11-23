@@ -6,8 +6,8 @@
     import {isCollected} from "$lib/utils.js";
     import CalendarIcon from 'virtual:icons/bi/calendar-x';
 
-    $: lastCollected = get($selectedMarker.options.store)?.lastCollected[0];
-    $: lastChecked = get($selectedMarker.options.store)?.lastChecked[0];
+    $: lastCollected = $selectedMarker.options.markerType === "respawning" && get($selectedMarker.options.store)?.lastCollected[0];
+    $: lastChecked = $selectedMarker.options.markerType === "respawning" && get($selectedMarker.options.store)?.lastChecked[0];
 
     const updateStore = (key, e) => {
         // Prevent popups from closing
