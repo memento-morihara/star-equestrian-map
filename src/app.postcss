@@ -1,7 +1,25 @@
+/*! purgecss start ignore */
+@import "leaflet/dist/leaflet.css";
+/*! purgecss end ignore */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    height: 100vh;
+    width: 100vw;
+}
+
+.leaflet-container {
+    background-color: rgba(var(--bg-surface-200) / 1) !important;
+}
 
 .dark .leaflet-popup-content-wrapper, .dark .leaflet-popup-tip {
     background: rgba(var(--color-surface-700) / 1) !important;
