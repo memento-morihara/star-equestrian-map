@@ -16,7 +16,7 @@
     let sidebar;
 
     onMount(() => {
-        for (const event of ["click", "dblclick", "scroll", "mousedown", "mousewheel"]) {
+        for (const event of ["click", "dblclick", "scroll", "mousedown", "mousewheel", "touchstart"]) {
             sidebar.addEventListener(event, (e) => e.stopPropagation());
         }
     });
