@@ -3,7 +3,7 @@
     import {browser} from "$app/environment";
     import {markerData} from "$lib/markerData";
     import {allMarkers, collectibleStores, selectedMarker, settings} from "$lib/stores.js";
-    import {isCollected, slugifyName} from "$lib/utils.js";
+    import {isChecked, isCollected, slugifyName} from "$lib/utils.js";
     import {localStorageStore} from "@skeletonlabs/skeleton";
     import PopupContent from "$lib/Popup.svelte";
 
@@ -64,7 +64,7 @@
             });
 
             // Hide or set opacity for markers that have been collected or checked
-            if (isCollected(marker) >= 0) {
+            if (isCollected(marker) > 0 || isChecked(marker) > 0) {
                 if ($settings.hideCollectedMarkers) {
                     marker.remove()
                 } else {

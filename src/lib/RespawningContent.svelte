@@ -3,7 +3,7 @@
     import Time from "svelte-time";
     import {get} from "svelte/store";
     import {fade, slide} from "svelte/transition";
-    import {isCollected} from "$lib/utils.js";
+    import {isChecked, isCollected} from "$lib/utils.js";
     import CalendarIcon from 'virtual:icons/bi/calendar-x';
 
     $: lastCollected = $selectedMarker.options.markerType === "respawning" && get($selectedMarker.options.store)?.lastCollected[0];
@@ -55,7 +55,7 @@
         {:else}N/A
         {/if}
     </small>
-    {#if lastChecked && isCollected($selectedMarker) === 0}
+    {#if isChecked($selectedMarker) > -1 && isCollected($selectedMarker) !== 1}
         <div transition:slide>
             <small class="text-sm"
             >Last checked:
@@ -76,7 +76,7 @@
         </button
         >
     </div>
-{:else if isCollected($selectedMarker) === 0}
+{:else if isChecked($selectedMarker) > 0}
     <div class="spawn-buttons" in:fade>
         <button
                 class="btn variant-ghost-primary"
