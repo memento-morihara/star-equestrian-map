@@ -13,12 +13,22 @@ let filters = [];
 categories.flatMap(category => filters = [ ...filters, ...category.items, category.name ]);
 export const filterStore = localStorageStore("filters", filters);
 
-export const settings = localStorageStore("settings", {
-    keepOnTop: writable(false),
-    closePopups: writable(true),
-    hideCollectedMarkers: writable(false),
-    markerOpacity: writable(0.3),
-});
+const defaultSettings = {
+    keepOnTop: false,
+    closePopups: true,
+    hideCollectedMarkers: false,
+    markerOpacity: 0.3,
+}
+
+let initialStore = {};
+export const initSettings = () => {
+    for (const key of Object.keys(defaultSettings)) {
+        initialStore[key] = defaultSettings[key];
+    }
+    return initialStore;
+}
+
+export const settings = localStorageStore("settings", initSettings());
 export const allMarkers = writable([]);
 
 export const collectibleStores = writable([]);

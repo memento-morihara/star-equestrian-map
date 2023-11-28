@@ -1,5 +1,5 @@
 <script>
-    import {allMarkers, settings} from "$lib/stores.js";
+    import {allMarkers, initSettings, settings} from "$lib/stores.js";
     import {getContext, onMount} from "svelte";
     import {get} from "svelte/store";
     import {modeCurrent, RangeSlider} from "@skeletonlabs/skeleton";
@@ -45,14 +45,18 @@
         );
     }
 
+    function revertSettings() {
+        $settings = initSettings();
+    }
+
     onMount(() => {
         changeOpacity()
-    })
+    });
 
     $: $settings.markerOpacity && changeOpacity()
 </script>
 
-<section class="text-base align-baseline pl-2.5 flex flex-col gap-3">
+<section class="text-base align-baseline pl-2.5 flex flex-col gap-12">
     <div class="flex flex-col gap-1">
         <h2 class="h3 mb-3">Settings</h2>
         <div class="space-y-3 mx-2">
@@ -93,11 +97,15 @@
                              disabled={$settings.hideCollectedMarkers} id="opacity"
                              max="0.9" min="0.1" name="opacity" step="0.1"/>
             </div>
+
         </div>
+        <button class="btn variant-ringed mt-5 self-start" on:click={revertSettings}>Reset to default</button>
     </div>
 
+    <hr/>
+
     <div class="flex flex-col gap-1">
-        <h2 class="h4 my-3">Reset collected items</h2>
+        <h2 class="h4 mb-3">Reset collected items</h2>
         <div class="space-y-3 mx-2">
             <label
             ><input
@@ -109,7 +117,7 @@
             /><span class="ml-2">Preserve non-respawning items</span></label
             >
         </div>
-        <button class="btn variant-filled-error mt-3 w-1/4" on:click={resetCollected}>Reset</button>
+        <button class="btn variant-filled-error mt-5 w-1/4" on:click={resetCollected}>Reset</button>
     </div>
 
     <footer class="absolute bottom-9 right-1/3 w-1/3">
