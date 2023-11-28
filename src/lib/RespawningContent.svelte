@@ -45,18 +45,24 @@
 
     // If the collect/uncollect cycle is repeated, the "old" date is now the first element
     // so it will be preserved
+
+
+    // Add a delay if popups are closed automatically to prevent
+    // the animation from playing while the popup closes
+    const animParams = {delay: $settings.closePopups ? 200 : 0}
 </script>
 
 <div>
     <small class="text-sm pb-0" transition:fade
     >Last collected:
         {#if lastCollected}
-            <Time relative timestamp={lastCollected}/>
-        {:else}N/A
+            <span in:fade><Time relative timestamp={lastCollected}/></span>
+        {:else}
+            <span in:fade>N/A</span>
         {/if}
     </small>
     {#if isChecked($selectedMarker) > -1 && isCollected($selectedMarker) !== 1}
-        <div transition:slide>
+        <div transition:slide={animParams}>
             <small class="text-sm"
             >Last checked:
                 <Time relative timestamp={lastChecked}/>
