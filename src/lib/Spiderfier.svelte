@@ -1,7 +1,7 @@
 <script>
     import {getContext, onMount} from "svelte";
     import {browser} from "$app/environment";
-    import {allMarkers} from "$lib/stores.js";
+    import {allMarkers, settings} from "$lib/stores.js";
     import OverlappingMarkerSpiderfier from "$lib/oms.js";
 
     const map = getContext("map")();
@@ -18,13 +18,13 @@
             });
 
             oms.addListener("spiderfy", () => {
-                map.closePopup()
+                map.closePopup();
             });
         }
     });
 
 
-    $: oms && $allMarkers.forEach(marker => oms.addMarker(marker));
+    $: oms && ($settings.spiderfyMarkers ? $allMarkers.forEach(marker => oms.addMarker(marker)) : oms.clearMarkers());
 </script>
 
 <slot/>

@@ -7,8 +7,6 @@ export const customRoutes = localStorageStore("customRoutes", []);
 
 export const selectedMarker = writable(undefined);
 
-export const searchParams = writable();
-
 let filters = [];
 categories.flatMap(category => filters = [ ...filters, ...category.items, category.name ]);
 export const filterStore = localStorageStore("filters", filters);
@@ -18,6 +16,8 @@ const defaultSettings = {
     closePopups: true,
     hideCollectedMarkers: false,
     markerOpacity: 0.3,
+    spiderfyMarkers: true,
+    hoverMarkers: false,
 }
 
 let initialStore = {};

@@ -45,6 +45,14 @@
         );
     }
 
+    function changeHoverSetting() {
+        $allMarkers.forEach(marker => {
+            marker.remove();
+            marker.options.riseOnHover = $settings.hoverMarkers;
+            marker.addTo(map);
+        });
+    }
+
     function revertSettings() {
         $settings = initSettings();
     }
@@ -81,6 +89,15 @@
             /><span class="ml-2">Close popups automatically on button click</span
             ></label
             >
+            <label>
+                <input bind:checked={$settings.spiderfyMarkers} class="checkbox" type="checkbox"/>
+                <span class="ml-1">Spiderfy markers</span>
+            </label>
+            <label>
+                <input bind:checked={$settings.hoverMarkers} class="checkbox" on:change={changeHoverSetting}
+                       type="checkbox"/>
+                <span class="ml-1">Hovered marker on top</span>
+            </label>
             <label
             ><input
                     bind:checked={$settings.hideCollectedMarkers}
@@ -128,7 +145,7 @@
                 {:else}
                     <img class="align-bottom" src="github-mark-white.svg" alt="GitHub logo" width="32" height="32"/>
                 {/if}
-                <span>GitHub</span>
+                <span class="dark:text-blue-400">GitHub</span>
             </div>
         </a>
     </footer>

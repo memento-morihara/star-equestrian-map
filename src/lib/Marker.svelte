@@ -41,7 +41,7 @@
             marker = L.marker([location.lat, location.lng], {
                 id: location.id,
                 description: location.description,
-                riseOnHover: true,
+                riseOnHover: $settings.hoverMarkers,
                 store: localStorageStore(
                     location.id,
                     lsTemplate(props.markerType)
