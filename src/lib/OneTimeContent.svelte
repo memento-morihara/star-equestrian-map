@@ -5,7 +5,10 @@
 
     function updateStore(e) {
         // Prevent popups from closing
-        $settings.closePopups || e.stopPropagation();
+        if ($settings.keepSpiderfied) {
+            e.stopImmediatePropagation();
+            $selectedMarker.closePopup();
+        }
 
         $selectedMarker.options.store.update(() => ({collected: true}));
         $selectedMarker.setOpacity($settings.markerOpacity);
@@ -13,7 +16,10 @@
     }
 
     function undoUpdateStore(e) {
-        $settings.closePopups || e.stopPropagation();
+        if ($settings.keepSpiderfied) {
+            e.stopImmediatePropagation();
+            $selectedMarker.closePopup();
+        }
 
         $selectedMarker.options.store.update(() => ({collected: false}));
         $selectedMarker.setOpacity(1);

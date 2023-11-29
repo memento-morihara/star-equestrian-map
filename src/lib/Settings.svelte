@@ -45,6 +45,10 @@
         );
     }
 
+    function changeSpiderfySetting() {
+        // $settings.keepSpiderfied;
+    }
+
     function changeHoverSetting() {
         $allMarkers.forEach(marker => {
             marker.remove();
@@ -61,6 +65,8 @@
         changeOpacity()
     });
 
+
+    $: disableCheckbox = !$settings.spiderfyMarkers
     $: $settings.markerOpacity && changeOpacity()
 </script>
 
@@ -92,6 +98,13 @@
             <label>
                 <input bind:checked={$settings.spiderfyMarkers} class="checkbox" type="checkbox"/>
                 <span class="ml-1">Spiderfy markers</span>
+            </label>
+            <label>
+                <input bind:checked={$settings.keepSpiderfied} class="checkbox"
+                       class:!bg-surface-400={!$settings.spiderfyMarkers}
+                       class:border-on-surface-500={!$settings.spiderfyMarkers} disabled={disableCheckbox}
+                       on:change={changeSpiderfySetting} type="checkbox"/>
+                <span class="ml-1">Keep spiderfied on button click</span>
             </label>
             <label>
                 <input bind:checked={$settings.hoverMarkers} class="checkbox" on:change={changeHoverSetting}
@@ -150,3 +163,4 @@
         </a>
     </footer>
 </section>
+

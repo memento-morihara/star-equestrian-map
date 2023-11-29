@@ -18,6 +18,7 @@ const defaultSettings = {
     markerOpacity: 0.3,
     spiderfyMarkers: true,
     hoverMarkers: false,
+    keepSpiderfied: true,
 }
 
 let initialStore = {};

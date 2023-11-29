@@ -11,7 +11,10 @@
 
     const updateStore = (key, e) => {
         // Prevent popups from closing
-        $settings.closePopups || e.stopPropagation()
+        if ($settings.keepSpiderfied) {
+            e.stopImmediatePropagation();
+            $selectedMarker.closePopup();
+        }
 
         let store = get($selectedMarker.options.store);
 
@@ -29,7 +32,10 @@
     };
 
     const undoUpdateStore = (key, e) => {
-        $settings.closePopups || e.stopPropagation()
+        if ($settings.keepSpiderfied) {
+            e.stopImmediatePropagation();
+            $selectedMarker.closePopup();
+        }
 
         let store = get($selectedMarker.options.store);
 
@@ -43,7 +49,7 @@
         lastCollected = lastCollected;
     };
 
-    // If the collect/uncollect cycle is repeated, the "old" date is now the first element
+    // If the collect/uncollect cycle is repeated, the "old" date is now the first element,
     // so it will be preserved
 
 

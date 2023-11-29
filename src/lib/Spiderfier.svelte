@@ -24,7 +24,7 @@
     });
 
 
-    $: oms && ($settings.spiderfyMarkers ? $allMarkers.forEach(marker => oms.addMarker(marker)) : oms.clearMarkers());
+    $: oms && ($allMarkers.forEach(marker => $settings.spiderfyMarkers ? oms.addMarker(marker) : oms.removeMarker(marker)));
 </script>
 
 <slot/>
