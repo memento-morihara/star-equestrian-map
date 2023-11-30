@@ -3,7 +3,7 @@
     import {getContext, onMount} from "svelte";
     import {get} from "svelte/store";
     import {modeCurrent, RangeSlider} from "@skeletonlabs/skeleton";
-    import {isCollected} from "$lib/utils.js";
+    import {isChecked, isCollected} from "$lib/utils.js";
 
     const map = getContext("map")();
 
@@ -40,13 +40,12 @@
 
     function changeOpacity() {
         $allMarkers.forEach(
-            (marker) =>
-                isCollected(marker) >= 0 && marker.setOpacity($settings.markerOpacity)
+            (marker) => {
+                if (isCollected(marker) > 0 || isChecked(marker) > 0) {
+                    marker.setOpacity($settings.markerOpacity);
+                }
+            }
         );
-    }
-
-    function changeSpiderfySetting() {
-        // $settings.keepSpiderfied;
     }
 
     function changeHoverSetting() {
@@ -61,10 +60,7 @@
         $settings = initSettings();
     }
 
-    onMount(() => {
-        changeOpacity()
-    });
-
+    onMount(() => changeOpacity())
 
     $: disableCheckbox = !$settings.spiderfyMarkers
     $: $settings.markerOpacity && changeOpacity()

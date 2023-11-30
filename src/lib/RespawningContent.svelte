@@ -11,8 +11,10 @@
 
     const updateStore = (key, e) => {
         // Prevent popups from closing
-        if ($settings.keepSpiderfied) {
+        if ($settings.keepSpiderfied && !$settings.closePopups) {
             e.stopImmediatePropagation();
+        } else if ($settings.keepSpiderfied) {
+            e.stopPropagation();
             $selectedMarker.closePopup();
         }
 
@@ -32,8 +34,10 @@
     };
 
     const undoUpdateStore = (key, e) => {
-        if ($settings.keepSpiderfied) {
+        if ($settings.keepSpiderfied && !$settings.closePopups) {
             e.stopImmediatePropagation();
+        } else if ($settings.keepSpiderfied) {
+            e.stopPropagation();
             $selectedMarker.closePopup();
         }
 

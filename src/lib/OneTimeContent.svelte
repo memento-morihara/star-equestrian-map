@@ -5,10 +5,13 @@
 
     function updateStore(e) {
         // Prevent popups from closing
-        if ($settings.keepSpiderfied) {
+        if ($settings.keepSpiderfied && !$settings.closePopups) {
             e.stopImmediatePropagation();
+        } else if ($settings.keepSpiderfied) {
+            e.stopPropagation();
             $selectedMarker.closePopup();
         }
+
 
         $selectedMarker.options.store.update(() => ({collected: true}));
         $selectedMarker.setOpacity($settings.markerOpacity);
@@ -16,8 +19,10 @@
     }
 
     function undoUpdateStore(e) {
-        if ($settings.keepSpiderfied) {
+        if ($settings.keepSpiderfied && !$settings.closePopups) {
             e.stopImmediatePropagation();
+        } else if ($settings.keepSpiderfied) {
+            e.stopPropagation();
             $selectedMarker.closePopup();
         }
 
