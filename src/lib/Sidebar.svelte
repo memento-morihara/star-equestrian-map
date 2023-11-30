@@ -24,22 +24,22 @@
 
 <aside
         bind:this={sidebar}
-        class="sidebar bg-white dark:bg-surface-800 shadow-md min-w-[290px] select-none"
+        class="sidebar bg-white dark:bg-surface-800 h-full shadow-md min-w-[290px] select-none"
         class:closed={!open}
         class:open
 >
-    <div class="sidebar-inner pl-[8px]">
-        <TabGroup justify="justify-center" padding="sm:px-9 px-5 pb-2.5 pt-3"
-                  regionList="sticky top-0 relative right-1 bg-white dark:bg-surface-800"
-                  regionPanel="bg-white dark:bg-surface-800 mt-0"
-                  rounded="0">
+    <div class="sidebar-inner h-full w-full">
+        <TabGroup class="h-full" justify="justify-center"
+                  padding="sm:px-9 px-6 py-3"
+                  regionList="sticky top-0 right-1 bg-white dark:bg-surface-800"
+                  regionPanel="bg-white dark:bg-surface-800 h-[93%] overflow-y-auto" rounded="0">
             {#each tabs as tab, i}
                 <Tab bind:group={activeTabIndex} name={tab} value={i}
                 ><span>{tab.toUpperCase()}</span></Tab
                 >
             {/each}
             <svelte:fragment slot="panel">
-                <section class="text-base max-w-[390px] pr-2 align-baseline">
+                <section class="text-base max-w-[390px] h-full align-baseline">
                     {#if activeTabIndex === 0}
                         <FilterTree {map} {counts}/>
                     {:else if activeTabIndex === 1}
@@ -66,10 +66,6 @@
         position: absolute;
         z-index: 5000;
         height: 100%;
-    }
-
-    .sidebar-inner {
-        overflow-y: auto;
     }
 
     .open {
@@ -121,9 +117,5 @@
 
     .sidebar.closed .toggle-btn::before {
         transform: rotate(0deg);
-    }
-
-    .sidebar-inner {
-        scrollbar-gutter: stable;
     }
 </style>

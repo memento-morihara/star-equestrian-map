@@ -51,7 +51,7 @@
 </script>
 
 <div class="chip-container flex flex-row-reverse dark:bg-surface-800 mb-0 w-full">
-    <button class="chip -mt-3 absolute right-2.5 variant-primary"
+    <button class="chip -mt-3.5 absolute right-2.5 variant-primary"
             on:click={changeAllFilters}>
         {#if areAllNodesChecked}
             <CheckIcon class="text-[10px]"/>
@@ -62,7 +62,7 @@
     </button>
 </div>
 
-<div class="h-[94.5vh] w-full">
+<div class="h-full w-full">
     <RecursiveTreeView
             bind:checkedNodes={$filterStore}
             multiple

@@ -66,88 +66,92 @@
     $: $settings.markerOpacity && changeOpacity()
 </script>
 
-<section class="text-base align-baseline pl-2.5 flex flex-col gap-12">
-    <div class="flex flex-col gap-1">
-        <h2 class="h3 mb-3">Settings</h2>
-        <div class="space-y-3 mx-2">
-            {#if window.__TAURI__}
-                <label>
-                    <input
-                            bind:checked={$settings.keepOnTop}
-                            class="checkbox"
-                            id="keep-on-top"
-                            name="keep-on-top"
-                            type="checkbox"
-                    /><span class="ml-2">Keep window on top</span></label
+<div class="text-base align-baseline pl-2.5 h-full flex flex-col justify-between">
+    <div class="flex flex-col gap-5 md:gap-12">
+        <div class="flex flex-col gap-1">
+            <h2 class="h3 mb-3">Settings</h2>
+            <div class="space-y-3 mx-2">
+                {#if window.__TAURI__}
+                    <label>
+                        <input
+                                bind:checked={$settings.keepOnTop}
+                                class="checkbox"
+                                id="keep-on-top"
+                                name="keep-on-top"
+                                type="checkbox"
+                        /><span class="ml-2">Keep window on top</span></label
+                    >
+                {/if}
+                <label
+                ><input
+                        bind:checked={$settings.closePopups}
+                        class="checkbox"
+                        id="close-popups"
+                        name="close-popups"
+                        type="checkbox"
+                /><span class="ml-2">Close popups automatically on button click</span
+                ></label
                 >
-            {/if}
-            <label
-            ><input
-                    bind:checked={$settings.closePopups}
-                    class="checkbox"
-                    id="close-popups"
-                    name="close-popups"
-                    type="checkbox"
-            /><span class="ml-2">Close popups automatically on button click</span
-            ></label
-            >
-            <label>
-                <input bind:checked={$settings.spiderfyMarkers} class="checkbox" type="checkbox"/>
-                <span class="ml-1">Spiderfy markers</span>
-            </label>
-            <label>
-                <input bind:checked={$settings.keepSpiderfied} class="checkbox"
-                       class:!bg-surface-400={!$settings.spiderfyMarkers}
-                       class:border-on-surface-500={!$settings.spiderfyMarkers} disabled={disableCheckbox}
-                       on:change={changeSpiderfySetting} type="checkbox"/>
-                <span class="ml-1">Keep spiderfied on button click</span>
-            </label>
-            <label>
-                <input bind:checked={$settings.hoverMarkers} class="checkbox" on:change={changeHoverSetting}
-                       type="checkbox"/>
-                <span class="ml-1">Hovered marker on top</span>
-            </label>
-            <label
-            ><input
-                    bind:checked={$settings.hideCollectedMarkers}
-                    class="checkbox"
-                    name="hide-collected"
-                    on:change={(e) => toggleHiddenMarkers(e)}
-                    type="checkbox"
-            /><span class="ml-2">Hide collected items</span></label
-            >
-            <div class="flex flex-col space-y-2">
-                <label class="mt-3" for="opacity"><span>Collected marker opacity</span></label>
-                <RangeSlider accent="accent-primary-500 dark:accent-primary-500" bind:value={$settings.markerOpacity}
-                             class="w-2/3"
-                             disabled={$settings.hideCollectedMarkers} id="opacity"
-                             max="0.9" min="0.1" name="opacity" step="0.1"/>
+                <label>
+                    <input bind:checked={$settings.spiderfyMarkers} class="checkbox" type="checkbox"/>
+                    <span class="ml-1">Spiderfy markers</span>
+                </label>
+                <label>
+                    <input bind:checked={$settings.keepSpiderfied} class="checkbox"
+                           class:!bg-surface-400={!$settings.spiderfyMarkers}
+                           class:border-on-surface-500={!$settings.spiderfyMarkers} disabled={disableCheckbox}
+                           type="checkbox"/>
+                    <span class="ml-1">Keep spiderfied on button click</span>
+                </label>
+                <label>
+                    <input bind:checked={$settings.hoverMarkers} class="checkbox" on:change={changeHoverSetting}
+                           type="checkbox"/>
+                    <span class="ml-1">Hovered marker on top</span>
+                </label>
+                <label
+                ><input
+                        bind:checked={$settings.hideCollectedMarkers}
+                        class="checkbox"
+                        name="hide-collected"
+                        on:change={(e) => toggleHiddenMarkers(e)}
+                        type="checkbox"
+                /><span class="ml-2">Hide collected items</span></label
+                >
+                <div class="flex flex-col space-y-2">
+                    <label class="mt-3" for="opacity"><span>Collected marker opacity</span></label>
+                    <RangeSlider accent="accent-primary-500 dark:accent-primary-500"
+                                 bind:value={$settings.markerOpacity}
+                                 class="w-2/3"
+                                 disabled={$settings.hideCollectedMarkers} id="opacity"
+                                 max="0.9" min="0.1" name="opacity" step="0.1"/>
+                </div>
+
             </div>
-
+            <button class="btn variant-ringed mt-5 self-start" on:click={revertSettings}>Reset to default</button>
         </div>
-        <button class="btn variant-ringed mt-5 self-start" on:click={revertSettings}>Reset to default</button>
+
+        <hr/>
+
+        <div class="flex flex-col gap-1">
+            <h2 class="h4 mb-3">Reset collected items</h2>
+            <div class="space-y-3 mx-2">
+                <label
+                ><input
+                        bind:checked={keepNonRespawning}
+                        class="checkbox"
+                        id="save-collected"
+                        name="save-collected"
+                        type="checkbox"
+                /><span class="ml-2">Preserve non-respawning items</span></label
+                >
+            </div>
+            <button class="btn variant-filled-error mt-5 w-1/4" on:click={resetCollected}>Reset</button>
+        </div>
     </div>
 
-    <hr/>
-
-    <div class="flex flex-col gap-1">
-        <h2 class="h4 mb-3">Reset collected items</h2>
-        <div class="space-y-3 mx-2">
-            <label
-            ><input
-                    bind:checked={keepNonRespawning}
-                    class="checkbox"
-                    id="save-collected"
-                    name="save-collected"
-                    type="checkbox"
-            /><span class="ml-2">Preserve non-respawning items</span></label
-            >
-        </div>
-        <button class="btn variant-filled-error mt-5 w-1/4" on:click={resetCollected}>Reset</button>
-    </div>
-
-    <footer class="absolute bottom-9 right-1/3 w-1/3">
-        <a class="text-on-surface-token hover:underline" href="https://github.com/memento-morihara/star-equestrian-map">
+    <footer class="w-1/3 self-center relative py-5 md:py-10 bottom-0">
+        <a class="text-on-surface-token hover:underline"
+           href="https://github.com/memento-morihara/star-equestrian-map">
             <div class="flex items-center gap-2">
                 {#if $modeCurrent}
                     <img class="align-bottom" src="github-mark.svg" alt="GitHub logo" width="32" height="32"/>
@@ -158,5 +162,5 @@
             </div>
         </a>
     </footer>
-</section>
+</div>
 
