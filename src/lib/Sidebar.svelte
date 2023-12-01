@@ -1,131 +1,121 @@
 <script>
-  import {Tab, TabGroup} from "@skeletonlabs/skeleton";
-  import FilterTree from "$lib/FilterTree.svelte";
-  import {getContext} from "svelte";
-  import Settings from "$lib/Settings.svelte";
-  import Progress from "$lib/Progress.svelte";
+    import {Tab, TabGroup} from "@skeletonlabs/skeleton";
+    import FilterTree from "$lib/FilterTree.svelte";
+    import {getContext, onMount} from "svelte";
+    import Settings from "$lib/Settings.svelte";
+    import Progress from "$lib/Progress.svelte";
 
-  export let counts;
+    export let counts;
 
-  const map = getContext("map")();
+    const map = getContext("map")();
 
-  const tabs = ["filters", "progress", "settings"];
+    const tabs = ["filters", "progress", "settings"];
 
-  let open = false;
-  let activeTabIndex = 0;
+    let open = false;
+    let activeTabIndex = 0;
+    let sidebar;
+
+    onMount(() => {
+        for (const event of ["click", "dblclick", "scroll", "mousedown", "mousewheel", "touchstart"]) {
+            sidebar.addEventListener(event, (e) => e.stopPropagation());
+        }
+    });
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <aside
-        class="sidebar bg-white dark:bg-surface-800 shadow-md cursor-default"
-  class:open
-  class:closed={!open}
-  on:dblclick|stopPropagation
-  on:mousedown|stopPropagation
-        on:touchstart|stopPropagation
+        bind:this={sidebar}
+        class="sidebar bg-white dark:bg-surface-800 h-full shadow-md min-w-[290px] select-none"
+        class:closed={!open}
+        class:open
 >
-  <div class="sidebar-inner w-full" on:mousewheel|stopImmediatePropagation on:touchstart|stopPropagation>
-    <TabGroup class="tabs w-full py-0.5 mt-1 pl-[8px]">
-      {#each tabs as tab, i}
-        <Tab bind:group={activeTabIndex} name={tab} value={i}
-          ><span>{tab.toUpperCase()}</span></Tab
-        >
-      {/each}
-      <svelte:fragment slot="panel">
-        <section class="text-base align-baseline px-2.5">
-          <div class="content overflow-y-auto">
-            {#if activeTabIndex === 0}
-              <FilterTree {map} {counts}/>
-            {:else if activeTabIndex === 1}
-              <Progress/>
-            {:else if activeTabIndex === 2}
-              <Settings/>
-
-            {/if}
-          </div>
-        </section>
-      </svelte:fragment>
-    </TabGroup>
-  </div>
-  <div class="toggle-container bg-white dark:bg-surface-800 shadow-md">
-    <button
-            class="toggle-btn leaflet-control"
-      on:click={() => (open = !open)}
-    />
-  </div>
+    <div class="sidebar-inner h-full w-full">
+        <TabGroup class="h-full" justify="justify-center"
+                  padding="sm:px-9 px-6 py-3"
+                  regionList="sticky top-0 right-1 bg-white dark:bg-surface-800"
+                  regionPanel="bg-white dark:bg-surface-800 h-[93%] overflow-y-auto" rounded="0">
+            {#each tabs as tab, i}
+                <Tab bind:group={activeTabIndex} name={tab} value={i}
+                ><span>{tab.toUpperCase()}</span></Tab
+                >
+            {/each}
+            <svelte:fragment slot="panel">
+                <section class="text-base max-w-[390px] h-full align-baseline">
+                    {#if activeTabIndex === 0}
+                        <FilterTree {map} {counts}/>
+                    {:else if activeTabIndex === 1}
+                        <Progress/>
+                    {:else if activeTabIndex === 2}
+                        <Settings/>
+                    {/if}
+                </section>
+            </svelte:fragment>
+        </TabGroup>
+    </div>
+    <div class="toggle-container bg-white dark:bg-surface-800 shadow-md">
+        <button
+                class="toggle-btn leaflet-control"
+                on:click={() => (open = !open)}
+        />
+    </div>
 </aside>
 
 <style>
-  .sidebar {
-    width: 400px;
-    max-width: 85%;
-    display: flex;
-    position: absolute;
-    z-index: 5000;
-    height: 100%;
-    /*box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),*/
-    /*  0 2px 6px 2px rgba(60, 64, 67, 0.15);*/
-  }
+    .sidebar {
+        width: 400px;
+        max-width: 85%;
+        position: absolute;
+        z-index: 5000;
+        height: 100%;
+    }
 
-  .sidebar-inner {
-    overflow-y: auto;
-  }
+    .open {
+        left: 0;
+    }
 
-  .open {
-    left: 0;
-  }
+    .closed {
+        right: 100%;
+    }
 
-  .closed {
-    right: 100%;
-  }
+    .toggle-container {
+        height: 48px;
+        width: 24px;
+        position: absolute;
+        top: calc(50% - 24px);
+        left: 100%;
+        border-radius: 0 8px 8px 0;
+        overflow-x: hidden;
+        border-left: 1px solid #d4d4d4;
+        clip-path: inset(-10px -10px -10px 0);
+        margin: 0 0 0 -1px;
+    }
 
-  .toggle-container {
-    height: 48px;
-    width: 24px;
-    position: absolute;
-    top: calc(50% - 24px);
-    left: 100%;
-    border-radius: 0 8px 8px 0;
-    /*box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),*/
-    /*  0 2px 6px 2px rgba(60, 64, 67, 0.15);*/
-    overflow-x: hidden;
-    border-left: 1px solid #d4d4d4;
-    clip-path: inset(-10px -10px -10px 0);
-    margin: 0 0 0 -1px;
-  }
+    :global(.dark .toggle-container) {
+        border-left: 1px solid #3e3e3e !important;
+    }
 
-  :global(.dark .toggle-container) {
-    border-left: 1px solid #3e3e3e !important;
-  }
+    .toggle-btn {
+        cursor: pointer;
+        z-index: inherit;
+        box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),
+        0 2px 6px 2px rgba(60, 64, 67, 0.15);
+    }
 
-  .toggle-btn {
-    cursor: pointer;
-    z-index: inherit;
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),
-      0 2px 6px 2px rgba(60, 64, 67, 0.15);
-  }
+    .toggle-btn::before {
+        content: "";
+        position: absolute;
+        width: 24px;
+        height: 48px;
+        top: 0;
+        left: 0;
+        background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%234B5057%22%20class%3D%22bi%20bi-caret-right-fill%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22m12.14%208.753-5.482%204.796c-.646.566-1.658.106-1.658-.753V3.204a1%201%200%200%201%201.659-.753l5.48%204.796a1%201%200%200%201%200%201.506z%22%2F%3E%3C%2Fsvg%3E") no-repeat 50% 50%;
+        opacity: 1;
+    }
 
-  .toggle-btn::before {
-    content: "";
-    position: absolute;
-    width: 24px;
-    height: 48px;
-    top: 0;
-    left: 0;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%234B5057%22%20class%3D%22bi%20bi-caret-right-fill%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22m12.14%208.753-5.482%204.796c-.646.566-1.658.106-1.658-.753V3.204a1%201%200%200%201%201.659-.753l5.48%204.796a1%201%200%200%201%200%201.506z%22%2F%3E%3C%2Fsvg%3E")
-      no-repeat 50% 50%;
-    opacity: 1;
-  }
+    .sidebar.open .toggle-btn::before {
+        transform: rotate(180deg);
+    }
 
-  .sidebar.open .toggle-btn::before {
-    transform: rotate(180deg);
-  }
-
-  .sidebar.closed .toggle-btn::before {
-    transform: rotate(0deg);
-  }
-
-  .sidebar-inner {
-    scrollbar-gutter: stable;
-  }
+    .sidebar.closed .toggle-btn::before {
+        transform: rotate(0deg);
+    }
 </style>

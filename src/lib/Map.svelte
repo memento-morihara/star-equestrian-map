@@ -144,7 +144,7 @@
                 let popup = new AddMarker({
                     target: document.getElementById("new-marker"),
                 });
-                popup.$set({ marker: e.layer });
+                popup.$set({marker: e.layer});
             }
         });
 
@@ -154,30 +154,10 @@
             },
         };
     }
-
-
 </script>
 
 <div id="map" use:initMap>
     {#if map}
-        <slot />
+        <slot/>
     {/if}
 </div>
-
-<style>
-    @import "leaflet/dist/leaflet.css";
-
-    :global(body) {
-        margin: 0;
-        padding: 0;
-    }
-
-    #map {
-        height: 100vh;
-        width: 100vw;
-    }
-
-    :global(.leaflet-container) {
-        background-color: rgba(var(--bg-surface-200) / 1) !important;
-    }
-</style>

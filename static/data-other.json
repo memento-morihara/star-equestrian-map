@@ -167,6 +167,24 @@
                 "lng": 4524,
                 "id": "pelftci82or9ipu",
                 "description": "Notebook on the ground next to the signpost."
+            },
+            {
+                "lat": -4356,
+                "lng": 11692,
+                "id": "02wycd07aucd2j1",
+                "description": "Bucket on the tree stump."
+            },
+            {
+                "lat": -8054,
+                "lng": 9904,
+                "id": "o1vydcnkwhqfh89",
+                "description": "Fishing rod inside the cave."
+            },
+            {
+                "lat": -2024,
+                "lng": 13036,
+                "id": "1h3vk6cgqsf2ju5",
+                "description": "A quill in the nest on the chimney. Jump from the top of the city wall onto the roof."
             }
         ]
     }

@@ -1,14 +1,31 @@
 <script>
     import {selectedMarker, settings} from "$lib/stores.js";
     import {get} from "svelte/store";
+    import {fade} from "svelte/transition";
 
-    function updateStore() {
-      $selectedMarker.options.store.update(() => ({collected: true}));
-      $selectedMarker.setOpacity($settings.markerOpacity);
-      isCollected = isCollected;
-  }
+    function updateStore(e) {
+        // Prevent popups from closing
+        if ($settings.keepSpiderfied && !$settings.closePopups) {
+            e.stopImmediatePropagation();
+        } else if ($settings.keepSpiderfied) {
+            e.stopPropagation();
+            $selectedMarker.closePopup();
+        }
 
-    function undoUpdateStore() {
+
+        $selectedMarker.options.store.update(() => ({collected: true}));
+        $selectedMarker.setOpacity($settings.markerOpacity);
+        isCollected = isCollected;
+    }
+
+    function undoUpdateStore(e) {
+        if ($settings.keepSpiderfied && !$settings.closePopups) {
+            e.stopImmediatePropagation();
+        } else if ($settings.keepSpiderfied) {
+            e.stopPropagation();
+            $selectedMarker.closePopup();
+        }
+
         $selectedMarker.options.store.update(() => ({collected: false}));
         $selectedMarker.setOpacity(1);
         isCollected = isCollected;
@@ -20,9 +37,9 @@
 
 <div class="collect-button">
     {#if isCollected}
-        <button class="btn variant-ghost-primary" on:click={undoUpdateStore}>Remove</button>
+        <button in:fade class="btn variant-ghost-primary" on:click={(e) => undoUpdateStore(e)}>Remove</button>
     {:else}
-        <button class="btn variant-filled-primary" on:click={updateStore}>Collect</button>
+        <button in:fade class="btn variant-filled-primary" on:click={(e) => updateStore(e)}>Collect</button>
     {/if}
 </div>
 

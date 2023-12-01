@@ -3,8 +3,8 @@
     import OneTimeContent from "./OneTimeContent.svelte";
     import RespawningContent from "./RespawningContent.svelte";
     import {page} from "$app/stores";
-    import Icon from "@iconify/svelte";
     import {clipboard} from "@skeletonlabs/skeleton";
+    import CopyIcon from 'virtual:icons/bi/copy';
 
     const popupContent = () => {
         switch ($selectedMarker.options.markerType) {
@@ -36,7 +36,7 @@
                 title="Copy permalink"
                 use:clipboard={url}
             >
-                <Icon icon="bi:copy" />
+                <CopyIcon style="font-size:1rem"/>
             </button>
         </div>
         <div

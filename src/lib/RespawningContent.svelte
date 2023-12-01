@@ -1,15 +1,23 @@
 <script>
     import {selectedMarker, settings} from "$lib/stores.js";
-    import Icon from "@iconify/svelte";
     import Time from "svelte-time";
     import {get} from "svelte/store";
-    import {fade} from "svelte/transition";
-    import {isCollected} from "$lib/utils.js";
+    import {fade, slide} from "svelte/transition";
+    import {isChecked, isCollected} from "$lib/utils.js";
+    import CalendarIcon from 'virtual:icons/bi/calendar-x';
 
-    $: lastCollected = get($selectedMarker.options.store)?.lastCollected[0];
-    $: lastChecked = get($selectedMarker.options.store)?.lastChecked[0];
+    $: lastCollected = $selectedMarker.options.markerType === "respawning" && get($selectedMarker.options.store)?.lastCollected[0];
+    $: lastChecked = $selectedMarker.options.markerType === "respawning" && get($selectedMarker.options.store)?.lastChecked[0];
 
-    const updateStore = (key) => {
+    const updateStore = (key, e) => {
+        // Prevent popups from closing
+        if ($settings.keepSpiderfied && !$settings.closePopups) {
+            e.stopImmediatePropagation();
+        } else if ($settings.keepSpiderfied) {
+            e.stopPropagation();
+            $selectedMarker.closePopup();
+        }
+
         let store = get($selectedMarker.options.store);
 
         // Add current date to the beginning of the array and remove the last item
@@ -25,7 +33,14 @@
         lastCollected = lastCollected;
     };
 
-    const undoUpdateStore = (key) => {
+    const undoUpdateStore = (key, e) => {
+        if ($settings.keepSpiderfied && !$settings.closePopups) {
+            e.stopImmediatePropagation();
+        } else if ($settings.keepSpiderfied) {
+            e.stopPropagation();
+            $selectedMarker.closePopup();
+        }
+
         let store = get($selectedMarker.options.store);
 
         // Since setArray will always add to the beginning and remove the last item,
@@ -38,23 +53,29 @@
         lastCollected = lastCollected;
     };
 
-    // If the collect/uncollect cycle is repeated, the "old" date is now the first element
+    // If the collect/uncollect cycle is repeated, the "old" date is now the first element,
     // so it will be preserved
+
+
+    // Add a delay if popups are closed automatically to prevent
+    // the animation from playing while the popup closes
+    const animParams = {delay: $settings.closePopups ? 200 : 0}
 </script>
 
 <div>
-    <small class="text-sm pb-0"
-        >Last collected:
+    <small class="text-sm pb-0" transition:fade
+    >Last collected:
         {#if lastCollected}
-            <Time relative timestamp={lastCollected} />
-        {:else}N/A
+            <span in:fade><Time relative timestamp={lastCollected}/></span>
+        {:else}
+            <span in:fade>N/A</span>
         {/if}
     </small>
-    {#if lastChecked && isCollected($selectedMarker) === 0}
-        <div in:fade>
+    {#if isChecked($selectedMarker) > -1 && isCollected($selectedMarker) !== 1}
+        <div transition:slide={animParams}>
             <small class="text-sm"
-                >Last checked:
-                <Time relative timestamp={lastChecked} />
+            >Last checked:
+                <Time relative timestamp={lastChecked}/>
             </small>
         </div>
     {/if}
@@ -62,31 +83,40 @@
 {#if $selectedMarker.options.description}
     <p class="text-base m-0">{$selectedMarker.options.description}</p>
 {/if}
-<div class="spawn-buttons">
-    {#if isCollected($selectedMarker) > 0}
+
+{#if isCollected($selectedMarker) > 0}
+    <div class="spawn-buttons" in:fade>
         <button
-            class="btn variant-ghost-primary"
-            on:click={() => undoUpdateStore("lastCollected")}>Remove</button
+                class="btn variant-ghost-primary"
+                on:click={(e) => undoUpdateStore("lastCollected", e)}>Remove
+        </button
         >
-    {:else if isCollected($selectedMarker) === 0}
+    </div>
+{:else if isChecked($selectedMarker) > 0}
+    <div class="spawn-buttons" in:fade>
         <button
-            class="btn variant-ghost-primary"
-            on:click={() => undoUpdateStore("lastChecked")}>Remove</button
+                class="btn variant-ghost-primary"
+                on:click={(e) => undoUpdateStore("lastChecked", e)}>Remove
+        </button
         >
-    {:else}
+    </div>
+{:else}
+    <div class="spawn-buttons" in:fade>
         <button
-            on:click={() => updateStore("lastCollected")}
-            class="btn variant-filled-primary">Collect</button
+                on:click={(e) => updateStore("lastCollected", e)}
+                class="btn variant-filled-primary">Collect
+        </button
         >
         <button
-            class="no-spawn btn-icon hover:variant-soft-primary"
-            title="Not respawned today"
-            on:click={() => updateStore("lastChecked")}
+                class="no-spawn btn-icon hover:variant-soft-primary h-[42px]"
+                title="Not respawned today"
+                on:click={(e) => updateStore("lastChecked", e)}
         >
-            <Icon icon="bi:calendar-x" />
+            <CalendarIcon style="font-size:20px"/>
         </button>
-    {/if}
-</div>
+    </div>
+{/if}
+
 
 <style>
     p {

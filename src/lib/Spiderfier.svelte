@@ -1,15 +1,14 @@
 <script>
-    import { getContext, onMount, setContext } from "svelte";
-    import { browser } from "$app/environment";
+    import {getContext, onMount} from "svelte";
+    import {browser} from "$app/environment";
+    import {allMarkers, settings} from "$lib/stores.js";
+    import OverlappingMarkerSpiderfier from "$lib/oms.js";
 
     const map = getContext("map")();
     let oms;
 
-    setContext("oms", () => oms);
-
-    if (browser && window) {
-        onMount(async () => {
-            await import("overlapping-marker-spiderfier-leaflet");
+    onMount(() => {
+        if (browser) {
             oms = new OverlappingMarkerSpiderfier(map, {
                 keepSpiderfied: true,
                 legColors: {
@@ -17,10 +16,15 @@
                     highlighted: "red",
                 }
             });
-            oms.addListener("spiderfy", () => map.closePopup());
-        });
-    }
 
+            oms.addListener("spiderfy", () => {
+                map.closePopup();
+            });
+        }
+    });
+
+
+    $: oms && ($allMarkers.forEach(marker => $settings.spiderfyMarkers ? oms.addMarker(marker) : oms.removeMarker(marker)));
 </script>
 
-<slot />
+<slot/>

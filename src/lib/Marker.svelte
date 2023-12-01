@@ -3,7 +3,7 @@
     import {browser} from "$app/environment";
     import {markerData} from "$lib/markerData";
     import {allMarkers, collectibleStores, selectedMarker, settings} from "$lib/stores.js";
-    import {isCollected, slugifyName} from "$lib/utils.js";
+    import {isChecked, isCollected, slugifyName} from "$lib/utils.js";
     import {localStorageStore} from "@skeletonlabs/skeleton";
     import PopupContent from "$lib/Popup.svelte";
 
@@ -13,7 +13,6 @@
     setContext("marker", () => marker);
 
     const groups = getContext("groups")();
-
     function initPopup(marker) {
         marker.bindPopup(
             L.popup({
@@ -42,7 +41,7 @@
             marker = L.marker([location.lat, location.lng], {
                 id: location.id,
                 description: location.description,
-                riseOnHover: true,
+                riseOnHover: $settings.hoverMarkers,
                 store: localStorageStore(
                     location.id,
                     lsTemplate(props.markerType)
@@ -56,7 +55,6 @@
             marker.options.group = groups[name];
             $allMarkers = [...$allMarkers, marker];
 
-
             marker.on("click", () => {
                 $selectedMarker = marker;
                 $selectedMarker.openPopup();
@@ -65,16 +63,22 @@
                 });
             });
 
-            // Set opacity for markers that have been collected or checked
+            // Hide or set opacity for markers that have been collected or checked
+            if (isCollected(marker) > 0 || isChecked(marker) > 0) {
+                if ($settings.hideCollectedMarkers) {
+                    marker.remove()
+                } else {
+                    marker.setOpacity($settings.markerOpacity)
+                }
+            }
+
+            // Add collectibles to a store to keep track of progress
             if (marker.options.markerType === "one-time" && !["Legendary Chest", "Quest Item"].includes(marker.options.name)) {
-                isCollected(marker) > 0 && marker.setOpacity($settings.markerOpacity)
                 $collectibleStores = [...$collectibleStores, {
                     name: marker.options.name,
                     id: marker.options.id,
                     store: marker.options.store
                 }]
-            } else if (marker.options.markerType === "respawning") {
-                isCollected(marker) >= 0 && marker.setOpacity($settings.markerOpacity);
             }
         });
     }
