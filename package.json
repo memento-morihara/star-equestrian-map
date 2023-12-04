@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "build.sh",
     "preview": "vite preview",
     "tauri": "tauri"
   },
@@ -19,6 +19,8 @@
     "@tauri-apps/cli": "^1.5.6",
     "@vite-pwa/sveltekit": "^0.2.8",
     "autoprefixer": "10.4.16",
+    "leaflet-draw": "^1.0.4",
+    "pocketbase": "^0.19.0",
     "postcss": "8.4.31",
     "svelte": "^4.0.5",
     "tailwindcss": "3.3.3",
@@ -31,7 +33,6 @@
   "dependencies": {
     "dayjs": "^1.11.10",
     "leaflet": "^1.9.4",
-    "leaflet-draw": "^1.0.4",
     "svelte-time": "^0.8.0"
   }
 }

@@ -1,15 +1,12 @@
 <script>
     import {setContext} from "svelte";
     import {browser} from "$app/environment";
-    import AddMarker from "$lib/AddMarker.svelte";
     import {flatItems} from "$lib/utils.js";
-    import {allMarkers, customRoutes, selectedMarker} from "$lib/stores.js";
+    import {allMarkers, selectedMarker} from "$lib/stores.js";
     import Popup from "$lib/Popup.svelte";
 
     let map;
-    let drawnItems;
     let featureGroups = {};
-    let customFeatures;
     let url;
     let id;
 
@@ -86,67 +83,7 @@
             for (const item of flatItems) {
                 featureGroups[item] = L.featureGroup().addTo(map);
             }
-
-            customFeatures = {
-                markers: L.featureGroup(),
-                routes: L.featureGroup()
-            };
-
-            if ($customRoutes) {
-                let lines = $customRoutes.map(line => {
-                    return L.polyline(line.geometry.coordinates, {color: "blue"})
-                });
-
-                lines.forEach(line => customFeatures.routes.addLayer(line));
-                customFeatures.routes.addTo(map)
-            }
-
-            /* Set up Leaflet.Draw */
-            drawnItems = new L.FeatureGroup();
-            map.addLayer(drawnItems);
-            let drawControl = new L.Control.Draw({
-                draw: {
-                    polygon: false,
-                    rectangle: false,
-                    circlemarker: false,
-                    circle: false,
-                    polyline: {
-                        showLength: false,
-                    },
-                },
-                edit: {
-                    featureGroup: drawnItems,
-                },
-            });
-
-            // map.addControl(drawControl);
         }
-
-        /* Leaflet.Draw event handlers */
-        map.on(L.Draw.Event.CREATED, (e) => {
-            // Get the type of feature that was added
-            switch (e.layerType) {
-                case "marker":
-                    // Bind a popup to hold a form for setting properties for the new marker
-                    e.layer.bindPopup('<div id="new-marker"></div>', {
-                        minWidth: 250,
-                    });
-                    break;
-                case "polyline":
-                    $customRoutes = [...$customRoutes, e.layer.toGeoJSON()];
-                    break;
-            }
-            drawnItems.addLayer(e.layer);
-
-            // Open marker popup automatically and set its content
-            if (e.layerType === "marker") {
-                e.layer.openPopup();
-                let popup = new AddMarker({
-                    target: document.getElementById("new-marker"),
-                });
-                popup.$set({marker: e.layer});
-            }
-        });
 
         return {
             destroy() {

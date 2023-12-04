@@ -1,17 +1,20 @@
 <script>
-  import { markerData } from "$lib/markerData.js";
-  import { onMount, createEventDispatcher } from "svelte";
-  import { customMarkers } from "$lib/stores.js";
+  import {markerData} from "$lib/markerData.js";
+  import {onMount} from "svelte";
+  import {customMarkers} from "$lib/stores.js";
+  import {PUBLIC_DB_URL} from "$env/static/public";
 
   export let marker = {};
 
   let value;
-  let description = "";
+  let description;
   let data;
 
-  const dispatch = createEventDispatcher();
-
-  onMount(async () => (data = await markerData()));
+  onMount(async () => {
+    data = await markerData()
+    value = marker.options?.category + "," + marker.options?.name;
+    description = (marker && marker.options?.description) ?? "";
+  });
 
   function changeIcon() {
     const [category, itemName] = value.split(",");
@@ -25,8 +28,28 @@
     changeIcon(item);
     marker.closePopup();
     marker.unbindPopup();
-    dispatch("markerCreated", {item, location, description});
+    saveLocation(item.split(",")[1], location.lat, location.lng, description);
     $customMarkers = [...$customMarkers, {item, location, description}]
+  }
+
+  async function saveLocation(name, lat, lng, description, id = marker.options?.id) {
+    const body = `{"name": "${name}", "lat": ${lat}, "lng": ${lng}, "description": "${description}"}`;
+
+    let url = PUBLIC_DB_URL + '/api/collections/locations_new/records';
+    // If there was an ID passed, update the record
+    if (id) {
+      url += `/${id}`;
+    }
+
+    let options = {
+      method: marker.options?.id ? 'PATCH' : 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: body
+    };
+
+    fetch(url, options)
+            .then(res => res.json())
+            .catch(err => console.error('error:' + err));
   }
 </script>
 
@@ -50,5 +73,5 @@
 <button
   class="btn variant-filled-primary"
   on:click={() => saveMarker(value, marker._latlng, description)}
-  >Add Marker</button
+>{marker.options?.id ? "Update" : "Add Marker"}</button
 >
