@@ -79,6 +79,12 @@
             const locations = await db.collection("locations_new").getFullList();
             const dataList = await data();
 
+            const paths = await db.collection("paths").getFullList();
+            paths.forEach(path => {
+                const geo = L.GeoJSON.geometryToLayer(path.geojson.geometry, {id: path.id});
+                drawnItems.addLayer(geo);
+            });
+
             locations.forEach(location => {
                 const props = dataList
                     .flatMap((obj) => obj.items)
@@ -114,7 +120,7 @@
                     });
                     break;
                 case "polyline":
-                    console.log(e.layer.toGeoJSON());
+                    savePath(e.layer.toGeoJSON());
                     break;
             }
             drawnItems.addLayer(e.layer);
@@ -131,11 +137,25 @@
 
         map.on(L.Draw.Event.EDITED, (e) => {
             const edited = e.layers;
-            Object.values(edited._layers).forEach(marker => saveLocation(marker.options.name, marker._latlng.lat, marker._latlng.lng, marker.options.description, marker.options.id))
+
+            Object.values(edited._layers).forEach(marker => {
+                if (marker._path) {
+                    savePath(marker.toGeoJSON(), marker.options.id);
+                } else {
+                    saveLocation(marker.options.name, marker._latlng.lat, marker._latlng.lng, marker.options.description, marker.options.id)
+                }
+            })
         });
 
         map.on(L.Draw.Event.DELETED, async (e) => {
-            Object.values(e.layers._layers).forEach(location => db.collection("location_new").delete(location.options.id));
+            console.log(e)
+            Object.values(e.layers._layers).forEach(location => {
+                if (location._path) {
+                    db.collection("paths").delete(location.options.id);
+                } else {
+                    db.collection("locations_new").delete(location.options.id)
+                }
+            });
         });
 
         return {
@@ -159,6 +179,14 @@
         fetch(url, options)
             .then(res => res.json())
             .catch(err => console.error('error:' + err));
+    }
+
+    async function savePath(path, id = null) {
+        if (id) {
+            await db.collection("paths").update(id, {'geojson': JSON.stringify(path)});
+        } else {
+            await db.collection("paths").create({'geojson': JSON.stringify(path)});
+        }
     }
 </script>
 
