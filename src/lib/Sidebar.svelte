@@ -5,7 +5,6 @@
     import Settings from "$lib/Settings.svelte";
     import Progress from "$lib/Progress.svelte";
 
-    export let counts;
 
     const map = getContext("map")();
 
@@ -41,7 +40,7 @@
             <svelte:fragment slot="panel">
                 <section class="text-base max-w-[390px] h-full align-baseline">
                     {#if activeTabIndex === 0}
-                        <FilterTree {map} {counts}/>
+                        <FilterTree {map} />
                     {:else if activeTabIndex === 1}
                         <Progress/>
                     {:else if activeTabIndex === 2}

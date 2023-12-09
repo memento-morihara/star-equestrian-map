@@ -18,6 +18,8 @@ self.addEventListener("fetch", (event) => {
     const fetched = fetch(event.request);
     const copy = fetched.then(res => res.clone());
 
+    if (event.request.method !== "GET") return;
+
     event.respondWith(
         Promise.race([fetched.catch(() => cached), cached])
             .then(res => res || fetched)

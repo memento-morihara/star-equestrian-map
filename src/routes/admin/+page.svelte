@@ -1,7 +1,7 @@
 <script>
     import {setContext} from "svelte";
     import {browser} from "$app/environment";
-    import AddMarker from "$lib/AddMarker.svelte";
+    import AddMarker from "./AddMarker.svelte";
     import PocketBase from "pocketbase";
     import {markerData} from "$lib/markerData.js";
     import {PUBLIC_DB_URL} from "$env/static/public";

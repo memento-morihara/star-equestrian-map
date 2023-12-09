@@ -8,7 +8,7 @@ export const customRoutes = localStorageStore("customRoutes", []);
 export const selectedMarker = writable(undefined);
 
 let filters = [];
-categories.flatMap(category => filters = [ ...filters, ...category.items, category.name ]);
+categories.flatMap(category => filters = [...filters, ...category.items, category.name]);
 export const filterStore = localStorageStore("filters", filters);
 
 const defaultSettings = {
@@ -19,6 +19,7 @@ const defaultSettings = {
     spiderfyMarkers: true,
     hoverMarkers: false,
     keepSpiderfied: true,
+    broncoEnabled: false,
 }
 
 let initialStore = {};
