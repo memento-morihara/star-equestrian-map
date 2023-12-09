@@ -2,26 +2,48 @@
     import {RecursiveTreeView} from "@skeletonlabs/skeleton";
     import {categories, flatNames, slugifyName} from "$lib/utils.js";
     import {getContext, onMount} from "svelte";
-    import {filterStore} from "$lib/stores.js";
+    import {filterStore, settings} from "$lib/stores.js";
     import {markerData} from "$lib/markerData.js";
     import CheckIcon from 'virtual:icons/bi/check-square';
     import SquareIcon from 'virtual:icons/bi/square';
+    import {counts, countsWithBronco} from "$lib/db.js";
+    import {writable} from "svelte/store";
 
     export let map;
-    export let counts;
     let nodes;
+    let countText = writable({});
 
     const groups = getContext("groups")();
 
-    const getNodes = async () => await markerData().then(data => data.map(item => ({
-        id: item.name,
-        content: item.label,
-        children: item.items.map(i => ({
-            id: slugifyName(i.name),
-            content: i.name + " (" + counts.find(count => count.name === i.name)?.count + ")",
-            lead: `<img src=${i.icon.createIcon().src} alt={i.name} height="24" width="24" />`,
-        }))
-    })))
+    function toggleBronco() {
+        $settings.broncoEnabled ? groups.bronco.addTo(map) : groups.bronco.remove();
+
+        for (const key of Object.keys($countText)) {
+            $countText[key] = count(key);
+            document.getElementById(slugifyName(key)).innerText = $settings.broncoEnabled ? $countText[key].enabled : $countText[key].disabled;
+        }
+    }
+
+    $: count = (item) => ({
+        enabled: countsWithBronco.find(i => i.name === item)?.count,
+        disabled: counts.find(i => i.name === item).count
+    });
+
+    const getNodes = async () => await markerData().then(data => data.map(item => {
+            return {
+                id: item.name,
+                content: item.label,
+                children: item.items.map(i => {
+                    $countText[i.name] = count(i.name);
+                    return {
+                        id: slugifyName(i.name),
+                        content: `<p>${i.name} (<span id=${slugifyName(i.name)}>${$settings.broncoEnabled ? $countText[i.name].enabled : $countText[i.name].disabled}</span>)`,
+                        lead: `<img src=${i.icon.createIcon().src} alt={i.name} height="24" width="24" />`,
+                    }
+                })
+            }
+        }
+    ))
 
     const items = categories.flatMap(c => c.items);
 
@@ -36,7 +58,9 @@
     }
 
 
-    onMount(async () => nodes = await getNodes());
+    onMount(async () => {
+        nodes = await getNodes();
+    });
 
     function changeAllFilters() {
         if (areAllNodesChecked) {
@@ -46,8 +70,7 @@
         }
     }
 
-    $: areAllNodesChecked = nodes && ($filterStore.length === nodes.flatMap(c => [...c.children, c]).length)
-
+    $: areAllNodesChecked = nodes && ($filterStore.length === nodes.flatMap(c => [...c.children, c]).length);
 </script>
 
 <div class="chip-container flex flex-row-reverse dark:bg-surface-800 mb-0 w-full">
@@ -71,4 +94,13 @@
             relational
             selection
     />
+
+    <label class="sm:text-lg text-base ml-11 mt-4">
+        <input bind:checked={$settings.broncoEnabled}
+               class="checkbox mr-3.5"
+               on:change={toggleBronco}
+               type="checkbox"
+        />
+        Show Bronco items
+    </label>
 </div>

@@ -1,15 +1,11 @@
 <script>
     import {setContext} from "svelte";
     import {browser} from "$app/environment";
-    import AddMarker from "$lib/AddMarker.svelte";
     import {flatItems} from "$lib/utils.js";
-    import {allMarkers, customRoutes, selectedMarker} from "$lib/stores.js";
-    import Popup from "$lib/Popup.svelte";
+    import {settings} from "$lib/stores.js";
 
     let map;
-    let drawnItems;
     let featureGroups = {};
-    let customFeatures;
     let url;
     let id;
 
@@ -51,26 +47,44 @@
                 attributionControl: false,
             }).fitBounds(bounds);
 
+            // const initPopup = () => {
+            //     $selectedMarker.bindPopup(`<div id="init"></div>`);
+            //     $selectedMarker.openPopup();
+            //     new Popup({target: document.getElementById("init")});
+            // }
+
+            // if (data.initial !== null) {
+            //     map.on("load", () => {
+            //         map.openPopup("<div id='init'></div>", [data.initial.lat, data.initial.lng], {minWidth: 250});
+            //     });
+            //
+            //     function setPopupContent(e) {
+            //         const popup = new Popup({target: document.getElementById("init")});
+            //         if (e.layer.options.id === data.initial.id) {
+            //             $selectedMarker = e.layer;
+            //             popup.$set({marker: $selectedMarker});
+            //             map.off("layeradd", setPopupContent)
+            //         }
+            //     }
+            //
+            //     map.on("layeradd", (e) => setPopupContent(e));
+            //     map.setView(data.initial, 4);
+            //
+            // } else {
+            //     map.fitBounds(bounds);
+            // }
+
+            // map.setZoom(4)
+
             // Zoom to the location of the permalinked marker
             // There is no Leaflet marker at this point, so zoom to the
             // coordinates of the location with an ID matching the URL parameter
             // using the data from the static JSON files
-            if (data.initial) {
-                map.flyTo([data.initial.lat, data.initial.lng], 4);
-            }
+
 
             // Add a one-off event listener for when the flyTo animation ends
             // which binds a popup containing an empty div with an ID
             // that can be targeted with the Svelte component constructor
-            map.once("zoomend", function () {
-                $selectedMarker = $allMarkers.find((x) => x.options.id === id);
-
-                if ($selectedMarker) {
-                    $selectedMarker.bindPopup(`<div id="init"></div>`);
-                    $selectedMarker.openPopup();
-                    new Popup({target: document.getElementById("init")});
-                }
-            });
 
 
             L.tileLayer("tiles/{z}/{x}/{y}.webp", {
@@ -87,66 +101,12 @@
                 featureGroups[item] = L.featureGroup().addTo(map);
             }
 
-            customFeatures = {
-                markers: L.featureGroup(),
-                routes: L.featureGroup()
-            };
+            // Create a feature group for Bronco
+            featureGroups.bronco = L.featureGroup();
+            $settings.broncoEnabled && featureGroups.bronco.addTo(map);
 
-            if ($customRoutes) {
-                let lines = $customRoutes.map(line => {
-                    return L.polyline(line.geometry.coordinates, {color: "blue"})
-                });
 
-                lines.forEach(line => customFeatures.routes.addLayer(line));
-                customFeatures.routes.addTo(map)
-            }
-
-            /* Set up Leaflet.Draw */
-            drawnItems = new L.FeatureGroup();
-            map.addLayer(drawnItems);
-            let drawControl = new L.Control.Draw({
-                draw: {
-                    polygon: false,
-                    rectangle: false,
-                    circlemarker: false,
-                    circle: false,
-                    polyline: {
-                        showLength: false,
-                    },
-                },
-                edit: {
-                    featureGroup: drawnItems,
-                },
-            });
-
-            // map.addControl(drawControl);
         }
-
-        /* Leaflet.Draw event handlers */
-        map.on(L.Draw.Event.CREATED, (e) => {
-            // Get the type of feature that was added
-            switch (e.layerType) {
-                case "marker":
-                    // Bind a popup to hold a form for setting properties for the new marker
-                    e.layer.bindPopup('<div id="new-marker"></div>', {
-                        minWidth: 250,
-                    });
-                    break;
-                case "polyline":
-                    $customRoutes = [...$customRoutes, e.layer.toGeoJSON()];
-                    break;
-            }
-            drawnItems.addLayer(e.layer);
-
-            // Open marker popup automatically and set its content
-            if (e.layerType === "marker") {
-                e.layer.openPopup();
-                let popup = new AddMarker({
-                    target: document.getElementById("new-marker"),
-                });
-                popup.$set({marker: e.layer});
-            }
-        });
 
         return {
             destroy() {

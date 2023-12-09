@@ -57,4 +57,7 @@
             </div>
         {/each}
     </div>
+    <div>
+        <p>Note: Progress bars don't reflect the Bronco items toggle properly at the moment.</p>
+    </div>
 </section>

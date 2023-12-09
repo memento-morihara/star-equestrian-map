@@ -8,6 +8,7 @@
     import PopupContent from "$lib/Popup.svelte";
 
     export let location;
+    export let isBronco = false;
 
     let marker;
     setContext("marker", () => marker);
@@ -53,6 +54,7 @@
 
             groups[name] && groups[name].addLayer(marker);
             marker.options.group = groups[name];
+            isBronco && groups.bronco.addLayer(marker);
             $allMarkers = [...$allMarkers, marker];
 
             marker.on("click", () => {
