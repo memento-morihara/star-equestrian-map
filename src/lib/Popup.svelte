@@ -14,22 +14,22 @@
         }
     };
 
-    const marker = $selectedMarker;
+    export let marker = $selectedMarker;
     const url = new URL($page.url);
     const search = url.searchParams;
-    $selectedMarker && search.set("id", marker.options.id);
+    marker && search.set("id", marker.options.id);
 
     $: isCopied = false;
     // $selectedMarker.on("popupclose", () => setTimeout(() => isCopied = false, 300));
 </script>
 
-{#if $selectedMarker}
+{#if marker}
     <div class="popup-content w-full">
         <div class="header flex justify-start">
             <button
                     class="btn-icon-md text-lg pr-2.5"
-                    class:centered={!$selectedMarker?.options.description.length &&
-                    $selectedMarker.options.markerType === "static"}
+                    class:centered={!marker?.options.description.length &&
+                    marker.options.markerType === "static"}
                     title={isCopied ? "Copied!" : "Copy permalink"}
                     use:clipboard={url}
                     on:click={() => isCopied = true}
@@ -37,27 +37,27 @@
             <span
                     class="title"
             >
-                <strong class="h4">{$selectedMarker?.options.name}</strong>
+                <strong class="h4">{marker?.options.name}</strong>
                 {#if isCopied}&checkmark;{/if}
             </span>
             </button>
-            {#if $selectedMarker?.options.category === "food"}
+            {#if marker?.options.category === "food"}
                 <img class="mr-5"
-                     src={`icons/${$selectedMarker?.options.stat}.svg`}
-                     alt={$selectedMarker?.options.stat}
-                     title={$selectedMarker?.options.stat}
+                     src={`icons/${marker?.options.stat}.svg`}
+                     alt={marker?.options.stat}
+                     title={marker?.options.stat}
                      width="22"
                      height="22"/>
             {/if}
         </div>
         <div
-                class:no-desc={$selectedMarker.options.markerType !==
-                "respawning" && !$selectedMarker.options.description}
+                class:no-desc={marker.options.markerType !==
+                "respawning" && !marker.options.description}
         >
-            {#if $selectedMarker.options.markerType !== "respawning" && $selectedMarker.options.description}
-                <p class="text-base my-0">{$selectedMarker.options.description}</p>
+            {#if marker.options.markerType !== "respawning" && marker.options.description}
+                <p class="text-base my-0">{marker.options.description}</p>
             {/if}
-            {#if $selectedMarker.options.markerType !== "static"}
+            {#if marker.options.markerType !== "static"}
                 <svelte:component this={popupContent()}/>
             {/if}
         </div>
