@@ -1,0 +1,191 @@
+[
+  {
+    "name": "Cave Entrance",
+    "markerType": "static",
+    "iconUrl": "icons/cave-entrance.svg",
+    "locations": [
+      {
+        "lat": -5980,
+        "lng": 12328,
+        "id": "p44raofa6t9ka7x",
+        "description": "Behind the waterfall."
+      },
+      {
+        "lat": -6316,
+        "lng": 8766,
+        "id": "n7fxb6k53mjt2w4",
+        "description": ""
+      },
+      {
+        "lat": -7642,
+        "lng": 9978,
+        "id": "6lzf2jl5f4or71p",
+        "description": ""
+      },
+      {
+        "lat": -4960,
+        "lng": 3944,
+        "id": "ma8yq8q3fyp2t7b",
+        "description": ""
+      },
+      {
+        "lat": -2724,
+        "lng": 15144,
+        "id": "2h2txjmpxanu20q",
+        "description": ""
+      },
+      {
+        "lat": -4164,
+        "lng": 14188,
+        "id": "b5s2k3dbbfqe89o",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Picnic Basket",
+    "markerType": "respawning",
+    "iconUrl": "icons/resource/map-00-picnic-basket.webp",
+    "locations": [
+      {
+        "lat": -4504,
+        "lng": 8304,
+        "id": "1cybdsxg1c9nm20",
+        "description": ""
+      },
+      {
+        "lat": -3780,
+        "lng": 7690,
+        "id": "xxsusnvt6lx95oc",
+        "description": ""
+      },
+      {
+        "lat": -6680,
+        "lng": 2578,
+        "id": "z7dlrhfkmd8c2ad",
+        "description": ""
+      },
+      {
+        "lat": -6704,
+        "lng": 2502,
+        "id": "qjxvotdhks7lyx5",
+        "description": ""
+      },
+      {
+        "lat": -5828,
+        "lng": 1296,
+        "id": "hw8gr7bt8rr6xpc",
+        "description": ""
+      },
+      {
+        "lat": -4544,
+        "lng": 15430,
+        "id": "ptsu73syimglhf0",
+        "description": ""
+      },
+      {
+        "lat": -4704,
+        "lng": 15570,
+        "id": "sqohb9bf5xvmz7u",
+        "description": ""
+      },
+      {
+        "lat": -3246,
+        "lng": 10336,
+        "id": "y3diahefvr9bjgq",
+        "description": ""
+      },
+      {
+        "lat": -6186,
+        "lng": 9332,
+        "id": "51tgv8hkyqu69ya",
+        "description": ""
+      },
+      {
+        "lat": -6164,
+        "lng": 9270,
+        "id": "v8n4k1cksaxc250",
+        "description": ""
+      },
+      {
+        "lat": -4102,
+        "lng": 13062,
+        "id": "gkth2g8xsayqhbw",
+        "description": ""
+      },
+      {
+        "lat": -4342,
+        "lng": 8430,
+        "id": "wl4kv37ipextikp",
+        "description": ""
+      },
+      {
+        "lat": -568,
+        "lng": 12646,
+        "id": "i4rfznkm352p30e",
+        "description": ""
+      },
+      {
+        "lat": -316,
+        "lng": 12898,
+        "id": "oow6jvobucvffrz",
+        "description": ""
+      },
+      {
+        "lat": -718,
+        "lng": 13506,
+        "id": "996hoyrwufkquxn",
+        "description": ""
+      },
+      {
+        "lat": -1428,
+        "lng": 14476,
+        "id": "qu7aponecsyzq2l",
+        "description": ""
+      },
+      {
+        "lat": -2728,
+        "lng": 13728,
+        "id": "xx7bunv9akjt8ok",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Quest Item",
+    "markerType": "one-time",
+    "iconUrl": "icons/quest-icon.svg",
+    "locations": [
+      {
+        "lat": -1934,
+        "lng": 13608,
+        "id": "m477w39se5tap8g",
+        "description": "Missing Papers under the bridge in the flowerbed."
+      },
+      {
+        "lat": -4898,
+        "lng": 4524,
+        "id": "pelftci82or9ipu",
+        "description": "Notebook on the ground next to the signpost."
+      },
+      {
+        "lat": -4356,
+        "lng": 11692,
+        "id": "02wycd07aucd2j1",
+        "description": "Bucket on the tree stump."
+      },
+      {
+        "lat": -8054,
+        "lng": 9904,
+        "id": "o1vydcnkwhqfh89",
+        "description": "Fishing rod inside the cave."
+      },
+      {
+        "lat": -2024,
+        "lng": 13036,
+        "id": "1h3vk6cgqsf2ju5",
+        "description": "A quill in the nest on the chimney. Jump from the top of the city wall onto the roof."
+      }
+    ]
+  }
+]
