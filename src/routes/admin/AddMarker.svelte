@@ -1,9 +1,9 @@
 <script>
-  import {markerData} from "$lib/markerData.js";
-  import {onMount} from "svelte";
-  import {PUBLIC_DB_URL} from "$env/static/public";
+    import {markerData} from "$lib/markerData.js";
+    import {onMount} from "svelte";
+    import {PUBLIC_DB_URL} from "$env/static/public";
 
-  export let marker = {};
+    export let marker = {};
 
     let value;
     let description;
@@ -28,10 +28,11 @@
         marker.closePopup();
         marker.unbindPopup();
         saveLocation(item.split(",")[1], location.lat, location.lng, description);
+        console.log("there")
         // $customMarkers = [...$customMarkers, {item, location, description}]
     }
 
-    async function saveLocation(name, lat, lng, description, id) {
+    export async function saveLocation(name, lat, lng, description, id) {
         const body = `{"name": "${name}", "lat": ${lat}, "lng": ${lng}, "description": "${description}"}`;
 
         let url = PUBLIC_DB_URL + '/api/collections/locations_new/records';
@@ -47,7 +48,7 @@
             body: body
         };
 
-        fetch(url, options)
+        await fetch(url, options)
             .then(res => res.json())
             .catch(err => console.error('error:' + err));
     }

@@ -165,22 +165,6 @@
         };
     }
 
-    export async function saveLocation(name, lat, lng, description, id = null) {
-        const body = `{"name": "${name}", "lat": ${lat}, "lng": ${lng}, "description": "${description}"}`;
-
-        let url = PUBLIC_DB_URL + "/" + id;
-
-        let options = {
-            method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: body
-        };
-
-        fetch(url, options)
-            .then(res => res.json())
-            .catch(err => console.error('error:' + err));
-    }
-
     async function savePath(path, id = null) {
         if (id) {
             await db.collection("paths").update(id, {'geojson': JSON.stringify(path)});
