@@ -26,6 +26,15 @@ export function slugifyName(name) {
     return name.split(" ").join("-").toLowerCase();
 }
 
+export function unslugifyName(name, camelCase) {
+    if (camelCase) {
+        return name.split("-").map((word, i) => (i > 0 ? word[0].toUpperCase() : word[0]) + word.slice(1)).join("")
+    } else {
+
+        return name.split("-").map(word => word[0].toUpperCase() + word.slice(1)).join(" ");
+    }
+}
+
 export const flatNames = categories.flatMap(category => category.name);
 export const flatItems = categories.flatMap(category => category.items);
 

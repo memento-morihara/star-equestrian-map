@@ -1,43 +1,30 @@
 <script>
     import {RecursiveTreeView} from "@skeletonlabs/skeleton";
-    import {categories, flatNames, slugifyName} from "$lib/utils.js";
+    import {categories, flatNames, slugifyName, unslugifyName} from "$lib/utils.js";
     import {getContext, onMount} from "svelte";
-    import {filterStore, settings} from "$lib/stores.js";
+    import {allMarkers, filterStore, settings} from "$lib/stores.js";
     import {markerData} from "$lib/markerData.js";
     import CheckIcon from 'virtual:icons/bi/check-square';
     import SquareIcon from 'virtual:icons/bi/square';
     import {counts, countsWithBronco} from "$lib/db.js";
-    import {writable} from "svelte/store";
+    import L from "leaflet";
 
     export let map;
     let nodes;
-    let countText = writable({});
 
     const groups = getContext("groups")();
 
-    function toggleBronco() {
-        $settings.broncoEnabled ? groups.bronco.addTo(map) : groups.bronco.remove();
+    const displayedGroups = L.layerGroup([...Object.values(groups)]).addTo(map);
 
-        for (const key of Object.keys($countText)) {
-            $countText[key] = count(key);
-            document.getElementById(slugifyName(key)).innerText = $settings.broncoEnabled ? $countText[key].enabled : $countText[key].disabled;
-        }
-    }
-
-    $: count = (item) => ({
-        enabled: countsWithBronco.find(i => i.name === item)?.count,
-        disabled: counts.find(i => i.name === item).count
-    });
-
+    const count = (item) => ($settings.broncoEnabled ? countsWithBronco : counts).find(c => c.name === item).count;
     const getNodes = async () => await markerData().then(data => data.map(item => {
             return {
                 id: item.name,
                 content: item.label,
                 children: item.items.map(i => {
-                    $countText[i.name] = count(i.name);
                     return {
                         id: slugifyName(i.name),
-                        content: `<p>${i.name} (<span id=${slugifyName(i.name)}>${$settings.broncoEnabled ? $countText[i.name].enabled : $countText[i.name].disabled}</span>)`,
+                        content: `<p>${i.name} (<span id=${slugifyName(i.name)}>${count(i.name)}</span>)`,
                         lead: `<img src=${i.icon.createIcon().src} alt={i.name} height="24" width="24" />`,
                     }
                 })
@@ -54,9 +41,30 @@
     function toggleFeatureGroup() {
         // Find the items that are checked but aren't on the map and add them, and vice versa
         const diff = items.filter(item => itemNodes.includes(item) !== map.hasLayer(groups[item]));
-        diff.forEach(item => map.hasLayer(groups[item]) ? groups[item].removeFrom(map) : groups[item].addTo(map));
+
+        diff.forEach(item => {
+            if (displayedGroups.hasLayer(groups[item])) {
+                displayedGroups.removeLayer(groups[item]);
+            } else {
+                groups[item].addTo(displayedGroups);
+            }
+        });
     }
 
+    function toggleBronco() {
+        $allMarkers.forEach(marker => {
+            if (!marker.options.bronco) {
+                return;
+            }
+
+            if ($settings.broncoEnabled) {
+                map.hasLayer(marker) ? marker.remove() : displayedGroups.hasLayer(marker.options.group) && marker.addTo(displayedGroups);
+            } else {
+                marker.remove();
+            }
+        });
+        items.forEach(item => document.getElementById(slugifyName(item)).innerText = count(unslugifyName(item, false)));
+    }
 
     onMount(async () => {
         nodes = await getNodes();
@@ -86,6 +94,14 @@
 </div>
 
 <div class="h-full w-full">
+    <label class="sm:text-lg text-base ml-11 mb-4">
+        <input bind:checked={$settings.broncoEnabled}
+               class="checkbox mr-3.5"
+               on:change={toggleBronco}
+               type="checkbox"
+        />
+        Show Bronco items
+    </label>
     <RecursiveTreeView
             bind:checkedNodes={$filterStore}
             multiple
@@ -94,13 +110,4 @@
             relational
             selection
     />
-
-    <label class="sm:text-lg text-base ml-11 mt-4">
-        <input bind:checked={$settings.broncoEnabled}
-               class="checkbox mr-3.5"
-               on:change={toggleBronco}
-               type="checkbox"
-        />
-        Show Bronco items
-    </label>
 </div>

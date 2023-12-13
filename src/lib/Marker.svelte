@@ -14,6 +14,7 @@
     setContext("marker", () => marker);
 
     const groups = getContext("groups")();
+
     function initPopup(marker) {
         marker.bindPopup(
             L.popup({
@@ -25,7 +26,7 @@
 
     const lsTemplate = (type) => {
         if (type === "respawning") {
-            return { lastCollected: [null], lastChecked: [null] };
+            return {lastCollected: [null], lastChecked: [null]};
         } else if (type === "one-time") {
             return {};
         }
@@ -39,6 +40,10 @@
                     .find((obj) => obj.name === location.name)
             );
             const L = await import("leaflet");
+            
+            if ($allMarkers.flatMap(m => m.options?.id).includes(location.id)) {
+                return;
+            }
             marker = L.marker([location.lat, location.lng], {
                 id: location.id,
                 description: location.description,
@@ -47,14 +52,15 @@
                     location.id,
                     lsTemplate(props.markerType)
                 ),
+                bronco: isBronco,
                 ...props,
             });
             initPopup(marker);
             const name = slugifyName(marker.options.name);
 
-            groups[name] && groups[name].addLayer(marker);
-            marker.options.group = groups[name];
-            isBronco && groups.bronco.addLayer(marker);
+            const group = groups[name];
+            marker.options.group = group;
+            group.hasLayer(marker) || group.addLayer(marker);
             $allMarkers = [...$allMarkers, marker];
 
             marker.on("click", () => {
@@ -79,7 +85,8 @@
                 $collectibleStores = [...$collectibleStores, {
                     name: marker.options.name,
                     id: marker.options.id,
-                    store: marker.options.store
+                    store: marker.options.store,
+                    bronco: isBronco,
                 }]
             }
         });
@@ -87,5 +94,5 @@
 </script>
 
 {#if marker}
-    <slot />
+    <slot/>
 {/if}

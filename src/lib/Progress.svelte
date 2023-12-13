@@ -4,6 +4,7 @@
     import {get} from "svelte/store";
     import {slugifyName} from "$lib/utils.js";
     import {onDestroy, onMount} from "svelte";
+    import {countsWithBronco} from "$lib/db.js";
 
     let items = [];
     let arr = [];
@@ -19,11 +20,10 @@
     }), {});
     let grouped = groupBy("name", items);
 
-    Object.keys(grouped).forEach(key => arr.push({[key]: [...grouped[key]]}));
-
     function getCollected() {
         Object.keys(grouped).forEach(key => {
-            collected[key] = [...grouped[key].filter(item => get(item.store)?.collected)].length ?? 0
+            const items = grouped[key].filter(item => get(item.store)?.collected);
+            collected[key] = items.length ?? 0;
         });
     }
 
@@ -33,9 +33,11 @@
     });
 
     // Call the unsubscribe methods when component is unmounted
-    onDestroy(() => unsubscribers.forEach(s => s()))
+    onDestroy(() => {
+        unsubscribers.forEach(s => s());
+    });
 
-    $:  percentCollected = (item) => collected[item] ? collected[item] / grouped[item].length : 0;
+    $:  percentCollected = (item) => collected[item] ? collected[item] / countsWithBronco.find(c => c.name === item)?.count : 0;
 </script>
 
 <section class="text-base align-baseline px-2.5">
@@ -49,15 +51,13 @@
                              alt={item} title={item}/>
                         <p id={slugifyName(item)} class="text-lg">{item}s</p>
                     </div>
-                    <p class="text-lg">{collected[item]} / {grouped[item].length}</p>
+                    <p class="text-lg">{collected[item]}
+                        / {countsWithBronco.find(c => c.name === item).count}</p>
                 </div>
                 <ProgressBar meter="bg-primary-500" track="dark:bg-surface-400 bg-surface-200"
                              value={percentCollected(item) * 100} height="h-3"
                              labelledby={slugifyName(item)}/>
             </div>
         {/each}
-    </div>
-    <div>
-        <p>Note: Progress bars don't reflect the Bronco items toggle properly at the moment.</p>
     </div>
 </section>

@@ -2,7 +2,6 @@
     import {setContext} from "svelte";
     import {browser} from "$app/environment";
     import {flatItems} from "$lib/utils.js";
-    import {settings} from "$lib/stores.js";
     import {allMarkers, selectedMarker} from "./stores.js";
     import Popup from "$lib/Popup.svelte";
 
@@ -89,12 +88,8 @@
 
             // Create feature groups for each item to easily hide and show them later
             for (const item of flatItems) {
-                featureGroups[item] = L.featureGroup().addTo(map);
+                featureGroups[item] = L.featureGroup();
             }
-
-            // Create a feature group for Bronco
-            featureGroups.bronco = L.featureGroup();
-            $settings.broncoEnabled && featureGroups.bronco.addTo(map);
         }
 
         return {
