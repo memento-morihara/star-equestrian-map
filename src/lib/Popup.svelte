@@ -15,12 +15,28 @@
     };
 
     export let marker = $selectedMarker;
+    let statIcon;
     const url = new URL($page.url);
     const search = url.searchParams;
     marker && search.set("id", marker.options.id);
 
     $: isCopied = false;
-    // $selectedMarker.on("popupclose", () => setTimeout(() => isCopied = false, 300));
+
+
+    // Get the stat icon as a string to inline so the fill can be changed
+    if (marker.options.category !== "food") {
+        statIcon = "";
+    } else {
+        statIcon = fetch(`/icons/${marker.options.stat}.svg`)
+            .then(res => res.blob())
+            .then(res => res.arrayBuffer())
+            .then(bytes => {
+                let decoder = new TextDecoder('utf-8');
+                return decoder.decode(bytes);
+            });
+    }
+
+
 </script>
 
 {#if marker}
@@ -37,17 +53,14 @@
             <span
                     class="title"
             >
-                <strong class="h4">{marker?.options.name}</strong>
+                <strong class="h4">{marker.options.name}</strong>
                 {#if isCopied}&checkmark;{/if}
             </span>
             </button>
-            {#if marker?.options.category === "food"}
-                <img class="mr-5"
-                     src={`icons/${marker?.options.stat}.svg`}
-                     alt={marker?.options.stat}
-                     title={marker?.options.stat}
-                     width="22"
-                     height="22"/>
+            {#if marker.options.category === "food"}
+                {#await statIcon then icon}
+                    {@html `<div class="w-[24px] h-[24px] dark:fill-white">${icon}</div>`}
+                {/await}
             {/if}
         </div>
         <div
