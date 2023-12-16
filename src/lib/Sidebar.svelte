@@ -5,7 +5,6 @@
     import Settings from "$lib/Settings.svelte";
     import Progress from "$lib/Progress.svelte";
 
-
     const map = getContext("map")();
 
     const tabs = ["filters", "progress", "settings"];
@@ -23,24 +22,24 @@
 
 <aside
         bind:this={sidebar}
-        class="sidebar bg-white dark:bg-surface-800 h-full shadow-md min-w-[290px] select-none"
+        class="sidebar bg-white dark:bg-surface-700 h-full shadow-md min-w-[290px] max-w-[450px] select-none"
+        class:open={open}
         class:closed={!open}
-        class:open
 >
     <div class="sidebar-inner h-full w-full">
         <TabGroup class="h-full" justify="justify-center"
-                  padding="sm:px-9 px-6 py-3"
-                  regionList="sticky top-0 right-1 bg-white dark:bg-surface-800"
-                  regionPanel="bg-white dark:bg-surface-800 h-[93%] overflow-y-auto" rounded="0">
+                  padding="py-3"
+                  regionList="sticky top-0 right-1 bg-white dark:bg-surface-700"
+                  regionPanel="bg-white dark:bg-surface-700 h-[93%] overflow-y-auto" rounded="0">
             {#each tabs as tab, i}
-                <Tab bind:group={activeTabIndex} name={tab} value={i}
+                <Tab class="w-1/3" bind:group={activeTabIndex} name={tab} value={i}
                 ><span>{tab.toUpperCase()}</span></Tab
                 >
             {/each}
             <svelte:fragment slot="panel">
-                <section class="text-base max-w-[390px] h-full align-baseline">
+                <section class="text-base dark:bg-700 max-w-[390px] h-full align-baseline">
                     {#if activeTabIndex === 0}
-                        <FilterTree {map} />
+                        <FilterTree {map}/>
                     {:else if activeTabIndex === 1}
                         <Progress/>
                     {:else if activeTabIndex === 2}
@@ -50,9 +49,9 @@
             </svelte:fragment>
         </TabGroup>
     </div>
-    <div class="toggle-container bg-white dark:bg-surface-800 shadow-md">
+    <div class="toggle-container bg-white dark:bg-surface-700">
         <button
-                class="toggle-btn leaflet-control"
+                class="toggle-btn leaflet-control ring-surface-50"
                 on:click={() => (open = !open)}
         />
     </div>
@@ -64,15 +63,14 @@
         max-width: 85%;
         position: absolute;
         z-index: 5000;
-        height: 100%;
     }
 
     .open {
-        left: 0;
+        animation: right 0.5s ease 0s 1 both;
     }
 
     .closed {
-        right: 100%;
+        animation: left 0.5s ease 0s 1 both;
     }
 
     .toggle-container {
@@ -80,23 +78,18 @@
         width: 24px;
         position: absolute;
         top: calc(50% - 24px);
-        left: 100%;
         border-radius: 0 8px 8px 0;
-        overflow-x: hidden;
-        border-left: 1px solid #d4d4d4;
-        clip-path: inset(-10px -10px -10px 0);
-        margin: 0 0 0 -1px;
-    }
-
-    :global(.dark .toggle-container) {
-        border-left: 1px solid #3e3e3e !important;
+        overflow-x: clip;
+        clip-path: inset(-10px -10px -10px -1px);
+        left: 100%;
+        border-left: 1px solid rgba(79, 79, 79, 0.2);
     }
 
     .toggle-btn {
         cursor: pointer;
         z-index: inherit;
-        box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3),
-        0 2px 6px 2px rgba(60, 64, 67, 0.15);
+        height: 100%;
+        width: 100%;
     }
 
     .toggle-btn::before {
@@ -105,16 +98,35 @@
         width: 24px;
         height: 48px;
         top: 0;
-        left: 0;
+        left: -1px;
         background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%234B5057%22%20class%3D%22bi%20bi-caret-right-fill%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22m12.14%208.753-5.482%204.796c-.646.566-1.658.106-1.658-.753V3.204a1%201%200%200%201%201.659-.753l5.48%204.796a1%201%200%200%201%200%201.506z%22%2F%3E%3C%2Fsvg%3E") no-repeat 50% 50%;
         opacity: 1;
     }
 
-    .sidebar.open .toggle-btn::before {
+    .open .toggle-btn::before {
         transform: rotate(180deg);
     }
 
-    .sidebar.closed .toggle-btn::before {
+    .closed .toggle-btn::before {
         transform: rotate(0deg);
     }
+
+    @keyframes left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    @keyframes right {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
 </style>

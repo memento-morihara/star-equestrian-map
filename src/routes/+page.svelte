@@ -22,13 +22,10 @@
         appWindow = tauriWindow.appWindow;
 
         if (data.searchId) {
-
             $selectedMarker = $allMarkers.find(marker => marker.options.id === data.searchId);
             $selectedMarker && map.setView([$selectedMarker.lat, $selectedMarker.lng], 4);
-
         }
     });
-
     $: appWindow && appWindow?.setAlwaysOnTop($settings.keepOnTop);
 
 </script>
@@ -38,7 +35,8 @@
 </svelte:head>
 
 <LightSwitch
-        class="absolute right-3 top-3 lightswitch dark:bg-gray-950 z-[500]"
+        class="absolute right-3 top-3 lightswitch dark:bg-surface-800 z-[500]"
+        ring="ring-1 ring-surface-400"
 />
 <Map {data}>
     <Sidebar/>
@@ -56,23 +54,3 @@
     </Spiderfier>
     <CondensedAttribution/>
 </Map>
-
-<style>
-    @import "leaflet-draw/dist/leaflet.draw.css";
-
-    /* TODO: find a better way of doing a dark mode on the toolbars besides inverting the colors */
-
-    :global(.leaflet-container) {
-        background-color: var(--bg-surface-300);
-    }
-
-    :global(.dark .leaflet-control) {
-        filter: invert();
-        -webkit-filter: invert();
-    }
-
-    :global(.dark .leaflet-draw-actions a) {
-        filter: invert();
-        -webkit-filter: invert();
-    }
-</style>

@@ -21,6 +21,19 @@ body {
     background-color: rgba(var(--bg-surface-200) / 1) !important;
 }
 
+.dark .leaflet-container {
+    background-color: rgba(var(--bg-surface-800) / 1) !important;
+}
+
+.dark .leaflet-control {
+    filter: invert() contrast(63%);
+    -webkit-filter: invert() contrast(63%);
+}
+
+.dark .toggle-container {
+    box-shadow: rgba(256, 256, 256, 0.7) 0 0 2px, rgba(0, 0, 0, 0.6) -1px 0 2px;
+}
+
 .dark .leaflet-popup-content-wrapper, .dark .leaflet-popup-tip {
     background: rgba(var(--color-surface-700) / 1) !important;
     color: rgba(var(--color-on-surface-700) /1) !important;
