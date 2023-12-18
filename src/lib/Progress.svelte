@@ -40,18 +40,18 @@
     $:  percentCollected = (item) => collected[item] ? collected[item] / countsWithBronco.find(c => c.name === item)?.count : 0;
 </script>
 
-<section class="text-base align-baseline px-2.5">
+<section class="text-[1rem] align-baseline px-2.5">
     <h2 class="h3">Progress</h2>
     <div class="mx-2">
         {#each Object.keys(grouped) as item}
             <div class="my-8 flex flex-col">
                 <div class="flex justify-between">
-                    <div class="flex gap-2">
+                    <div class="flex gap-2 text-base">
                         <img class="-mt-0.5 mb-1" src="icons/collect/{slugifyName(item)}.webp" width="32" height="32"
                              alt={item} title={item}/>
-                        <p id={slugifyName(item)} class="text-lg">{item}s</p>
+                        <p id={slugifyName(item)}>{item}s</p>
                     </div>
-                    <p class="text-lg">{collected[item]}
+                    <p>{collected[item]}
                         / {countsWithBronco.find(c => c.name === item).count}</p>
                 </div>
                 <ProgressBar meter="bg-primary-500" track="dark:bg-surface-400 bg-surface-200"

@@ -68,7 +68,7 @@
 </script>
 
 <div class="text-base align-baseline px-2.5 h-full flex flex-col justify-between">
-    <div class="flex flex-col md:gap-12">
+    <div class="flex flex-col md:gap-12 gap-7">
         <div class="flex flex-col gap-1">
             <h2 class="h3 mb-3">Settings</h2>
             <div class="space-y-3 mx-2">
@@ -155,7 +155,7 @@
         </div>
     </div>
 
-    <footer class="w-full relative justify-items-center lg:py-7 bottom-0">
+    <footer class="w-full relative justify-items-center pt-7 pb-[80px] bottom-0">
         <a class="hover:underline"
            href="https://github.com/memento-morihara/star-equestrian-map">
             <div class="flex items-center gap-2 mx-auto w-1/3">

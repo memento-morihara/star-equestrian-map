@@ -81,7 +81,7 @@
     $: areAllNodesChecked = nodes && ($filterStore.length === nodes.flatMap(c => [...c.children, c]).length);
 </script>
 
-<div class="chip-container flex flex-row-reverse dark:bg-surface-800 mb-0 w-full">
+<div class="chip-container flex flex-row-reverse dark:bg-surface-800 mb-3 w-full">
     <button class="chip -mt-3.5 absolute right-2.5 variant-primary"
             on:click={changeAllFilters}>
         {#if areAllNodesChecked}
@@ -93,20 +93,20 @@
     </button>
 </div>
 
-<div class="h-full w-full">
-    <label class="sm:text-lg text-base ml-11 mb-4">
+<div class="h-full w-full md:text-lg text-base ">
+    <label class="ml-11 mb-4">
         <input bind:checked={$settings.broncoEnabled}
                class="checkbox mr-3.5"
                on:change={toggleBronco}
                type="checkbox"
         />
-        Show Bronco items
+        <span class="text-base align-middle">Show Bronco items</span>
     </label>
     <RecursiveTreeView
             bind:checkedNodes={$filterStore}
             multiple
             {nodes}
-            regionSummary="sm:text-lg hover:bg-transparent text-base max-w-[90%]"
+            regionSummary="hover:bg-transparent text-base max-w-[90%]"
             relational
             selection
     />
