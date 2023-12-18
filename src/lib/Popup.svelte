@@ -4,6 +4,7 @@
     import RespawningContent from "./RespawningContent.svelte";
     import {page} from "$app/stores";
     import {clipboard} from "@skeletonlabs/skeleton";
+    import {inlineSvg} from "$lib/utils.js";
 
     const popupContent = () => {
         switch ($selectedMarker.options.markerType) {
@@ -27,13 +28,7 @@
     if (marker.options.category !== "food") {
         statIcon = "";
     } else {
-        statIcon = fetch(`/icons/${marker.options.stat}.svg`)
-            .then(res => res.blob())
-            .then(res => res.arrayBuffer())
-            .then(bytes => {
-                let decoder = new TextDecoder('utf-8');
-                return decoder.decode(bytes);
-            });
+        statIcon = inlineSvg(`/icons/${marker.options.stat}.svg`);
     }
 
 
@@ -59,7 +54,7 @@
             </button>
             {#if marker.options.category === "food"}
                 {#await statIcon then icon}
-                    {@html `<div class="w-[24px] h-[24px] dark:fill-white">${icon}</div>`}
+                    {@html `<div class="w-[24px] h-[24px] object-contain my-auto align-middle dark:fill-white">${icon}</div>`}
                 {/await}
             {/if}
         </div>

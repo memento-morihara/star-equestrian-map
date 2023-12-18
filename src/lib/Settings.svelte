@@ -2,8 +2,8 @@
     import {allMarkers, initSettings, settings} from "$lib/stores.js";
     import {getContext, onMount} from "svelte";
     import {get} from "svelte/store";
-    import {modeCurrent, RangeSlider} from "@skeletonlabs/skeleton";
-    import {isChecked, isCollected} from "$lib/utils.js";
+    import {RangeSlider} from "@skeletonlabs/skeleton";
+    import {inlineSvg, isChecked, isCollected} from "$lib/utils.js";
     import DataFileHandler from "$lib/DataFileHandler.svelte";
 
     const map = getContext("map")();
@@ -67,7 +67,7 @@
     $: $settings.markerOpacity && changeOpacity()
 </script>
 
-<div class="text-base align-baseline pl-2.5 h-full flex flex-col justify-between">
+<div class="text-base align-baseline px-2.5 h-full flex flex-col justify-between">
     <div class="flex flex-col md:gap-12">
         <div class="flex flex-col gap-1">
             <h2 class="h3 mb-3">Settings</h2>
@@ -155,15 +155,13 @@
         </div>
     </div>
 
-    <footer class="w-1/3 self-center relative py-5 md:py-10 bottom-0">
-        <a class="text-on-surface-token hover:underline"
+    <footer class="w-full relative justify-items-center lg:py-7 bottom-0">
+        <a class="hover:underline"
            href="https://github.com/memento-morihara/star-equestrian-map">
-            <div class="flex items-center gap-2">
-                {#if $modeCurrent}
-                    <img class="align-bottom" src="github-mark.svg" alt="GitHub logo" width="32" height="32"/>
-                {:else}
-                    <img class="align-bottom" src="github-mark-white.svg" alt="GitHub logo" width="32" height="32"/>
-                {/if}
+            <div class="flex items-center gap-2 mx-auto w-1/3">
+                {#await inlineSvg("github-mark.svg") then icon}
+                    {@html `<div class="w-[32px] h-[32px] p-0 object-contain dark:fill-white">${icon}</div>`}
+                {/await}
                 <span class="dark:text-blue-400">GitHub</span>
             </div>
         </a>

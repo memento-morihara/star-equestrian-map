@@ -114,3 +114,13 @@ export function getData() {
 
     return arr;
 }
+
+export async function inlineSvg(path) {
+    return await fetch(path)
+        .then(res => res.blob())
+        .then(res => res.arrayBuffer())
+        .then(bytes => {
+            let decoder = new TextDecoder('utf-8');
+            return decoder.decode(bytes);
+        });
+}
