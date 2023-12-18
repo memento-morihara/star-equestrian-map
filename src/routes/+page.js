@@ -1,4 +1,3 @@
-import {categories} from "$lib/utils";
 import {browser} from "$app/environment";
 import {broncoLocations, counts, countsWithBronco, locations} from "$lib/db.js";
 
@@ -7,10 +6,6 @@ let url, id, initial;
 let items;
 
 export async function load({fetch}) {
-    for (const category of categories) {
-        data[category.name] = await fetch(`data-${category.name}.json`).then(res => res.json());
-    }
-
     items = [...locations, ...broncoLocations];
     if (browser) {
         url = new URL(window.location.href);
