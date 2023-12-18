@@ -1,6 +1,8 @@
 <script>
     import "../app.postcss";
-    import {autoModeWatcher} from "@skeletonlabs/skeleton";
+    import {autoModeWatcher, initializeStores, Modal} from "@skeletonlabs/skeleton";
+
+    initializeStores();
 </script>
 
 <svelte:head
@@ -8,4 +10,5 @@
     <link href="/manifest.json" rel="manifest"/>
 </svelte:head
 >
+<Modal class="z-[50000]"/>
 <slot/>

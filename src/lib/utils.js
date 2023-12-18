@@ -1,4 +1,5 @@
 import {get} from "svelte/store";
+import {allMarkers} from "$lib/stores.js";
 
 export const categories = [{
     name: "chest",
@@ -87,4 +88,29 @@ export const isCollected = (marker) => {
                 return -1;
             }
     }
+}
+
+export function getData() {
+    let arr = [];
+
+    get(allMarkers).flatMap(marker => {
+        const store = get(marker.options.store);
+        if (marker.options.markerType === 'respawning') {
+            if (store?.lastCollected[0] || store?.lastCollected[1] || store?.lastChecked[0] || store?.lastChecked[1]) {
+                arr.push({
+                    id: marker.options.id,
+                    ...store,
+                });
+            }
+        } else if (marker.options.markerType === 'one-time') {
+            if (store?.collected) {
+                arr.push({
+                    id: marker.options.id,
+                    ...store,
+                });
+            }
+        }
+    });
+
+    return arr;
 }

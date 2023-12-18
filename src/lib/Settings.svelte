@@ -4,6 +4,7 @@
     import {get} from "svelte/store";
     import {modeCurrent, RangeSlider} from "@skeletonlabs/skeleton";
     import {isChecked, isCollected} from "$lib/utils.js";
+    import DataFileHandler from "$lib/DataFileHandler.svelte";
 
     const map = getContext("map")();
 
@@ -67,7 +68,7 @@
 </script>
 
 <div class="text-base align-baseline pl-2.5 h-full flex flex-col justify-between">
-    <div class="flex flex-col gap-5 md:gap-12">
+    <div class="flex flex-col md:gap-12">
         <div class="flex flex-col gap-1">
             <h2 class="h3 mb-3">Settings</h2>
             <div class="space-y-3 mx-2">
@@ -128,6 +129,11 @@
 
             </div>
             <button class="btn variant-ringed mt-5 self-start" on:click={revertSettings}>Reset to default</button>
+        </div>
+
+        <div>
+            <h3 class="h4 mb-4">Import/Export Data</h3>
+            <DataFileHandler/>
         </div>
 
         <hr/>
