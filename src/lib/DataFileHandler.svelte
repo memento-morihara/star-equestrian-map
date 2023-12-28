@@ -69,4 +69,6 @@
 <FileDropzone bind:files
               class="bg-primary-100"
               name="import"
-              on:change={() => modalStore.trigger(confirmModal)}/>
+              accept="application/json"
+              on:change={() => modalStore.trigger(confirmModal)}
+/>
