@@ -6,8 +6,9 @@
     import {markerData} from "$lib/markerData.js";
     import CheckIcon from 'virtual:icons/bi/check-square';
     import SquareIcon from 'virtual:icons/bi/square';
-    import {counts, countsWithBronco} from "$lib/db.js";
+    // import {counts, countsWithBronco} from "$lib/db.js";
     import L from "leaflet";
+    import {page} from "$app/stores";
 
     export let map;
     let nodes;
@@ -15,6 +16,8 @@
     const groups = getContext("groups")();
 
     const displayedGroups = L.layerGroup([...Object.values(groups)]).addTo(map);
+
+    const {counts, countsWithBronco} = $page.data;
 
     const count = (item) => ($settings.broncoEnabled ? countsWithBronco : counts).find(c => c.name === item).count;
     const getNodes = async () => await markerData().then(data => data.map(item => {
@@ -58,7 +61,7 @@
             }
 
             if ($settings.broncoEnabled) {
-                map.hasLayer(marker) ? marker.remove() : displayedGroups.hasLayer(marker.options.group) && marker.addTo(displayedGroups);
+                map.hasLayer(marker) || (displayedGroups.hasLayer(marker.options.group) && marker.addTo(displayedGroups));
             } else {
                 marker.remove();
             }
@@ -93,14 +96,14 @@
     </button>
 </div>
 
-<div class="h-full w-full md:text-lg text-base ">
+<div class="h-full w-full text-lg">
     <label class="ml-11 mb-4">
         <input bind:checked={$settings.broncoEnabled}
-               class="checkbox mr-3.5"
+               class="checkbox mr-2.5"
                on:change={toggleBronco}
                type="checkbox"
         />
-        <span class="text-base align-middle">Show Bronco items</span>
+        <span class="text-base align-middle">Bronco items</span>
     </label>
     <RecursiveTreeView
             bind:checkedNodes={$filterStore}

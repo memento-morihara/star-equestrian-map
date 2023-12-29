@@ -4,13 +4,17 @@
     import {get} from "svelte/store";
     import {slugifyName} from "$lib/utils.js";
     import {onDestroy, onMount} from "svelte";
-    import {countsWithBronco} from "$lib/db.js";
+    import {page} from "$app/stores";
+    // import {countsWithBronco} from "$lib/db.js";
+
 
     let items = [];
     let arr = [];
     let collected = {};
 
     let unsubscribers = [];
+
+    const {countsWithBronco} = $page.data;
 
     $collectibleStores.forEach(item => items.push(item))
 
@@ -28,6 +32,7 @@
     }
 
     onMount(() => {
+
         // Put the unsubscribe method returned from subscribe into an array
         $collectibleStores.forEach(item => unsubscribers.push(item.store.subscribe(() => getCollected())))
     });

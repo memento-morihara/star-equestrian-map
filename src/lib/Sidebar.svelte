@@ -22,7 +22,7 @@
 
 <aside
         bind:this={sidebar}
-        class="sidebar bg-white dark:bg-surface-700 h-[100vh] shadow-md min-w-[290px] max-w-[450px] select-none"
+        class="sidebar bg-white dark:bg-surface-700 h-full shadow-md min-w-[290px] max-w-[450px] cursor-default select-none"
         class:open={open}
         class:closed={!open}
 >
@@ -30,14 +30,14 @@
         <TabGroup class="h-full" justify="justify-center"
                   padding="py-3"
                   regionList="sticky top-0 right-1 bg-white dark:bg-surface-700"
-                  regionPanel="bg-white dark:bg-surface-700 h-full overflow-y-auto" rounded="0">
+                  regionPanel="bg-white h-full dark:bg-surface-700 overflow-y-auto" rounded="0">
             {#each tabs as tab, i}
                 <Tab class="w-1/3" bind:group={activeTabIndex} name={tab} value={i}
                 ><span>{tab.toUpperCase()}</span></Tab
                 >
             {/each}
             <svelte:fragment slot="panel">
-                <section class="md:text-base text-sm dark:bg-700 max-w-[390px] h-full align-baseline">
+                <section class="md:text-base text-sm dark:bg-700 max-w-[390px] align-baseline">
                     {#if activeTabIndex === 0}
                         <FilterTree {map}/>
                     {:else if activeTabIndex === 1}
@@ -64,6 +64,12 @@
         min-width: 340px;
         position: absolute;
         z-index: 5000;
+    }
+
+    section {
+        scrollbar-gutter: stable;
+        scrollbar-track-color: transparent;
+        overflow-y: auto;
     }
 
     .open {

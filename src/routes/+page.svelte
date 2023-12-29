@@ -7,24 +7,26 @@
     import Sidebar from "$lib/Sidebar.svelte";
     import {allMarkers, selectedMarker, settings} from "$lib/stores.js";
     import {onMount} from "svelte";
-    import {broncoLocations, locations} from "$lib/db.js";
 
     let appWindow;
-    export let data;
 
+    export let data = {};
+    const {locations, broncoLocations} = data;
 
-    // Check if it is running as a desktop app
+    let id;
+
     onMount(async () => {
+        if (id) {
+            $selectedMarker = $allMarkers.find(marker => marker.options.id === id);
+            $selectedMarker && map.setView([$selectedMarker.lat, $selectedMarker.lng], 4);
+        }
+
+        // Check if it is running as a desktop app
         if (!window.__TAURI__) {
             return;
         }
         let tauriWindow = await import("@tauri-apps/api/window");
         appWindow = tauriWindow.appWindow;
-
-        if (data.searchId) {
-            $selectedMarker = $allMarkers.find(marker => marker.options.id === data.searchId);
-            $selectedMarker && map.setView([$selectedMarker.lat, $selectedMarker.lng], 4);
-        }
     });
     $: appWindow && appWindow?.setAlwaysOnTop($settings.keepOnTop);
 

@@ -19,6 +19,7 @@
         if (browser) {
             url = new URL(window.location.href);
             id = url.searchParams.get("id");
+            const initial = id ? [...data.locations, ...data.broncoLocations].find(location => location.id === id) : null;
 
             const L = await import("leaflet");
             await import("leaflet-draw");
@@ -48,14 +49,13 @@
                 attributionControl: false,
             }).fitBounds(bounds);
 
-
-            if (data.initial !== null) {
+            if (initial !== null) {
                 // If there is an ID in the search parameters
 
-                map.setView([data.initial.lat, data.initial.lng], 4);
+                map.setView([initial.lat, initial.lng], 4);
 
                 function setPopupContent() {
-                    $selectedMarker = $allMarkers.find(marker => marker.options.id === data.initial.id);
+                    $selectedMarker = $allMarkers.find(marker => marker.options.id === initial.id);
                     if ($selectedMarker) {
                         $selectedMarker.bindPopup(`<div id="${$selectedMarker.options.id}"></div>`);
                         $selectedMarker.openPopup();
@@ -76,7 +76,6 @@
                 map.fitBounds(bounds);
             }
 
-
             L.tileLayer("tiles/{z}/{x}/{y}.webp", {
                 maxZoom: mapMaxZoom,
                 minZoom: mapMinZoom,
@@ -84,7 +83,6 @@
                 noWrap: true,
                 tms: false,
             }).addTo(map);
-
 
             // Create feature groups for each item to easily hide and show them later
             for (const item of flatItems) {
