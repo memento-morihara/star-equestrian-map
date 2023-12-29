@@ -7,15 +7,14 @@
     import CheckIcon from 'virtual:icons/bi/check-square';
     import SquareIcon from 'virtual:icons/bi/square';
     // import {counts, countsWithBronco} from "$lib/db.js";
-    import L from "leaflet";
     import {page} from "$app/stores";
 
     export let map;
     let nodes;
+    let L;
+    let displayedGroups;
 
     const groups = getContext("groups")();
-
-    const displayedGroups = L.layerGroup([...Object.values(groups)]).addTo(map);
 
     const {counts, countsWithBronco} = $page.data;
 
@@ -42,6 +41,10 @@
     $: itemNodes && toggleFeatureGroup();
 
     function toggleFeatureGroup() {
+        if (!displayedGroups) {
+            return;
+        }
+
         // Find the items that are checked but aren't on the map and add them, and vice versa
         const diff = items.filter(item => itemNodes.includes(item) !== map.hasLayer(groups[item]));
 
@@ -70,7 +73,11 @@
     }
 
     onMount(async () => {
-        nodes = await getNodes();
+        if (window) {
+            L = await import("leaflet");
+            displayedGroups = L.layerGroup([...Object.values(groups)]).addTo(map);
+            nodes = await getNodes();
+        }
     });
 
     function changeAllFilters() {
