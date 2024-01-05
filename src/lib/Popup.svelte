@@ -30,8 +30,6 @@
     } else {
         statIcon = inlineSvg(`/icons/${marker.options.stat}.svg`);
     }
-
-
 </script>
 
 {#if marker}
@@ -48,7 +46,7 @@
             <span
                     class="title"
             >
-                <strong class="h4">{marker.options.name}</strong>
+                <strong class="md:h4 h6">{marker.options.name}</strong>
                 {#if isCopied}&checkmark;{/if}
             </span>
             </button>

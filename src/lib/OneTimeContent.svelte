@@ -39,7 +39,8 @@
     {#if isCollected}
         <button in:fade class="btn variant-ghost-primary" on:click={(e) => undoUpdateStore(e)}>Remove</button>
     {:else}
-        <button in:fade class="btn variant-filled-primary" on:click={(e) => updateStore(e)}>Collect</button>
+        <button in:fade class="btn variant-filled-primary sm:btn-md btn-sm" on:click={(e) => updateStore(e)}>Collect
+        </button>
     {/if}
 </div>
 

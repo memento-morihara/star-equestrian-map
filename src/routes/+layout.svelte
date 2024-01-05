@@ -1,29 +1,31 @@
 <script>
     import "../app.postcss";
-    import {autoModeWatcher, initializeStores, LightSwitch, Modal} from "@skeletonlabs/skeleton";
-    import {page} from "$app/stores";
+    import {autoModeWatcher, initializeStores, LightSwitch, Modal,} from "@skeletonlabs/skeleton";
     import {onMount, setContext} from "svelte";
-    import {mapStore, settings} from "$lib/stores.js";
+    import {mapStore, settings, windowParams} from "$lib/stores.js";
 
     let appWindow;
 
 
     let id;
-    let screenWidth;
-    let screenHeight;
+    let screenWidth = windowParams.width;
+    let screenHeight = windowParams.height;
 
-    setContext("windowSize", {screenHeight, screenWidth});
+    setContext("windowSize", {screenHeight, screenWidth, onResize});
 
     function onResize() {
-        if (screenWidth < 450) {
-            $mapStore && $mapStore.zoomControl.remove();
-        } else {
-            $mapStore.zoomControl.addTo($mapStore);
+        try {
+            if (screenWidth < 300 || screenHeight < 300) {
+                $mapStore && $mapStore.zoomControl.remove();
+            } else {
+                $mapStore.zoomControl.addTo($mapStore);
+            }
+        } catch (_) {
         }
     }
 
     onMount(async () => {
-
+        $mapStore && onResize();
         // Check if it is running as a desktop app
         if (!window.__TAURI__) {
             return;
@@ -34,23 +36,29 @@
 
     $: appWindow && appWindow?.setAlwaysOnTop($settings.keepOnTop);
     initializeStores();
-
-
 </script>
-<svelte:window bind:innerHeight={screenHeight} bind:innerWidth={screenWidth} on:resize={onResize}></svelte:window>
+
+<svelte:window
+        bind:innerHeight={screenHeight}
+        bind:innerWidth={screenWidth}
+        on:resize={onResize}
+/>
 <svelte:head
 >{@html `<script>${autoModeWatcher.toString()} autoModeWatcher();</script>`}
     <link href="/manifest.json" rel="manifest"/>
-    <meta content="#272727" media="(prefers-color-scheme:dark)" name="theme-color"/>
-    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+    <meta
+            content="#272727"
+            media="(prefers-color-scheme:dark)"
+            name="theme-color"
+    />
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon"/>
     <link href="/favicon.png" rel="icon"/>
-</svelte:head
->
-{#if screenWidth > 450}
+</svelte:head>
+{#if screenWidth > 300}
     <LightSwitch
             class="absolute right-3 top-3 lightswitch dark:bg-surface-800 z-[500]"
             ring="ring-1 ring-surface-400"
     />
 {/if}
-<Modal class="z-[10000]"/>
+<Modal class="z-[50000]"/>
 <slot/>

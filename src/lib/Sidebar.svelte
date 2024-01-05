@@ -22,13 +22,13 @@
 
 <aside
         bind:this={sidebar}
-        class="sidebar bg-white dark:bg-surface-700 h-full shadow-md min-w-[290px] max-w-[450px] cursor-default select-none"
+        class="sidebar bg-white dark:bg-surface-700 h-full shadow-md cursor-default select-none"
         class:open={open}
         class:closed={!open}
 >
     <div class="sidebar-inner h-full w-full">
         <TabGroup class="h-full" justify="justify-center"
-                  padding="py-3"
+                  padding="md:py-3 py-2.5"
                   regionList="sticky top-0 right-1 bg-white dark:bg-surface-700"
                   regionPanel="bg-white h-full dark:bg-surface-700 overflow-y-auto" rounded="0">
             {#each tabs as tab, i}
@@ -59,11 +59,17 @@
 
 <style>
     .sidebar {
-        width: 400px;
-        max-width: 85%;
-        min-width: 340px;
+        width: 87%;
+        max-width: 340px;
         position: absolute;
         z-index: 5000;
+    }
+
+    @media (min-width: 600px) {
+        .sidebar {
+            width: 400px;
+            min-width: 340px;
+        }
     }
 
     section {

@@ -1,12 +1,21 @@
 <script>
+    import {windowParams} from "$lib/stores.js";
     // Adapted from https://github.com/route360/Leaflet.CondensedAttribution
     export let emblem = "?";
+
+    // Track width to keep
+    let {width} = $windowParams;
+
+    $: width = width;
 </script>
 
 <div class="leaflet-condensed-attribution text-black">
     <div class="attributes-body">
-        Images &copy; <a href="https://foxieventures.com">Foxie Ventures</a> |
-        Rendered with <a href="https://maptiler.com">MapTiler Engine</a>
+        {width >= 300 ? "Images " : ""}&copy;
+        <a href="https://foxieventures.com">Foxie Ventures</a>
+        |
+        {#if width >= 300}Rendered with
+        {/if}<a href="https://maptiler.com">MapTiler Engine</a>
     </div>
     <p class="emblem">{emblem}</p>
 </div>
@@ -59,5 +68,23 @@
 
     .leaflet-condensed-attribution:hover .attributes-body {
         display: inline-block;
+    }
+
+    @media (max-width: 450px) {
+        .leaflet-condensed-attribution {
+            border-radius: 1000px 0 0 50%;
+            bottom: -1.2rem;
+            right: -1rem;
+            border-width: 3px;
+        }
+
+        .emblem {
+            width: 1.7rem;
+            padding-left: 8px;
+        }
+
+        .leaflet-condensed-attribution:hover {
+            border-radius: 24px 0 0 0;
+        }
     }
 </style>

@@ -42,3 +42,15 @@ body {
     background: rgba(var(--color-surface-700) / 1) !important;
     color: rgba(var(--color-on-surface-700) /1) !important;
 }
+
+.tab-panel {
+    margin: 0 !important;
+    scrollbar-track-color: white;
+    --webkit-scrollbar-track-color: white;
+}
+
+@media (max-width: 600px) {
+    .leaflet-control .leaflet-top.leaflet-left {
+        display: none !important;
+    }
+}

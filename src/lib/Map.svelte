@@ -2,7 +2,7 @@
     import {setContext} from "svelte";
     import {browser} from "$app/environment";
     import {flatItems} from "$lib/utils.js";
-    import {allMarkers, selectedMarker} from "./stores.js";
+    import {allMarkers, mapStore, selectedMarker} from "./stores.js";
     import Popup from "$lib/Popup.svelte";
 
     let map;
@@ -47,8 +47,9 @@
                 maxZoom: mapMaxZoom,
                 crs: crs,
                 attributionControl: false,
+                zoomControl: true,
             }).fitBounds(bounds);
-
+            $mapStore = map;
             if (initial !== null) {
                 // If there is an ID in the search parameters
 
