@@ -1,18 +1,23 @@
 <script>
     import {markerData} from "$lib/markerData.js";
     import {onMount} from "svelte";
-    import {PUBLIC_DB_URL} from "$env/static/public";
 
-    export let marker = {};
+    export let marker = {options: {}};
 
     let value;
     let description;
     let data;
+    let id;
+    let lat;
+    let lng;
 
     onMount(async () => {
         data = await markerData()
         value = marker.options?.category + "," + marker.options?.name;
         description = (marker && marker.options?.description) ?? "";
+        id = marker?.options.id;
+        lat = marker?._latlng.lat;
+        lng = marker?._latlng.lng;
     });
 
     function changeIcon() {
@@ -27,52 +32,54 @@
         changeIcon(item);
         marker.closePopup();
         marker.unbindPopup();
-        saveLocation(item.split(",")[1], location.lat, location.lng, description);
-        console.log("there")
-        // $customMarkers = [...$customMarkers, {item, location, description}]
+        saveLocation(item.split(",")[1], location.lat, location.lng, description, marker.options?.id);
     }
 
-    export async function saveLocation(name, lat, lng, description, id) {
-        const body = `{"name": "${name}", "lat": ${lat}, "lng": ${lng}, "description": "${description}"}`;
 
-        let url = PUBLIC_DB_URL + '/api/collections/locations_new/records';
-        // If there was an ID passed, update the record
-        if (marker.options.id) {
-            id = marker.options.id;
-            url += `/${id}`;
+    async function saveLocation(name, lat, lng, description, id = "") {
+        const body = {name, lat, lng, description};
+
+        if (id) {
+            await db.collection("locations_new").update(id, body);
+        } else {
+            await db.collection("locations_new").create(body);
         }
-
-        let options = {
-            method: marker.options?.id ? 'PATCH' : 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: body
-        };
-
-        await fetch(url, options)
-            .then(res => res.json())
-            .catch(err => console.error('error:' + err));
     }
 </script>
 
-<select class="select dark:text-on-surface-token my-1" bind:value>
-    {#await markerData() then data}
-        {#each data as group}
-            <optgroup label={group.name}>
-                {#each group.items as item}
-                    <option value={`${group.name},${item.name}`}>{item.name}</option>
+<div class="w-full">
+    <div>
+        <input bind:value={id} class="input mb-1.5" id="id" name="id" type="text"/>
+
+        <div class="flex gap-1">
+            <input bind:value={lat} class="input" id="lat" name="lat" type="number"/>
+            <input bind:value={lng} class="input" id="lng" name="lng" type="number"/>
+        </div>
+    </div>
+    <div class="w-full">
+        <select bind:value class="select dark:text-on-surface-token my-1" id="name" name="name">
+            {#await markerData() then data}
+                {#each data as group}
+                    <optgroup label={group.name}>
+                        {#each group.items as item}
+                            <option value={`${group.name},${item.name}`}>{item.name}</option>
+                        {/each}
+                    </optgroup>
                 {/each}
-            </optgroup>
-        {/each}
-    {/await}
-</select>
+            {/await}
+        </select>
 
-<textarea
-        class="textarea dark:text-on-surface-token"
-        bind:value={description}
-/>
+        <textarea
+                bind:value={description}
+                class="textarea dark:text-on-surface-token"
+                id="description"
+                name="description"
+        />
 
-<button
-        class="btn variant-filled-primary"
-        on:click={() => saveMarker(value, marker._latlng, description)}
->{marker.options?.id ? "Update" : "Add Marker"}</button
->
+        <button
+                class="btn variant-filled-primary mt-1 w-3/4 mx-auto"
+                on:click={() => saveMarker(value, marker._latlng, description)}
+        >{marker.options?.id ? "Update" : "Add Marker"}</button
+        >
+    </div>
+</div>

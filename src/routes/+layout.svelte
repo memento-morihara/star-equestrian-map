@@ -7,8 +7,6 @@
 
     let appWindow;
 
-    export let data = {};
-    const {locations, broncoLocations} = JSON.parse($page.data.data);
 
     let id;
     let screenWidth;

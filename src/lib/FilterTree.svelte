@@ -16,7 +16,7 @@
 
     const groups = getContext("groups")();
 
-    const {counts, countsWithBronco} = $page.data;
+    const {counts, countsWithBronco} = JSON.parse($page.data.data);
 
     const count = (item) => ($settings.broncoEnabled ? countsWithBronco : counts).find(c => c.name === item).count;
     const getNodes = async () => await markerData().then(data => data.map(item => {

@@ -4,10 +4,9 @@
     import AddMarker from "./AddMarker.svelte";
     import PocketBase from "pocketbase";
     import {markerData} from "$lib/markerData.js";
-    import {PUBLIC_DB_URL} from "$env/static/public";
+    import {PUBLIC_DB_PASSWORD, PUBLIC_DB_URL, PUBLIC_DB_USER} from "$env/static/public";
 
-    const db = new PocketBase(PUBLIC_DB_URL);
-
+    let L;
     let map;
     let drawnItems;
 
@@ -16,11 +15,19 @@
 
     const data = async () => await markerData();
 
-    async function initMap(node) {
-        if (browser) {
+    const db = new PocketBase(PUBLIC_DB_URL)
 
-            const L = await import("leaflet");
+    async function initMap(node) {
+
+        if (browser) {
+            const locations = await db.collection("locations_new").getFullList();
+            L = await import("leaflet");
             await import("leaflet-draw");
+
+            // This route won't make it into the built app, so just make credentials public
+            // env variables so we don't need admin-specific backend code
+            const auth = db.admins.authWithPassword(PUBLIC_DB_USER, PUBLIC_DB_PASSWORD);
+
             const mapExtent = [0.0, -16384.0, 16384.0, 0.0];
             const mapMinZoom = 0;
             const mapMaxZoom = 4;
@@ -40,6 +47,7 @@
                 crs.unproject(L.point(mapExtent[2], mapExtent[3])),
                 crs.unproject(L.point(mapExtent[0], mapExtent[1])),
             ];
+
             map = new L.Map(node, {
                 minZoom: mapMinZoom,
                 maxZoom: mapMaxZoom,
@@ -75,15 +83,51 @@
             });
 
             map.addControl(drawControl);
+            console.log(L)
+            // new L.Draw({
+            //     position: 'topleft',
+            //     actions: []
+            // }).addTo(map);
 
-            const locations = await db.collection("locations_new").getFullList();
+            // new L.Toolbar2.EditToolbar.Popup({
+            //     position: 'topleft'
+            // }).addTo(map, drawnItems);
+
+            // L?.easyButton({
+            //     states: [{
+            //         stateName: "markers",
+            //         title: "Add/edit markers", icon: '<img src="icons/stamina.svg" />',
+            //         onClick: (button, map) => {
+            //             lineFeatures.removeFrom(map);
+            //             markerFeatures.addTo(map);
+            //             button.state("lines");
+            //         }
+            //     },
+            //         {
+            //             stateName: "lines",
+            //             title: "Add/edit lines",
+            //             icon: '<img src="icons/acceleration.svg" />',
+            //             onClick: (button, map) => {
+            //                 markerFeatures.removeFrom(map);
+            //                 lineFeatures.addTo(map);
+            //                 button.state("markers");
+            //             }
+            //         }
+            //     ]
+            // }).addTo(map);
+
             const dataList = await data();
 
-            const paths = await db.collection("paths").getFullList();
+            let paths = await db.collection("paths").getFullList();
+            let lines = [];
+            let lineFeatures = L.featureGroup(lines).addTo(drawnItems);
             paths.forEach(path => {
                 const geo = L.GeoJSON.geometryToLayer(path.geojson.geometry, {id: path.id});
                 drawnItems.addLayer(geo);
+                // lineFeatures.addLayer(L.polyline(geo._latlngs));
+                // lines.push(L.polyline(geo._latlngs))
             });
+            let markerFeatures = L.featureGroup().addTo(drawnItems);
 
             locations.forEach(location => {
                 const props = dataList
@@ -96,9 +140,9 @@
                     description: location.description,
                     ...props
                 });
-                drawnItems.addLayer(marker);
+                markerFeatures.addLayer(marker);
                 marker.bindPopup(`<div id=${marker.options.id}></div>`,
-                    {minWidth: 150});
+                    {minWidth: 240});
                 marker.on("popupopen", () => {
                     let popup = new AddMarker({
                         target: document.getElementById(marker.options.id),
@@ -110,18 +154,21 @@
 
         /* Leaflet.Draw event handlers */
         map.on(L.Draw.Event.CREATED, (e) => {
+            console.log(e)
             // Get the type of feature that was added
             switch (e.layerType) {
                 case "marker":
                     // Bind a popup to hold a form for setting properties for the new marker
-                    e.layer.bindPopup('<div id="new-marker"></div>', {
-                        minWidth: 250,
-                        maxWidth: 320,
+                    e.layer.bindPopup('<div id="new-marker" class="w-[400px]"></div>', {
+                        minWidth: 400,
                     });
                     break;
                 case "polyline":
                     savePath(e.layer.toGeoJSON());
                     break;
+                // case "polygon":
+                //     console.log(e.layer);
+                //     break;
             }
             drawnItems.addLayer(e.layer);
 
@@ -140,7 +187,7 @@
 
             Object.values(edited._layers).forEach(marker => {
                 if (marker._path) {
-                    savePath(marker.toGeoJSON(), marker.options.id);
+                    savePath(marker.toGeoJSON(), marker.options.id, "paths");
                 } else {
                     saveLocation(marker.options.name, marker._latlng.lat, marker._latlng.lng, marker.options.description, marker.options.id)
                 }
@@ -165,14 +212,33 @@
         };
     }
 
-    async function savePath(path, id = null) {
+    /**
+     * Create or update a marker location in the database.
+     * @async
+     * @param {string} name - The name of the item.
+     * @param {number} lat - The latitude of the item's location.
+     * @param {number} lng - The longitude of the item's location.
+     * @param {string} [description] - (optional) A description of the item's precise location if it's not immediately obvious.
+     * @param {string} [id] - (optional) The 15-character string ID generated by PocketBase. It will update the record if an ID is passed in and create it if not.
+     */
+    async function saveLocation(name, lat, lng, description, id) {
+        const body = `{"name": "${name}", "lat": ${lat}, "lng": ${lng}, "description": "${description}"}`;
+
+        return !!id ? await db.collection("locations_new").update(id, body) : await db.collection("locations_new").create(body);
+    }
+
+    async function savePath(path, id = null, collection) {
         if (id) {
-            await db.collection("paths").update(id, {'geojson': JSON.stringify(path)});
+            await db.collection(collection).update(id, {'geojson': JSON.stringify(path)});
         } else {
-            await db.collection("paths").create({'geojson': JSON.stringify(path)});
+            await db.collection(collection).create({'geojson': JSON.stringify(path)});
         }
     }
 </script>
+
+<svelte:head>
+    <!--    <script src="https://unpkg.com/@turf/turf@latest"></script>-->
+</svelte:head>
 
 <div id="map" use:initMap>
     {#if map}
@@ -181,5 +247,5 @@
 </div>
 
 <style>
-    @import "../../../node_modules/leaflet-draw/dist/leaflet.draw.css";
-</style>
+    @import "leaflet-draw/dist/leaflet.draw.css";
+</style>-->
