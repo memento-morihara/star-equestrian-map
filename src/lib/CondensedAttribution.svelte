@@ -1,23 +1,23 @@
 <script>
-    import {windowParams} from "$lib/stores.js";
-    // Adapted from https://github.com/route360/Leaflet.CondensedAttribution
-    export let emblem = "?";
+  import { windowParams } from "$lib/stores.js";
+  // Adapted from https://github.com/route360/Leaflet.CondensedAttribution
+  export let emblem = "?";
 
-    // Track width to keep
-    let {width} = $windowParams;
+  // Track width to keep
+  let { width } = $windowParams;
 
-    $: width = width;
+  $: width = width;
 </script>
 
 <div class="leaflet-condensed-attribution text-black">
-    <div class="attributes-body">
-        {width >= 300 ? "Images " : ""}&copy;
-        <a href="https://foxieventures.com">Foxie Ventures</a>
-        |
-        {#if width >= 300}Rendered with
-        {/if}<a href="https://maptiler.com">MapTiler Engine</a>
-    </div>
-    <p class="emblem">{emblem}</p>
+  <div class="attributes-body">
+    {width >= 300 ? "Images " : ""}&copy;
+    <a href="https://foxieventures.com">Foxie Ventures</a>
+    |
+    {#if width >= 300}Rendered with
+    {/if}<a href="https://maptiler.com">MapTiler Engine</a>
+  </div>
+  <p class="emblem">{emblem}</p>
 </div>
 
 <style>

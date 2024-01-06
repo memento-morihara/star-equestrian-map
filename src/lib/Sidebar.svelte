@@ -1,60 +1,73 @@
 <script>
-    import {Tab, TabGroup} from "@skeletonlabs/skeleton";
-    import FilterTree from "$lib/FilterTree.svelte";
-    import {getContext, onMount} from "svelte";
-    import Settings from "$lib/Settings.svelte";
-    import Progress from "$lib/Progress.svelte";
+  import { Tab, TabGroup } from "@skeletonlabs/skeleton";
+  import FilterTree from "$lib/FilterTree.svelte";
+  import { getContext, onMount } from "svelte";
+  import Settings from "$lib/Settings.svelte";
+  import Progress from "$lib/Progress.svelte";
 
-    const map = getContext("map")();
+  const map = getContext("map")();
 
-    const tabs = ["filters", "progress", "settings"];
+  const tabs = ["filters", "progress", "settings"];
 
-    let open = false;
-    let activeTabIndex = 0;
-    let sidebar;
+  let open = false;
+  let activeTabIndex = 0;
+  let sidebar;
 
-    onMount(() => {
-        for (const event of ["click", "dblclick", "scroll", "mousedown", "mousewheel", "touchstart"]) {
-            sidebar.addEventListener(event, (e) => e.stopPropagation());
-        }
-    });
+  onMount(() => {
+    for (const event of [
+      "click",
+      "dblclick",
+      "scroll",
+      "mousedown",
+      "mousewheel",
+      "touchstart"
+    ]) {
+      sidebar.addEventListener(event, (e) => e.stopPropagation());
+    }
+  });
 </script>
 
 <aside
-        bind:this={sidebar}
-        class="sidebar bg-white dark:bg-surface-700 h-full shadow-md cursor-default select-none"
-        class:open={open}
-        class:closed={!open}
+  bind:this={sidebar}
+  class="sidebar bg-white dark:bg-surface-700 h-full shadow-md cursor-default select-none"
+  class:closed={!open}
+  class:open
 >
-    <div class="sidebar-inner h-full w-full">
-        <TabGroup class="h-full" justify="justify-center"
-                  padding="md:py-3 py-2.5"
-                  regionList="sticky top-0 right-1 bg-white dark:bg-surface-700"
-                  regionPanel="bg-white h-full dark:bg-surface-700 overflow-y-auto" rounded="0">
-            {#each tabs as tab, i}
-                <Tab class="w-1/3" bind:group={activeTabIndex} name={tab} value={i}
-                ><span>{tab.toUpperCase()}</span></Tab
-                >
-            {/each}
-            <svelte:fragment slot="panel">
-                <section class="md:text-base text-sm dark:bg-700 max-w-[390px] align-baseline">
-                    {#if activeTabIndex === 0}
-                        <FilterTree {map}/>
-                    {:else if activeTabIndex === 1}
-                        <Progress/>
-                    {:else if activeTabIndex === 2}
-                        <Settings/>
-                    {/if}
-                </section>
-            </svelte:fragment>
-        </TabGroup>
-    </div>
-    <div class="toggle-container bg-white dark:bg-surface-700">
-        <button
-                class="toggle-btn leaflet-control ring-surface-50"
-                on:click={() => (open = !open)}
-        />
-    </div>
+  <div class="sidebar-inner h-full w-full">
+    <TabGroup
+      class="h-full"
+      justify="justify-center"
+      padding="md:py-3 py-2.5"
+      regionList="sticky top-0 right-1 bg-white dark:bg-surface-700"
+      regionPanel="bg-white h-full dark:bg-surface-700 overflow-y-auto"
+      rounded="0"
+    >
+      {#each tabs as tab, i}
+        <Tab class="w-1/3" bind:group={activeTabIndex} name={tab} value={i}
+        ><span>{tab.toUpperCase()}</span></Tab
+        >
+      {/each}
+      <svelte:fragment slot="panel">
+        <section
+          class="md:text-base text-sm dark:bg-700 max-w-[390px] align-baseline"
+        >
+          {#if activeTabIndex === 0}
+            <FilterTree {map} />
+          {:else if activeTabIndex === 1}
+            <Progress />
+          {:else if activeTabIndex === 2}
+            <Settings />
+          {/if}
+        </section>
+      </svelte:fragment>
+    </TabGroup>
+  </div>
+  <div class="toggle-container bg-white dark:bg-surface-700">
+    <button
+      class="toggle-btn leaflet-control ring-surface-50"
+      on:click={() => (open = !open)}
+    />
+  </div>
 </aside>
 
 <style>
@@ -141,5 +154,4 @@
             transform: translateX(0);
         }
     }
-
 </style>

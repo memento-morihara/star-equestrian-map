@@ -6,7 +6,9 @@
     "dev": "vite dev",
     "build": "build.sh",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "format": "prettier --write --plugin=prettier-plugin-svelte .",
+    "prettier:check": "prettier --check --plugin=prettier-plugin-svelte ."
   },
   "devDependencies": {
     "@iconify-json/bi": "^1.1.20",
@@ -21,6 +23,8 @@
     "leaflet-draw": "^1.0.4",
     "pocketbase": "^0.19.0",
     "postcss": "8.4.31",
+    "prettier": "3.1.1",
+    "prettier-plugin-svelte": "^3.1.2",
     "svelte": "^4.0.5",
     "tailwindcss": "3.3.3",
     "unplugin-icons": "^0.17.4",
