@@ -7,7 +7,6 @@
   import { settings, windowParams } from "$lib/stores.js";
   import { page } from "$app/stores";
 
-  export let data = {};
   const { locations, broncoLocations } = JSON.parse($page.data.data);
 
   let { width } = $windowParams;
@@ -19,7 +18,7 @@
 
 <svelte:window bind:innerWidth={width} />
 
-<Map {data}>
+<Map>
   {#if width >= 300}
     <Sidebar />
   {/if}

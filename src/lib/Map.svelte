@@ -4,25 +4,29 @@
   import { flatItems } from "$lib/utils.js";
   import { allMarkers, mapStore, selectedMarker } from "./stores.js";
   import Popup from "$lib/Popup.svelte";
+  import { page } from "$app/stores";
 
   let map;
   let featureGroups = {};
   let url;
   let id;
 
-  export let data;
+  const data = JSON.parse($page.data.data);
 
   setContext("map", () => map);
   setContext("groups", () => featureGroups);
 
   async function initMap(node) {
     if (browser) {
-      url = new URL(window.location.href);
-      id = url.searchParams.get("id");
+      id = $page.url.searchParams.get("id");
+
+      /**
+       * The initial location parsed from the URL search parameters, if any.
+       */
       const initial = id
         ? [...data.locations, ...data.broncoLocations].find(
-          (location) => location.id === id
-        )
+        (location) => location.id === id
+      ) ?? null
         : null;
 
       const L = await import("leaflet");
@@ -64,6 +68,7 @@
             (marker) => marker.options.id === initial.id
           );
           if ($selectedMarker) {
+            $selectedMarker.addTo(map);
             $selectedMarker.bindPopup(
               `<div id="${$selectedMarker.options.id}"></div>`
             );
