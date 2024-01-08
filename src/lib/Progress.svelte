@@ -36,9 +36,9 @@
 
   onMount(() => {
     // Put the unsubscribe method returned from subscribe into an array
-    $collectibleStores.forEach((item) =>
-      unsubscribers.push(item.store.subscribe(() => getCollected()))
-    );
+    $collectibleStores.forEach((item) => {
+      unsubscribers.push(item.store.subscribe(() => getCollected()));
+    });
   });
 
   // Call the unsubscribe methods when component is unmounted
@@ -50,11 +50,13 @@
     collected[item]
       ? collected[item] / countsWithBronco.find((c) => c.name === item)?.count
       : 0;
+
+  $: $collectibleStores && getCollected();
 </script>
 
 <section class="sm:text-[1rem] text-[0.75rem] align-baseline px-2.5">
-  <h2 class="h3">Progress</h2>
-  <div class="mx-2 grid grid-cols-2 col-gap-2">
+  <h2 class="h3 mt-2 mb-5">Progress</h2>
+  <div class="mx-2 grid grid-cols-2 gap-4">
     {#each Object.keys(grouped) as item}
       {#if windowSize > 450}
         <div class="my-8 flex flex-col">
@@ -85,8 +87,8 @@
         </div>
       {:else}
         <div class="flex justify-center relative">
-          <div class="absolute top-2 sm:top-4">
-            <div class="mx-auto flex flex-col items-center gap-0.5 sm:gap-1">
+          <div class="absolute top-5">
+            <div class="mx-auto flex flex-col items-center gap-0.5 sm: text-sm">
               <img
                 height="32"
                 width="32"
@@ -101,6 +103,8 @@
             </div>
           </div>
           <ProgressRadial
+            track="stroke-surface-300/100"
+            meter="stroke-primary-500"
             value={percentCollected(item) * 100}
             width="w-24"
           ></ProgressRadial>
