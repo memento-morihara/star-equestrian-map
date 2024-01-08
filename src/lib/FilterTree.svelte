@@ -6,7 +6,6 @@
   import { markerData } from "$lib/markerData.js";
   import CheckIcon from "virtual:icons/bi/check-square";
   import SquareIcon from "virtual:icons/bi/square";
-  // import {counts, countsWithBronco} from "$lib/db.js";
   import { page } from "$app/stores";
 
   export let map;
@@ -91,11 +90,10 @@
   }
 
   onMount(async () => {
-    if (window) {
-      L = await import("leaflet");
-      displayedGroups = L.layerGroup([...Object.values(groups)]).addTo(map);
-      nodes = await getNodes();
-    }
+    L = await import("leaflet");
+    displayedGroups = L.layerGroup().addTo(map);
+    $filterStore.forEach(filter => groups[filter] && groups[filter].addTo(displayedGroups));
+    nodes = await getNodes();
   });
 
   function changeAllFilters() {
