@@ -4,11 +4,11 @@
     "beforeBuildCommand": "npm run build",
     "beforeDevCommand": "npm run dev",
     "devPath": "http://localhost:5173",
-    "distDir": "../build"
+    "distDir": "../build/"
   },
   "package": {
     "productName": "SE Map",
-    "version": "0.1.5"
+    "version": "0.1.6"
   },
   "tauri": {
     "allowlist": {
