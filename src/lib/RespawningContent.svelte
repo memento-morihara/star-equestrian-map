@@ -68,63 +68,59 @@
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
-{#if screenWidth < 450}
-  <MiniPopup actions={[updateStore, undoUpdateStore]} />
-{:else}
-  <div>
-    <small class="text-sm pb-0" transition:fade
-    >Last collected:
-      {#if lastCollected}
-        <span in:fade><Time relative timestamp={lastCollected} /></span>
-      {:else}
-        <span in:fade>N/A</span>
-      {/if}
-    </small>
-    {#if isChecked($selectedMarker) > -1 && isCollected($selectedMarker) !== 1}
-      <div transition:slide={animParams}>
-        <small class="text-sm"
-        >Last checked:
-          <Time relative timestamp={lastChecked} />
-        </small>
-      </div>
+<div>
+  <small class="text-sm pb-0" transition:fade
+  >Last collected:
+    {#if lastCollected}
+      <span in:fade><Time relative timestamp={lastCollected} /></span>
+    {:else}
+      <span in:fade>N/A</span>
     {/if}
-  </div>
-  {#if $selectedMarker.options.description}
-    <p class="text-base m-0">{$selectedMarker.options.description}</p>
+  </small>
+  {#if isChecked($selectedMarker) > -1 && isCollected($selectedMarker) !== 1}
+    <div transition:slide={animParams}>
+      <small class="text-sm"
+      >Last checked:
+        <Time relative timestamp={lastChecked} />
+      </small>
+    </div>
   {/if}
+</div>
+{#if $selectedMarker.options.description}
+  <p class="text-base m-0">{$selectedMarker.options.description}</p>
+{/if}
 
-  {#if isCollected($selectedMarker) > 0}
-    <div class="spawn-buttons" in:fade>
-      <button
-        class="btn variant-ghost-primary"
-        on:click={(e) => undoUpdateStore("lastCollected", e)}
-      >Remove
-      </button>
-    </div>
-  {:else if isChecked($selectedMarker) > 0}
-    <div class="spawn-buttons" in:fade>
-      <button
-        class="btn variant-ghost-primary"
-        on:click={(e) => undoUpdateStore("lastChecked", e)}
-      >Remove
-      </button>
-    </div>
-  {:else}
-    <div class="spawn-buttons" in:fade>
-      <button
-        on:click={(e) => updateStore("lastCollected", e)}
-        class="btn variant-filled-primary"
-      >Collect
-      </button>
-      <button
-        class="no-spawn btn-icon hover:variant-soft-primary h-[42px]"
-        title="Not respawned today"
-        on:click={(e) => updateStore("lastChecked", e)}
-      >
-        <CalendarIcon style="font-size:20px" />
-      </button>
-    </div>
-  {/if}
+{#if isCollected($selectedMarker) > 0}
+  <div class="spawn-buttons" in:fade>
+    <button
+      class="btn variant-ghost-primary"
+      on:click={(e) => undoUpdateStore("lastCollected", e)}
+    >Remove
+    </button>
+  </div>
+{:else if isChecked($selectedMarker) > 0}
+  <div class="spawn-buttons" in:fade>
+    <button
+      class="btn variant-ghost-primary"
+      on:click={(e) => undoUpdateStore("lastChecked", e)}
+    >Remove
+    </button>
+  </div>
+{:else}
+  <div class="spawn-buttons" in:fade>
+    <button
+      on:click={(e) => updateStore("lastCollected", e)}
+      class="btn variant-filled-primary"
+    >Collect
+    </button>
+    <button
+      class="no-spawn btn-icon hover:variant-soft-primary h-[42px]"
+      title="Not respawned today"
+      on:click={(e) => updateStore("lastChecked", e)}
+    >
+      <CalendarIcon style="font-size:20px" />
+    </button>
+  </div>
 {/if}
 
 <style>
