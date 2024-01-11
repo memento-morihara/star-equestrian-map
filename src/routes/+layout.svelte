@@ -47,11 +47,12 @@
   <link href="/manifest.json" rel="manifest" />
   <meta
     content="#272727"
-    media="(prefers-color-scheme:dark)"
+    media="(prefers-color-scheme: dark)"
     name="theme-color"
   />
-  <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon" />
-  <link href="/favicon.png" rel="icon" />
+  <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link href="/favicon.ico" rel="icon" />
 </svelte:head>
 {#if screenWidth > 300}
   <LightSwitch
