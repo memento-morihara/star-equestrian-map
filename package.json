@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
+    "admin": "vite dev --mode admin",
     "build": "build.sh",
     "preview": "vite preview",
     "tauri": "tauri",
