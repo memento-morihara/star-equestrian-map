@@ -31,7 +31,7 @@ jobs:
       - name: install frontend dependencies
         run: npm install
       - name: generate icons
-        run: npm run tauri icon ./static/favicon.png
+        run: npm run tauri icon ./static/favicon.ico
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
