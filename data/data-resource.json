@@ -1,0 +1,564 @@
+[
+  {
+    "name": "Butterflies",
+    "rarity": 1,
+    "markerType": "respawning",
+    "iconUrl": "icons/resource/material-01-butterfly.webp",
+    "locations": [
+      {
+        "lat": -5764,
+        "lng": 12528,
+        "id": "vzalx1lem4b0mzn",
+        "description": ""
+      },
+      {
+        "lat": -4852,
+        "lng": 13038,
+        "id": "xfose9off08rgzq",
+        "description": ""
+      },
+      {
+        "lat": -7246,
+        "lng": 13426,
+        "id": "9966zd31nn2wbw5",
+        "description": ""
+      },
+      {
+        "lat": -4720,
+        "lng": 12110,
+        "id": "ea4fmvxgmo2z1d2",
+        "description": ""
+      },
+      {
+        "lat": -7036,
+        "lng": 11136,
+        "id": "f7spx3s6r2i5w96",
+        "description": ""
+      },
+      {
+        "lat": -5096,
+        "lng": 7902,
+        "id": "55l99e4f0uqzovq",
+        "description": ""
+      },
+      {
+        "lat": -4668,
+        "lng": 8420,
+        "id": "4mttsmob5x9xddz",
+        "description": ""
+      },
+      {
+        "lat": -5652,
+        "lng": 10302,
+        "id": "vd1itprj2iuajeb",
+        "description": ""
+      },
+      {
+        "lat": -6248,
+        "lng": 7956,
+        "id": "neze71v61p9hqtr",
+        "description": ""
+      },
+      {
+        "lat": -4772,
+        "lng": 1960,
+        "id": "0cg8gur0132xchw",
+        "description": ""
+      },
+      {
+        "lat": -5656,
+        "lng": 8664,
+        "id": "l38iaxugex4m9ga",
+        "description": ""
+      },
+      {
+        "lat": -5946,
+        "lng": 6778,
+        "id": "9rr8gv404b5tai0",
+        "description": ""
+      },
+      {
+        "lat": -6710,
+        "lng": 14678,
+        "id": "vd4lc9sgzbdidv3",
+        "description": ""
+      },
+      {
+        "lat": -4260,
+        "lng": 15236,
+        "id": "2914xh7aut63mba",
+        "description": ""
+      },
+      {
+        "lat": -5762,
+        "lng": 15416,
+        "id": "rq78y386u9uihz4",
+        "description": ""
+      },
+      {
+        "lat": -6572,
+        "lng": 13654,
+        "id": "eokhrk8cogtjyqt",
+        "description": ""
+      },
+      {
+        "lat": -4918,
+        "lng": 12400,
+        "id": "pr6qm38bevjklv9",
+        "description": ""
+      },
+      {
+        "lat": -7888,
+        "lng": 8320,
+        "id": "aguyor7hyml0112",
+        "description": ""
+      },
+      {
+        "lat": -6114,
+        "lng": 9108,
+        "id": "u5j5wo65srpjxhr",
+        "description": ""
+      },
+      {
+        "lat": -7574,
+        "lng": 9228,
+        "id": "hkambtup24t06w8",
+        "description": ""
+      },
+      {
+        "lat": -6786,
+        "lng": 12464,
+        "id": "ye19c6cgvkdx09c",
+        "description": ""
+      },
+      {
+        "lat": -5348,
+        "lng": 13868,
+        "id": "sq6j1q8wvw523a0",
+        "description": ""
+      },
+      {
+        "lat": -5676,
+        "lng": 12644,
+        "id": "v9v99gsupwnrqlv",
+        "description": ""
+      },
+      {
+        "lat": -7204,
+        "lng": 9884,
+        "id": "dph9sf037pdtjin",
+        "description": ""
+      },
+      {
+        "lat": -7036,
+        "lng": 9512,
+        "id": "i90unnqzhho02mr",
+        "description": ""
+      },
+      {
+        "lat": -5208,
+        "lng": 6280,
+        "id": "yl8sf76a480c6p7",
+        "description": ""
+      },
+      {
+        "lat": -600,
+        "lng": 13850,
+        "id": "9wvpv6sra2qycvr",
+        "description": ""
+      },
+      {
+        "lat": -956,
+        "lng": 13796,
+        "id": "4dhvl4xjbrh054g",
+        "description": ""
+      },
+      {
+        "lat": -1198,
+        "lng": 13536,
+        "id": "fizbzczu12gq50h",
+        "description": ""
+      },
+      {
+        "lat": -1650,
+        "lng": 12636,
+        "id": "zqnhe2rqcfgdp1d",
+        "description": ""
+      },
+      {
+        "lat": -1196,
+        "lng": 12940,
+        "id": "2sp6vt65xun8n4s",
+        "description": ""
+      },
+      {
+        "lat": -944,
+        "lng": 12658,
+        "id": "vyowmwj5z4qyh5b",
+        "description": ""
+      },
+      {
+        "lat": -484,
+        "lng": 12894,
+        "id": "x3xiuhb84ieuo1i",
+        "description": ""
+      },
+      {
+        "lat": -1892,
+        "lng": 13218,
+        "id": "d0ed0gj5262bao8",
+        "description": ""
+      },
+      {
+        "lat": -1786,
+        "lng": 14198,
+        "id": "0zua74j5hruge4y",
+        "description": ""
+      },
+      {
+        "lat": -1176,
+        "lng": 12402,
+        "id": "9apj7pkbupjqkso",
+        "description": ""
+      },
+      {
+        "lat": -5412,
+        "lng": 11316,
+        "id": "bh1d9249vbtoyo6",
+        "description": ""
+      },
+      {
+        "lat": -5620,
+        "lng": 14696,
+        "id": "yybnvjv6iiml8nn",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Eggs",
+    "rarity": 1,
+    "markerType": "respawning",
+    "iconUrl": "icons/resource/material-01-egg.webp",
+    "locations": [
+      {
+        "lat": -7270,
+        "lng": 11030,
+        "id": "b3oohzpi3rhyats",
+        "description": ""
+      },
+      {
+        "lat": -5478,
+        "lng": 7910,
+        "id": "bq3otqu833qas4x",
+        "description": ""
+      },
+      {
+        "lat": -5852,
+        "lng": 14034,
+        "id": "jc1k3erd9slnctc",
+        "description": ""
+      },
+      {
+        "lat": -5326,
+        "lng": 10730,
+        "id": "6blt5ifhhvumz1t",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Fish",
+    "rarity": 1,
+    "markerType": "respawning",
+    "iconUrl": "icons/resource/material-01-fish.webp",
+    "locations": [
+      {
+        "lat": -5184,
+        "lng": 9948,
+        "id": "csds4yqd3ik5tgr",
+        "description": ""
+      },
+      {
+        "lat": -4550,
+        "lng": 7854,
+        "id": "2906ep9jbqnagcx",
+        "description": ""
+      },
+      {
+        "lat": -3560,
+        "lng": 12220,
+        "id": "rbilt8vqaiyqdy9",
+        "description": ""
+      },
+      {
+        "lat": -7830,
+        "lng": 9978,
+        "id": "qcpxr440gvbgl6q",
+        "description": ""
+      },
+      {
+        "lat": -4062,
+        "lng": 15464,
+        "id": "04nuykpeoov1607",
+        "description": ""
+      },
+      {
+        "lat": -2792,
+        "lng": 14822,
+        "id": "4q7fll7xkn9l2al",
+        "description": ""
+      },
+      {
+        "lat": -6694,
+        "lng": 12250,
+        "id": "hqe2qapl8veaw30",
+        "description": ""
+      },
+      {
+        "lat": -5314,
+        "lng": 13022,
+        "id": "jk1zs6ld8nqxa78",
+        "description": ""
+      },
+      {
+        "lat": -4790,
+        "lng": 15980,
+        "id": "sk219exwymz1q4w",
+        "description": ""
+      },
+      {
+        "lat": -7440,
+        "lng": 1188,
+        "id": "rx9lnhqi8iy0n54",
+        "description": ""
+      },
+      {
+        "lat": -1624,
+        "lng": 12004,
+        "id": "6ih5cfwcx11ttfu",
+        "description": ""
+      },
+      {
+        "lat": -2144,
+        "lng": 11462,
+        "id": "wv8agdhkm59x1mm",
+        "description": ""
+      },
+      {
+        "lat": -870,
+        "lng": 14404,
+        "id": "zbgvs3shw7i0qmx",
+        "description": ""
+      },
+      {
+        "lat": -1814,
+        "lng": 12742,
+        "id": "jg0cc56oqam1zne",
+        "description": ""
+      },
+      {
+        "lat": -1196,
+        "lng": 11880,
+        "id": "5hjga0oz3nkbifg",
+        "description": "On the rocks, slightly above the level of the beacon island."
+      }
+    ]
+  },
+  {
+    "name": "Milk",
+    "rarity": 1,
+    "markerType": "respawning",
+    "iconUrl": "icons/resource/material-01-milk.webp",
+    "locations": [
+      {
+        "lat": -5120,
+        "lng": 11220,
+        "id": "birmfv895cy0u6c",
+        "description": ""
+      },
+      {
+        "lat": -7218,
+        "lng": 10818,
+        "id": "yjfo9ynf8m2oc6s",
+        "description": ""
+      },
+      {
+        "lat": -7358,
+        "lng": 10834,
+        "id": "c3zd2cgqrz6uvnw",
+        "description": ""
+      },
+      {
+        "lat": -7374,
+        "lng": 10874,
+        "id": "ucbi0cqdv8kfvga",
+        "description": ""
+      },
+      {
+        "lat": -7262,
+        "lng": 10854,
+        "id": "s6u0e0rsj01qm8n",
+        "description": ""
+      },
+      {
+        "lat": -7322,
+        "lng": 10880,
+        "id": "rmmjhg0jrmg5xd9",
+        "description": ""
+      },
+      {
+        "lat": -5954,
+        "lng": 13852,
+        "id": "1jsg9kiazyh8h9n",
+        "description": ""
+      },
+      {
+        "lat": -6062,
+        "lng": 13970,
+        "id": "6diqqwygwehwr5f",
+        "description": ""
+      },
+      {
+        "lat": -5132,
+        "lng": 10972,
+        "id": "22nh6qz3bhymhu5",
+        "description": ""
+      },
+      {
+        "lat": -5198,
+        "lng": 11010,
+        "id": "2uzha9zyc36gs5l",
+        "description": ""
+      },
+      {
+        "lat": -5142,
+        "lng": 11032,
+        "id": "flfx2g4zhph6ig2",
+        "description": ""
+      },
+      {
+        "lat": -5210,
+        "lng": 11102,
+        "id": "tfeumfns16b66r8",
+        "description": "Inside the barn, but reachable through the wall."
+      },
+      {
+        "lat": -5256,
+        "lng": 11160,
+        "id": "ww7qse4zwvx0rhu",
+        "description": ""
+      },
+      {
+        "lat": -5140,
+        "lng": 11166,
+        "id": "lkpcbolnmt8uflu",
+        "description": ""
+      },
+      {
+        "lat": -5794,
+        "lng": 13726,
+        "id": "901wm3svg1n14lq",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Wool",
+    "rarity": 1,
+    "markerType": "respawning",
+    "iconUrl": "icons/resource/material-01-wool.webp",
+    "locations": [
+      {
+        "lat": -5728,
+        "lng": 11274,
+        "id": "v8qjsqi9a0chxtc",
+        "description": ""
+      },
+      {
+        "lat": -5788,
+        "lng": 11266,
+        "id": "qx985dtswif1efj",
+        "description": ""
+      },
+      {
+        "lat": -5818,
+        "lng": 11360,
+        "id": "g455y4pb9lnit9u",
+        "description": ""
+      },
+      {
+        "lat": -5766,
+        "lng": 11370,
+        "id": "y12sa5v0pghwo6u",
+        "description": ""
+      },
+      {
+        "lat": -5820,
+        "lng": 11228,
+        "id": "2qricvr0o1mivjc",
+        "description": ""
+      },
+      {
+        "lat": -6310,
+        "lng": 7566,
+        "id": "v2cgk2t8j4oavct",
+        "description": ""
+      },
+      {
+        "lat": -6264,
+        "lng": 7532,
+        "id": "ml8ood3ctsb9hde",
+        "description": ""
+      },
+      {
+        "lat": -6242,
+        "lng": 7472,
+        "id": "mn5vz5afe8xq7nu",
+        "description": ""
+      },
+      {
+        "lat": -6218,
+        "lng": 7642,
+        "id": "1ogi7x3ccskm376",
+        "description": ""
+      },
+      {
+        "lat": -5492,
+        "lng": 14268,
+        "id": "i1g2xcu3gkxzhz6",
+        "description": ""
+      },
+      {
+        "lat": -5628,
+        "lng": 14254,
+        "id": "qh53voddca9mqbd",
+        "description": ""
+      },
+      {
+        "lat": -5572,
+        "lng": 14300,
+        "id": "77rgqemltxzbyak",
+        "description": ""
+      },
+      {
+        "lat": -5440,
+        "lng": 14322,
+        "id": "4i39zpzvs597lqb",
+        "description": ""
+      },
+      {
+        "lat": -5474,
+        "lng": 14404,
+        "id": "3c8kwsru6w3qr93",
+        "description": ""
+      },
+      {
+        "lat": -5536,
+        "lng": 14354,
+        "id": "be87z9u0tf7xcge",
+        "description": ""
+      }
+    ]
+  }
+]

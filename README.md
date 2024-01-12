@@ -15,6 +15,7 @@ Shoutout to the awesome folks at Foxie Ventures who provided me with a large map
 - Progress indicators for collectibles
 - Progressive web app
 - No data collected. Everything is stored in your browser's storage.
+- Experimental desktop app that stays on top of other windows (e.g. when you're playing the game on PC)
 
 ## Screenshots
 
@@ -23,12 +24,14 @@ Shoutout to the awesome folks at Foxie Ventures who provided me with a large map
 
 ---
 
-This is an unofficial fan-made project. Game, logo, and all imagery &copy; [Foxie Ventures](https://www.foxieventures.com).
+This is an unofficial fan-made project. Game, logo, and all imagery
+&copy; [Foxie Ventures](https://www.foxieventures.com).
 
 **Credits:**
 
 - [MapTiler Engine](https://www.maptiler.com/engine/)
-- [Svelte](https://svelte.dev)
+- [SvelteKit](https://kit.svelte.dev)
 - [Leaflet](https://leafletjs.com)
 - [Leaflet.SidePanel](https://github.com/maxwell-ilai/Leaflet.SidePanel)
-- [Shoelace](https://shoelace.style)
+- [Skeleton](https://skeleton.dev)
+- [Tauri](https://tauri.app)

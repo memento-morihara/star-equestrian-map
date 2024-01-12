@@ -1,15 +1,10 @@
+.DS_Store
 node_modules
-.env
-dist
-deploy.sh
-build
-public
-.svelte-kit
-
-#IDE artifacts
-run.json
-launch.json
-settings.json
-.idea
-
-src-tauri
+/build
+/.svelte-kit
+/package
+.env.admin.local
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+.idea/
+.vscode/
