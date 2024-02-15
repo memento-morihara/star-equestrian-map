@@ -18,9 +18,7 @@
   function initPopup(marker) {
     marker.bindPopup(
       L.popup({
-        minWidth: 200,
-        maxWidth: 350,
-        minHeight: 100,
+        minWidth: 227,
         content: `<div id="${marker.options.id}"></div>`
       })
     );
