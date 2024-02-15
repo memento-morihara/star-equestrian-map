@@ -1,5 +1,11 @@
 import { get } from "svelte/store";
-import { allMarkers } from "$lib/stores.js";
+import {
+  allMarkers,
+  itemsCollected,
+  points,
+  selectedMarker,
+  settings,
+} from "$lib/stores.js";
 
 export const categories = [
   {
@@ -202,3 +208,43 @@ export async function inlineSvg(path) {
       return decoder.decode(bytes);
     });
 }
+
+export const updateStore = (key, e, isUndo) => {
+  const stores = {
+    settings: get(settings),
+    selectedMarker: get(selectedMarker),
+  };
+
+  if (stores.settings.keepSpiderfied && !stores.settings.closePopups) {
+    e.stopImmediatePropagation();
+  } else if (stores.settings.keepSpiderfied) {
+    e.stopPropagation();
+    stores.selectedMarker.closePopup();
+  }
+
+  let markerStore = get(stores.selectedMarker.options.store);
+
+  if (key === "collected") {
+    stores.selectedMarker.options.store.update(() => ({ collected: !isUndo }));
+  } else if (isUndo) {
+    markerStore[key].reverse();
+    stores.selectedMarker.options.store.update((s) => ({
+      ...s,
+      ...markerStore,
+    }));
+  } else {
+    markerStore[key].unshift(new Date());
+    markerStore[key] = markerStore[key].slice(0, 2);
+    stores.selectedMarker.options.store.update((s) => ({
+      ...s,
+      ...markerStore,
+    }));
+  }
+
+  stores.selectedMarker.setOpacity(isUndo ? 1 : stores.settings.markerOpacity);
+  points.update(
+    (num) =>
+      (num += (isUndo ? -1 : 1) * stores.selectedMarker.options?.rarity ?? 0),
+  );
+  itemsCollected.update((i) => (i += isUndo ? -1 : 1));
+};

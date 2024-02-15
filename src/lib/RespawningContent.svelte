@@ -3,7 +3,7 @@
   import Time from "svelte-time";
   import { get } from "svelte/store";
   import { fade, slide } from "svelte/transition";
-  import { isChecked, isCollected } from "$lib/utils.js";
+  import { isChecked, isCollected, updateStore } from "$lib/utils.js";
   import CalendarIcon from "virtual:icons/bi/calendar-x";
 
   let screenWidth;
@@ -15,52 +15,11 @@
     $selectedMarker.options.markerType === "respawning" &&
     get($selectedMarker.options.store)?.lastChecked[0];
 
-  const updateStore = (key, e) => {
-    // Prevent popups from closing
-    if ($settings.keepSpiderfied && !$settings.closePopups) {
-      e.stopImmediatePropagation();
-    } else if ($settings.keepSpiderfied) {
-      e.stopPropagation();
-      $selectedMarker.closePopup();
-    }
-
-    let store = get($selectedMarker.options.store);
-
-    // Add current date to the beginning of the array and remove the last item
-    store[key].unshift(new Date());
-    store[key] = store[key].slice(0, 2);
-    $selectedMarker.options.store.update((s) => ({ ...s, ...store }));
-
-    $settings.hideCollectedMarkers
-      ? $selectedMarker.on("popupclose", () => $selectedMarker.remove())
-      : $selectedMarker.setOpacity($settings.markerOpacity);
-
-    lastChecked = lastChecked;
+  function collect(key, e, isUndo) {
+    updateStore(key, e, isUndo);
     lastCollected = lastCollected;
-  };
-
-  const undoUpdateStore = (key, e) => {
-    if ($settings.keepSpiderfied && !$settings.closePopups) {
-      e.stopImmediatePropagation();
-    } else if ($settings.keepSpiderfied) {
-      e.stopPropagation();
-      $selectedMarker.closePopup();
-    }
-
-    let store = get($selectedMarker.options.store);
-
-    // Since setArray will always add to the beginning and remove the last item,
-    // the two remaining elements will never be the same date and can be swapped safely
-    store[key].reverse();
-    $selectedMarker.options.store.update((s) => ({ ...s, ...store }));
-    $selectedMarker.setOpacity(1);
-
     lastChecked = lastChecked;
-    lastCollected = lastCollected;
-  };
-
-  // If the collect/uncollect cycle is repeated, the "old" date is now the first element,
-  // so it will be preserved
+  }
 
   // Add a delay if popups are closed automatically to prevent
   // the animation from playing while the popup closes
@@ -94,7 +53,7 @@
   <div class="spawn-buttons" in:fade>
     <button
       class="btn variant-ghost-primary"
-      on:click={(e) => undoUpdateStore("lastCollected", e)}
+      on:click={(e) => collect("lastCollected", e, true)}
     >Remove
     </button>
   </div>
@@ -102,21 +61,21 @@
   <div class="spawn-buttons" in:fade>
     <button
       class="btn variant-ghost-primary"
-      on:click={(e) => undoUpdateStore("lastChecked", e)}
+      on:click={(e) => collect("lastChecked", e, true)}
     >Remove
     </button>
   </div>
 {:else}
   <div class="spawn-buttons" in:fade>
     <button
-      on:click={(e) => updateStore("lastCollected", e)}
+      on:click={(e) => collect("lastCollected", e, false)}
       class="btn variant-filled-primary"
     >Collect
     </button>
     <button
       class="no-spawn btn-icon hover:variant-soft-primary h-[42px]"
       title="Not respawned today"
-      on:click={(e) => updateStore("lastChecked", e)}
+      on:click={(e) => collect("lastChecked", e, false)}
     >
       <CalendarIcon style="font-size:20px" />
     </button>

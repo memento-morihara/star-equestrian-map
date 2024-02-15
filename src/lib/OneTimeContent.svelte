@@ -45,7 +45,7 @@
     <button
       in:fade
       class="btn variant-filled-primary sm:btn-md btn-sm"
-      on:click={(e) => updateStore(e)}
+      on:click={(e) => collect("collected", e, false)}
     >Collect
     </button>
   {/if}
