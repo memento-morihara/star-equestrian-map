@@ -36,7 +36,7 @@
       <span in:fade>N/A</span>
     {/if}
   </small>
-  {#if isChecked($selectedMarker) > -1 && isCollected($selectedMarker) !== 1}
+  {#if isChecked($selectedMarker) > -1 && isCollected($selectedMarker) < 1}
     <div transition:slide={animParams}>
       <small class="text-sm"
       >Last checked:

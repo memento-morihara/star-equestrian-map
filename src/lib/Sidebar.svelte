@@ -4,6 +4,7 @@
   import { getContext, onMount } from "svelte";
   import Settings from "$lib/Settings.svelte";
   import Progress from "$lib/Progress.svelte";
+  import PointCounter from "$lib/PointCounter.svelte";
 
   const map = getContext("map")();
 
@@ -55,6 +56,7 @@
             <FilterTree {map} />
           {:else if activeTabIndex === 1}
             <Progress />
+            <PointCounter />
           {:else if activeTabIndex === 2}
             <Settings />
           {/if}

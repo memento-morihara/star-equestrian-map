@@ -1,5 +1,4 @@
 import { writable } from "svelte/store";
-
 import { localStorageStore } from "@skeletonlabs/skeleton";
 import { categories } from "$lib/utils.js";
 
@@ -49,3 +48,6 @@ export const settings = localStorageStore("settings", initSettings());
 export const allMarkers = writable([]);
 
 export const collectibleStores = writable([]);
+
+export const points = writable(0);
+export const itemsCollected = writable(0);

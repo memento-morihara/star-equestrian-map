@@ -1,33 +1,12 @@
 <script>
-  import { selectedMarker, settings } from "$lib/stores.js";
+  import { selectedMarker } from "$lib/stores.js";
   import { get } from "svelte/store";
   import { fade } from "svelte/transition";
+  import { updateStore } from "$lib/utils.js";
 
-  function updateStore(e) {
-    // Prevent popups from closing
-    if ($settings.keepSpiderfied && !$settings.closePopups) {
-      e.stopImmediatePropagation();
-    } else if ($settings.keepSpiderfied) {
-      e.stopPropagation();
-      $selectedMarker.closePopup();
-    }
-
-    $selectedMarker.options.store.update(() => ({ collected: true }));
-    $selectedMarker.setOpacity($settings.markerOpacity);
-    isCollected = isCollected;
-  }
-
-  function undoUpdateStore(e) {
-    if ($settings.keepSpiderfied && !$settings.closePopups) {
-      e.stopImmediatePropagation();
-    } else if ($settings.keepSpiderfied) {
-      e.stopPropagation();
-      $selectedMarker.closePopup();
-    }
-
-    $selectedMarker.options.store.update(() => ({ collected: false }));
-    $selectedMarker.setOpacity(1);
-    isCollected = isCollected;
+  function collect(key, e, isUndo) {
+    updateStore(key, e, isUndo);
+    isCollected = !isUndo;
   }
 
   $: isCollected = get($selectedMarker.options.store)?.collected;
@@ -38,9 +17,9 @@
     <button
       in:fade
       class="btn variant-ghost-primary"
-      on:click={(e) => undoUpdateStore(e)}>Remove
-    </button
-    >
+      on:click={(e) => collect("collected", e, true)}
+    >Remove
+    </button>
   {:else}
     <button
       in:fade
