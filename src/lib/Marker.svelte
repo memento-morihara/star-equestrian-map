@@ -71,7 +71,7 @@
       });
 
       // Hide or set opacity for markers that have been collected or checked
-      if (isCollected(marker) > 0 || isChecked(marker) > 0) {
+      if (isCollected(marker) === 1 || isChecked(marker) === 1) {
         if ($settings.hideCollectedMarkers) {
           marker.remove();
         } else {

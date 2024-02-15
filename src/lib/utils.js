@@ -71,6 +71,12 @@ export function slugifyName(name) {
   return name.split(" ").join("-").toLowerCase();
 }
 
+/**
+ * Converts a slugified string to either camel case or sentence.
+ * @param {string} name
+ * @param {boolean} camelCase
+ * @returns {string}
+ */
 export function unslugifyName(name, camelCase) {
   if (camelCase) {
     return name
@@ -95,10 +101,15 @@ export const isToday = (date) => {
   // If there is a date in the second spot, it has been "undone"
   // and shouldn't be considered
   if (date) {
-    const date1 = new Date(date).getUTCDate();
-    const date2 = new Date().getUTCDate();
+    const date1 = new Date(date);
+    const date2 = new Date();
 
-    return date1 === date2;
+    // If the date, month, and year are the same, it must be today
+    return (
+      date1.getUTCDate() === date2.getUTCDate() &&
+      date1.getUTCMonth() === date2.getUTCMonth() &&
+      date1.getUTCFullYear() === date2.getUTCFullYear()
+    );
   } else {
     return false;
   }
@@ -115,18 +126,12 @@ export const isChecked = (marker) => {
   }
   const store = get(marker.options.store);
 
-  if (store.lastChecked[0] && isToday(store.lastChecked[0])) {
-    // If marker has been checked today
+  if (isToday(store.lastChecked[0])) {
     return 1;
   } else if (
-    store.lastChecked[0] &&
-    !isToday(store.lastChecked[0]) &&
-    new Date(store.lastChecked[0]).getTime() >
-      new Date(store.lastCollected[0]).getTime()
+    isToday(store.lastCollected[0]) ||
+    store.lastCollected[0] < store.lastChecked[0]
   ) {
-    // If marker has been checked before today but not collected since
-    // Can't compare UTC date since it is checking the value instead of equality,
-    // so just use milliseconds
     return 0;
   } else {
     return -1;
@@ -140,9 +145,12 @@ export const isCollected = (marker) => {
     case "one-time":
       return store.collected ? 1 : -1;
     case "respawning":
-      if (store.lastCollected[0] && isToday(store.lastCollected[0])) {
+      if (isToday(store.lastCollected[0])) {
         return 1;
-      } else if (store.lastChecked[0] && !isToday(store.lastCollected[0])) {
+      } else if (
+        store.lastCollected[0] > store.lastChecked[0] &&
+        !isToday(store.lastChecked[0])
+      ) {
         return 0;
       } else {
         return -1;
