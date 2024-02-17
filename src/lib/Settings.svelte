@@ -34,10 +34,10 @@
           lastCollected: [null],
           lastChecked: [null]
         }));
-        marker.setOpacity(1);
+        $settings.hideCollectedMarkers ? marker.addTo(map) : marker.setOpacity(1);
       } else if (store?.collected && !keepNonRespawning) {
         marker.options.store.update(() => ({ collected: false }));
-        marker.setOpacity(1);
+        $settings.hideCollectedMarkers ? marker.addTo(map) : marker.setOpacity(1);
       }
     });
   }
@@ -45,7 +45,7 @@
   function changeOpacity() {
     $allMarkers.forEach((marker) => {
       if (isCollected(marker) > 0 || isChecked(marker) > 0) {
-        marker.setOpacity($settings.markerOpacity);
+        $settings.hideCollectedMarkers ? marker.removeFrom(map) : marker.setOpacity($settings.markerOpacity);
       }
     });
   }
