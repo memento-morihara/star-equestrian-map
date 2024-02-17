@@ -1,12 +1,14 @@
 <script>
   import { FileDropzone, getModalStore } from "@skeletonlabs/skeleton";
-  import { allMarkers } from "$lib/stores.js";
+  import { allMarkers, filterStore, settings } from "$lib/stores.js";
   import { get } from "svelte/store";
-  import { getData } from "$lib/utils.js";
+  import { getData, isChecked, isCollected, slugifyName } from "$lib/utils.js";
+  import { getContext } from "svelte";
 
   let files;
 
   const modalStore = getModalStore();
+  const map = getContext("map")();
 
   const confirmModal = {
     type: "confirm",
@@ -52,7 +54,7 @@
   async function importData() {
     resetCollected();
 
-    readFile(files[0], (err, res) => {
+    readFile(files[files.length - 1], (err, res) => {
       JSON.parse(res).forEach((result) => {
         const match = $allMarkers.find(
           (marker) => result.id === marker.options.id
@@ -70,12 +72,24 @@
               lastCollected: result.lastCollected,
               lastChecked: result.lastChecked
             });
+
           } else if (match.options.markerType === "one-time") {
             match.options.store.set({ collected: result.collected });
           }
+
+          match.removeFrom(map);
+          toggleMarkerVisibility(match);
         }
       });
     });
+  }
+
+  function toggleMarkerVisibility(marker) {
+    $filterStore.includes(slugifyName(marker.options.name)) && marker.addTo(map);
+
+    if (isCollected(marker) > 0 || isChecked(marker) > 0) {
+      $settings.hideCollectedMarkers ? marker.remove() : marker.setOpacity($settings.markerOpacity);
+    }
   }
 </script>
 
@@ -88,5 +102,5 @@
   bind:files
   class="bg-primary-100"
   name="import"
-  on:change={() => modalStore.trigger(confirmModal)}
+  on:change={() => files.length &&  modalStore.trigger(confirmModal)}
 />
