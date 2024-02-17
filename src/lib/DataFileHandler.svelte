@@ -1,8 +1,8 @@
 <script>
   import { FileDropzone, getModalStore } from "@skeletonlabs/skeleton";
-  import { allMarkers, filterStore, settings } from "$lib/stores.js";
+  import { allMarkers } from "$lib/stores.js";
   import { get } from "svelte/store";
-  import { getData, isChecked, isCollected, slugifyName } from "$lib/utils.js";
+  import { getData } from "$lib/utils.js";
   import { getContext } from "svelte";
 
   let files;
@@ -78,18 +78,10 @@
           }
 
           match.removeFrom(map);
-          toggleMarkerVisibility(match);
+          match.options.toggle();
         }
       });
     });
-  }
-
-  function toggleMarkerVisibility(marker) {
-    $filterStore.includes(slugifyName(marker.options.name)) && marker.addTo(map);
-
-    if (isCollected(marker) > 0 || isChecked(marker) > 0) {
-      $settings.hideCollectedMarkers ? marker.remove() : marker.setOpacity($settings.markerOpacity);
-    }
   }
 </script>
 

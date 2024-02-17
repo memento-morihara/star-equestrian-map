@@ -215,6 +215,7 @@ export const updateStore = (key, e, isUndo) => {
     selectedMarker: get(selectedMarker),
   };
 
+  // Either close popups on interact or keep them open
   if (stores.settings.keepSpiderfied && !stores.settings.closePopups) {
     e.stopImmediatePropagation();
   } else if (stores.settings.keepSpiderfied) {
@@ -225,14 +226,17 @@ export const updateStore = (key, e, isUndo) => {
   let markerStore = get(stores.selectedMarker.options.store);
 
   if (key === "collected") {
+    // Collect/undo one-time item
     stores.selectedMarker.options.store.update(() => ({ collected: !isUndo }));
   } else if (isUndo) {
+    // Collect respawning item
     markerStore[key].reverse();
     stores.selectedMarker.options.store.update((s) => ({
       ...s,
       ...markerStore,
     }));
   } else {
+    // Undo collect respawning item
     markerStore[key].unshift(new Date());
     markerStore[key] = markerStore[key].slice(0, 2);
     stores.selectedMarker.options.store.update((s) => ({
@@ -241,10 +245,23 @@ export const updateStore = (key, e, isUndo) => {
     }));
   }
 
-  stores.selectedMarker.setOpacity(isUndo ? 1 : stores.settings.markerOpacity);
+  stores.selectedMarker.options.toggle();
+  isUndo && stores.selectedMarker.setOpacity(1);
+
+  // If only checking, jump out early instead of updating stats
+  if (key === "lastChecked") {
+    return;
+  }
+
+  // Update statistics
+  itemsCollected.update((i) => (i += isUndo ? -1 : 1));
+
   points.update(
     (num) =>
-      (num += (isUndo ? -1 : 1) * stores.selectedMarker.options?.rarity ?? 0),
+      (num +=
+        (isUndo ? -1 : 1) *
+        (stores.selectedMarker.options?.rarity
+          ? stores.selectedMarker.options.rarity
+          : 0)),
   );
-  itemsCollected.update((i) => (i += isUndo ? -1 : 1));
 };

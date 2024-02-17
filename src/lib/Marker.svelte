@@ -2,7 +2,7 @@
   import { getContext, onMount, setContext } from "svelte";
   import { browser } from "$app/environment";
   import { markerData } from "$lib/markerData";
-  import { allMarkers, collectibleStores, selectedMarker, settings } from "$lib/stores.js";
+  import { allMarkers, collectibleStores, filterStore, selectedMarker, settings } from "$lib/stores.js";
   import { isChecked, isCollected, slugifyName } from "$lib/utils.js";
   import { localStorageStore } from "@skeletonlabs/skeleton";
   import PopupContent from "$lib/Popup.svelte";
@@ -14,6 +14,7 @@
   setContext("marker", () => marker);
 
   const groups = getContext("groups")();
+  const map = getContext("map")();
 
   function initPopup(marker) {
     marker.bindPopup(
@@ -44,7 +45,7 @@
       if ($allMarkers.flatMap((m) => m.options?.id).includes(location.id)) {
         return;
       }
-      marker = L.marker([location.lat, location.lng], {
+      marker = new L.Marker([location.lat, location.lng], {
         id: location.id,
         description: location.description,
         riseOnHover: $settings.hoverMarkers,
@@ -53,6 +54,10 @@
         ...props
       });
       initPopup(marker);
+
+      // Give it a function to show/hide itself
+      marker.options.toggle = () => toggleMarkerVisibility(marker);
+
       const name = slugifyName(marker.options.name);
 
       const group = groups[name];
@@ -93,6 +98,20 @@
         ];
       }
     });
+  }
+
+  function toggleMarkerVisibility(marker) {
+    if (!$filterStore.includes(slugifyName(marker.options.name))) {
+      marker.removeFrom(map);
+    } else {
+      map.hasLayer(marker) || marker.addTo(map);
+    }
+
+    if (isCollected(marker) > 0 || isChecked(marker) > 0) {
+      $settings.hideCollectedMarkers ? marker.remove() : marker.setOpacity($settings.markerOpacity);
+    } else {
+      marker.setOpacity(1);
+    }
   }
 </script>
 

@@ -3,27 +3,12 @@
   import { getContext, onMount } from "svelte";
   import { get } from "svelte/store";
   import { RangeSlider } from "@skeletonlabs/skeleton";
-  import { inlineSvg, isChecked, isCollected } from "$lib/utils.js";
+  import { inlineSvg } from "$lib/utils.js";
   import DataFileHandler from "$lib/DataFileHandler.svelte";
 
   const map = getContext("map")();
 
   let keepNonRespawning = true;
-
-  function toggleHiddenMarkers(e) {
-    e.target.checked
-      ? $allMarkers.forEach((marker) => {
-        if (isCollected(marker) >= 0) {
-          marker.remove();
-        }
-      })
-      : $allMarkers.forEach((marker) => {
-        marker.addTo(map);
-        isCollected(marker) >= 0
-          ? marker.setOpacity($settings.markerOpacity)
-          : marker.setOpacity(1);
-      });
-  }
 
   function resetCollected() {
     $allMarkers.forEach((marker) => {
@@ -34,19 +19,17 @@
           lastCollected: [null],
           lastChecked: [null]
         }));
-        $settings.hideCollectedMarkers ? marker.addTo(map) : marker.setOpacity(1);
       } else if (store?.collected && !keepNonRespawning) {
         marker.options.store.update(() => ({ collected: false }));
-        $settings.hideCollectedMarkers ? marker.addTo(map) : marker.setOpacity(1);
       }
+
+      marker.options.toggle();
     });
   }
 
   function changeOpacity() {
     $allMarkers.forEach((marker) => {
-      if (isCollected(marker) > 0 || isChecked(marker) > 0) {
-        $settings.hideCollectedMarkers ? marker.removeFrom(map) : marker.setOpacity($settings.markerOpacity);
-      }
+      marker.options.toggle();
     });
   }
 
@@ -54,7 +37,7 @@
     $allMarkers.forEach((marker) => {
       marker.remove();
       marker.options.riseOnHover = $settings.hoverMarkers;
-      marker.addTo(map);
+      marker.options.toggle();
     });
   }
 
@@ -129,7 +112,7 @@
           bind:checked={$settings.hideCollectedMarkers}
           class="checkbox"
           name="hide-collected"
-          on:change={(e) => toggleHiddenMarkers(e)}
+          on:change={changeOpacity}
           type="checkbox"
         /><span class="ml-2">Hide collected items</span></label
         >
