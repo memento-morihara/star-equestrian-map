@@ -26,6 +26,7 @@ export const filterStore = localStorageStore("filters", filters);
  * @property {number} markerOpacity - The opacity of collected/checked markers.
  */
 const defaultSettings = {
+  loadImages: true,
   keepOnTop: false,
   closePopups: true,
   hideCollectedMarkers: false,

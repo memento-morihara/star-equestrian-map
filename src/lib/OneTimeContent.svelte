@@ -23,7 +23,7 @@
   {:else}
     <button
       in:fade
-      class="btn variant-filled-primary sm:btn-md btn-sm"
+      class="btn variant-filled-primary"
       on:click={(e) => collect("collected", e, false)}
     >Collect
     </button>
