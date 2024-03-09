@@ -5,6 +5,7 @@
   import { page } from "$app/stores";
   import { clipboard } from "@skeletonlabs/skeleton";
   import { inlineSvg } from "$lib/utils.js";
+  import { Lightbox } from "svelte-lightbox";
 
   const popupContent = () => {
     switch ($selectedMarker.options.markerType) {
@@ -33,9 +34,14 @@
 
 {#if marker}
   <div class="popup-content w-full">
+    {#if typeof marker.options.media === "string"}
+      <Lightbox>
+        <img class="mt-2 mb-3 mx-auto" src={ marker.options?.media } alt="Closeup of the item's location." />
+      </Lightbox>
+    {/if}
     <div class="header flex justify-start">
       <button
-        class="btn-icon-md text-lg pr-2.5"
+        class="btn-icon-md text-lg pr-2.5 -mb-2"
         class:centered={!marker?.options.description.length &&
           marker.options.markerType === "static"}
         title={isCopied ? "Copied!" : "Copy permalink"}
@@ -55,7 +61,7 @@
     </div>
     <div
       class:no-desc={marker.options.markerType !== "respawning" &&
-        !marker.options.description}
+        !marker.options.description} class="my-2"
     >
       {#if marker.options.markerType !== "respawning" && marker.options.description}
         <p class="text-base my-0">{marker.options.description}</p>

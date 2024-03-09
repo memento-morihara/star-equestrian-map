@@ -69,6 +69,8 @@
             /><span class="ml-2">Keep window on top</span></label
           >
         {/if}
+        <label><input class="checkbox" id="load-images" name="load-images" type="checkbox" /><span class="ml-2">Automatically load images
+          in popups</span></label>
         <label
         ><input
           bind:checked={$settings.closePopups}
