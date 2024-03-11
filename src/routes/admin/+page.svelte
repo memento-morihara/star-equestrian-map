@@ -9,19 +9,16 @@
   let L;
   let map;
   let drawnItems;
-
+  const db = new PocketBase(PUBLIC_DB_URL);
   setContext("map", () => map);
   setContext("drawn", () => drawnItems);
+  setContext("db", () => db);
 
   const data = async () => await markerData();
 
-  const db = new PocketBase(PUBLIC_DB_URL);
 
   async function initMap(node) {
     if (browser) {
-      const locations = await db.collection("locations_new").getFullList();
-      L = await import("leaflet");
-      await import("leaflet-draw");
 
       // This route won't make it into the built app, so just make credentials public
       // env variables so we don't need admin-specific backend code
@@ -29,6 +26,9 @@
         PUBLIC_DB_USER,
         PUBLIC_DB_PASSWORD
       );
+      const locations = await db.collection("locations_new").getFullList();
+      L = await import("leaflet");
+      const lDraw = await import("leaflet-draw");
 
       const mapExtent = [0.0, -16384.0, 16384.0, 0.0];
       const mapMinZoom = 0;
@@ -70,7 +70,6 @@
       map.addLayer(drawnItems);
       let drawControl = new L.Control.Draw({
         draw: {
-          polygon: false,
           rectangle: false,
           circlemarker: false,
           circle: false,
@@ -84,22 +83,21 @@
       });
 
       map.addControl(drawControl);
-      console.log(L);
 
       const dataList = await data();
 
       let paths = await db.collection("paths").getFullList();
       let lines = [];
-      let lineFeatures = L.featureGroup(lines).addTo(drawnItems);
+      let lineFeatures = L.featureGroup(lines);
       paths.forEach((path) => {
         const geo = L.GeoJSON.geometryToLayer(path.geojson.geometry, {
           id: path.id
         });
         drawnItems.addLayer(geo);
-        // lineFeatures.addLayer(L.polyline(geo._latlngs));
-        // lines.push(L.polyline(geo._latlngs))
+        lineFeatures.addLayer(L.polyline(geo._latlngs));
+        lines.push(L.polyline(geo._latlngs));
       });
-      let markerFeatures = L.featureGroup().addTo(drawnItems);
+      let markerFeatures = L.featureGroup();
 
       locations.forEach((location) => {
         const props = dataList
@@ -110,9 +108,10 @@
           id: location.id,
           name: location.name,
           description: location.description,
+          media: location.media[0] ?? null,
           ...props
         });
-        markerFeatures.addLayer(marker);
+        drawnItems.addLayer(marker);
         marker.bindPopup(`<div id=${marker.options.id}></div>`, {
           minWidth: 240
         });
@@ -126,8 +125,8 @@
     }
 
     /* Leaflet.Draw event handlers */
-    map.on(L.Draw.Event.CREATED, (e) => {
-      console.log(e);
+    // For some reason the L.Draw.Event constants don't work anymore so oh well
+    map.on("draw:created", (e) => {
       // Get the type of feature that was added
       switch (e.layerType) {
         case "marker":
@@ -152,10 +151,11 @@
           target: document.getElementById("new-marker")
         });
         popup.$set({ marker: e.layer });
+        popup.$set({ db: db });
       }
     });
 
-    map.on(L.Draw.Event.EDITED, (e) => {
+    map.on("draw:edited", (e) => {
       const edited = e.layers;
 
       Object.values(edited._layers).forEach((marker) => {
@@ -173,7 +173,7 @@
       });
     });
 
-    map.on(L.Draw.Event.DELETED, async (e) => {
+    map.on("draw:deleted", async (e) => {
       console.log(e);
       Object.values(e.layers._layers).forEach((location) => {
         if (location._path) {

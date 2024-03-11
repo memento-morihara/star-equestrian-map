@@ -36,9 +36,11 @@
 {#if marker}
   <div class="popup-content w-full">
     {#if typeof marker.options.media === "string" && $settings.loadImages && $windowParams.width >= 768}
-      <Lightbox enableImageExpand="true">
-        <img class="mt-2 mb-3 mx-auto" src={ marker.options.media } alt="Closeup of the item's location." />
-      </Lightbox>
+      <div class="h-[150px]">
+        <Lightbox enableImageExpand="true">
+          <img class="my-2 mx-auto" src={marker.options.media} alt="Closeup of the item's location." />
+        </Lightbox>
+      </div>
     {/if}
     <div class="header flex justify-start">
       <button
@@ -56,12 +58,12 @@
       </button>
       {#if marker.options.category === "food"}
         {#await statIcon then icon}
-          {@html `<div class="w-[24px] h-[24px] object-contain my-auto align-middle dark:fill-white">${icon}</div>`}
+          {@html `<div class="w-[24px] h-[24px] p-0 object-contain relative top-0.5 my-0 dark:fill-white">${icon}</div>`}
         {/await}
       {/if}
       {#if typeof marker.options.media === "string" && (!$settings.loadImages || $windowParams.width < 768)}
         <Lightbox enableImageExpand="true">
-          <ImageIcon slot="thumbnail" class="text-lg ml-1" />
+          <ImageIcon slot="thumbnail" class="text-[1.1rem] relative top-0.5 ml-1" />
           <img src={ marker.options.media } alt="Closeup of the item's location." />
         </Lightbox>
       {/if}
