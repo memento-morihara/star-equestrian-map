@@ -20,6 +20,8 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
+        with:
+          static_site_generator: sveltekit
       - name: install dependencies
         run: npm install
       - name: build site
