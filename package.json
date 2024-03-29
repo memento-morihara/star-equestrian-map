@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite dev",
     "admin": "vite dev --mode admin",
-    "build": "build.sh",
+    "build": "vite build",
     "preview": "vite preview",
     "tauri": "tauri",
     "format": "prettier --write --plugin=prettier-plugin-svelte .",
