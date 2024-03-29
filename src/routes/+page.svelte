@@ -9,7 +9,8 @@
 
   const { locations, broncoLocations } = JSON.parse($page.data.data);
 
-  let { width } = $windowParams;
+  let width;
+  $: $windowParams.width = width;
 </script>
 
 <svelte:head>

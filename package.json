@@ -36,6 +36,7 @@
   "dependencies": {
     "dayjs": "^1.11.10",
     "leaflet": "^1.9.4",
+    "svelte-lightbox": "^1.1.2",
     "svelte-time": "^0.8.0"
   }
 }

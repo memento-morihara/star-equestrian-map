@@ -51,6 +51,7 @@
         riseOnHover: $settings.hoverMarkers,
         store: localStorageStore(location.id, lsTemplate(props.markerType)),
         bronco: isBronco,
+        media: location.media,
         ...props
       });
       initPopup(marker);

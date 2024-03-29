@@ -11,6 +11,15 @@ export async function load({ fetch }) {
   const locations = await db.collection("withoutBronco").getFullList();
   const counts = await db.collection("countWithoutBronco").getFullList();
   const countsWithBronco = await db.collection("count").getFullList();
+  locations.forEach((location) => {
+    location.media =
+      location.media.length < 1
+        ? null
+        : db.getFileUrl(location, location.media[0]);
+    if (location.media) {
+      console.log(location.media);
+    }
+  });
 
   return {
     data: JSON.stringify({
