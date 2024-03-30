@@ -10,6 +10,10 @@ const config = {
       strict: false,
       fallback: "index.html",
     }),
+    paths: {
+      base:
+        process.env.NODE_ENV === "development" ? "" : "/star-equestrian-map",
+    },
   },
 };
 export default config;
