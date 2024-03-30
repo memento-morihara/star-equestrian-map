@@ -6,7 +6,7 @@
   import Sidebar from "$lib/Sidebar.svelte";
   import { settings, windowParams } from "$lib/stores.js";
   import { page } from "$app/stores";
-  import { base } from "$app/paths";
+  import { PUBLIC_BASE_PATH } from "$env/static/public";
 
   const { locations, broncoLocations } = JSON.parse($page.data.data);
 
@@ -16,7 +16,7 @@
 
 <svelte:head>
   <title>Star Equestrian Map</title>
-  <link rel="manifest" href={base + "/manifest.json"} />
+  <link rel="manifest" href={PUBLIC_BASE_PATH + "/manifest.json"} />
 </svelte:head>
 
 <svelte:window bind:innerWidth={width} />
