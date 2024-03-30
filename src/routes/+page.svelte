@@ -7,6 +7,7 @@
   import { settings, windowParams } from "$lib/stores.js";
   import { page } from "$app/stores";
   import { PUBLIC_BASE_PATH } from "$env/static/public";
+  import { base } from "$app/paths";
 
   const { locations, broncoLocations } = JSON.parse($page.data.data);
 
@@ -16,7 +17,7 @@
 
 <svelte:head>
   <title>Star Equestrian Map</title>
-  <link rel="manifest" href={PUBLIC_BASE_PATH + "/manifest.json"} />
+  <link rel="manifest" href={base ?? PUBLIC_BASE_PATH + "/manifest.json"} />
 </svelte:head>
 
 <svelte:window bind:innerWidth={width} />
