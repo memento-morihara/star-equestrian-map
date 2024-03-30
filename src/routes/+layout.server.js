@@ -1,5 +1,5 @@
 import PocketBase from "pocketbase";
-import { DB_URL, DB_USER } from "$env/static/private";
+import { DB_PASSWORD, DB_URL, DB_USER } from "$env/static/private";
 
 export const prerender = true;
 
@@ -35,8 +35,8 @@ export async function load({ fetch }) {
     method: "POST",
     body: {
       identity: DB_USER,
-      password: DB_PASSWOR,
-    ,
+      password: DB_PASSWORD,
+    },
   });
 
   const broncoLocations = await getData("bronco");
