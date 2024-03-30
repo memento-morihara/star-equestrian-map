@@ -1,7 +1,7 @@
 {
   "name": "Star Equestrian Map",
   "short_name": "SE Map",
-  "start_url": "/",
+  "start_url": "/star-equestrian-map/",
   "display": "standalone",
   "display_override": [
     "window-controls-overlay"
