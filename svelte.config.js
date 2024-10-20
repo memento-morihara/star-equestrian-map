@@ -11,6 +11,7 @@ const config = {
       paths: {
         base: process.env.PUBLIC_BASE_PATH,
       },
+      pages: "/star-equestrian-map",
     }),
   },
 };
