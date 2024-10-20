@@ -35,7 +35,7 @@ jobs:
         run: |
           mkdir ./tmp
           mv ./src/routes/admin ./tmp/admin
-          vite build
+          npm run build
           mv ./tmp/admin ./src/routes/admin
           rm -rf tmp
 

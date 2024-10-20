@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "admin": "vite dev --mode src/routes/admin",
-    "build": "./build.sh",
+    "admin": "vite dev",
+    "build": "vite build",
     "preview": "vite preview",
     "tauri": "tauri",
     "format": "prettier --write --plugin=prettier-plugin-svelte .",
