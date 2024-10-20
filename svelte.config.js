@@ -9,8 +9,11 @@ const config = {
     adapter: adapter({
       strict: false,
       fallback: "index.html",
+      paths: {
+        base:
+          process.env.NODE_ENV === "production" ? "/star-equestrian-map" : "",
+      },
     }),
-    outDir: "/docs",
   },
 };
 export default config;

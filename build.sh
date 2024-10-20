@@ -11,13 +11,13 @@ echo_green "Building site..."
 mkdir tmp
 
 echo_green "Moving admin routes to tmp..."
-mv src/routes/admin tmp/admin
+mv ./src/routes/admin ./tmp/admin
 
 echo_green "Building site..."
 vite build
 
 echo_green "Moving admin routes back..."
-mv tmp/admin src/routes/admin
+mv ./tmp/admin ./src/routes/admin
 
 echo_green "Removing tmp..."
 rm -rf tmp
