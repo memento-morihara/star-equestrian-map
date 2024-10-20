@@ -33,7 +33,11 @@ jobs:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
-          npm run build
+          mkdir ./tmp
+          mv ./src/routes/admin ./tmp/admin
+          vite build
+          mv ./tmp/admin ./src/routes/admin
+          rm -rf tmp
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
