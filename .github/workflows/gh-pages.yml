@@ -29,10 +29,9 @@ jobs:
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
-        with:
-          PUBLIC_DB_URL: ${{ secrets.DB_URL }}
-          PUBLIC_DB_USER: ${{ secrets.DB_USER }}
-          PUBLIC_DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_URL: ${{ secrets.DB_URL }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           npm run build
 
