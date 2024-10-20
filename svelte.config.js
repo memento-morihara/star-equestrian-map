@@ -8,10 +8,8 @@ const config = {
   kit: {
     adapter: adapter({
       strict: false,
-      fallback: "index.html",
       paths: {
-        base:
-          process.env.NODE_ENV === "production" ? "/star-equestrian-map" : "",
+        base: process.env.PUBLIC_BASE_PATH,
       },
     }),
   },
