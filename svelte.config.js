@@ -10,6 +10,7 @@ const config = {
       strict: false,
       fallback: "index.html",
     }),
+    outDir: "/docs",
   },
 };
 export default config;

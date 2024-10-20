@@ -490,13 +490,13 @@ export const markerData = async () => {
                 category: "other",
             },
             {
-                name: "Treasure Map",
+                name: "Buried Treasure",
                 icon: L.icon({
-                    iconUrl: "./icons/collect/x.webp",
-                    iconSize: scaleIcons([64, 64], 24),
+                    iconUrl: "./icons/collect/buried-treasure.webp",
+                    iconSize: scaleIcons([64, 64], 20),
                 }),
                 markerType: "static",
-                category: "other"
+                category: "other",
             },
         ];
 

@@ -1,10 +1,12 @@
 <script>
-  import { selectedMarker } from "$lib/stores.js";
+  import { selectedMarker, settings, windowParams } from "$lib/stores.js";
   import OneTimeContent from "./OneTimeContent.svelte";
   import RespawningContent from "./RespawningContent.svelte";
   import { page } from "$app/stores";
   import { clipboard } from "@skeletonlabs/skeleton";
   import { inlineSvg } from "$lib/utils.js";
+  import { Lightbox, LightboxGallery, GalleryImage, GalleryThumbnail } from "svelte-lightbox";
+  import ImageIcon from "virtual:icons/bi/image";
 
   const popupContent = () => {
     switch ($selectedMarker.options.markerType) {
@@ -29,9 +31,20 @@
   } else {
     statIcon = inlineSvg(`/icons/${marker.options.stat}.svg`);
   }
+
+  console.log(marker.options?.media)
 </script>
 
 {#if marker}
+
+    {#if marker.options.media && $settings.loadImages}
+        <div>
+          <Lightbox enableImageExpand="true">
+            <img class="mt-2 mb-3 mx-auto" src={ marker.options.media } alt="Closeup of the item's location." />
+          </Lightbox>
+        </div>
+        {/if}
+
   <div class="popup-content w-full">
     <div class="header flex justify-start">
       <button
@@ -47,6 +60,14 @@
           {#if isCopied}&checkmark;{/if}
         </span>
       </button>
+      {#if marker.options.media && !$settings.loadImages}
+          <div class="mt-1.5">
+                    <Lightbox enableImageExpand="true">
+                        <ImageIcon slot="thumbnail"/>
+                      <img class="mt-2 mb-3 mx-auto" src={ marker.options.media } alt="Closeup of the item's location." />
+                    </Lightbox>
+                  </div>
+    {/if}
       {#if marker.options.category === "food"}
         {#await statIcon then icon}
           {@html `<div class="w-[24px] h-[24px] object-contain my-auto align-middle dark:fill-white">${icon}</div>`}

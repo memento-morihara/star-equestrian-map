@@ -1,5 +1,5 @@
 <script>
-  import { setContext } from "svelte";
+  import { setContext, onMount } from "svelte";
   import { browser } from "$app/environment";
   import AddMarker from "./AddMarker.svelte";
   import PocketBase from "pocketbase";
@@ -19,7 +19,7 @@
 
   async function initMap(node) {
     if (browser) {
-      const locations = await db.collection("locations_new").getFullList();
+      const locations = await db.collection("list_new").getFullList();
       L = await import("leaflet");
       await import("leaflet-draw");
 
@@ -65,6 +65,11 @@
         tms: false
       }).addTo(map);
 
+      let i = 0;
+      while (!L.Draw && i < 100) {
+        setTimeout(500);
+        i++;
+      }
       /* Set up Leaflet.Draw */
       drawnItems = new L.FeatureGroup();
       map.addLayer(drawnItems);
@@ -84,7 +89,7 @@
       });
 
       map.addControl(drawControl);
-      console.log(L);
+      console.log(L.Draw);
 
       const dataList = await data();
 
@@ -124,6 +129,7 @@
         });
       });
     }
+
 
     /* Leaflet.Draw event handlers */
     map.on(L.Draw.Event.CREATED, (e) => {
@@ -231,5 +237,5 @@
 -->
 
 <style>
-    @import "leaflet-draw/dist/leaflet.draw.css";
+    @import "../../../node_modules/leaflet-draw/dist/leaflet.draw.css";
 </style>

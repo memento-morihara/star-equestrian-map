@@ -1,0 +1,1 @@
+main.svelte-eng4oz{text-align:center;margin-top:2.3rem;height:100%;overflow:auto}p.svelte-eng4oz{margin:1rem}.gallery.svelte-eng4oz{width:80%;max-width:1200px;margin:2rem auto 5rem;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);grid-gap:1rem;height:auto}@media (max-width: 600px){.gallery.svelte-eng4oz{grid-template-columns:repeat(1,1fr)}}

@@ -9,3 +9,4 @@ vite.config.ts.timestamp-*
 .idea/
 .vscode/
 .env
+.env.*

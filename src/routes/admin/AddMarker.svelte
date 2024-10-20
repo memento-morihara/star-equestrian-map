@@ -1,6 +1,8 @@
 <script>
   import { markerData } from "$lib/markerData.js";
   import { onMount } from "svelte";
+  import PocketBase from "pocketbase";
+    import { PUBLIC_DB_PASSWORD, PUBLIC_DB_URL, PUBLIC_DB_USER } from "$env/static/public";
 
   export let marker = { options: {} };
 
@@ -11,6 +13,8 @@
   let lat;
   let lng;
 
+const db = new PocketBase(PUBLIC_DB_URL);
+
   onMount(async () => {
     data = await markerData();
     value = marker.options?.category + "," + marker.options?.name;
@@ -18,6 +22,11 @@
     id = marker?.options.id;
     lat = marker?._latlng.lat;
     lng = marker?._latlng.lng;
+
+    const auth = db.admins.authWithPassword(
+      PUBLIC_DB_USER,
+      PUBLIC_DB_PASSWORD
+    );
   });
 
   function changeIcon() {

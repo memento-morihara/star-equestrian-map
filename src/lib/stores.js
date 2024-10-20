@@ -8,7 +8,7 @@ export const windowParams = writable({ width: null, height: null });
 
 let filters = [];
 categories.flatMap(
-  (category) => (filters = [...filters, ...category.items, category.name]),
+    (category) => (filters = [...filters, ...category.items, category.name]),
 );
 /**
  * A Skeleton localStorageStore to hold the user's filter selections.
@@ -26,22 +26,23 @@ export const filterStore = localStorageStore("filters", filters);
  * @property {number} markerOpacity - The opacity of collected/checked markers.
  */
 const defaultSettings = {
-  keepOnTop: false,
-  closePopups: true,
-  hideCollectedMarkers: false,
-  markerOpacity: 0.3,
-  spiderfyMarkers: true,
-  hoverMarkers: false,
-  keepSpiderfied: true,
-  broncoEnabled: false,
+    keepOnTop: false,
+    closePopups: true,
+    hideCollectedMarkers: false,
+    markerOpacity: 0.3,
+    spiderfyMarkers: true,
+    hoverMarkers: false,
+    keepSpiderfied: true,
+    broncoEnabled: false,
+    loadImages: true,
 };
 
 let initialStore = {};
 export const initSettings = () => {
-  for (const key of Object.keys(defaultSettings)) {
-    initialStore[key] = defaultSettings[key];
-  }
-  return initialStore;
+    for (const key of Object.keys(defaultSettings)) {
+        initialStore[key] = defaultSettings[key];
+    }
+    return initialStore;
 };
 
 export const settings = localStorageStore("settings", initSettings());
