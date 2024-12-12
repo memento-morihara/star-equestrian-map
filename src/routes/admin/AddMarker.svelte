@@ -1,8 +1,6 @@
 <script>
   import { markerData } from "$lib/markerData.js";
   import { onMount } from "svelte";
-  import PocketBase from "pocketbase";
-    import { PUBLIC_DB_PASSWORD, PUBLIC_DB_URL, PUBLIC_DB_USER } from "$env/static/public";
 
   export let marker = { options: {} };
 
@@ -12,8 +10,7 @@
   let id;
   let lat;
   let lng;
-
-const db = new PocketBase(PUBLIC_DB_URL);
+  let region = "";
 
   onMount(async () => {
     data = await markerData();
@@ -22,11 +19,7 @@ const db = new PocketBase(PUBLIC_DB_URL);
     id = marker?.options.id;
     lat = marker?._latlng.lat;
     lng = marker?._latlng.lng;
-
-    const auth = db.admins.authWithPassword(
-      PUBLIC_DB_USER,
-      PUBLIC_DB_PASSWORD
-    );
+    region = marker.options.region;
   });
 
   function changeIcon() {
@@ -37,27 +30,25 @@ const db = new PocketBase(PUBLIC_DB_URL);
     marker.setIcon(dataItem.icon);
   }
 
-  function saveMarker(item, location, description) {
+  async function saveMarker(item, location, description) {
     changeIcon(item);
     marker.closePopup();
     marker.unbindPopup();
-    saveLocation(
-      item.split(",")[1],
-      location.lat,
-      location.lng,
-      description,
-      marker.options?.id
-    );
-  }
 
-  async function saveLocation(name, lat, lng, description, id = "") {
-    const body = { name, lat, lng, description };
-
-    if (id) {
-      await db.collection("locations_new").update(id, body);
-    } else {
-      await db.collection("locations_new").create(body);
-    }
+    await fetch("/admin/api/marker", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: marker.options.id,
+        name: item.split(",")[1],
+        lat: location.lat,
+        lng: location.lng,
+        description: description,
+        region: region
+      })
+    });
   }
 </script>
 
@@ -94,6 +85,18 @@ const db = new PocketBase(PUBLIC_DB_URL);
       id="description"
       name="description"
     />
+
+    <select bind:value={region}
+            class="select dark:text-on-surface-token my-1"
+            id="region"
+            name="region">
+      <option value=""></option>
+      <option value="Agricola">Agricola</option>
+      <option value="Agricolan Riviera">Agricolan Riviera</option>
+      <option value="Bronco">Bronco</option>
+      <option value="Heartside">Heartside</option>
+      <option value="Redwood Forest">Redwood</option>
+    </select>
 
     <button
       class="btn variant-filled-primary mt-1 w-3/4 mx-auto"

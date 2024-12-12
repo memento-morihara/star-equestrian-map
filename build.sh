@@ -20,6 +20,6 @@ echo_green "Moving admin routes back..."
 mv ./tmp/admin ./src/routes/admin
 
 echo_green "Removing tmp..."
-rm -rf tmp
+rm -rf ./tmp
 
 echo_green "🎉 Static site without admin built successfully!"

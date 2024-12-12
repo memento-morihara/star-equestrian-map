@@ -9,10 +9,9 @@ const config = {
     adapter: adapter({
       strict: false,
       paths: {
-        base: process.env.PUBLIC_BASE_PATH,
-      },
-      pages: "/star-equestrian-map",
-    }),
-  },
+        base: process.env.PUBLIC_BASE_PATH
+      }
+    })
+  }
 };
 export default config;
