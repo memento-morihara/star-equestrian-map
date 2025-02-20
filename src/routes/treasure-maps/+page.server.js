@@ -1,7 +1,7 @@
 import PocketBase from "pocketbase";
 import { DB_PASSWORD, DB_URL, DB_USER } from "$env/static/private";
 
-export const prerender = false;
+export const prerender = true;
 
 export async function load({ fetch }) {
   const db = new PocketBase(DB_URL);
@@ -18,7 +18,7 @@ export async function load({ fetch }) {
 
   return {
     data: JSON.stringify(
-      locations.map((loc) => ({ id: loc.id, media: loc.media })),
-    ),
+      locations.map((loc) => ({ id: loc.id, media: loc.media }))
+    )
   };
 }

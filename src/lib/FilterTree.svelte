@@ -20,7 +20,7 @@
   const count = (item) =>
     ($settings.broncoEnabled ? countsWithBronco : counts).find(
       (c) => c.name === item
-    ).count;
+    )?.count ?? 0;
   const getNodes = async () =>
     await markerData().then((data) =>
       data.map((item) => {
@@ -28,11 +28,10 @@
           id: item.name,
           content: item.label,
           children: item.items.map((i) => {
+            const itemCount = count(i.name);
             return {
               id: slugifyName(i.name),
-              content: `<p>${i.name} (<span id=${slugifyName(i.name)}>${count(
-                i.name
-              )}</span>)`,
+              content: `<p>${i.name} (<span id=${slugifyName(i.name)}>${itemCount}</span>)`,
               lead: `<img src=${
                 i.icon.createIcon().src
               } alt={i.name} height="24" width="24" />`

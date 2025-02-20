@@ -26,6 +26,26 @@ export const markerData = async () => {
         stat: "speed"
       },
       {
+        name: "Apricot",
+        icon: L.icon({
+          iconUrl: "./icons/food/apricot.webp",
+          iconSize: scaleIcons([64, 64], 24)
+        }),
+        markerType: "respawning",
+        category: "food",
+        stat: "speed"
+      },
+      {
+        name: "Beets",
+        icon: L.icon({
+          iconUrl: "./icons/food/beets.webp",
+          iconSize: scaleIcons([64, 64], 24)
+        }),
+        markerType: "respawning",
+        category: "food",
+        stat: "agility"
+      },
+      {
         name: "Berries",
         icon: L.icon({
           iconUrl: "./icons/food/resource-02-blueberry.webp",
@@ -60,6 +80,16 @@ export const markerData = async () => {
         respawnTime: 1,
         category: "food",
         stat: "jump"
+      },
+      {
+        name: "Corn",
+        icon: L.icon({
+          iconUrl: "./icons/food/corn.webp",
+          iconSize: scaleIcons([64, 64], 24)
+        }),
+        markerType: "respawning",
+        category: "food",
+        stat: "stamina"
       },
       {
         name: "Daikon Radish",
@@ -128,6 +158,16 @@ export const markerData = async () => {
         markerType: "respawning",
         rarity: 3,
         respawnTime: 1,
+        category: "food",
+        stat: "acceleration"
+      },
+      {
+        name: "Prickly Pear",
+        icon: L.icon({
+          iconUrl: "./icons/food/prickly-pear.webp",
+          iconSize: scaleIcons([64, 64], 20)
+        }),
+        markerType: "respawning",
         category: "food",
         stat: "acceleration"
       },

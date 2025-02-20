@@ -3,6 +3,7 @@
   import { autoModeWatcher, initializeStores, LightSwitch, Modal } from "@skeletonlabs/skeleton";
   import { onMount, setContext } from "svelte";
   import { mapStore, settings, windowParams } from "$lib/stores.js";
+  import { browser } from "$app/environment";
 
   let appWindow;
 
@@ -24,7 +25,10 @@
   }
 
   onMount(async () => {
-    $mapStore && onResize();
+    if (browser) {
+      $mapStore && onResize();
+
+    }
     // Check if it is running as a desktop app
     if (!window.__TAURI__) {
       return;

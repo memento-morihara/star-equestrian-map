@@ -1,7 +1,7 @@
 import PocketBase from "pocketbase";
 import { DB_PASSWORD, DB_URL, DB_USER } from "$env/static/private";
 
-export const prerender = false;
+export const prerender = true;
 
 export async function load({ fetch }) {
   const db = new PocketBase(DB_URL);
@@ -16,7 +16,7 @@ export async function load({ fetch }) {
     location.media =
       location.media.length < 1
         ? null
-        : db.getFileUrl(location, location.media[0]);
+        : db.files.getUrl(location, location.media[0]);
   });
 
   return {
@@ -24,7 +24,7 @@ export async function load({ fetch }) {
       broncoLocations,
       locations,
       counts,
-      countsWithBronco,
-    }),
+      countsWithBronco
+    })
   };
 }
