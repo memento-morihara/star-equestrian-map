@@ -5,7 +5,7 @@
   import { allMarkers, mapStore, selectedMarker } from "./stores.js";
   import Popup from "$lib/Popup.svelte";
   import { page } from "$app/stores";
-  import { PMTiles, leafletRasterLayer } from "pmtiles";
+  import { leafletRasterLayer, PMTiles } from "pmtiles";
 
   let map;
   let featureGroups = {};
@@ -52,11 +52,11 @@
         crs.unproject(L.point(mapExtent[0], mapExtent[1]))
       ];
       map = new L.Map(node, {
-        minZoom: mapMinZoom,
-        maxZoom: mapMaxZoom,
+        minZoom: -1,
+        maxZoom: 6,
         crs: L.CRS.Simple,
         attributionControl: false,
-        zoomControl: true
+        zoomControl: false
       }).fitBounds(bounds);
       $mapStore = map;
       if (initial !== null) {
@@ -97,7 +97,11 @@
       leafletRasterLayer(pmtiles, {
         bounds: bounds,
         noWrap: true,
-        tileSize: L.point(256, 256)
+        tileSize: L.point(256, 256),
+        minZoom: -1,
+        maxZoom: 6,
+        minNativeZoom: 3,
+        maxNativeZoom: 5
       }).addTo(map);
 
       // Create feature groups for each item to easily hide and show them later

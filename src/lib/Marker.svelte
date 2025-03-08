@@ -45,7 +45,7 @@
       if ($allMarkers.flatMap((m) => m.options?.id).includes(location.id)) {
         return;
       }
-      marker = new L.Marker([(location.lat / 2.029), (location.lng / 2.03)], {
+      marker = new L.Marker([(location.lat / 2.18475), (location.lng / 2.18675)], {
         id: location.id,
         description: location.description,
         riseOnHover: $settings.hoverMarkers,
