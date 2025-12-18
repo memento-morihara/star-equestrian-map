@@ -1,21 +1,9 @@
-# star-equestrian-map
+# Star Equestrian Map (WIP)
 
-This project is bootstrapped by [aurelia/new](https://github.com/aurelia/new).
+Rewritten from scratch in [Aurelia 2](https://aurelia.io). For the old feature-complete map, see https://github.com/memento-morihara/star-equestrian-map-legacy.
 
-## Start dev web server
+## Notes
 
-    npm start
-
-## Build the app in production mode
-
-    npm run build
-
-
-## Unit Tests
-
-    npm run test
-
-Run unit tests in watch mode.
-
-    npm run test:watch
-
+- Tiles are not yet final
+- Currently uses location data from the old map, pending updates to account for the changes to the in-game map
+- Still missing some locations

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 58 53"
+     version="1.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+     style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-264,-535)">
+        <path id="Agility"
+              d="M264.333,545.554L278.449,535.333L278.449,540.448L300.524,540.499L290.526,550.545L278.449,550.616L278.47,555.763L264.333,545.554ZM321.233,577.18L307.117,587.4L307.117,582.286L285.043,582.234L295.041,572.189L307.117,572.118L307.097,566.97L321.233,577.18ZM271.361,579.415L271.361,574.322L305.228,540.448L310.346,540.448L314.241,543.326L314.155,548.375L280.486,582.271L275.828,582.271L271.361,579.415Z"/>
+    </g>
+</svg>

@@ -1,6 +1,5 @@
-import Aurelia from 'aurelia';
-import { MyApp } from './my-app';
+import Aurelia from "aurelia";
+import { SEMap } from "./components/se-map/se-map";
+import { MyApp } from "./my-app";
 
-Aurelia
-  .app(MyApp)
-  .start();
+Aurelia.register(SEMap).app(MyApp).start();

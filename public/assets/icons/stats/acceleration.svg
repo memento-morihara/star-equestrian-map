@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 58 45"
+     version="1.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+     style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-408,-539)">
+        <g transform="matrix(1.77364,0,0,1.77364,-624.027,-451.358)">
+            <path id="Acceleration"
+                  d="M614.101,570.454L614.426,571.028L614.101,571.671L606.474,583.588L595.732,583.455L603.366,571.062L595.732,558.67L606.474,558.536L614.101,570.454ZM600.257,570.454L600.582,571.028L600.257,571.671L592.629,583.588L581.888,583.455L589.522,571.062L581.888,558.67L592.629,558.536L600.257,570.454Z"/>
+        </g>
+    </g>
+</svg>
