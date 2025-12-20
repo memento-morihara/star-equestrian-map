@@ -3,7 +3,7 @@
     "label": "Apple",
     "category": "food",
     "stat": "speed",
-    "icon": "/assets/icons/apple.webp",
+    "icon": "assets/icons/apple.webp",
     "respawns": true,
     "rarity": 1
   },
@@ -11,7 +11,7 @@
     "label": "Apricot",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/apricot.webp",
+    "icon": "assets/icons/apricot.webp",
     "respawns": true,
     "rarity": 3
   },
@@ -19,7 +19,7 @@
     "label": "Beacon",
     "category": "quest",
     "stat": null,
-    "icon": "/assets/icons/beacon.svg",
+    "icon": "assets/icons/beacon.svg",
     "respawns": false,
     "rarity": null
   },
@@ -27,7 +27,7 @@
     "label": "Beets",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/beets.webp",
+    "icon": "assets/icons/beets.webp",
     "respawns": true,
     "rarity": 3
   },
@@ -35,7 +35,7 @@
     "label": "Berries",
     "category": "food",
     "stat": "speed",
-    "icon": "/assets/icons/berries.webp",
+    "icon": "assets/icons/berries.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -43,7 +43,7 @@
     "label": "Bottle",
     "category": "collectibles",
     "stat": null,
-    "icon": "/assets/icons/bottle.webp",
+    "icon": "assets/icons/bottle.webp",
     "respawns": false,
     "rarity": 5
   },
@@ -51,7 +51,7 @@
     "label": "Brown Mushroom",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/brown-mushroom.webp",
+    "icon": "assets/icons/brown-mushroom.webp",
     "respawns": true,
     "rarity": 3
   },
@@ -59,7 +59,7 @@
     "label": "Buried Treasure",
     "category": "quest",
     "stat": null,
-    "icon": "/assets/icons/buried-treasure.webp",
+    "icon": "assets/icons/buried-treasure.webp",
     "respawns": false,
     "rarity": null
   },
@@ -67,7 +67,7 @@
     "label": "Butterflies",
     "category": "resources",
     "stat": null,
-    "icon": "/assets/icons/butterflies.webp",
+    "icon": "assets/icons/butterflies.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -75,7 +75,7 @@
     "label": "Butterflies Trader ()",
     "category": "quest",
     "stat": null,
-    "icon": "/assets/icons/quest-icon.svg",
+    "icon": "assets/icons/quest-icon.svg",
     "respawns": false,
     "rarity": null
   },
@@ -83,7 +83,7 @@
     "label": "Carrot",
     "category": "food",
     "stat": "jump",
-    "icon": "/assets/icons/carrot.webp",
+    "icon": "assets/icons/carrot.webp",
     "respawns": true,
     "rarity": 1
   },
@@ -91,7 +91,7 @@
     "label": "Cave Entrance",
     "category": "other",
     "stat": null,
-    "icon": "/assets/icons/cave-entrance.svg",
+    "icon": "assets/icons/cave-entrance.svg",
     "respawns": false,
     "rarity": null
   },
@@ -99,7 +99,7 @@
     "label": "Common Chest",
     "category": "chests",
     "stat": null,
-    "icon": "/assets/icons/common-chest.svg",
+    "icon": "assets/icons/common-chest.svg",
     "respawns": true,
     "rarity": 1
   },
@@ -107,7 +107,7 @@
     "label": "Corn",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/corn.webp",
+    "icon": "assets/icons/corn.webp",
     "respawns": true,
     "rarity": 3
   },
@@ -115,7 +115,7 @@
     "label": "Daikon Radish",
     "category": "food",
     "stat": "agility",
-    "icon": "/assets/icons/daikon-radish.webp",
+    "icon": "assets/icons/daikon-radish.webp",
     "respawns": true,
     "rarity": 4
   },
@@ -123,7 +123,7 @@
     "label": "Eggs",
     "category": "resourcess",
     "stat": null,
-    "icon": "/assets/icons/eggs.webp",
+    "icon": "assets/icons/eggs.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -131,7 +131,7 @@
     "label": "Eggs Trader",
     "category": "quests",
     "stat": null,
-    "icon": "/assets/icons/quest-icon.svg",
+    "icon": "assets/icons/quest-icon.svg",
     "respawns": false,
     "rarity": null
   },
@@ -139,7 +139,7 @@
     "label": "Epic Chest",
     "category": "chests",
     "stat": null,
-    "icon": "/assets/icons/epic-chest.svg",
+    "icon": "assets/icons/epic-chest.svg",
     "respawns": true,
     "rarity": 4
   },
@@ -147,7 +147,7 @@
     "label": "Fish",
     "category": "resources",
     "stat": null,
-    "icon": "/assets/icons/fish.webp",
+    "icon": "assets/icons/fish.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -155,7 +155,7 @@
     "label": "Fish Trader",
     "category": "quest",
     "stat": null,
-    "icon": "/assets/icons/quest-icon.svg",
+    "icon": "assets/icons/quest-icon.svg",
     "respawns": false,
     "rarity": null
   },
@@ -163,7 +163,7 @@
     "label": "Grapes",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/grapes.webp",
+    "icon": "assets/icons/grapes.webp",
     "respawns": true,
     "rarity": 4
   },
@@ -171,7 +171,7 @@
     "label": "Honey",
     "category": "food",
     "stat": "speed",
-    "icon": "/assets/icons/honey.webp",
+    "icon": "assets/icons/honey.webp",
     "respawns": true,
     "rarity": 3
   },
@@ -179,7 +179,7 @@
     "label": "Horseshoe",
     "category": "collectibles",
     "stat": null,
-    "icon": "/assets/icons/horseshoe.webp",
+    "icon": "assets/icons/horseshoe.webp",
     "respawns": false,
     "rarity": 5
   },
@@ -187,7 +187,7 @@
     "label": "Leather",
     "category": "resources",
     "stat": null,
-    "icon": "/assets/icons/leather.webp",
+    "icon": "assets/icons/leather.webp",
     "respawns": true,
     "rarity": 3
   },
@@ -195,7 +195,7 @@
     "label": "Legendary Chest",
     "category": "chests",
     "stat": null,
-    "icon": "/assets/icons/legendary-chest.svg",
+    "icon": "assets/icons/legendary-chest.svg",
     "respawns": false,
     "rarity": 5
   },
@@ -203,7 +203,7 @@
     "label": "Lemon",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/lemon.webp",
+    "icon": "assets/icons/lemon.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -211,7 +211,7 @@
     "label": "Lettuce",
     "category": "food",
     "stat": "agility",
-    "icon": "/assets/icons/lettuce.webp",
+    "icon": "assets/icons/lettuce.webp",
     "respawns": true,
     "rarity": 1
   },
@@ -219,7 +219,7 @@
     "label": "Milk",
     "category": "resources",
     "stat": null,
-    "icon": "/assets/icons/milk.webp",
+    "icon": "assets/icons/milk.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -227,7 +227,7 @@
     "label": "Milk Trader",
     "category": "quest",
     "stat": null,
-    "icon": "/assets/icons/quest-icon.svg",
+    "icon": "assets/icons/quest-icon.svg",
     "respawns": false,
     "rarity": null
   },
@@ -235,7 +235,7 @@
     "label": "Orange",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/orange.webp",
+    "icon": "assets/icons/orange.webp",
     "respawns": true,
     "rarity": 3
   },
@@ -243,7 +243,7 @@
     "label": "Present",
     "category": "collectibles",
     "stat": null,
-    "icon": "/assets/icons/present.webp",
+    "icon": "assets/icons/present.webp",
     "respawns": true,
     "rarity": null
   },
@@ -251,7 +251,7 @@
     "label": "Picnic Basket",
     "category": "other",
     "stat": null,
-    "icon": "/assets/icons/picnic-basket.webp",
+    "icon": "assets/icons/picnic-basket.webp",
     "respawns": true,
     "rarity": null
   },
@@ -259,7 +259,7 @@
     "label": "Prickly Pear",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/prickly-pear.webp",
+    "icon": "assets/icons/prickly-pear.webp",
     "respawns": true,
     "rarity": 3
   },
@@ -267,7 +267,7 @@
     "label": "Pumpkin",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/pumpkin.webp",
+    "icon": "assets/icons/pumpkin.webp",
     "respawns": true,
     "rarity": 1
   },
@@ -275,7 +275,7 @@
     "label": "Purple Carrot",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/purple-carrot.webp",
+    "icon": "assets/icons/purple-carrot.webp",
     "respawns": true,
     "rarity": 4
   },
@@ -283,7 +283,7 @@
     "label": "Quest Item",
     "category": "quest",
     "stat": null,
-    "icon": "/assets/icons/quest-icon.svg",
+    "icon": "assets/icons/quest-icon.svg",
     "respawns": false,
     "rarity": null
   },
@@ -291,7 +291,7 @@
     "label": "Rare Chest",
     "category": "chests",
     "stat": null,
-    "icon": "/assets/icons/rare-chest.svg",
+    "icon": "assets/icons/rare-chest.svg",
     "respawns": true,
     "rarity": 3
   },
@@ -299,7 +299,7 @@
     "label": "Sheriff Badge",
     "category": "collectibles",
     "stat": null,
-    "icon": "/assets/icons/sheriff-badge.webp",
+    "icon": "assets/icons/sheriff-badge.webp",
     "respawns": false,
     "rarity": 5
   },
@@ -307,7 +307,7 @@
     "label": "Strawberry",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/strawberry.webp",
+    "icon": "assets/icons/strawberry.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -315,7 +315,7 @@
     "label": "Toy Unicorn",
     "category": "collectibles",
     "stat": null,
-    "icon": "/assets/icons/toy-unicorn.webp",
+    "icon": "assets/icons/toy-unicorn.webp",
     "respawns": false,
     "rarity": 5
   },
@@ -323,7 +323,7 @@
     "label": "Truffle",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/truffle.webp",
+    "icon": "assets/icons/truffle.webp",
     "respawns": true,
     "rarity": 3
   },
@@ -331,7 +331,7 @@
     "label": "Turnip",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/turnip.webp",
+    "icon": "assets/icons/turnip.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -339,7 +339,7 @@
     "label": "Uncommon Chest",
     "category": "chests",
     "stat": null,
-    "icon": "/assets/icons/uncommon-chest.svg",
+    "icon": "assets/icons/uncommon-chest.svg",
     "respawns": true,
     "rarity": 2
   },
@@ -347,7 +347,7 @@
     "label": "Watermelon",
     "category": "food",
     "stat": "jump",
-    "icon": "/assets/icons/watermelon.webp",
+    "icon": "assets/icons/watermelon.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -355,7 +355,7 @@
     "label": "Wheat",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/wheat.webp",
+    "icon": "assets/icons/wheat.webp",
     "respawns": true,
     "rarity": 1
   },
@@ -363,7 +363,7 @@
     "label": "White Mushroom",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/white-mushroom.webp",
+    "icon": "assets/icons/white-mushroom.webp",
     "respawns": true,
     "rarity": 3
   },
@@ -371,7 +371,7 @@
     "label": "Wood",
     "category": "resources",
     "stat": null,
-    "icon": "/assets/icons/wood.webp",
+    "icon": "assets/icons/wood.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -379,7 +379,7 @@
     "label": "Wool",
     "category": "resources",
     "stat": null,
-    "icon": "/assets/icons/wool.webp",
+    "icon": "assets/icons/wool.webp",
     "respawns": true,
     "rarity": 2
   },
@@ -387,7 +387,7 @@
     "label": "Wool Trader",
     "category": "quest",
     "stat": null,
-    "icon": "/assets/icons/quest-icon.svg",
+    "icon": "assets/icons/quest-icon.svg",
     "respawns": false,
     "rarity": null
   },
@@ -395,7 +395,7 @@
     "label": "Zucchini",
     "category": "food",
     "stat": "",
-    "icon": "/assets/icons/zucchini.webp",
+    "icon": "assets/icons/zucchini.webp",
     "respawns": true,
     "rarity": 4
   }

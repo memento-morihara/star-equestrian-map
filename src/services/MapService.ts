@@ -25,7 +25,7 @@ export class MapService {
 
 	init(container: HTMLElement) {
 		const tileLayer = new TileLayer("tiles", {
-			urlTemplate: "/assets/tiles/{z}/{x}/{y}.webp",
+			urlTemplate: "assets/tiles/{z}/{x}/{y}.webp",
 			attribution: "Foxie Ventures",
 			maxZoom: 6,
 			maxAvailableZoom: 5,
