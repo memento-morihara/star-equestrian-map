@@ -35,7 +35,7 @@
     "lint": "npm run lint:js && npm run lint:css",
     "pretest": "npm run lint",
     "start": "vite",
-    "build": "vite build --base=star-equestrian-map",
+    "build": "vite build",
     "test": "vitest"
   },
   "type": "module",

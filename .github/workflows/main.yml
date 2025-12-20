@@ -14,6 +14,8 @@ jobs:
   build:
     name: Build site
     runs-on: ubuntu-latest
+    env:
+      VITE_PUBLIC_BASE_URL: '/${{ github.event.repository.name }}/'
     steps:
       - uses: actions/checkout@v5
       - name: Set up Node
@@ -29,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build
-        run: pnpm build
+        run: pnpm build --base=${{ env.VITE_PUBLIC_BASE_URL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

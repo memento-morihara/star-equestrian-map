@@ -25,7 +25,7 @@ export class MapService {
 
 	init(container: HTMLElement) {
 		const tileLayer = new TileLayer("tiles", {
-			urlTemplate: "assets/tiles/{z}/{x}/{y}.webp",
+			urlTemplate: `${import.meta.env.VITE_PUBLIC_BASE_URL}assets/tiles/{z}/{x}/{y}.webp`,
 			attribution: "Foxie Ventures",
 			maxZoom: 6,
 			maxAvailableZoom: 5,
@@ -62,7 +62,7 @@ export class MapService {
 				...itemData,
 			},
 			symbol: {
-				markerFile: itemData.icon,
+				markerFile: `${import.meta.env.VITE_PUBLIC_BASE_URL}${itemData.icon}`,
 				markerHeight: 32,
 				markerWidth: 32,
 			},
