@@ -16,4 +16,5 @@ export default defineConfig({
     }),
     nodePolyfills(),
   ],
+  base: '/star-equestrian-map',
 });
